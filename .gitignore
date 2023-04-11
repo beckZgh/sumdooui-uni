@@ -1,0 +1,27 @@
+# Editor directories and files
+.idea
+
+# Package Manager
+node_modules
+.pnpm-debug.log*
+
+# System
+.DS_Store
+
+# Bundle
+dist
+coverage
+
+# local env files
+*.local
+
+# 打包分析页面
+report.html
+
+# 自动生成 hooks 类型
+shims-auto-import-hooks.d.ts
+
+/packages/weapp/src/pages/demo
+
+
+*.7z

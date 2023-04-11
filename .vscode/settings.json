@@ -1,0 +1,41 @@
+{
+    "files.associations": {
+        "pages.json": "jsonc",
+        "manifest.json": "jsonc"
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true,
+
+        // -------------------
+        // "packages/pro-shared": true,
+        // "packages/admin" : true,
+        // "packages/crm"   : true,
+        // "packages/member": true,
+        // "packages/weapp" : true,
+        // "packages/sumdoo": true,
+    },
+    "search.exclude": {
+        "./packages/pro-shared/**": true,
+        "./packages/admin/**" : true,
+        "./packages/crm/**"   : true,
+        // "./packages/member/**": true,
+        "./packages/weapp/**" : true,
+        "./packages/sumdoo/**": true,
+
+        // -----------------------
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/dist": true,
+    }
+}

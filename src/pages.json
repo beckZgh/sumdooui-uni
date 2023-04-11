@@ -1,0 +1,72 @@
+{
+    "pages": [
+        {
+            "path": "pages/tabbar/home/main"
+        }, {
+            "path": "pages/tabbar/tools/main"
+        }, {
+            "path": "pages/tabbar/template/main"
+        }, {
+            "path": "pages/tabbar/my/main"
+        }, {
+            "path": "pages/components/basics/color/main"
+        }, {
+            "path": "pages/components/basics/icon/main"
+        }, {
+            "path": "pages/components/layout/cell/main"
+        }, {
+            "path": "pages/common/coding/main"
+        }
+    ],
+
+    "globalStyle": {
+		"backgroundTextStyle": "dark",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "Sumdoo Weapp",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F1F4FA",
+		"backgroundColorTop": "#F1F4FA",
+		"backgroundColorBottom": "#F1F4FA"
+	},
+
+    "tabBar": {
+        "color": "#333333",
+		"selectedColor": "#465CFF",
+		"backgroundColor": "#FFFFFF",
+        "list": [
+            {
+                "pagePath": "pages/tabbar/home/main",
+                "text": "组件",
+                "iconPath": "static/tabbar/assembly_default_3x.png",
+				"selectedIconPath": "static/tabbar/assembly_selected_3x.png"
+            },
+            {
+                "pagePath": "pages/tabbar/tools/main",
+                "text": "工具",
+				"iconPath": "static/tabbar/layout_default_3x.png",
+				"selectedIconPath": "static/tabbar/layout_selected_3x.png"
+            },
+            {
+                "pagePath": "pages/tabbar/template/main",
+                "text": "模板",
+				"iconPath": "static/tabbar/mod_default_3x.png",
+				"selectedIconPath": "static/tabbar/mod_selected_3x.png"
+            },
+            {
+                "pagePath": "pages/tabbar/my/main",
+                "text": "我的",
+				"iconPath": "static/tabbar/my_default_3x.png",
+				"selectedIconPath": "static/tabbar/my_selected_3x.png"
+            }
+        ]
+    },
+
+    "easycom": {
+        "autoscan": true,
+        "custom": {
+            "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+            "^sd-(.*)": "@/sumdooui-uni/$1/$1.vue",
+            "^app-(.*)": "@/components/app-$1.vue"
+        }
+    }
+}

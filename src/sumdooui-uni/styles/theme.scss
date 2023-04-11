@@ -1,0 +1,152 @@
+page {
+    /** 基础色 **/
+    --sd-white: #fff;
+    --sd-black: #000;
+
+    /** 背景色 **/
+    --sd-bg-color-page: #fff;
+    --sd-bg-color-white: #fff;
+    --sd-bg-color-content: #f8f8f8;
+    --sd-bg-color-mask: rgba(0, 0, 0, 0.6);
+    --sd-bg-color-hover: rgba(0, 0, 0, 0.2);
+
+    /** 文本颜色 **/
+    --sd-text-color: #333;               /* 用于普通级段落信息、引导词 */
+    --sd-text-color-title: #181818;      /* 用于重量级文字信息、标题 */
+    --sd-text-color-subtitle: #7F7F7F;   /* 用于次要标题内容 */
+    --sd-text-color-label: #B2B2B2;      /* 用于底部标签、描述、次要文字信息 */
+    --sd-text-color-disabled: #ccc;      /* 用于禁用文字 */
+    --sd-text-color-placeholder: #ccc;   /* 用于辅助、次要信息。如：待输入状态描述文字，已点击按钮文字 */
+    --sd-text-color-link: #465CFF;
+
+    /** 边框颜色 **/
+    --sd-border-color: #dcdfe6;
+
+    /** 阴影 **/
+    --sd-shadow-color: rgba(2, 4, 38, 0.05);
+
+    /** 主题色 **/
+    --sd-primary-color: #465CFF;
+    --sd-primary-color-1: min(#fff, var(--sd-primary-color), 10%);
+    --sd-primary-color-2: min(#fff, var(--sd-primary-color), 20%);
+    --sd-primary-color-3: min(#fff, var(--sd-primary-color), 30%);
+    --sd-primary-color-4: min(#fff, var(--sd-primary-color), 40%);
+    --sd-primary-color-5: min(#fff, var(--sd-primary-color), 50%);
+    --sd-primary-color-6: min(#fff, var(--sd-primary-color), 60%);
+    --sd-primary-color-7: min(#fff, var(--sd-primary-color), 70%);
+    --sd-primary-color-8: min(#fff, var(--sd-primary-color), 80%);
+    --sd-primary-color-9: min(#fff, var(--sd-primary-color), 90%);
+    /** 辅助色 - 成功 **/
+    --sd-success-color: #67c23a; // #09BE4F;
+    --sd-success-color-1: min(#fff, var(--sd-success-color), 10%);
+    --sd-success-color-2: min(#fff, var(--sd-success-color), 20%);
+    --sd-success-color-3: min(#fff, var(--sd-success-color), 30%);
+    --sd-success-color-4: min(#fff, var(--sd-success-color), 40%);
+    --sd-success-color-5: min(#fff, var(--sd-success-color), 50%);
+    --sd-success-color-6: min(#fff, var(--sd-success-color), 60%);
+    --sd-success-color-7: min(#fff, var(--sd-success-color), 70%);
+    --sd-success-color-8: min(#fff, var(--sd-success-color), 80%);
+    --sd-success-color-9: min(#fff, var(--sd-success-color), 90%);
+    /** 辅助色 - 提醒 **/
+    --sd-warning-color: #e6a23c; // #FFB703;
+    --sd-warning-color-1: min(#fff, var(--sd-warning-color), 10%);
+    --sd-warning-color-2: min(#fff, var(--sd-warning-color), 20%);
+    --sd-warning-color-3: min(#fff, var(--sd-warning-color), 30%);
+    --sd-warning-color-4: min(#fff, var(--sd-warning-color), 40%);
+    --sd-warning-color-5: min(#fff, var(--sd-warning-color), 50%);
+    --sd-warning-color-6: min(#fff, var(--sd-warning-color), 60%);
+    --sd-warning-color-7: min(#fff, var(--sd-warning-color), 70%);
+    --sd-warning-color-8: min(#fff, var(--sd-warning-color), 80%);
+    --sd-warning-color-9: min(#fff, var(--sd-warning-color), 90%);
+    /** 辅助色 - 警告、失败 **/
+    --sd-danger-color : #f56c6c; // #FF2B2B;
+    --sd-danger-color-1: min(#fff, var(--sd-danger-color), 10%);
+    --sd-danger-color-2: min(#fff, var(--sd-danger-color), 20%);
+    --sd-danger-color-3: min(#fff, var(--sd-danger-color), 30%);
+    --sd-danger-color-4: min(#fff, var(--sd-danger-color), 40%);
+    --sd-danger-color-5: min(#fff, var(--sd-danger-color), 50%);
+    --sd-danger-color-6: min(#fff, var(--sd-danger-color), 60%);
+    --sd-danger-color-7: min(#fff, var(--sd-danger-color), 70%);
+    --sd-danger-color-8: min(#fff, var(--sd-danger-color), 80%);
+    --sd-danger-color-9: min(#fff, var(--sd-danger-color), 90%);
+    /** 辅助色 - 信息 **/
+    --sd-info-color   : #909399;
+    --sd-info-color-1: min(#fff, var(--sd-info-color), 10%);
+    --sd-info-color-2: min(#fff, var(--sd-info-color), 20%);
+    --sd-info-color-3: min(#fff, var(--sd-info-color), 30%);
+    --sd-info-color-4: min(#fff, var(--sd-info-color), 40%);
+    --sd-info-color-5: min(#fff, var(--sd-info-color), 50%);
+    --sd-info-color-6: min(#fff, var(--sd-info-color), 60%);
+    --sd-info-color-7: min(#fff, var(--sd-info-color), 70%);
+    --sd-info-color-8: min(#fff, var(--sd-info-color), 80%);
+    --sd-info-color-9: min(#fff, var(--sd-info-color), 90%);
+
+    /** 透明度 **/
+    --sd-opacity-hover: 0.8;
+    --sd-opacity-disabled: 0.5;
+
+    /** 文本大小 **/
+    --sd-font-size-sm: 20rpx;
+    --sd-font-size-base: 20rpx;
+    --sd-font-size-lg: 20rpx;
+    --sd-font-size-title: 20rpx;
+
+    /** 边框大小 **/
+    --sd-border-radius-sm: 16rpx;
+    --sd-border-radius-base: 24rpx;
+    --sd-border-radius-lg: 48rpx;
+    --sd-border-radius-circle: 50%;
+
+    /** 图片大小 **/
+    --sd-img-sm: 20rpx;
+    --sd-img-base: 30rpx;
+    --sd-img-lg: 40rpx;
+
+    /* 水平间距 */
+    --sd-spacing-row-sm: 16rpx;
+    --sd-spacing-row-base: 24rpx;
+    --sd-spacing-row-lg: 32rpx;
+
+    /* 垂直间距 */
+    --sd-spacing-col-sm: 8rpx;
+    --sd-spacing-col-base: 16rpx;
+    --sd-spacing-col-lg: 24rpx;
+}
+
+/* 暗黑模式下颜色变量 */
+@media(prefers-color-scheme: dark) {
+    page {
+        /** 基础色 **/
+        --sd-white: #000;
+        --sd-black: #fff;
+
+        /** 背景色 **/
+        --sd-bg-color-page: #111111;
+        --sd-bg-color-white: #1B1B1B;
+        --sd-bg-color-content: #222222;
+        --sd-bg-color-mask: rgba(0, 0, 0, 0.6);
+        --sd-bg-color-hover: rgba(255, 255, 255, 0.2);
+
+        /** 文本颜色 **/
+        --sd-text-color: #A3A3A3;               /* 用于普通级段落信息、引导词 */
+        --sd-text-color-title: #D1D1D1;         /* 用于重量级文字信息、标题 */
+        --sd-text-color-subtitle: #8C8C8C;      /* 用于次要标题内容 */
+        --sd-text-color-label: #8D8D8D;         /* 用于底部标签、描述、次要文字信息 */
+        --sd-text-color-disabled: #5E5E5E;      /* 用于禁用文字 */
+        --sd-text-color-placeholder: #5E5E5E;   /* 用于辅助、次要信息。如：待输入状态描述文字，已点击按钮文字 */
+        --sd-text-color-link: #465CFF;
+
+        /** 边框颜色 **/
+        --sd-border-color: #242424;
+
+        /** 阴影 **/
+        --sd-shadow-color: rgba(17, 17, 17, 0.5);
+
+        /** 主题色 **/
+        --sd-primary-color: #465CFF;
+        --sd-success-color: #67c23a;
+        --sd-warning-color: #e6a23c;
+        --sd-danger-color: #f56c6c;
+        --sd-info-color: #909399;
+    }
+}

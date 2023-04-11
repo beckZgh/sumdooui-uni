@@ -1,0 +1,104 @@
+// 定义页面基础样式
+page {
+    background-color: #F1F4FA;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #181818;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+// 重置按钮
+button.reset-button {
+    display: block !important;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+
+    &::after {
+        display: none;
+    }
+}
+
+// 重置滚动条
+.reset-scroll-bar{
+    ::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        color: transparent;
+    }
+}
+
+.demo-wrap {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.demo-page--white {
+    background-color: #fff;
+}
+
+.demo-page-head {
+    padding: 52rpx 32rpx;
+    box-sizing: border-box;
+}
+
+.demo-page-body {
+    padding-bottom: 64rpx;
+}
+
+.demo-page__spacing {
+    padding-left: 32rpx;
+    padding-right: 32rpx;
+    box-sizing: border-box;
+}
+
+.demo-page__title {
+    font-size: 36rpx;
+    font-weight: 600;
+}
+
+.demo-page__desc {
+    margin-top: 8rpx;
+    color: #B2B2B2;
+    font-size: 28rpx;
+    word-break: break-all;
+}
+
+.demo-section__title {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    font-weight: 600;
+    margin-left: 32rpx;
+    margin-bottom: 32rpx;
+    padding-left: 16rpx;
+    position: relative;
+    box-sizing: border-box;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: #465CFF;
+        border-radius: 2px;
+        left: 0;
+        top: 0;
+    }
+}
+
+.demo-section__title:not(:first-child) {
+    margin-top: 96rpx;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
