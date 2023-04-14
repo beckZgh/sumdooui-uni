@@ -51,7 +51,7 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
 // 按钮主题
 @mixin button-theme($bg-color, $disabeld-color, $light-color) {
     background-color: $bg-color;
-    color: $sd-text-color-white;
+    color: $sd-white;
 
     &::after {
         border-color: $bg-color;
@@ -59,7 +59,7 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
 
     // 幽灵按钮
     &#{ $component_selector + '--plain' } {
-        background-color: $sd-bg-color-white;
+        background-color: $sd-white;
         color: $bg-color;
 
         &::after {

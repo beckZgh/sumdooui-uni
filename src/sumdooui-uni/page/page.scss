@@ -1,12 +1,15 @@
 @use '../styles/variables.scss' as *;
 
-$page-bg-color: var(--sd-page-bg-color, $sd-bg-color-gray);
+$page-bg-color: var(--sd-page-bg-color, $sd-bg-color);
 
 .sd-page {
     display: flex;
     flex-direction: column;
     background-color: $page-bg-color;
     min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
 
     &.is-lock-scroll {
         height: 100vh;

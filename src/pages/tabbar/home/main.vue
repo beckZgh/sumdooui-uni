@@ -155,7 +155,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
 .tabs-box {
     width: 100%;
     height: 108rpx;
-    background: $sd-bg-color-white;
+    background: $sd-white;
     color: $sd-text-color;
     border-radius: 40rpx 40rpx 0 0;
     position: absolute;
@@ -184,7 +184,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
             padding: 0 26rpx;
             height: 108rpx;
             font-size: 28rpx;
-            color: $sd-text-color-subtitle;
+            color: $sd-text-color-secondary;
 
             &__text {
                 transform: scale(1.2);

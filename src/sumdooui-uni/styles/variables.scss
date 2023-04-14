@@ -3,6 +3,7 @@
 // 基础色
 $sd-white: var(--sd-white, #fff);
 $sd-black: var(--sd-black, #000);
+$sd-blue : var(--sd-blue, #1989fa);
 
 // 灰色
 $sd-gray-color-1 : var(--sd-gray-color-1 , #f3f3f3);
@@ -19,7 +20,6 @@ $sd-gray-color-11: var(--sd-gray-color-11, #383838);
 $sd-gray-color-12: var(--sd-gray-color-12, #2c2c2c);
 $sd-gray-color-13: var(--sd-gray-color-13, #242424);
 $sd-gray-color-14: var(--sd-gray-color-14, #181818);
-
 
 // 主题色
 $sd-primary-color  : var(--sd-primary-color  , #465CFF);
@@ -69,35 +69,17 @@ $sd-danger-color-7: var(--sd-danger-color-7, #fcd3d3);
 $sd-danger-color-8: var(--sd-danger-color-8, #fde2e2);
 $sd-danger-color-9: var(--sd-danger-color-9, #fef0f0);
 
-// $sd-font-gray-1: var(--sd-font-gray-1, rgba(0, 0, 0, 0.9));
-// $sd-font-gray-2: var(--sd-font-gray-2, rgba(0, 0, 0, 0.6));
-// $sd-font-gray-3: var(--sd-font-gray-3, rgba(0, 0, 0, 0.4));
-// $sd-font-gray-4: var(--sd-font-gray-4, rgba(0, 0, 0, 0.26));
-
-// $sd-font-white-1: var(--sd-font-white-1, rgba(255, 255, 255, 1));
-// $sd-font-white-2: var(--sd-font-white-2, rgba(255, 255, 255, 0.55));
-// $sd-font-white-3: var(--sd-font-white-3, rgba(255, 255, 255, 0.35));
-// $sd-font-white-4: var(--sd-font-white-4, rgba(255, 255, 255, 0.22));
-
 // 背景色
-$sd-bg-color-white    : var(--sd-bg-color-white    , #fff);
-$sd-bg-color-gray     : var(--sd-bg-color-gray     , $sd-gray-color-1);
+$sd-bg-color          : var(--sd-bg-color          , $sd-gray-color-2);
 $sd-bg-color-container: var(--sd-bg-color-container, $sd-gray-color-7);
 $sd-bg-color-mask     : var(--sd-bg-color-mask     , rgba(0, 0, 0, 0.6));
-$sd-bg-color-hover    : var(--sd-bg-color-hover    , rgba(0, 0, 0, 0.2));
 
 // 文本颜色
-$sd-text-color            : var(--sd-text-color, #333);                // 用于普通级段落信息、引导词
-$sd-text-color-title      : var(--sd-text-color-title, #181818);       // 用于重量级文字信息、标题
-$sd-text-color-subtitle   : var(--sd-text-color-subtitle, #7F7F7F);    // 用于次要标题内容
-$sd-text-color-label      : var(--sd-text-color-label, #B2B2B2);       // 用于底部标签、描述、次要文字信息
-$sd-text-color-disabled   : var(--sd-text-color-disabled, #ccc);       // 用于禁用文字
-$sd-text-color-placeholder: var(--sd-text-color-placeholder, #ccc);    // 用于辅助、次要信息。如：待输入状态描述文字，已点击按钮文字
-
-$sd-text-color-white: var(--sd-text-color-white, #fff);
-$sd-text-color-black: var(--sd-text-color-black, #000);
-$sd-text-color-link : var(--sd-text-color-link, #465CFF);
-$sd-text-color-brand: var(--sd-primary-color, $sd-primary-color);
+$sd-text-color            : var(--sd-text-color, rgba(0, 0, 0, 0.6));
+$sd-text-color-primary    : var(--sd-text-color, rgba(0, 0, 0, 0.9));
+$sd-text-color-secondary  : var(--sd-text-color, rgba(0, 0, 0, 0.4));
+$sd-text-color-placeholder: var(--sd-text-color, rgba(0, 0, 0, 0.26));
+$sd-text-color-link       : var(--sd-text-color-link, $sd-blue);
 
 // 边框颜色
 $sd-border-color: var(--sd-border-color, #dcdfe6);
@@ -111,32 +93,32 @@ $sd-opacity-hover   : var(--sd-opacity-hover   , 0.8);
 $sd-opacity-disabled: var(--sd-opacity-disabled, 0.5);
 
 // 文本大小
-$sd-font-size-xs  : var(--sd-font-size-xs  , 20rpx);
-$sd-font-size-s   : var(--sd-font-size-s   , 24rpx);
-$sd-font-size-base: var(--sd-font-size-base, 28rpx);
-$sd-font-size-m   : var(--sd-font-size-m   , 32rpx);
-$sd-font-size-l   : var(--sd-font-size-l   , 40rpx);
-$sd-font-size-xl  : var(--sd-font-size-xl  , 72rpx);
+$sd-font-size-xs  : var(--sd-font-size-xs  , 20rpx); // 10px
+$sd-font-size-s   : var(--sd-font-size-s   , 24rpx); // 12px
+$sd-font-size-base: var(--sd-font-size-base, 28rpx); // 14px
+$sd-font-size-m   : var(--sd-font-size-m   , 32rpx); // 16px
+$sd-font-size-l   : var(--sd-font-size-l   , 40rpx); // 20px
+$sd-font-size-xl  : var(--sd-font-size-xl  , 72rpx); // 36px
 
 // 边框大小
-$sd-border-radius-s    : var(--sd-border-radius-sm    , 6rpx);
-$sd-border-radius-base  : var(--sd-border-radius-base , 12rpx);
-$sd-border-radius-m    : var(--sd-border-radius-lg    , 18rpx);
-$sd-border-radius-l    : var(--sd-border-radius-lg    , 24rpx);
+$sd-border-radius-s     : var(--sd-border-radius-sm  , 6rpx) ; // 3px
+$sd-border-radius-base  : var(--sd-border-radius-base, 12rpx); // 6px
+$sd-border-radius-m     : var(--sd-border-radius-lg  , 18rpx); // 9px
+$sd-border-radius-l     : var(--sd-border-radius-lg  , 24rpx); // 12px
 $sd-border-radius-round : 999px;
 $sd-border-radius-circle: 50%;
 
 // 图片大小
-$sd-img-sm  : var(--sd-img-sm  , 20rpx);
-$sd-img-base: var(--sd-img-base, 30rpx);
-$sd-img-lg  : var(--sd-img-lg  , 40rpx);
+$sd-img-sm  : var(--sd-img-sm  , 20rpx); // 10px
+$sd-img-base: var(--sd-img-base, 30rpx); // 15px
+$sd-img-lg  : var(--sd-img-lg  , 40rpx); // 20px
 
 // 间距
-$sd-spacer  : var(--sd-spacer  , 16rpx);
-$sd-spacer-1: var(--sd-spacer-1, 24rpx); // 间距-小-x
-$sd-spacer-2: var(--sd-spacer-2, 32rpx); // 间距-小
-$sd-spacer-3: var(--sd-spacer-3, 48rpx); // 间距-中
-$sd-spacer-4: var(--sd-spacer-4, 64rpx); // 间距-大
-$sd-spacer-5: var(--sd-spacer-5, 96rpx); // 间距-大-x
-$sd-spacer-6: var(--sd-spacer-6, 160rpx); // 间距-大-xx
+$sd-spacer  : var(--sd-spacer  , 16rpx);  // 8px
+$sd-spacer-1: var(--sd-spacer-1, 24rpx);  // 12px 间距-小-x
+$sd-spacer-2: var(--sd-spacer-2, 32rpx);  // 16px 间距-小
+$sd-spacer-3: var(--sd-spacer-3, 48rpx);  // 24px 间距-中
+$sd-spacer-4: var(--sd-spacer-4, 64rpx);  // 32px 间距-大
+$sd-spacer-5: var(--sd-spacer-5, 96rpx);  // 48px 间距-大-x
+$sd-spacer-6: var(--sd-spacer-6, 160rpx); // 80px 间距-大-xx
 

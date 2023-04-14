@@ -2,7 +2,7 @@
 
 $navbar-padding-top: var(--sd-navbar-padding-top, 40rpx);
 $navbar-height     : var(--sd-navbar-height, 86rpx);
-$navbar-bg-color   : var(--sd-navbar-bg-color, $sd-bg-color-white);
+$navbar-bg-color   : var(--sd-navbar-bg-color, $sd-white);
 $navbar-color      : var(--sd-navbar-color, $sd-text-color);
 $navbar-icon-size  : var(--sd-navbar-icon-size, 38rpx);
 $navbar-icon-color : var(--sd-navbar-icon-color, 'inherit');
@@ -44,7 +44,7 @@ $navbar-z-index    : var(--sd-navbar-z-index, 2000);
         }
 
         &:active {
-            background-color: $sd-bg-color-hover;
+            opacity: $sd-opacity-hover;
         }
     }
 

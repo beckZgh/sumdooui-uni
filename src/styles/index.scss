@@ -1,7 +1,7 @@
 
 // 定义页面基础样式
 page {
-    background-color: $sd-bg-color-gray;
+    background-color: $sd-bg-color;
     font-size: 32rpx;
     font-weight: 500;
     color: #181818;
@@ -36,74 +36,48 @@ button.reset-button {
     }
 }
 
-.demo-wrap {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-}
-
-.demo-page--white {
-    background-color: #fff;
-}
-
-.demo-page-head {
-    padding: 52rpx 32rpx;
-    box-sizing: border-box;
-}
-
-.demo-page-body {
-    padding-bottom: 64rpx;
-}
-
-.demo-page__spacing {
-    padding-left: 32rpx;
-    padding-right: 32rpx;
-    box-sizing: border-box;
-}
-
-.demo-page__title {
-    font-size: 36rpx;
-    font-weight: 600;
-}
-
-.demo-page__desc {
-    margin-top: 8rpx;
-    color: #B2B2B2;
-    font-size: 28rpx;
-    word-break: break-all;
-}
-
-.demo-section__title {
-    font-size: 32rpx;
-    line-height: 32rpx;
-    font-weight: 600;
-    margin-left: 32rpx;
-    margin-bottom: 32rpx;
-    padding-left: 16rpx;
-    position: relative;
-    box-sizing: border-box;
-
-    &::after {
-        content: '';
-        position: absolute;
-        width: 2px;
-        height: 100%;
-        background: #465CFF;
-        border-radius: 2px;
-        left: 0;
-        top: 0;
-    }
-}
-
-.demo-section__title {
-    margin-top: 96rpx;
-}
-// .demo-section__title:not(:first-child) {
-//     margin-top: 96rpx;
-// }
-
 .ellipsis {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.demo-card {
+    border-radius: $sd-spacer;
+    background-color: $sd-white;
+    margin: 30rpx;
+    padding: 40rpx 0;
+
+    &__title {
+        font-size: 32rpx;
+        line-height: 1;
+        font-weight: 600;
+        margin-left: $sd-spacer-2;
+        padding-left: 36rpx;
+        position: relative;
+        box-sizing: border-box;
+        margin-bottom: 20rpx;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: $sd-primary-color;
+            border-radius: $sd-border-radius-circle;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__body {
+        padding: $sd-spacer-2;
+        box-sizing: border-box;
+    }
+
+    &.is-dark {
+        background-color: #1B1B1B;
+        color: #D1D1D1;
+    }
 }

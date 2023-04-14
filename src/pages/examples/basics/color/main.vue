@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { CSSProperties  } from 'vue'
-
 
 // import { TinyColor } from '@ctrl/tinycolor'
 
@@ -21,111 +19,114 @@ import type { CSSProperties  } from 'vue'
 //         ],
 //     }
 // }
-type ColorGroupItem = { title: string; style?: CSSProperties; colors: { label: string; value: string; color?: string }[] }
-const color_groups = ref<ColorGroupItem[]>([
-    {
-        title : '主题色',
-        colors: [
-            { label: '成功色', value: 'var(--sd-primary-color)', color: '#465CFF' },
-            // { label: '品牌色-阶色-1', value: 'var(--sd-primary-color-1)' },
-            // { label: '品牌色-阶色-2', value: 'var(--sd-primary-color-2)' },
-            // { label: '品牌色-阶色-3', value: 'var(--sd-primary-color-3)' },
-            // { label: '品牌色-阶色-4', value: 'var(--sd-primary-color-4)' },
-            // { label: '品牌色-阶色-5', value: 'var(--sd-primary-color-5)' },
-            // { label: '品牌色-阶色-6', value: 'var(--sd-primary-color-6)' },
-            // { label: '品牌色-阶色-7', value: 'var(--sd-primary-color-7)' },
-            // { label: '品牌色-阶色-8', value: 'var(--sd-primary-color-8)' },
-            // { label: '品牌色-阶色-9', value: 'var(--sd-primary-color-9)' },
 
-            { label: '成功色', value: 'var(--sd-success-color)', color: '#09BE4F' },
-            // { label: '成功色-阶色-1', value: 'var(--sd-success-color-1)' },
-            // { label: '成功色-阶色-2', value: 'var(--sd-success-color-2)' },
-            // { label: '成功色-阶色-3', value: 'var(--sd-success-color-3)' },
-            // { label: '成功色-阶色-4', value: 'var(--sd-success-color-4)' },
-            // { label: '成功色-阶色-5', value: 'var(--sd-success-color-5)' },
-            // { label: '成功色-阶色-6', value: 'var(--sd-success-color-6)' },
-            // { label: '成功色-阶色-7', value: 'var(--sd-success-color-7)' },
-            // { label: '成功色-阶色-8', value: 'var(--sd-success-color-8)' },
-            // { label: '成功色-阶色-9', value: 'var(--sd-success-color-9)' },
+const theme_colors = ref([
+    { label: '品牌色', value: 'var(--sd-primary-color)', color: '#465CFF' },
+    // { label: '品牌色-阶色-1', value: 'var(--sd-primary-color-1)' },
+    // { label: '品牌色-阶色-2', value: 'var(--sd-primary-color-2)' },
+    // { label: '品牌色-阶色-3', value: 'var(--sd-primary-color-3)' },
+    // { label: '品牌色-阶色-4', value: 'var(--sd-primary-color-4)' },
+    // { label: '品牌色-阶色-5', value: 'var(--sd-primary-color-5)' },
+    // { label: '品牌色-阶色-6', value: 'var(--sd-primary-color-6)' },
+    // { label: '品牌色-阶色-7', value: 'var(--sd-primary-color-7)' },
+    // { label: '品牌色-阶色-8', value: 'var(--sd-primary-color-8)' },
+    // { label: '品牌色-阶色-9', value: 'var(--sd-primary-color-9)' },
 
-            { label: '提醒色', value: 'var(--sd-warning-color)', color: '#FFB703' },
-            // { label: '提醒色-阶色-1', value: 'var(--sd-warning-color-1)' },
-            // { label: '提醒色-阶色-2', value: 'var(--sd-warning-color-2)' },
-            // { label: '提醒色-阶色-3', value: 'var(--sd-warning-color-3)' },
-            // { label: '提醒色-阶色-4', value: 'var(--sd-warning-color-4)' },
-            // { label: '提醒色-阶色-5', value: 'var(--sd-warning-color-5)' },
-            // { label: '提醒色-阶色-6', value: 'var(--sd-warning-color-6)' },
-            // { label: '提醒色-阶色-7', value: 'var(--sd-warning-color-7)' },
-            // { label: '提醒色-阶色-8', value: 'var(--sd-warning-color-8)' },
-            // { label: '提醒色-阶色-9', value: 'var(--sd-warning-color-9)' },
+    { label: '成功色', value: 'var(--sd-success-color)', color: '#09BE4F' },
+    // { label: '成功色-阶色-1', value: 'var(--sd-success-color-1)' },
+    // { label: '成功色-阶色-2', value: 'var(--sd-success-color-2)' },
+    // { label: '成功色-阶色-3', value: 'var(--sd-success-color-3)' },
+    // { label: '成功色-阶色-4', value: 'var(--sd-success-color-4)' },
+    // { label: '成功色-阶色-5', value: 'var(--sd-success-color-5)' },
+    // { label: '成功色-阶色-6', value: 'var(--sd-success-color-6)' },
+    // { label: '成功色-阶色-7', value: 'var(--sd-success-color-7)' },
+    // { label: '成功色-阶色-8', value: 'var(--sd-success-color-8)' },
+    // { label: '成功色-阶色-9', value: 'var(--sd-success-color-9)' },
 
-            { label: '危险色', value: 'var(--sd-danger-color)', color: '#FF2B2B' },
-            // { label: '提醒色-阶色-1', value: 'var(--sd-danger-color-1)' },
-            // { label: '提醒色-阶色-2', value: 'var(--sd-danger-color-2)' },
-            // { label: '提醒色-阶色-3', value: 'var(--sd-danger-color-3)' },
-            // { label: '提醒色-阶色-4', value: 'var(--sd-danger-color-4)' },
-            // { label: '提醒色-阶色-5', value: 'var(--sd-danger-color-5)' },
-            // { label: '提醒色-阶色-6', value: 'var(--sd-danger-color-6)' },
-            // { label: '提醒色-阶色-7', value: 'var(--sd-danger-color-7)' },
-            // { label: '提醒色-阶色-8', value: 'var(--sd-danger-color-8)' },
-            // { label: '提醒色-阶色-9', value: 'var(--sd-danger-color-9)' },
+    { label: '提醒色', value: 'var(--sd-warning-color)', color: '#FFB703' },
+    // { label: '提醒色-阶色-1', value: 'var(--sd-warning-color-1)' },
+    // { label: '提醒色-阶色-2', value: 'var(--sd-warning-color-2)' },
+    // { label: '提醒色-阶色-3', value: 'var(--sd-warning-color-3)' },
+    // { label: '提醒色-阶色-4', value: 'var(--sd-warning-color-4)' },
+    // { label: '提醒色-阶色-5', value: 'var(--sd-warning-color-5)' },
+    // { label: '提醒色-阶色-6', value: 'var(--sd-warning-color-6)' },
+    // { label: '提醒色-阶色-7', value: 'var(--sd-warning-color-7)' },
+    // { label: '提醒色-阶色-8', value: 'var(--sd-warning-color-8)' },
+    // { label: '提醒色-阶色-9', value: 'var(--sd-warning-color-9)' },
 
-            // { label: '信息色', value: 'var(--sd-info-color)' },
-            // { label: '提醒色-阶色-1', value: 'var(--sd-info-color-1)' },
-            // { label: '提醒色-阶色-2', value: 'var(--sd-info-color-2)' },
-            // { label: '提醒色-阶色-3', value: 'var(--sd-info-color-3)' },
-            // { label: '提醒色-阶色-4', value: 'var(--sd-info-color-4)' },
-            // { label: '提醒色-阶色-5', value: 'var(--sd-info-color-5)' },
-            // { label: '提醒色-阶色-6', value: 'var(--sd-info-color-6)' },
-            // { label: '提醒色-阶色-7', value: 'var(--sd-info-color-7)' },
-            // { label: '提醒色-阶色-8', value: 'var(--sd-info-color-8)' },
-            // { label: '提醒色-阶色-9', value: 'var(--sd-info-color-9)' },
-        ],
-    },
-    {
-        title : '灰色',
-        colors: [
-            { label: 'gray-color-1', value: 'var(--sd-gray-color-1)'  , color: '#f3f3f3' },
-            { label: 'gray-color-2', value: 'var(--sd-gray-color-2)'  , color: '#eeeeee' },
-            { label: 'gray-color-3', value: 'var(--sd-gray-color-3)'  , color: '#e7e7e7' },
-            { label: 'gray-color-4', value: 'var(--sd-gray-color-4)'  , color: '#dcdcdc' },
-            { label: 'gray-color-5', value: 'var(--sd-gray-color-5)'  , color: '#c5c5c5' },
-            { label: 'gray-color-6', value: 'var(--sd-gray-color-6)'  , color: '#a6a6a6' },
-            { label: 'gray-color-7', value: 'var(--sd-gray-color-7)'  , color: '#8b8b8b' },
-            { label: 'gray-color-8', value: 'var(--sd-gray-color-8)'  , color: '#777777' },
-            { label: 'gray-color-9', value: 'var(--sd-gray-color-9)'  , color: '#5e5e5e' },
-            { label: 'gray-color-10', value: 'var(--sd-gray-color-10)', color: '#4b4b4b' },
-            { label: 'gray-color-11', value: 'var(--sd-gray-color-11)', color: '#383838' },
-            { label: 'gray-color-12', value: 'var(--sd-gray-color-12)', color: '#2c2c2c' },
-            { label: 'gray-color-13', value: 'var(--sd-gray-color-13)', color: '#242424' },
-            { label: 'gray-color-14', value: 'var(--sd-gray-color-14)', color: '#181818' },
-        ],
-    },
-    {
-        title : '文本颜色',
-        colors: [
-            { label: '重要文字、标题', value: '#181818' },
-            { label: '普通文字'      , value: '#333333' },
-            { label: '次要标题'      , value: '#7F7F7F' },
-            { label: '禁用文字'      , value: '#CCCCCC' },
-            { label: '占位文字'      , value: '#CCCCCC' },
-        ],
-    },
-    {
-        title : '背景色',
-        colors: [
-            { label: '页面背景色', value: '#FFFFFF' },
-            { label: '内容背景色', value: '#F8F8F8' },
-            { label: '遮罩背景色', value: 'rgba(0,0,0,0.6)' },
-            { label: '点击态背景色', value: 'rgba(0,0,0,0.2)' },
-        ],
-    },
-    {
-        title : '边框颜色',
-        colors: [
-            { label: '默认边框颜色', value: '#DCDFE6' },
-        ],
-    },
+    { label: '危险色', value: 'var(--sd-danger-color)', color: '#FF2B2B' },
+    // { label: '提醒色-阶色-1', value: 'var(--sd-danger-color-1)' },
+    // { label: '提醒色-阶色-2', value: 'var(--sd-danger-color-2)' },
+    // { label: '提醒色-阶色-3', value: 'var(--sd-danger-color-3)' },
+    // { label: '提醒色-阶色-4', value: 'var(--sd-danger-color-4)' },
+    // { label: '提醒色-阶色-5', value: 'var(--sd-danger-color-5)' },
+    // { label: '提醒色-阶色-6', value: 'var(--sd-danger-color-6)' },
+    // { label: '提醒色-阶色-7', value: 'var(--sd-danger-color-7)' },
+    // { label: '提醒色-阶色-8', value: 'var(--sd-danger-color-8)' },
+    // { label: '提醒色-阶色-9', value: 'var(--sd-danger-color-9)' },
+
+    // { label: '信息色', value: 'var(--sd-info-color)' },
+    // { label: '提醒色-阶色-1', value: 'var(--sd-info-color-1)' },
+    // { label: '提醒色-阶色-2', value: 'var(--sd-info-color-2)' },
+    // { label: '提醒色-阶色-3', value: 'var(--sd-info-color-3)' },
+    // { label: '提醒色-阶色-4', value: 'var(--sd-info-color-4)' },
+    // { label: '提醒色-阶色-5', value: 'var(--sd-info-color-5)' },
+    // { label: '提醒色-阶色-6', value: 'var(--sd-info-color-6)' },
+    // { label: '提醒色-阶色-7', value: 'var(--sd-info-color-7)' },
+    // { label: '提醒色-阶色-8', value: 'var(--sd-info-color-8)' },
+    // { label: '提醒色-阶色-9', value: 'var(--sd-info-color-9)' },
+])
+
+const bg_light_colors = ref([
+    { label: '页面背景色', value: '#eeeeee', color: 'rgba(0, 0, 0, 0.6)' },
+    { label: '内容背景色', value: '#F8F8F8', color: 'rgba(0, 0, 0, 0.6)' },
+    { label: '遮罩背景色', value: 'rgba(0,0,0,0.6)' },
+])
+
+const bg_dark_colors = ref([
+    { label: '页面背景色', value: '#FFFFFF', color: '#A3A3A3' },
+    { label: '内容背景色', value: '#F8F8F8', color: '#A3A3A3' },
+    { label: '遮罩背景色', value: 'rgba(0,0,0,0.6)' },
+])
+
+const text_light_colors = ref([
+    { label: '重要文本'      , value: 'rgba(0, 0, 0, 0.9)' },
+    { label: '正文、段落文本', value: 'rgba(0, 0, 0, 0.6)' },
+    { label: '描述文本'      , value: 'rgba(0, 0, 0, 0.4)' },
+    { label: '占位文本'      , value: 'rgba(0, 0, 0, 0.26)' },
+    { label: '链接文本'      , value: '#1989fa' },
+    { label: '品牌文本'      , value: '#465CFF' },
+    { label: '成功文本'      , value: '#09BE4F' },
+    { label: '提醒文本'      , value: '#FFB703' },
+    { label: '危险文本'      , value: '#FF2B2B' },
+])
+
+const text_dark_colors = ref([
+    { label: '重要文本'      , value: '#D1D1D1' },
+    { label: '正文、段落文本', value: '#A3A3A3' },
+    { label: '描述文本'      , value: '#8D8D8D' },
+    { label: '占位文本'      , value: '#5E5E5E' },
+    { label: '链接文本'      , value: '#1989fa' },
+    { label: '品牌文本'      , value: '#465CFF' },
+    { label: '成功文本'      , value: '#09BE4F' },
+    { label: '提醒文本'      , value: '#FFB703' },
+    { label: '危险文本'      , value: '#FF2B2B' },
+])
+
+const border_light_colors = ref([
+    { label: '默认边框', value: '#dcdfe6' },
+    { label: '品牌边框'      , value: '#465CFF' },
+    { label: '成功边框'      , value: '#09BE4F' },
+    { label: '提醒边框'      , value: '#FFB703' },
+    { label: '危险边框'      , value: '#FF2B2B' },
+])
+
+const border_dark_colors = ref([
+    { label: '默认边框', value: '#777777' },
+    { label: '品牌边框', value: '#465CFF' },
+    { label: '成功边框', value: '#09BE4F' },
+    { label: '提醒边框', value: '#FFB703' },
+    { label: '危险边框', value: '#FF2B2B' },
 ])
 
 const isBlackText = (color: string) => {
@@ -135,24 +136,124 @@ const isBlackText = (color: string) => {
 
 <template>
     <sd-page title="Color 色彩">
-        <view class="demo-page-body">
-            <template v-for="(group, group_idx) in color_groups" :key="group_idx">
-                <view class="demo-section__title">
-                    {{ group.title }}
+        <view class="demo-card">
+            <view class="demo-card__title">
+                主题色 - 浅色模式
+            </view>
+            <view class="demo-card__body">
+                <template v-for="item in theme_colors" :key="item.value">
+                    <view
+                        class="color-box"
+                        :class="{ 'is-black-text': isBlackText(item.value) }"
+                        :style="{ background: (item.color || item.value) }"
+                    >
+                        <text>{{ item.label }}</text>
+                        <text>{{ item.color || item.value }}</text>
+                    </view>
+                </template>
+            </view>
+        </view>
+
+        <view class="demo-card is-dark">
+            <view class="demo-card__title">
+                主题色 - 深色模式
+            </view>
+            <view class="demo-card__body">
+                <template v-for="item in theme_colors" :key="item.value">
+                    <view
+                        class="color-box"
+                        :class="{ 'is-black-text': isBlackText(item.value) }"
+                        :style="{ background: (item.color || item.value) }"
+                    >
+                        <text>{{ item.label }}</text>
+                        <text>{{ item.color || item.value }}</text>
+                    </view>
+                </template>
+            </view>
+        </view>
+
+        <view class="demo-card">
+            <view class="demo-card__title">
+                背景颜色 - 浅色模式
+            </view>
+            <view class="demo-card__body">
+                <template v-for="item in bg_light_colors" :key="item.value">
+                    <view
+                        class="color-box"
+                        :style="{ background: item.value, color: item.color }"
+                    >
+                        <text>{{ item.label }}</text>
+                        <text>{{ item.value }}</text>
+                    </view>
+                </template>
+            </view>
+        </view>
+
+        <view class="demo-card is-dark">
+            <view class="demo-card__title">
+                背景颜色 - 深色模式
+            </view>
+            <view class="demo-card__body">
+                <template v-for="item in bg_dark_colors" :key="item.value">
+                    <view
+                        class="color-box"
+                        :style="{ background: item.value, color: item.color }"
+                    >
+                        <text>{{ item.label }}</text>
+                        <text>{{ item.value }}</text>
+                    </view>
+                </template>
+            </view>
+        </view>
+
+        <view class="demo-card">
+            <view class="demo-card__title">
+                文本颜色 - 浅色模式
+            </view>
+            <view class="demo-card__body">
+                <view v-for="(item, idx) in text_light_colors" :key="idx" :style="{ color: item.value }" class="text-box">
+                    {{ item.label }}
                 </view>
-                <view :style="group.style">
-                    <template v-for="item in group.colors" :key="item.value">
-                        <view
-                            class="color-box"
-                            :class="{ 'is-black-text': isBlackText(item.value) }"
-                            :style="{ background: item.color || item.value }"
-                        >
-                            <text>{{ item.label }}</text>
-                            <text>{{ item.value }}</text>
-                        </view>
-                    </template>
+            </view>
+        </view>
+
+        <view class="demo-card is-dark">
+            <view class="demo-card__title">
+                文本颜色 - 深色模式
+            </view>
+            <view class="demo-card__body">
+                <view v-for="(item, idx) in text_dark_colors" :key="idx" :style="{ color: item.value }" class="text-box">
+                    {{ item.label }}
                 </view>
-            </template>
+            </view>
+        </view>
+
+        <view class="demo-card">
+            <view class="demo-card__title">
+                边框颜色 - 浅色模式
+            </view>
+            <view class="demo-card__body">
+                <view v-for="(item, idx) in border_light_colors" :key="idx" class="border-box">
+                    <view class="border-box__title">
+                        {{ item.label }}
+                    </view>
+                    <view class="border-box__border" :style="{ 'border-color': item.value }" />
+                </view>
+            </view>
+        </view>
+
+        <view class="demo-card is-dark">
+            <view class="demo-card__title">
+                边框颜色 - 深色模式
+            </view>
+            <view class="demo-card__body">
+                <view v-for="(item, idx) in border_dark_colors" :key="idx" class="border-box">
+                    <view class="border-box__title">
+                        {{ item.label }}
+                    </view>
+                    <view class="border-box__border" :style="{ 'border-color': item.value }" />
+                </view>
+            </view>
         </view>
     </sd-page>
 </template>
@@ -167,7 +268,6 @@ const isBlackText = (color: string) => {
     padding: 0 32rpx;
     box-sizing: border-box;
     height: 80rpx;
-    margin: 0 32rpx;
     font-size: 28rpx;
 
     &.is-black-text {
@@ -177,5 +277,36 @@ const isBlackText = (color: string) => {
 
 .color-box + .color-box {
     margin-top: 24rpx;
+}
+
+.text-box {
+    width: 100%;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.text-box:not(:first-child) {
+    margin-top: 16rpx;
+}
+
+.border-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 30rpx;
+    box-sizing: border-box;
+    text-align: center;
+
+    &__title {
+        margin-right: 40rpx;
+    }
+
+    &__border {
+        border: 1px solid;
+        height: 60rpx;
+        flex: 1;
+        transform: scale(0.5);
+    }
 }
 </style>
