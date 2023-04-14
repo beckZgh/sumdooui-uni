@@ -188,7 +188,7 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Empty 缺省页',
-        page: '',
+        page: 'empty',
     }],
 }, {
     id  : 'js',

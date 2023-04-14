@@ -6,7 +6,6 @@
 @use '../animation/animation.scss';
 @use '../button/button.scss';
 @use '../icon/icon.scss';
-@use '../badge/badge.scss';
 
 // 布局组件
 @use '../cell/cell.scss';
@@ -18,4 +17,8 @@
 
 // 导航组件
 @use '../navbar/navbar.scss';
+
+// 数据组件
+@use '../badge/badge.scss';
+@use '../empty/empty.scss';
 

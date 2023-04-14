@@ -51,6 +51,12 @@
         // 数据组件
         {
             "path": "pages/examples/data/badge/main"
+        }, {
+            "path": "pages/examples/data/empty/main"
+        }, {
+            "path": "pages/examples/data/empty/page-empty-data"
+        }, {
+            "path": "pages/examples/data/empty/page-empty-parse"
         },
 
         // 共享页面

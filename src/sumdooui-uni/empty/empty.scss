@@ -1,0 +1,40 @@
+@use '../styles/variables.scss' as *;
+
+$empty-bg-color: var(--sd-empty-bg-color, $sd-white);
+$empty-text-color: var(--sd-empty-text-color, $sd-text-color);
+
+.sd-empty {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $empty-text-color;
+    width: 100%;
+    height: 100%;
+    background-color: $empty-bg-color;
+
+    &--page {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+    }
+
+    &__img {
+        height: 252rpx;
+    }
+
+    &__text {
+        font-size: 30rpx;
+        color: $empty-text-color;
+        padding: 36rpx 16vw 36rpx;
+        text-align: center;
+    }
+
+    &__btn {
+        width: 50vw;
+    }
+}
