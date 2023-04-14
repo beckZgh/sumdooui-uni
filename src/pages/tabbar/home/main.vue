@@ -25,76 +25,78 @@ function onSwiperChange(e: any) {
 
 function handleToPage(type: string, item: { name: string; page: string }) {
     const url = item.page
-        ? `/pages/components/${ type }/${ item.page }/main`
+        ? `/pages/examples/${ type }/${ item.page }/main`
         : `/pages/common/coding/main?title=${ item.name }`
     uni.navigateTo({ url })
 }
 </script>
 
 <template>
-    <view class="page-box">
-        <view class="banner-box">
-            <image class="banner" src="/static/index/light/img_banner_3x.png" mode="widthFix" />
-            <view class="banner-content">
-                <view class="banner-content__logo" />
-                <view class="banner-content__title">
-                    Sumdoo Weapp
+    <sd-page title="Sumdooui-Uni" :show-home-button="false">
+        <view class="page-box">
+            <view class="banner-box">
+                <image class="banner" src="/static/index/light/img_banner_3x.png" mode="widthFix" />
+                <view class="banner-content">
+                    <view class="banner-content__logo" />
+                    <view class="banner-content__title">
+                        Sumdoo Weapp
+                    </view>
+                    <view class="banner-content__desc">
+                        Sumdoo Weapp是一款轻量、偏业务型的移动端组件库
+                    </view>
                 </view>
-                <view class="banner-content__desc">
-                    Sumdoo Weapp是一款轻量、偏业务型的移动端组件库
-                </view>
-            </view>
-            <view class="tabs-box">
-                <scroll-view
-                    class="tabs-scroll-box"
-                    scroll-with-animation
-                    scroll-x
-                    :show-scrollbar="false"
-                    :scroll-into-view="m.scroll_into"
-                >
-                    <view class="scroll-view">
-                        <view
-                            v-for="(tab, index) in tabs" :id="tab.id"
-                            :key="index"
-                            class="scroll-view-item"
-                            :class="{ 'is-active': m.tab_index === index }"
-                            @tap="handleTabClick(index)"
-                        >
-                            <view :class="{ 'scroll-view-item__text': m.tab_index === index }">
-                                {{ tab.name }}
+                <view class="tabs-box">
+                    <scroll-view
+                        class="tabs-scroll-box"
+                        scroll-with-animation
+                        scroll-x
+                        :show-scrollbar="false"
+                        :scroll-into-view="m.scroll_into"
+                    >
+                        <view class="scroll-view">
+                            <view
+                                v-for="(tab, index) in tabs" :id="tab.id"
+                                :key="index"
+                                class="scroll-view-item"
+                                :class="{ 'is-active': m.tab_index === index }"
+                                @tap="handleTabClick(index)"
+                            >
+                                <view :class="{ 'scroll-view-item__text': m.tab_index === index }">
+                                    {{ tab.name }}
+                                </view>
                             </view>
                         </view>
-                    </view>
-                </scroll-view>
-                <swiper
-                    :current="m.tab_index"
-                    :duration="300"
-                    :style="{ height: m.height }"
-                    class="swiper-box"
-                    @change="onSwiperChange"
-                >
-                    <swiper-item v-for="tab in tabs" :key="tab.id" class="swiper-box-item" :style="{ height: m.height }">
-                        <scroll-view scroll-y :style="{ height: m.height }">
-                            <view class="tabs-list">
-                                <sd-cell
-                                    v-for="(item, item_index) in tab.data"
-                                    :key="item_index"
-                                    :title="item.name"
-                                    :custom-style="{ height: '112rpx', marginTop: '32rpx' }"
-                                    round
-                                    @click="handleToPage(tab.id, item)"
-                                >
-                                    <template #icon>
-                                        <image class="tabs-list-item__icon" :src="`/static/index/light/icon_${ item.icon }_3x.png`" />
-                                    </template>
-                                </sd-cell>
-                            </view>
-                        </scroll-view>
-                    </swiper-item>
-                </swiper>
+                    </scroll-view>
+                    <swiper
+                        :current="m.tab_index"
+                        :duration="300"
+                        :style="{ height: m.height }"
+                        class="swiper-box"
+                        @change="onSwiperChange"
+                    >
+                        <swiper-item v-for="tab in tabs" :key="tab.id" class="swiper-box-item" :style="{ height: m.height }">
+                            <scroll-view scroll-y :style="{ height: m.height }">
+                                <view class="tabs-list">
+                                    <sd-cell
+                                        v-for="(item, item_index) in tab.data"
+                                        :key="item_index"
+                                        :title="item.name"
+                                        :custom-style="{ height: '112rpx', marginTop: '32rpx' }"
+                                        round
+                                        @click="handleToPage(tab.id, item)"
+                                    >
+                                        <template #icon>
+                                            <image class="tabs-list-item__icon" :src="`/static/index/light/icon_${ item.icon }_3x.png`" />
+                                        </template>
+                                    </sd-cell>
+                                </view>
+                            </scroll-view>
+                        </swiper-item>
+                    </swiper>
+                </view>
             </view>
         </view>
-    </view>
+    </sd-page>
 </template>
 
 <style lang="scss" scoped>
@@ -145,7 +147,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
             width: 280rpx;
             font-size: 24rpx;
             line-height: 40rpx;
-            color: #333;
+            color: $sd-text-color;
         }
     }
 }
@@ -153,7 +155,8 @@ function handleToPage(type: string, item: { name: string; page: string }) {
 .tabs-box {
     width: 100%;
     height: 108rpx;
-    background: #FFFFFF;
+    background: $sd-bg-color-white;
+    color: $sd-text-color;
     border-radius: 40rpx 40rpx 0 0;
     position: absolute;
     left: 0;
@@ -181,11 +184,11 @@ function handleToPage(type: string, item: { name: string; page: string }) {
             padding: 0 26rpx;
             height: 108rpx;
             font-size: 28rpx;
-            color: #7F7F7F;
+            color: $sd-text-color-subtitle;
 
             &__text {
                 transform: scale(1.2);
-                color: #465CFF;
+                color: $sd-primary-color;
                 transition: transform 0.2s linear;
             }
 
@@ -194,7 +197,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
                 position: absolute;
                 width: 0;
                 height: 2px;
-                background-color: #465CFF;
+                background-color: $sd-primary-color;
                 border-radius: 2px;
                 left: 24rpx;
                 bottom: 0;
@@ -219,6 +222,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
         min-height: 101%;
         padding: 8rpx 32rpx 32rpx;
         box-sizing: border-box;
+        background-color: #F1F4FA;
 
         &-item__icon {
             width: 48rpx;

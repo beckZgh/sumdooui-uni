@@ -16,7 +16,7 @@ export default [{
     }, {
         icon: 'button',
         name: 'Button 按钮',
-        page: '',
+        page: 'button',
     }, {
         icon: 'footer',
         name: 'Footer 页脚',
@@ -24,12 +24,20 @@ export default [{
     }, {
         icon: 'animation',
         name: 'Animation 动画',
-        page: '',
+        page: 'animation',
+    }, {
+        icon: 'animation',
+        name: 'AnimateBox 动画容器',
+        page: 'animate-box',
     }],
 }, {
     id  : 'layout',
     name: '布局组件',
-    data: [ {
+    data: [{
+        icon: 'layout',
+        name: 'Page 页面布局',
+        page: 'page',
+    }, {
         icon: 'cell',
         name: 'Cell 单元格',
         page: 'cell',
@@ -118,6 +126,10 @@ export default [{
     id  : 'nav',
     name: '导航组件',
     data: [{
+        icon: 'segmentedcontrol',
+        name: 'Navbar 头部导航',
+        page: 'navbar',
+    }, {
         icon: 'pagination',
         name: 'Pagination 分页器',
         page: '',

@@ -71,7 +71,7 @@ const ICONS: Record<string, string> = {
     'eye-fill'          : '\uE86A',
     'eye-close'         : '\uE900',
     'eye-close-fill'    : '\uE8FF',
-    'locaion'           : '\uE790',
+    'location'          : '\uE790',
     'location-fill'     : '\uE869',
     'like'              : '\uE7C8',
     'like-fill'         : '\uE86B',

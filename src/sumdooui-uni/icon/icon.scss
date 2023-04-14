@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "sd-iconfont"; /* Project id 4005820 */
+    src: url('./iconfont.ttf?t=1681114183334') format('truetype');
+}
+
+.sd-icon {
+    font-family: 'sd-iconfont';
+    text-decoration: none;
+    text-align: center;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+
+    &.is-loading {
+        display: inline-block;
+        animation-iteration-count: infinite;
+        animation-name: jump;
+    }
+
+    @keyframes jump {
+        0% {
+            transform: rotate(0deg)
+        }
+        to {
+            transform: rotate(360deg)
+        }
+    }
+}

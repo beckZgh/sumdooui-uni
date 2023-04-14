@@ -3,8 +3,6 @@
 </script>
 
 <template>
-    <view>
-        常用工具
-    </view>
+    <sd-page title="常用工具" :show-home-button="false" />
 </template>
 

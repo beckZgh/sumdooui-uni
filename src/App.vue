@@ -7,5 +7,6 @@ onLaunch((opts) => {
 })
 </script>
 
-<style>
+<style lang="scss">
+@use '@/sumdooui-uni/styles/index.scss';
 </style>

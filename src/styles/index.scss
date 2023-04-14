@@ -1,11 +1,13 @@
+
 // 定义页面基础样式
 page {
-    background-color: #F1F4FA;
+    background-color: $sd-bg-color-gray;
     font-size: 32rpx;
     font-weight: 500;
     color: #181818;
     font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
+
 
 // 重置按钮
 button.reset-button {
@@ -93,9 +95,12 @@ button.reset-button {
     }
 }
 
-.demo-section__title:not(:first-child) {
+.demo-section__title {
     margin-top: 96rpx;
 }
+// .demo-section__title:not(:first-child) {
+//     margin-top: 96rpx;
+// }
 
 .ellipsis {
     overflow: hidden;

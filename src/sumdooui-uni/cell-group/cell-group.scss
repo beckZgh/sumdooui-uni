@@ -1,0 +1,7 @@
+.sd-cell-group {
+    &__title {
+        padding: 32rpx 32rpx 20rpx 32rpx;
+        font-size: 28rpx;
+        color: var(--sd-cell-group-title-color, var(--sd-text-color-subtitle, #7F7F7F));
+    }
+}

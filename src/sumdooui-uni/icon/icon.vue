@@ -1,18 +1,15 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import { defineComponent, computed } from 'vue'
-import Utils from '../utils'
+import Utils from '../common/utils'
 import ICONS from './icons'
+
+import { defineComponent, computed } from 'vue'
+import { icon_props } from './icon'
 
 export default defineComponent({
     name : 'SdIcon',
-    props: {
-        name : { type: String           },
-        size : { type: [String, Number] },
-        color: { type: String           },
-        type : { type: String           }, // 预设主题色，未指定 color 可用
-    },
+    props: icon_props,
     setup(props) {
         // 字体图标
         const icon$ = computed(() => {
@@ -21,7 +18,7 @@ export default defineComponent({
 
         // 图标样式
         const icon_styles$ = computed(() => {
-            const styles: CSSProperties = {}
+            const styles: CSSProperties = { ...props.customStyle }
 
             if (props.color) styles.color    = props.color
             if (props.size ) styles.fontSize = Utils.toUnit(props.size)
@@ -40,21 +37,16 @@ export default defineComponent({
 <template>
     <text
         class="sd-icon"
+        :class="[{ 'is-loading': loading }, customClass]"
         :style="icon_styles$"
     >
         {{ icon$ }}
     </text>
 </template>
 
-<style>
+<style lang="scss">
 @font-face {
     font-family: "sd-iconfont"; /* Project id 4005820 */
     src: url('./iconfont.ttf?t=1681114183334') format('truetype');
-}
-
-.sd-icon {
-    font-family: 'sd-iconfont';
-    text-decoration: none;
-    text-align: center;
 }
 </style>

@@ -1,4 +1,5 @@
 {
+    // https://uniapp.dcloud.net.cn/collocation/pages.html#pages
     "pages": [
         {
             "path": "pages/tabbar/home/main"
@@ -8,59 +9,81 @@
             "path": "pages/tabbar/template/main"
         }, {
             "path": "pages/tabbar/my/main"
+        },
+
+        // 基础组件
+        {
+            "path": "pages/examples/basics/color/main"
         }, {
-            "path": "pages/components/basics/color/main"
+            "path": "pages/examples/basics/icon/main"
         }, {
-            "path": "pages/components/basics/icon/main"
+            "path": "pages/examples/basics/button/main"
         }, {
-            "path": "pages/components/layout/cell/main"
+            "path": "pages/examples/basics/animation/main"
         }, {
+            "path": "pages/examples/basics/animate-box/main"
+        },
+
+        // 布局组件
+        {
+            "path": "pages/examples/layout/page/main"
+        },{
+            "path": "pages/examples/layout/cell/main"
+        },
+
+        // 导航组件
+        {
+            "path": "pages/examples/nav/navbar/main"
+        },
+
+        // 共享页面
+        {
             "path": "pages/common/coding/main"
         }
     ],
 
+
+    // https://uniapp.dcloud.net.cn/collocation/pages.html#globalstyle
     "globalStyle": {
-		"backgroundTextStyle": "dark",
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "Sumdoo Weapp",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#F1F4FA",
-		"backgroundColorTop": "#F1F4FA",
-		"backgroundColorBottom": "#F1F4FA"
+        "navigationBarTitleText": "Sumdoo Weapp",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black"
 	},
 
+    // https://uniapp.dcloud.net.cn/collocation/pages.html#tabbar
     "tabBar": {
         "color": "#333333",
-		"selectedColor": "#465CFF",
-		"backgroundColor": "#FFFFFF",
+        "selectedColor": "#465CFF",
+        "backgroundColor": "#FFFFFF",
         "list": [
             {
                 "pagePath": "pages/tabbar/home/main",
                 "text": "组件",
                 "iconPath": "static/tabbar/assembly_default_3x.png",
-				"selectedIconPath": "static/tabbar/assembly_selected_3x.png"
+                "selectedIconPath": "static/tabbar/assembly_selected_3x.png"
             },
             {
                 "pagePath": "pages/tabbar/tools/main",
                 "text": "工具",
-				"iconPath": "static/tabbar/layout_default_3x.png",
-				"selectedIconPath": "static/tabbar/layout_selected_3x.png"
+                "iconPath": "static/tabbar/layout_default_3x.png",
+                "selectedIconPath": "static/tabbar/layout_selected_3x.png"
             },
             {
                 "pagePath": "pages/tabbar/template/main",
                 "text": "模板",
-				"iconPath": "static/tabbar/mod_default_3x.png",
-				"selectedIconPath": "static/tabbar/mod_selected_3x.png"
+                "iconPath": "static/tabbar/mod_default_3x.png",
+                "selectedIconPath": "static/tabbar/mod_selected_3x.png"
             },
             {
                 "pagePath": "pages/tabbar/my/main",
                 "text": "我的",
-				"iconPath": "static/tabbar/my_default_3x.png",
-				"selectedIconPath": "static/tabbar/my_selected_3x.png"
+                "iconPath": "static/tabbar/my_default_3x.png",
+                "selectedIconPath": "static/tabbar/my_selected_3x.png"
             }
         ]
     },
 
+    // https://uniapp.dcloud.net.cn/collocation/pages.html#easycom
     "easycom": {
         "autoscan": true,
         "custom": {

@@ -1,0 +1,61 @@
+@use './config.scss' as *;
+
+// BEM 选择器
+
+// eg: @include b(link) { ... } ==> sd-link { ... }
+// 块选择器
+@mixin b($block_name) {
+    // 构造 块选择器 类名
+    $B: $namespace + $block-separator + $block_name !global;
+
+    .#{ $B } {
+        @content;
+    }
+}
+
+
+// 元素选择器
+@mixin e($element_name) {
+    $current_selector: '';
+
+    @each $name in $element_name {
+        $current_selector: #{ $current_selector + & + $element-separator + $name + ',' };
+    }
+
+    @at-root {
+        #{ $current_selector } {
+            @content;
+        }
+    }
+}
+
+
+// 修饰选择器
+@mixin m($modifier_name) {
+    $current_selector: '';
+
+    @each $name in $modifier_name {
+        $current_selector: #{ $current_selector + & + $modifier-separator + $name + ',' };
+    }
+
+    @at-root {
+        #{ $current_selector } {
+            @content;
+        }
+    }
+}
+
+// 状态选择器
+@mixin when($state_name) {
+    $current_selector: '';
+
+    @each $name in $state_name {
+        $current_selector: #{ $current_selector + & + '.' + $state-separator + $name + ',' };
+    }
+
+    @at-root {
+        #{ $current_selector } {
+            @content;
+        }
+    }
+}

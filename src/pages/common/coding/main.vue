@@ -12,9 +12,7 @@ onLoad((query) => {
 </script>
 
 <template>
-    <page-meta>
-        <navigation-bar :title="m.title" />
-
+    <sd-page>
         <view class="content__box">
             <view class="img__box">
                 <image src="/static/common/img_coding_3x.png" class="img" mode="widthFix" />
@@ -26,7 +24,7 @@ onLoad((query) => {
                 功能开发中，敬请期待！
             </view>
         </view>
-    </page-meta>
+    </sd-page>
 </template>
 
 <style scoped>

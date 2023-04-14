@@ -1,0 +1,19 @@
+@use '../styles/variables.scss' as *;
+
+$page-bg-color: var(--sd-page-bg-color, $sd-bg-color-gray);
+
+.sd-page {
+    display: flex;
+    flex-direction: column;
+    background-color: $page-bg-color;
+    min-height: 100vh;
+
+    &.is-lock-scroll {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    &__content {
+        flex: 1;
+    }
+}

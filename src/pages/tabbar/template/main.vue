@@ -3,8 +3,6 @@
 </script>
 
 <template>
-    <view>
-        常用模板
-    </view>
+    <sd-page title="常用模板" :show-home-button="false" />
 </template>
 
