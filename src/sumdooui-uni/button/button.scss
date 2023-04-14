@@ -1,8 +1,5 @@
 @use '../styles/variables.scss' as *;
 
-// 组件选择器
-$component_selector: '.' + #{ $namespace } + '-button';
-
 // 按钮高度
 $button-small-height : var(--sd-button-small-height, 70rpx);
 $button-normal-height: var(--sd-button-normal-height, 90rpx);
@@ -30,20 +27,20 @@ $button-large-padding-horizontal : var(--sd-button-large-padding-horizontal, 40r
 
 // 按钮默认背景色、文本颜色、边框颜色
 $button-default-color   : var(--sd-button-default-color   , $sd-text-color);
-$button-default-bg-color: var(--sd-button-default-bg-color, $sd-gray-color-3);
-$button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 1));
+$button-default-bg-color: var(--sd-button-default-bg-color, $sd-bg-color-container);
+$button-border-color    : var(--sd-button-border-color    , $sd-border-color);
 
 // 按钮大小
 @mixin button-size($padding, $height, $font-size, $icon-size) {
     height: $height;
     font-size: $font-size;
 
-    #{ $component_selector + '-wrap' } {
+    .sd-button-wrap {
         padding-left: $padding;
         padding-right: $padding;
     }
 
-    #{ $component_selector + '__icon' } {
+    .sd-button__icon {
         font-size: $icon-size;
     }
 }
@@ -58,7 +55,7 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
     }
 
     // 幽灵按钮
-    &#{ $component_selector + '--plain' } {
+    &.sd-button--plain {
         background-color: $sd-white;
         color: $bg-color;
 
@@ -74,13 +71,13 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
     }
 
     // 填充按钮
-    &#{ $component_selector + '--light' } {
+    &.sd-button--light {
         background-color: $light-color;
         color: $bg-color;
     }
 
     // 文本按钮
-    &#{ $component_selector + '--text' } {
+    &.sd-button--text {
         background-color: transparent !important;
         color: $bg-color;
 
@@ -99,7 +96,7 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
     }
 }
 
-#{ $component_selector } {
+.sd-button {
     position: relative;
     display: inline-block;
     flex-shrink: 0;
@@ -141,7 +138,7 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
     }
 
     // 按钮图标
-    @include e(icon) {
+    .sd-button__icon {
         display: inline-block;
         font-size: inherit;
         color: inherit;
@@ -152,46 +149,46 @@ $button-border-color    : var(--sd-button-border-color    , rgba(204, 204, 204, 
     }
 
     // 按钮边框形状
-    @include m(round) { // 椭圆
+    &--round { // 椭圆
         @include button-shape($button-round-border-radius);
     }
-    @include m(square) { // 方形
+    &--square { // 方形
         @include button-shape($button-square-border-radius);
     }
-    @include m(circle) { // 圆形
+    &--circle { // 圆形
         @include button-shape($button-circle-border-radius);
     }
 
     // 按钮大小
-    @include m(small) {
+    &--small {
         @include button-size($button-small-padding-horizontal, $button-small-height, $button-small-font-size, $button-small-icon-size);
     }
-    @include m(normal) {
+    &--normal {
         @include button-size($button-normal-padding-horizontal, $button-normal-height, $button-normal-font-size, $button-normal-icon-size);
     }
-    @include m(large) {
+    &--large {
         @include button-size($button-large-padding-horizontal, $button-large-height, $button-large-font-size, $button-large-icon-size);
     }
 
     // 按钮主题
-    @include m(default) {
+    &--default {
         background-color: $button-default-bg-color;
         color: $button-default-color;
 
-        &#{ $component_selector + '--text' } {
+        &.sd-button--text {
             background-color: transparent;
         }
     }
-    @include m(primary) {
+    &--primary {
         @include button-theme($sd-primary-color, $sd-primary-color-7, $sd-primary-color-8);
     }
-    @include m(success) {
+    &--success {
         @include button-theme($sd-success-color, $sd-success-color-7, $sd-success-color-8);
     }
-    @include m(warning) {
+    &--warning {
         @include button-theme($sd-warning-color, $sd-warning-color-7, $sd-warning-color-8);
     }
-    @include m(danger) {
+    &--danger {
         @include button-theme($sd-danger-color, $sd-danger-color-7, $sd-danger-color-8);
     }
 

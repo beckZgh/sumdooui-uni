@@ -25,34 +25,36 @@ function handleClose() {
 
 <template>
     <sd-page title="Animation 动画">
-        <view class="demo-section__title">
-            基本用法
-        </view>
-        <view class="demo-page__spacing">
-            <sd-button type="primary" block @click="ani(['fade'], true)">
-                Fade
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['slide-top'], false)">
-                Slide Top
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['slide-bottom'], false)">
-                Slide Bottom
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['slide-left'], false)">
-                Slide Left
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['slide-right'], false)">
-                Slide Right
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['zoom-in', 'fade'], false)">
-                Zoom In
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['zoom-out', 'fade'], false)">
-                Zoom Out
-            </sd-button>
-            <sd-button type="primary" block @click="ani(['slide-left', 'slide-top', 'fade'], false)">
-                Custom
-            </sd-button>
+        <view class="demo-card">
+            <view class="demo-card__title">
+                基本用法
+            </view>
+            <view class="demo-card__body">
+                <sd-button type="primary" block @click="ani(['fade'], true)">
+                    Fade
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['slide-top'], false)">
+                    Slide Top
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['slide-bottom'], false)">
+                    Slide Bottom
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['slide-left'], false)">
+                    Slide Left
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['slide-right'], false)">
+                    Slide Right
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['zoom-in', 'fade'], false)">
+                    Zoom In
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['zoom-out', 'fade'], false)">
+                    Zoom Out
+                </sd-button>
+                <sd-button type="primary" block @click="ani(['slide-left', 'slide-top', 'fade'], false)">
+                    Custom
+                </sd-button>
+            </view>
         </view>
 
         <sd-animation :duration="500" :custom-style="m.styles" :types="m.mode" :show="m.show" @click="handleClose">

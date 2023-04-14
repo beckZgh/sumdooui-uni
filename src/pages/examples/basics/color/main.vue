@@ -79,12 +79,12 @@ const theme_colors = ref([
 
 const bg_light_colors = ref([
     { label: '页面背景色', value: '#eeeeee', color: 'rgba(0, 0, 0, 0.6)' },
-    { label: '内容背景色', value: '#F8F8F8', color: 'rgba(0, 0, 0, 0.6)' },
+    { label: '容器背景色', value: '#e7e7e7', color: 'rgba(0, 0, 0, 0.6)' },
     { label: '遮罩背景色', value: 'rgba(0,0,0,0.6)' },
 ])
 
 const bg_dark_colors = ref([
-    { label: '页面背景色', value: '#FFFFFF', color: '#A3A3A3' },
+    { label: '页面背景色', value: '#eeeeee', color: '#A3A3A3' },
     { label: '内容背景色', value: '#F8F8F8', color: '#A3A3A3' },
     { label: '遮罩背景色', value: 'rgba(0,0,0,0.6)' },
 ])

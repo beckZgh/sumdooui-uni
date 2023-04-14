@@ -10,60 +10,78 @@ function onClickRight() {
 
 <template>
     <sd-page title="Navbar 顶部导航">
-        <view class="demo-page-body">
-            <view class="demo-section__title">
-                基础使用
+        <view class="demo-card">
+            <view class="demo-card__title">
+                基本用法
             </view>
-            <sd-navbar title="标题" />
+            <view class="demo-card__body">
+                <sd-navbar title="标题" />
+            </view>
+        </view>
 
-            <view class="demo-section__title">
+        <view class="demo-card">
+            <view class="demo-card__title">
                 带左侧箭头
             </view>
-            <sd-navbar
-                title="标题"
-                left-arrow
-                @click-left="onClickLeft"
-            />
+            <view class="demo-card__body">
+                <sd-navbar
+                    title="标题"
+                    left-arrow
+                    @click-left="onClickLeft"
+                />
+            </view>
+        </view>
 
-            <view class="demo-section__title">
+        <view class="demo-card">
+            <view class="demo-card__title">
                 右侧内容
             </view>
-            <sd-navbar
-                title="标题"
-                left-arrow
-                right-icon="location"
-                @click-left="onClickLeft"
-                @click-right="onClickRight"
-            />
+            <view class="demo-card__body">
+                <sd-navbar
+                    title="标题"
+                    left-arrow
+                    right-icon="location"
+                    @click-left="onClickLeft"
+                    @click-right="onClickRight"
+                />
+            </view>
+        </view>
 
-            <view class="demo-section__title">
+        <view class="demo-card">
+            <view class="demo-card__title">
                 自定义颜色
             </view>
-            <sd-navbar
-                title="标题"
-                left-arrow
-                left-text="返回"
-                right-icon="location"
-                background="#465CFF"
-                color="#fff"
-                @click-left="onClickLeft"
-                @click-right="onClickRight"
-            />
+            <view class="demo-card__body">
+                <sd-navbar
+                    title="标题"
+                    left-arrow
+                    left-text="返回"
+                    right-icon="location"
+                    background="#465CFF"
+                    color="#fff"
+                    @click-left="onClickLeft"
+                    @click-right="onClickRight"
+                />
+            </view>
+        </view>
 
-            <view class="demo-section__title">
+        <view class="demo-card">
+            <view class="demo-card__title">
                 自定义高度
             </view>
-            <sd-navbar
-                title="标题"
-                left-arrow
-                left-text="返回"
-                right-icon="location"
-                background="#465CFF"
-                color="#fff"
-                :custom-style="{ height: '130rpx' }"
-                @click-left="onClickLeft"
-                @click-right="onClickRight"
-            />
+            <view class="demo-card__body">
+                <sd-navbar
+                    title="标题"
+                    left-arrow
+                    left-text="返回"
+                    right-icon="location"
+                    background="#465CFF"
+                    color="#fff"
+                    :custom-style="{ height: '130rpx' }"
+                    @click-left="onClickLeft"
+                    @click-right="onClickRight"
+                />
+            </view>
         </view>
     </sd-page>
 </template>
