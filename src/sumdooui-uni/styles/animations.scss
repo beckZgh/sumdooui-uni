@@ -1,0 +1,53 @@
+// 旋转动画
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes text {
+    33% {
+      transform: translateY(-2em);
+    }
+    66% {
+      transform: translateY(-1em);
+    }
+}
+
+@keyframes stretchdelay {
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.4);
+    }
+    20% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes scale {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    75% {
+        width: 20rpx;
+        height: 20rpx;
+    }
+    100% {
+        width: 0;
+        height: 0;
+    }
+}

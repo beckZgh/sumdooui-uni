@@ -116,7 +116,7 @@ export default [{
     }, {
         icon: 'loading',
         name: 'Loading 加载',
-        page: '',
+        page: 'loading',
     }, {
         icon: 'swipeaction',
         name: 'SwipeAction 滑动菜单',

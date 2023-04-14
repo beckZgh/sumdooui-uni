@@ -31,6 +31,18 @@
             "path": "pages/examples/layout/cell/main"
         },
 
+        // 操作反馈
+        {
+            "path": "pages/examples/operate/loading/main"
+        }, {
+            "path": "pages/examples/operate/loading/page-circle"
+        }, {
+            "path": "pages/examples/operate/loading/page-line"
+        }, {
+            "path": "pages/examples/operate/loading/page-meet"
+        },
+
+
         // 导航组件
         {
             "path": "pages/examples/nav/navbar/main"

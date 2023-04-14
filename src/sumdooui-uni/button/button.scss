@@ -175,6 +175,15 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
         background-color: $button-default-bg-color;
         color: $button-default-color;
 
+        &.sd-button--plain {
+            background-color: transparent;
+
+            &::after {
+                border-width: 2px;
+                // border-color: $button-default-bg-color;
+            }
+        }
+
         &.sd-button--text {
             background-color: transparent;
         }

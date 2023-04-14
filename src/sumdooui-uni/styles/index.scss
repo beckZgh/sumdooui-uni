@@ -1,3 +1,6 @@
+// 动画
+@use './animations.scss';
+
 // 基础组件
 @use '../animate-box/animate-box.scss';
 @use '../animation/animation.scss';
@@ -9,6 +12,9 @@
 @use '../cell/cell.scss';
 @use '../cell-group/cell-group.scss';
 @use '../page/page.scss';
+
+// 反馈组件
+@use '../loading/loading.scss';
 
 // 导航组件
 @use '../navbar/navbar.scss';
