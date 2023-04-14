@@ -1,0 +1,66 @@
+@use '../styles/variables.scss' as *;
+
+$badge-bg-color: var(--sd-badge-bg-color, $sd-danger-color);
+$badge-color   : var(--sd-badge-color, $sd-white);
+
+@mixin badge-theme($bg-color) {
+    .sd-badge__dot,
+    .sd-badge__content {
+        background-color: $bg-color;
+    }
+}
+
+.sd-badge {
+    display: inline-flex;
+    position: relative;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        padding: 0 12rpx;
+        font-size: 24rpx;
+        line-height: 36rpx;
+        border-radius: $sd-border-radius-round;
+        box-sizing: border-box;
+        color: $badge-color;
+        background-color: $badge-bg-color;
+        z-index: 1;
+    }
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border-radius: $sd-border-radius-circle;
+        background-color: $badge-bg-color;
+    }
+
+    // 徽标主题
+    &--primary {
+        @include badge-theme($sd-primary-color);
+    }
+    &--success {
+        @include badge-theme($sd-success-color);
+    }
+    &--warning {
+        @include badge-theme($sd-warning-color);
+    }
+    &--danger {
+        @include badge-theme($sd-danger-color);
+    }
+
+    &.is-absolute &__content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateY(-50%) translateX(50%);
+    }
+
+    &.is-absolute &__dot  {
+        position: absolute;
+        right: -4px;
+        top: -4px;
+    }
+}

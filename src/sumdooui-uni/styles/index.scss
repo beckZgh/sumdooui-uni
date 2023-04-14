@@ -1,8 +1,15 @@
+// 基础组件
 @use '../animate-box/animate-box.scss';
 @use '../animation/animation.scss';
 @use '../button/button.scss';
-@use '../cell-group/cell-group.scss';
-@use '../cell/cell.scss';
 @use '../icon/icon.scss';
-@use '../navbar/navbar.scss';
+@use '../badge/badge.scss';
+
+// 布局组件
+@use '../cell/cell.scss';
+@use '../cell-group/cell-group.scss';
 @use '../page/page.scss';
+
+// 导航组件
+@use '../navbar/navbar.scss';
+

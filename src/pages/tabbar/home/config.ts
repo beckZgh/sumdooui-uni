@@ -160,7 +160,7 @@ export default [{
     data: [{
         icon: 'badge',
         name: 'Badge 徽章',
-        page: '',
+        page: 'badge',
     }, {
         icon: 'alert',
         name: 'Alert 警告框',

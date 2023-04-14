@@ -36,6 +36,11 @@
             "path": "pages/examples/nav/navbar/main"
         },
 
+        // 数据组件
+        {
+            "path": "pages/examples/data/badge/main"
+        },
+
         // 共享页面
         {
             "path": "pages/common/coding/main"
