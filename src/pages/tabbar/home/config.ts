@@ -14,6 +14,10 @@ export default [{
         name: 'Icon 图标',
         page: 'icon',
     }, {
+        icon: 'icon',
+        name: 'Image 图片',
+        page: 'image',
+    }, {
         icon: 'button',
         name: 'Button 按钮',
         page: 'button',

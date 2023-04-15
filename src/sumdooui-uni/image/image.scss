@@ -1,0 +1,74 @@
+@use '../styles/variables.scss' as *;
+
+$image-bg-color  : var(--sd-image-bg-color, $sd-bg-color-container);
+$image-width     : var(--sd-image-width, 160rpx);
+$image-height    : var(--sd-iamge-height, 160rpx);
+$image-icon-size : var(--sd-image-icon-size, 60rpx);
+$image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
+
+.sd-image {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    width: $image-width;
+    height: $image-height;
+    border-radius: $sd-border-radius-s;
+    overflow: hidden;
+
+    &--round {
+        border-radius: $sd-border-radius-l;
+    }
+
+    &--circle {
+        border-radius: $sd-border-radius-circle;
+    }
+
+    &--block {
+        display: block;
+        width: 100%;
+        height: auto;
+
+        .sd-image__img {
+            width: none;
+            height: none;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+    }
+
+    .sd-loading {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    &__placeholder-icon,
+    &__error-icon {
+        font-size: $image-icon-size;
+        color: $image-icon-color;
+    }
+
+    &.is-loading,
+    &.is-error,
+    &.is-empty {
+        background-color: $image-bg-color;
+    }
+}

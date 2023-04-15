@@ -19,6 +19,8 @@
         }, {
             "path": "pages/examples/basics/button/main"
         }, {
+            "path": "pages/examples/basics/image/main"
+        }, {
             "path": "pages/examples/basics/animation/main"
         }, {
             "path": "pages/examples/basics/animate-box/main"
