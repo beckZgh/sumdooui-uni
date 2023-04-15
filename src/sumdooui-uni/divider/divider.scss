@@ -1,0 +1,88 @@
+@use '../styles/variables.scss' as *;
+
+$divider-line-color: var(--sd-divider-line-color, $sd-border-color);
+
+@mixin divider-theme($theme-color) {
+    &.sd-divider--sence-default {
+        .sd-divider__line {
+            border-color: $theme-color;
+        }
+
+        .sd-divider__content {
+            color: $theme-color
+        }
+    }
+
+    &.sd-divider--sence-text {
+        .sd-divider__content {
+            color: $theme-color
+        }
+    }
+
+    &.sd-divider--sence-line {
+        .sd-divider__line {
+            border-color: $theme-color;
+        }
+    }
+}
+
+.sd-divider {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &__line {
+        flex: 1;
+        height: 1px;
+        border-top: 1px solid $divider-line-color;
+
+        &--dotted {
+            border-top-style: dotted;
+        }
+
+        &--dashed {
+            border-top-style: dashed;
+        }
+    }
+
+    &__content {
+        max-width: 500rpx;
+        padding: 0 36rpx;
+        font-size: $sd-font-size-base;
+        color: $sd-text-color-placeholder;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:empty {
+            padding: 0;
+        }
+    }
+
+    // 分割线主题
+    &--primary {
+        @include divider-theme($sd-primary-color);
+    }
+    &--success {
+        @include divider-theme($sd-success-color);
+    }
+    &--warning {
+        @include divider-theme($sd-warning-color);
+    }
+    &--danger {
+        @include divider-theme($sd-danger-color);
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    .sd-divider__line {
+        transform: scaleY(0.5);
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3) {
+    .sd-divider__line {
+        transform: scaleY(0.333);
+    }
+}

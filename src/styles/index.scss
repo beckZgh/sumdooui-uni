@@ -49,9 +49,9 @@ button.reset-button {
     padding: 40rpx 0;
 
     &__title {
-        font-size: 32rpx;
+        font-size: 30rpx;
         line-height: 1;
-        font-weight: 600;
+        // font-weight: 600;
         margin-left: $sd-spacer-2;
         padding-left: 36rpx;
         position: relative;
@@ -63,7 +63,7 @@ button.reset-button {
             position: absolute;
             width: 10px;
             height: 10px;
-            background: $sd-primary-color;
+            background: #07c16c; // $sd-primary-color;
             border-radius: $sd-border-radius-circle;
             left: 0;
             top: 50%;

@@ -180,7 +180,7 @@ export default [{
     }, {
         icon: 'divider',
         name: 'Divider 分割线',
-        page: '',
+        page: 'divider',
     }, {
         icon: 'loadmore',
         name: 'LoadMore 加载更多',
