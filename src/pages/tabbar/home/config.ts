@@ -172,7 +172,7 @@ export default [{
     }, {
         icon: 'tag',
         name: 'Tag 标签',
-        page: '',
+        page: 'tag',
     }, {
         icon: 'collapse',
         name: 'Collapse 折叠面板',
@@ -188,7 +188,7 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Empty 缺省页',
-        page: 'empty',
+        page: '',
     }],
 }, {
     id  : 'js',

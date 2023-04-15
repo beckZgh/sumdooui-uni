@@ -1,0 +1,103 @@
+@use '../styles/variables.scss' as *;
+
+$tag-padding   : var(--sd-tag-padding, 10rpx);
+$tag-font-size : var(--sd-tag-font-size, $sd-font-size-xs);
+$tag-bg-color  : var(--sd-tag-bg-color, $sd-bg-color-container);
+$tag-text-color: var(--sd-tag-text-color, $sd-text-color);
+
+@mixin tag-theme($bg-color, $light-bg-clolor) {
+    background-color: $bg-color;
+    color: $sd-white;
+
+    &.sd-tag--light {
+        background-color: $light-bg-clolor;
+        color: $bg-color;
+    }
+
+    &.sd-tag--plain {
+        background-color: transparent;
+        color: $bg-color;
+
+        &::after {
+            border-color: $bg-color;
+        }
+    }
+}
+
+.sd-tag {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: $tag-padding;
+    font-size: $tag-font-size;
+    box-sizing: border-box;
+    border-radius: $sd-border-radius-s;
+    line-height: 1;
+
+    &__text {
+        width: 100%;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 1;
+        vertical-align: middle;
+    }
+
+    // 按钮边框
+    &::after {
+        content: ' ';
+        position: absolute;
+        box-sizing: border-box;
+        pointer-events: none;
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        border: 0 solid $sd-border-color;
+        border-radius: calc($sd-border-radius-s * 2);
+        transform: scale(.5);
+        z-index: 1;
+    }
+
+    &.sd-tag--plain::after {
+        border-width: 2px;
+    }
+
+    &--round {
+        border-radius: $sd-border-radius-round;
+        padding: 10rpx 16rpx;
+
+        &::after {
+            border-radius: calc($sd-border-radius-round * 2);
+        }
+    }
+
+    // 主题
+    &--default {
+        background-color: $tag-bg-color;
+        color: $tag-text-color;
+
+        &.sd-tag--plain {
+            background-color: transparent;
+            color: $tag-text-color;
+
+            &::after {
+                border-color: $sd-border-color;
+            }
+        }
+    }
+    &--primary {
+        @include tag-theme($sd-primary-color, $sd-primary-color-7);
+    }
+    &--success {
+        @include tag-theme($sd-success-color, $sd-success-color-7);
+    }
+    &--warning {
+        @include tag-theme($sd-warning-color, $sd-warning-color-7);
+    }
+    &--danger {
+        @include tag-theme($sd-danger-color, $sd-danger-color-7);
+    }
+}

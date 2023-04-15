@@ -57,6 +57,8 @@
             "path": "pages/examples/data/empty/page-empty-data"
         }, {
             "path": "pages/examples/data/empty/page-empty-parse"
+        }, {
+            "path": "pages/examples/data/tag/main"
         },
 
         // 共享页面
