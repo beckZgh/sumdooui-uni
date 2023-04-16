@@ -29,8 +29,10 @@
         // 布局组件
         {
             "path": "pages/examples/layout/page/main"
-        },{
+        }, {
             "path": "pages/examples/layout/cell/main"
+        }, {
+            "path": "pages/examples/layout/grid/main"
         },
 
         // 操作反馈
@@ -116,7 +118,8 @@
     "easycom": {
         "autoscan": true,
         "custom": {
-            "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+            "nut-(.*)?-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1$2/index.vue",
+            "nut-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1/index.vue",
             "^sd-(.*)": "@/sumdooui-uni/$1/$1.vue",
             "^app-(.*)": "@/components/app-$1.vue"
         }

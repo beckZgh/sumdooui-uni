@@ -9,4 +9,5 @@ onLaunch((opts) => {
 
 <style lang="scss">
 @use '@/sumdooui-uni/styles/index.scss';
+@import '@/uni_modules/sky-nutui/components/sky-nutui/app.scss';
 </style>

@@ -52,7 +52,7 @@ export default [{
     }, {
         icon: 'grid',
         name: 'Grid 宫格',
-        page: '',
+        page: 'grid',
     },{
         icon: 'card',
         name: 'Card 卡片',

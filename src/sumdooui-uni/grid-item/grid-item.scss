@@ -1,0 +1,60 @@
+@use '../styles/variables.scss' as *;
+
+$grid-item-text-size: var(--sd-grid-item-text-size, $sd-font-size-base);
+$grid-item-icon-size: var(--sd-grid-item-icon-size, 60rpx);
+
+.sd-grid-item {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30rpx;
+        box-sizing: border-box;
+        height: 100%;
+        border: 0 solid $sd-border-color;
+        font-size: $grid-item-text-size;
+
+        .sd-image {
+            margin-bottom: 16rpx;
+        }
+
+        .sd-icon {
+            font-size: $grid-item-icon-size;
+        }
+    }
+
+    &__desc {
+        font-size: $sd-font-size-s;
+        color: $sd-text-color-placeholder;
+    }
+
+    &--border &__content {
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+    }
+
+    &--square &__content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &--row &__content {
+        flex-direction: row;
+    }
+
+    &--column &__content {
+        flex-direction: column;
+    }
+
+    &--clickable {
+        @include clickable($sd-black);
+    }
+}

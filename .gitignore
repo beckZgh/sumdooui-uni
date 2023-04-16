@@ -21,7 +21,6 @@ report.html
 # 自动生成 hooks 类型
 shims-auto-import-hooks.d.ts
 
-/packages/weapp/src/pages/demo
-
+sky-nutui
 
 *.7z
