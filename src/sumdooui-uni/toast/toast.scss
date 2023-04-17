@@ -1,0 +1,135 @@
+@use '../styles/variables.scss' as *;
+
+$toast-bg-color: var(--sd-toast-bg-color, $sd-black);
+$toast-mask-z-index: var(--sd-toast-z-index, 998);
+$toast-z-index: var(--sd-toast-z-index, 999);
+$toast-padding: var(--sd-toast-padding, 24rpx 42rpx);
+$toast-font-size: var(--sd-toast-font-size, $sd-font-size-m);
+$toast-border-radius: var(--sd-toast-border-radius, $sd-border-radius-l);
+
+.sd-toast-mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $toast-mask-z-index;
+}
+
+.sd-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: fit-content;
+    z-index: $toast-z-index;
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: $toast-padding;
+        border-radius: $toast-border-radius;
+        background-color: $toast-bg-color;
+    }
+
+    .sd-icon {
+        color: $sd-white;
+    }
+
+    .sd-loading__circle,
+    .sd-loading__line {
+        margin: 0;
+    }
+
+    &__text {
+        line-height: 1.5;
+        font-size: $toast-font-size;
+        color: $sd-white;
+    }
+
+    &--row {
+        flex-direction: row;
+
+        .sd-icon,
+        .sd-loading,
+        .sd-image {
+            margin-right: 20rpx;
+        }
+
+        .sd-icon {
+            font-size: 46rpx;
+        }
+
+        .sd-loading {
+            color: $sd-white;
+        }
+
+        .sd-image {
+            display: block;
+            width: 46rpx;
+            height: 46rpx;
+        }
+
+        .sd-toast__text {
+            max-width: 480rpx;
+        }
+    }
+
+    &--column {
+        .sd-toast__content {
+            padding: 25rpx 34rpx;
+            min-width: 240rpx;
+            max-width: 320rpx;
+            height: 240rpx;
+            border-radius: 32rpx;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .sd-icon,
+        .sd-loading,
+        .sd-image {
+            display: block;
+            margin-bottom: 20rpx;
+        }
+
+        .sd-loading,
+        .sd-image {
+            width: 70rpx;
+            height: 70rpx;
+        }
+
+        .sd-icon {
+            font-size: 104rpx;
+        }
+
+        .sd-toast__text {
+            text-align: center;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &.is-success {
+        .sd-icon {
+            color: $sd-success-color;
+        }
+    }
+
+    &.is-warning {
+        .sd-icon {
+            color: $sd-warning-color;
+        }
+    }
+
+    &.is-error {
+        .sd-icon {
+            color: $sd-danger-color;
+        }
+    }
+}

@@ -46,8 +46,9 @@
             "path": "pages/examples/operate/loading/page-line"
         }, {
             "path": "pages/examples/operate/loading/page-meet"
+        }, {
+            "path": "pages/examples/operate/toast/main"
         },
-
 
         // 导航组件
         {

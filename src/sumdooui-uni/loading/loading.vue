@@ -6,8 +6,11 @@ import { loading_props } from './loading'
 import Utils from '../common/utils'
 
 export default defineComponent({
-    name : 'SdLoading',
-    props: loading_props,
+    name   : 'SdLoading',
+    props  : loading_props,
+    options: {
+        virtualHost: true,
+    },
     setup(props) {
         const loading_style$ = computed(() => {
             const style: CSSProperties = {}

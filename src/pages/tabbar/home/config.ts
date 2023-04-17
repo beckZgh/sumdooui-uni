@@ -100,7 +100,7 @@ export default [{
     }, {
         icon: 'toast',
         name: 'Toast 轻提示',
-        page: '',
+        page: 'toast',
     }, {
         icon: 'backdrop',
         name: 'Backdrop 遮罩层',

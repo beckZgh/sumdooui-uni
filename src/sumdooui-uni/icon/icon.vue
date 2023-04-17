@@ -8,8 +8,11 @@ import { defineComponent, computed } from 'vue'
 import { icon_props } from './icon'
 
 export default defineComponent({
-    name : 'SdIcon',
-    props: icon_props,
+    name   : 'SdIcon',
+    props  : icon_props,
+    options: {
+        virtualHost: true,
+    },
     setup(props) {
         // 字体图标
         const icon$ = computed(() => {

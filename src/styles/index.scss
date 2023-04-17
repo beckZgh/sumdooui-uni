@@ -74,6 +74,12 @@ button.reset-button {
     &__body {
         padding: $sd-spacer-2;
         box-sizing: border-box;
+
+        &.flex-xc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     &.is-dark {
