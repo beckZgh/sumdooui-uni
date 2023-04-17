@@ -14,27 +14,27 @@ export default defineComponent({
     options: {
         virtualHost: true,
     },
-    setup(props) {
-        const { parnet } = useInject<GridProvide>(GRID_KEY)
+    setup() {
+        const { parent } = useInject<GridProvide>(GRID_KEY)
 
         const root_class$ = computed(() => {
             return {
-                [`sd-grid-item--border`]                      : parnet?.props.border,
-                [`sd-grid-item--square`]                      : parnet?.props.square,
-                [`sd-grid-item--clickable`]                   : parnet?.props.clickable,
-                [`sd-grid-item--${ parnet?.props.direction }`]: true,
+                [`sd-grid-item--border`]                      : parent?.props.border,
+                [`sd-grid-item--square`]                      : parent?.props.square,
+                [`sd-grid-item--clickable`]                   : parent?.props.clickable,
+                [`sd-grid-item--${ parent?.props.direction }`]: true,
             }
         })
 
         const root_style$ = computed(() => {
-            if (!parnet) return {}
+            if (!parent) return {}
 
-            const width = `${ 100 / parnet.props.column }%`
+            const width = `${ 100 / parent.props.column }%`
             const style: CSSProperties = {}
             style['flexBasis'] = width
 
             // 正方体格子
-            if (parnet.props.square) {
+            if (parent.props.square) {
                 style.paddingTop = width
             }
 

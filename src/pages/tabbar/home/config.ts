@@ -48,7 +48,7 @@ export default [{
     },{
         icon: 'layout',
         name: 'Layout 栅格布局',
-        page: '',
+        page: 'layout',
     }, {
         icon: 'grid',
         name: 'Grid 宫格',

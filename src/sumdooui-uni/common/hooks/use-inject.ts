@@ -8,22 +8,22 @@ type ParentProvide<T> = T & {
 }
 
 export function useInject<T>(key: InjectionKey<ParentProvide<T>>) {
-    const parnet = inject(key, null)
+    const parent = inject(key, null)
 
-    if (parnet) {
+    if (parent) {
         const instance = getCurrentInstance()!
-        parnet.add(instance)
+        parent.add(instance)
 
         onUnmounted(() => {
-            parnet.remove(instance)
+            parent.remove(instance)
         })
 
-        const index = computed(() => parnet.internal_children.indexOf(instance))
-        return { parnet, index }
+        const index = computed(() => parent.internal_children.indexOf(instance))
+        return { parent, index }
     }
 
     return {
-        parnet: null,
+        parent: null,
         index : ref(-1),
     }
 }

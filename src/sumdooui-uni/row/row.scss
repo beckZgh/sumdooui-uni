@@ -1,0 +1,24 @@
+.sd-row {
+    width: 100%;
+
+    // 清除浮动
+    &:after {
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        content: '';
+    }
+
+    &--flex {
+        display: flex;
+
+        &::after {
+            display: none;
+        }
+
+        .sd-col {
+            float: none;
+        }
+    }
+}

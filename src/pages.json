@@ -33,6 +33,8 @@
             "path": "pages/examples/layout/cell/main"
         }, {
             "path": "pages/examples/layout/grid/main"
+        }, {
+            "path": "pages/examples/layout/layout/main"
         },
 
         // 操作反馈
