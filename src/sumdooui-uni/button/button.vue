@@ -15,6 +15,9 @@ export default defineComponent({
         'chooseavatar',
         'error',
     ],
+    options: {
+        virtualHost: true,
+    },
     setup(props, { emit }) {
         // 监听按钮点击
         function onClick(event: Event) {
@@ -45,7 +48,7 @@ export default defineComponent({
                 'has-text'                 : loadingText || text || $slots.default,
             },
         ]"
-        :style="customStyle"
+        :style="{ ...customStyle, width }"
     >
         <button
             class="sd-button-wrap"

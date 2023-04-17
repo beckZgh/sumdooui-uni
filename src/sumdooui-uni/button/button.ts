@@ -18,6 +18,8 @@ export const button_props = {
     variant         : { type: String as PropType<ButtonVariant> },
     /** 块级按钮 */
     block           : { type: Boolean, default: false  },
+    /** 按钮宽度 */
+    width           : { type: String },
     /** 按钮图标 */
     icon            : { type: String },
     /** 按钮图标大小 */
