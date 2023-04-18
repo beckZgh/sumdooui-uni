@@ -22,5 +22,6 @@ report.html
 shims-auto-import-hooks.d.ts
 
 sky-nutui
+colorui
 
 *.7z

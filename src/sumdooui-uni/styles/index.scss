@@ -19,7 +19,9 @@
 
 // 反馈组件
 @use '../loading/loading.scss';
+@use '../overlay/overlay.scss';
 @use '../toast/toast.scss';
+@use '../popup/popup.scss';
 
 // 导航组件
 @use '../navbar/navbar.scss';

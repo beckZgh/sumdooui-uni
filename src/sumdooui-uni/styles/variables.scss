@@ -122,3 +122,6 @@ $sd-spacer-4: var(--sd-spacer-4, 64rpx);  // 32px 间距-大
 $sd-spacer-5: var(--sd-spacer-5, 96rpx);  // 48px 间距-大-x
 $sd-spacer-6: var(--sd-spacer-6, 160rpx); // 80px 间距-大-xx
 
+// 层叠
+$sd-navbar-z-index: 3000;
+$sd-popup-z-index: 2000;

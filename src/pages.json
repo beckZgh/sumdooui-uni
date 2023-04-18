@@ -47,7 +47,13 @@
         }, {
             "path": "pages/examples/operate/loading/page-meet"
         }, {
+            "path": "pages/examples/operate/overlay/main"
+        }, {
             "path": "pages/examples/operate/toast/main"
+        }, {
+            "path": "pages/examples/operate/popup/main"
+        }, {
+            "path": "pages/examples/operate/drawer/main"
         },
 
         // 导航组件

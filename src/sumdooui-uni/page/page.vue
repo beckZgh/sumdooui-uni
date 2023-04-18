@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, reactive, computed, getCurrentInstance } from 'vue'
+import { defineComponent, reactive, computed, getCurrentInstance, onMounted } from 'vue'
 import { page_props } from './page'
 
 export default defineComponent({
@@ -10,27 +10,23 @@ export default defineComponent({
         'click-home',
     ],
     setup(props, { emit }) {
-        // 应用基础信息
-        const app_base_info = uni.getAppBaseInfo()
-        const pages = getCurrentPages()
-        const instance = getCurrentInstance()
-
-        // 页面标题
-        const page_title$ = computed(() => {
-            return props.title || app_base_info?.appName || ''
-        })
+        const app_base_info = uni.getAppBaseInfo()  // 应用基础信息
+        const pages         = getCurrentPages()     // 所有页面实例
+        const instance      = getCurrentInstance()  // 当前组件实例
 
         const state = reactive({
-            first_page: pages.length === 1,
+            first_page   : pages.length === 1,
+            navbar_height: 20 + 44, // 默认 status_height 20，navbar_content 44
         })
 
-        const show_home_button$ = computed(() => {
-            return props.showHomeButton && state.first_page
-        })
+        // 页面标题
+        const page_title$ = computed(() => props.title || app_base_info?.appName || '')
 
-        const show_back_button$ = computed(() => {
-            return props.showBackButton && !state.first_page
-        })
+        // 显示返回首页按钮
+        const show_home_button$ = computed(() => props.showHomeButton && state.first_page)
+
+        // 显示返回上一级按钮
+        const show_back_button$ = computed(() => props.showBackButton && !state.first_page)
 
         // 处理返回
         function onClickNavbarLeft(e: Event) {
@@ -58,7 +54,23 @@ export default defineComponent({
             }
         }
 
+        // 查询当前 navbar 高度
+        onMounted(() => {
+            queryNavbarHeight()
+        })
+        function queryNavbarHeight() {
+            const query = uni.createSelectorQuery().in(instance)
+            if ( !query ) return
+
+            query.select('#page_navbar').boundingClientRect((res) => {
+                if (res) {
+                    state.navbar_height = (res as UniApp.NodeInfo).height!
+                }
+            }).exec()
+        }
+
         return {
+            state,
             page_title$,
             show_home_button$,
             show_back_button$,
@@ -72,10 +84,10 @@ export default defineComponent({
     <view
         class="sd-page"
         :class="[{ 'is-lock-scroll': lockScroll }, customClass]"
-        :style="{ ...customStyle, background }"
+        :style="{ ...customStyle, background, [`--sd-page-navbar-height`]: `${ state.navbar_height }px` }"
     >
         <!-- 页面导航 -->
-        <view v-if="showNavbar" class="sd-page__navbar">
+        <view v-if="showNavbar" id="page_navbar" class="sd-page__navbar">
             <sd-navbar
                 :title="page_title$"
                 v-bind="{ ...navbarProps }"

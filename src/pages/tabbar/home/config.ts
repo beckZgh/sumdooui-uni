@@ -94,16 +94,24 @@ export default [{
     id  : 'operate',
     name: '操作反馈',
     data: [{
-        icon: 'actionsheet',
-        name: 'ActionSheet 上拉菜单',
-        page: '',
+        icon: 'backdrop',
+        name: 'Overlay 遮罩层',
+        page: 'overlay',
     }, {
         icon: 'toast',
         name: 'Toast 轻提示',
         page: 'toast',
     }, {
-        icon: 'backdrop',
-        name: 'Backdrop 遮罩层',
+        icon: 'bottompopup',
+        name: 'Popup 弹出层',
+        page: 'popup',
+    }, {
+        icon: 'drawer',
+        name: 'Drawer 抽屉',
+        page: 'drawer',
+    }, {
+        icon: 'actionsheet',
+        name: 'ActionSheet 上拉菜单',
         page: '',
     }, {
         icon: 'dialog',
@@ -145,18 +153,6 @@ export default [{
         icon: 'tabs',
         name: 'Tabs 标签页',
         page: '',
-    }, {
-        icon: 'drawer',
-        name: 'Drawer 抽屉',
-        page: '',
-    }, {
-        icon: 'bottompopup',
-        name: 'BottomPopup 底部弹出层',
-        page: '',
-    }, {
-        icon: 'toppopup',
-        name: 'TopPopup 顶部弹出层',
-        page: '',
     }],
 }, {
     id  : 'data',
@@ -192,7 +188,7 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Empty 缺省页',
-        page: '',
+        page: 'empty',
     }],
 }, {
     id  : 'js',

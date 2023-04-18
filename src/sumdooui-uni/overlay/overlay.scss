@@ -1,0 +1,26 @@
+
+@use '../styles/variables.scss' as *;
+
+$overlay-bg-color: var(--sd-overlay-bg-color, $sd-bg-color-mask);
+$overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
+
+.sd-overlay {
+    position: fixed;
+    top: var(--sd-page-navbar-height, 0);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $overlay-bg-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    perspective: 1000;
+    opacity: 0;
+    transform: scale3d(1, 1, 0);
+
+    &.is-show {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
