@@ -7,9 +7,12 @@ import { image_props } from './image'
 import Utils from '../utils'
 
 export default defineComponent({
-    name : 'SdImage',
-    props: image_props,
-    emits: ['click', 'load', 'error'],
+    name   : 'SdImage',
+    props  : image_props,
+    emits  : ['click', 'load', 'error'],
+    options: {
+        virtualHost: true,
+    },
     setup(props, { emit }) {
         const state = reactive({
             show_loading  : false,
@@ -23,7 +26,7 @@ export default defineComponent({
             const { radius, width, height } = props
             if (width ) style.width        = Utils.toUnit(width)
             if (height) {
-                if (typeof height === 'string' && height.endsWith('%')) {
+                if (typeof height === 'string' && height !== '100%' && height.endsWith('%')) {
                     style.height = 0
                     style.paddingBottom = height
                 } else {

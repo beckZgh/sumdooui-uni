@@ -86,4 +86,17 @@ button.reset-button {
         background-color: #1B1B1B;
         color: #D1D1D1;
     }
+
+    &.is-custom {
+        margin-left: 0;
+        margin-right: 0;
+        background-color: transparent;
+
+        .demo-card__body {
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: $sd-spacer;
+            padding-bottom: $sd-spacer;
+        }
+    }
 }

@@ -1,0 +1,44 @@
+@use '../styles/variables.scss' as *;
+
+.sd-avatar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: $sd-bg-color-container;
+
+    &--small {
+        width: 64rpx;
+        height: 64rpx;
+    }
+
+    &--medium {
+        width: 96rpx;
+        height: 96rpx;
+
+        .sd-icon,
+        .sd-avatar__text {
+            font-size: 36rpx;
+        }
+    }
+
+    &--large {
+        width: 128rpx;
+        height: 128rpx;
+
+        .sd-icon,
+        .sd-avatar__text {
+            font-size: 50rpx;
+        }
+    }
+
+    &--circle {
+        border-radius: $sd-border-radius-circle;
+    }
+
+    &--round {
+        border-radius: $sd-border-radius-base;
+    }
+
+
+}

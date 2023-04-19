@@ -131,7 +131,11 @@ export default [{
         page: 'loading',
     }, {
         icon: 'swipeaction',
-        name: 'SwipeAction 滑动菜单',
+        name: 'Swipe 滑动菜单',
+        page: '',
+    }, {
+        icon: 'swipeaction',
+        name: 'Backtop 返回顶部',
         page: '',
     }],
 }, {
@@ -168,7 +172,7 @@ export default [{
     }, {
         icon: 'avatar',
         name: 'Avatar 头像',
-        page: '',
+        page: 'avatar',
     }, {
         icon: 'tag',
         name: 'Tag 标签',
@@ -189,13 +193,5 @@ export default [{
         icon: 'empty',
         name: 'Empty 缺省页',
         page: 'empty',
-    }],
-}, {
-    id  : 'js',
-    name: 'JS组件',
-    data: [{
-        icon: 'utils',
-        name: 'Utils 工具类',
-        page: '',
     }],
 }]
