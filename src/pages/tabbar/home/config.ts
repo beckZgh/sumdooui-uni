@@ -116,7 +116,7 @@ export default [{
     }, {
         icon: 'dialog',
         name: 'Dialog 对话框',
-        page: '',
+        page: 'dialog',
     }, {
         icon: 'dropdownmenu',
         name: 'DropdownMenu 下拉菜单',

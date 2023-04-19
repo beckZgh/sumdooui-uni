@@ -1,0 +1,93 @@
+@use '../styles/variables.scss' as *;
+
+$image-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
+
+.sd-dialog {
+    &__image {
+        border-radius: $image-border-radius $image-border-radius 0 0;
+        overflow: hidden;
+    }
+
+    &__main {
+        padding: 56rpx 56rpx 0;
+        box-sizing: border-box;
+    }
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 36rpx;
+
+        &.is-success {
+            color: $sd-success-color;
+        }
+
+        &.is-error {
+            color: $sd-danger-color;
+        }
+
+        &.is-warning {
+            color: $sd-warning-color;
+        }
+
+        .sd-icon {
+            font-size: 112rpx;
+        }
+    }
+
+    &__input {
+        display: block;
+        margin-top: 10rpx;
+        width: 100%;
+        box-sizing: border-box;
+        height: 90rpx;
+        font-size: $sd-font-size-base;
+        padding: 0 30rpx;
+        outline: none;
+        background-color: $sd-bg-color-container;
+        border-radius: 10rpx;
+        text-align: left;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: cnter;
+        margin-bottom: 30rpx;
+        font-weight: bold;
+        font-size: $sd-font-size-m;
+    }
+
+    &__desc {
+        max-height: 500rpx;
+        width: 100%;
+        font-size: $sd-font-size-base;
+        margin-bottom: 50rpx;
+    }
+
+    &__footer {
+        display: flex;
+        padding: 0 56rpx 56rpx;
+
+        .sd-button {
+            flex: 1;
+        }
+
+        &--row {
+            flex-direction: row;
+
+            .sd-button + .sd-button {
+                margin-left: 20rpx;
+            }
+        }
+
+        &--column {
+            flex-direction: column;
+
+            .sd-button + .sd-button {
+                margin-top: 20rpx;
+            }
+        }
+
+    }
+}
