@@ -1,5 +1,4 @@
 import type { App } from 'vue'
-import { app_config } from '@/config'
 import { createI18n } from 'vue-i18n'
 
 import zhCN from './lang/zh-CN'
@@ -13,16 +12,8 @@ export const $il8n = createI18n({
     fallbackWarn  : false, // 本地化失败时是否抑制回退警告。
     missingWarn   : false, // 是否抑制本地化失败时输出的警告。
     messages      : {
-        'zh-CN': {
-            ...zhCN,
-            currency_symbol: app_config.currency_symbol,
-            currency_unit  : app_config.currency_unit,
-        },
-        'en-US': {
-            ...enUS,
-            currency_symbol: app_config.currency_symbol,
-            currency_unit  : app_config.currency_unit,
-        },
+        'zh-CN': zhCN,
+        'en-US': enUS,
     },
 })
 

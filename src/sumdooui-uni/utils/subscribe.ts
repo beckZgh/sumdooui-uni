@@ -1,15 +1,6 @@
 /**
  * 订阅消息处理
- * v23.01.05
  */
-
-// const message_text: Record<string, string> = {
-//     'Xf36n5Ez21V9qIFSU1MQna70jUyzkvDkoIf61a3Shuw': '充值成功通知' , // deposit
-//     'AO4WvDxC-y2YV15tbFmKZqZWX9DUGnIQk3jH2y974qM': '取餐提醒'     , // mn_order_finish
-//     'mPGhlyQvHac0qUw2V5NIcsQljwQbILmrviFqvsdnUp8': '外卖通知'     , // mn_order_0
-//     'mPGhlyQvHac0qUw2V5NIcjES46dRqwpWDGhzT1KK80g': '堂食通知'     , // mn_order_1
-//     't1aJHbgKG3kse-Lzne197cOE4vyMHFH3EbHc2yJ6e0Y': '自提出品通知' , // mn_order_3
-// }
 
 // 发起订阅消息授权
 export async function requestSubscribe(tmplIds: string[]): Promise<{ ok: boolean; err?: string }> {

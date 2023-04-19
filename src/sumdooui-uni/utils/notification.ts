@@ -5,9 +5,6 @@
  * - 注意:
  * 1. confirmText | cancelText 都不允许超过一定的字符、超出会无反应
  */
-
-import { $il8n } from '@/locale'
-
 const config = {
     toast_mask  : false,
     loading_mask: true,
@@ -17,7 +14,7 @@ let mTimeout: ReturnType<typeof setTimeout> // 避免 loading Toast 相互覆盖
 let mLoading = false
 
 /** 显示 Loading */
-export const showLoading = (title = $il8n.global.t('loading.title'), opt?: { mask?: boolean; duration?: number }) => {
+export const showLoading = (title = '加载中', opt?: { mask?: boolean; duration?: number }) => {
     if (mLoading) return
     mLoading = true
 
@@ -76,7 +73,7 @@ export const textMsg = (text: string, opt?: Omit<UniApp.ShowToastOptions, 'icon'
 
 /** 模态框 */
 type ShowModalOptions = Omit<UniApp.ShowModalOptions, 'success' | 'fail' | 'complete'>
-const _showModal = async (content: string, title = $il8n.global.t('alert.tip'), opt?: ShowModalOptions): Promise<boolean> => {
+const _showModal = async (content: string, title = '提示', opt?: ShowModalOptions): Promise<boolean> => {
     return new Promise((resolve) => {
         uni.showModal({
             content,
@@ -96,7 +93,7 @@ const _showModal = async (content: string, title = $il8n.global.t('alert.tip'), 
 export interface AlertModalOptions { confirmText?: string; confirmColor?: string }
 export const showAlert = async (content: string, title?: string, opt?: AlertModalOptions): Promise<boolean> => {
     const options: AlertModalOptions = {
-        confirmText: opt?.confirmText ? opt?.confirmText : $il8n.global.t('alert.confirm_text'),
+        confirmText: opt?.confirmText ? opt?.confirmText : '确定',
     }
     if (opt?.confirmColor) options.confirmColor = opt.confirmColor
 
@@ -107,8 +104,8 @@ export const showAlert = async (content: string, title?: string, opt?: AlertModa
 export interface ConfirmModalOptions { cancelText?: string; cancelColor?: string; confirmText?: string; confirmColor?: string }
 export const showConfirm = async (content: string, title?: string, opt?: ConfirmModalOptions): Promise<boolean> => {
     const options: ConfirmModalOptions = {
-        cancelText : opt?.cancelText  ? opt.cancelText  : $il8n.global.t('confirm.cancel_text'),
-        confirmText: opt?.confirmText ? opt.confirmText : $il8n.global.t('confirm.confirm_text'),
+        cancelText : opt?.cancelText  ? opt.cancelText  : '取消',
+        confirmText: opt?.confirmText ? opt.confirmText : '确定',
     }
     if (opt?.cancelColor ) options.cancelColor  = opt.cancelColor
     if (opt?.confirmColor) options.confirmColor = opt.confirmColor
@@ -121,15 +118,15 @@ export type PromptModalOptions = Omit<ShowModalOptions, 'editable'>
 export const showPrompt = async (title?: string, opt?: PromptModalOptions): Promise<string> => {
     return new Promise((resolve) => {
         const options: ConfirmModalOptions = {
-            cancelText : opt?.cancelText  ? opt.cancelText  : $il8n.global.t('confirm.cancel_text'),
-            confirmText: opt?.confirmText ? opt.confirmText : $il8n.global.t('confirm.confirm_text'),
+            cancelText : opt?.cancelText  ? opt.cancelText  : '取消',
+            confirmText: opt?.confirmText ? opt.confirmText : '确定',
         }
-        if (opt?.cancelColor ) options.cancelColor  = opt.cancelColor
-        if (opt?.confirmColor) options.confirmColor = opt.confirmColor
+        if (opt?.cancelColor ) options.cancelColor  = opt.cancelColor as string
+        if (opt?.confirmColor) options.confirmColor = opt.confirmColor as string
 
         uni.showModal({
             ...options,
-            placeholderText: opt?.placeholderText || $il8n.global.t('prompt.placeholder_text'),
+            placeholderText: opt?.placeholderText || '请输入',
             editable       : true,
             title,
             success(res) {

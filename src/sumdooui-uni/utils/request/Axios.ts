@@ -1,4 +1,8 @@
-import Utils from '../index'
+import {
+    isObject,
+    isNumber,
+    isFunction,
+} from '../is'
 
 import {
     errorMsg,
@@ -167,7 +171,7 @@ export class Axios {
                 })
 
                 // 监听进度变化
-                if (_config_.onProgressUpdate && Utils.isFunction(_config_.onProgressUpdate))
+                if (_config_.onProgressUpdate && isFunction(_config_.onProgressUpdate))
                     upload_task.onProgressUpdate(_config_.onProgressUpdate)
 
                 // 收集上传任务
@@ -202,8 +206,9 @@ export class Axios {
                 })
 
                 // 监听进度变化
-                if (_config_.onProgressUpdate && Utils.isFunction(_config_.onProgressUpdate))
+                if (_config_.onProgressUpdate && isFunction(_config_.onProgressUpdate)) {
                     download_task.onProgressUpdate(_config_.onProgressUpdate)
+                }
 
                 // 收集下载任务
                 _config_.task_id && this.downloadTaskMap.set(_config_.task_id, download_task)
@@ -298,11 +303,11 @@ export class Axios {
         data       : Record<string, any>
         header     : Record<string, any>
     } {
-        const conf = Utils.isObject(config) ? config : {} as any
+        const conf = isObject(config) ? config : {} as any
 
         if ('delay' in conf) {
             const delay = (conf as any).delay
-            if (Utils.isNumber(delay))
+            if (isNumber(delay))
                 (conf as any).delay = delay
 
             else if (delay === false)
@@ -315,8 +320,8 @@ export class Axios {
         return {
             delay      : 300, // 请求配置后，覆盖此默认值
             ...conf    ,
-            data       : { ...(Utils.isObject((conf as any).params) ? (conf as any).params : {}) },
-            header     : { ...(Utils.isObject((conf as any).header) ? (conf as any).header : {}) },
+            data       : { ...(isObject((conf as any).params) ? (conf as any).params : {}) },
+            header     : { ...(isObject((conf as any).header) ? (conf as any).header : {}) },
             showLoading: ('showLoading' in conf) ? (conf as any).showLoading : this.showLoading,
             showError  : ('showError'   in conf) ? (conf as any).showError   : this.showError,
             timeout    : ('timeout'     in conf) ? (conf as any).timeout     : this.timeout,
@@ -331,7 +336,7 @@ export class Axios {
         server_date: string
         server_time: number
     } {
-        const d = Utils.isObject(res.data) ? res.data : undefined
+        const d = isObject(res.data) ? res.data : undefined
         return {
             ok         : d ?  d.ok                 : true,
             data       : d ?  d.data               : res.data,
