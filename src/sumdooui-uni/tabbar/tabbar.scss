@@ -1,0 +1,37 @@
+@use '../styles/variables.scss' as *;
+
+$tabbar-height: var(--sd-tabbar-height, 112rpx);
+$tabbar-icon-size: var(--sd-tabbar-icon-size, 56rpx);
+$tabbar-text-size: var(--sd-tabbar-text-size, 20rpx);
+$tabbar-inactive-color: var(--sd-tabbar-inactive-color, $sd-text-color-secondary);
+$tabbar-active-color: var(--sd-tabbar-inactive-color, $sd-primary-color);
+
+.sd-tabbar {
+    background-color: $sd-white;
+    display: flex;
+    height: $tabbar-height;
+
+    &__item {
+        flex: 1;
+        position: relative;
+        height: 112rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $tabbar-inactive-color;
+
+        &.is-active {
+            color: $tabbar-active-color;
+        }
+
+        .sd-icon {
+            font-size: $tabbar-icon-size;
+        }
+
+        &-text {
+            margin-top: 6rpx;
+            font-size: $tabbar-text-size;
+        }
+    }
+}

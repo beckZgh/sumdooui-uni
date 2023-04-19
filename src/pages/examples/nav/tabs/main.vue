@@ -18,7 +18,7 @@ const m = reactive({
 </script>
 
 <template>
-    <sd-page title="Navbar 顶部导航">
+    <sd-page title="Tabs 标签页">
         <view class="demo-card is-custom">
             <view class="demo-card__title">
                 基本用法

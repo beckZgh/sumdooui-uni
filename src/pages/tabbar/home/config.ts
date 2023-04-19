@@ -59,38 +59,26 @@ export default [{
         page: '',
     }],
 }, {
-    id  : 'form',
-    name: '表单组件',
+    id  : 'nav',
+    name: '导航组件',
     data: [{
-        icon: 'input',
-        name: 'Input 输入框',
+        icon: 'segmentedcontrol',
+        name: 'Navbar 头部导航',
+        page: 'navbar',
+    }, {
+        icon: 'pagination',
+        name: 'Pagination 分页器',
         page: '',
     }, {
-        icon: 'inputnumber',
-        name: 'InputNumber 数字输入框',
-        page: '',
+        icon: 'segmentedcontrol',
+        name: 'Tabbar 底部标签栏',
+        page: 'tabbar',
     }, {
-        icon: 'label',
-        name: 'Label 标签',
-        page: '',
-    }, {
-        icon: 'radio',
-        name: 'Radio 单选框',
-        page: '',
-    }, {
-        icon: 'checkbox',
-        name: 'Checkbox 复选框',
-        page: '',
-    }, {
-        icon: 'switch',
-        name: 'Switch 开关',
-        page: '',
-    }, {
-        icon: 'textarea',
-        name: 'Textarea 多行输入框',
-        page: '',
+        icon: 'tabs',
+        name: 'Tabs 标签页',
+        page: 'tabs',
     }],
-}, {
+},  {
     id  : 'operate',
     name: '操作反馈',
     data: [{
@@ -139,26 +127,6 @@ export default [{
         page: '',
     }],
 }, {
-    id  : 'nav',
-    name: '导航组件',
-    data: [{
-        icon: 'segmentedcontrol',
-        name: 'Navbar 头部导航',
-        page: 'navbar',
-    }, {
-        icon: 'pagination',
-        name: 'Pagination 分页器',
-        page: '',
-    }, {
-        icon: 'segmentedcontrol',
-        name: 'SegmentedControl 分段器',
-        page: '',
-    }, {
-        icon: 'tabs',
-        name: 'Tabs 标签页',
-        page: 'tabs',
-    }],
-}, {
     id  : 'data',
     name: '数据组件',
     data: [{
@@ -197,5 +165,37 @@ export default [{
         icon: 'empty',
         name: 'Empty 缺省页',
         page: 'empty',
+    }],
+}, {
+    id  : 'form',
+    name: '表单组件',
+    data: [{
+        icon: 'input',
+        name: 'Input 输入框',
+        page: '',
+    }, {
+        icon: 'inputnumber',
+        name: 'InputNumber 数字输入框',
+        page: '',
+    }, {
+        icon: 'label',
+        name: 'Label 标签',
+        page: '',
+    }, {
+        icon: 'radio',
+        name: 'Radio 单选框',
+        page: '',
+    }, {
+        icon: 'checkbox',
+        name: 'Checkbox 复选框',
+        page: '',
+    }, {
+        icon: 'switch',
+        name: 'Switch 开关',
+        page: '',
+    }, {
+        icon: 'textarea',
+        name: 'Textarea 多行输入框',
+        page: '',
     }],
 }]
