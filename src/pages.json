@@ -77,6 +77,8 @@
         }, {
             "path": "pages/examples/data/tag/main"
         }, {
+            "path": "pages/examples/data/progress/main"
+        }, {
             "path": "pages/examples/data/divider/main"
         }, {
             "path": "pages/examples/data/avatar/main"

@@ -1,0 +1,50 @@
+@use '../styles/variables.scss' as *;
+
+.sd-progress {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+
+    &-outer {
+        position: relative;
+        flex: 1;
+        height: 10px;
+        background-color: $sd-bg-color-container;
+        border-radius: $sd-border-radius-round;
+
+        .sd-progress__text {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            font-size: $sd-font-size-xs;
+            background-color: $sd-primary-color;
+            padding: 6rpx 12rpx;
+            border-radius: $sd-border-radius-s;
+            color: $sd-white;
+            transition: all .4s;
+        }
+    }
+
+    &-inner {
+        position: relative;
+        width: 0;
+        height: 100%;
+        border-radius: $sd-border-radius-round;
+        background-color: $sd-primary-color;
+        transition: all .4s;
+    }
+
+    &__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $sd-font-size-xs;
+
+        &.is-outer {
+            margin-left: 20rpx;
+            font-size: $sd-font-size-s;
+        }
+    }
+}

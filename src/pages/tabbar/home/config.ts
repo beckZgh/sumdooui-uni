@@ -178,6 +178,10 @@ export default [{
         name: 'Tag 标签',
         page: 'tag',
     }, {
+        icon: 'tag',
+        name: 'Progress 进度条',
+        page: 'progress',
+    }, {
         icon: 'collapse',
         name: 'Collapse 折叠面板',
         page: '',
