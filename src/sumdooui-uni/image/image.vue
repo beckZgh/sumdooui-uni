@@ -4,7 +4,7 @@ import type { CSSProperties } from 'vue'
 import { defineComponent, reactive, watch, computed } from 'vue'
 import { image_props } from './image'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 export default defineComponent({
     name : 'SdImage',

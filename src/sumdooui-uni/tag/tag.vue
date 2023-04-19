@@ -4,7 +4,7 @@ import type { CSSProperties } from 'vue'
 import { defineComponent, computed } from 'vue'
 import { tag_props } from './tag'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 export default defineComponent({
     name : 'SdTag',

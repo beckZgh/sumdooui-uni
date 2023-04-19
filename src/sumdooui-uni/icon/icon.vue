@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 import ICONS from './icons'
 
 import { defineComponent, computed } from 'vue'

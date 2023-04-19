@@ -4,7 +4,7 @@ import type { CSSProperties } from 'vue'
 import { defineComponent, computed } from 'vue'
 import { divider_props   } from './divider'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 export default defineComponent({
     name : 'SdDivider',
     props: divider_props,

@@ -6,7 +6,7 @@ import { col_props } from './col'
 import { ROW_KEY, type RowProvide } from '../common/tokens'
 import { useInject } from '../common/hooks'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 export default defineComponent({
     name   : 'SdCol',

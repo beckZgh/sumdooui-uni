@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed } from 'vue'
 import { loading_props } from './loading'
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 export default defineComponent({
     name   : 'SdLoading',

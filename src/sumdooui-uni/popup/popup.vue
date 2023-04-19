@@ -5,7 +5,7 @@ import { defineComponent, computed, reactive, watch, onMounted  } from 'vue'
 import { popup_props     } from './popup'
 import { useGestureSlide } from './use-gesture-slide'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 export default defineComponent({
     name : 'SdPopup',

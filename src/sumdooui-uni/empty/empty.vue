@@ -29,7 +29,7 @@ const EMPTY_TEXT: Record<string, string> = {
 import { defineComponent, computed } from 'vue'
 import { empty_props } from './empty'
 
-import Utils from '../common/utils'
+import Utils from '../utils'
 
 
 export default defineComponent({
