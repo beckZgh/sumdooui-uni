@@ -156,7 +156,7 @@ export default [{
     }, {
         icon: 'tabs',
         name: 'Tabs 标签页',
-        page: '',
+        page: 'tabs',
     }],
 }, {
     id  : 'data',

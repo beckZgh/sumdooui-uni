@@ -63,6 +63,8 @@
         // 导航组件
         {
             "path": "pages/examples/nav/navbar/main"
+        }, {
+            "path": "pages/examples/nav/tabs/main"
         },
 
         // 数据组件

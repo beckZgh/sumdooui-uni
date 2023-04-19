@@ -1,0 +1,66 @@
+@use '../styles/variables.scss' as *;
+
+.sd-tabs {
+    width: 100%;
+    overflow: hidden;
+    background-color: $sd-white;
+
+    &.is-fixed {
+        position: fixed;
+        top: var(--sd-page-navbar-height, 0);
+        left: 0;
+    }
+
+    &.is-sticky {
+        position: sticky;
+        left: 0;
+        right: 0;
+    }
+
+    &__main {
+        min-width: 100%;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &.is-full {
+            justify-content: center;
+            .sd-tabs__item {
+                flex: 1;
+            }
+        }
+    }
+
+    &__item {
+        position: relative;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        padding-left: 32rpx;
+        padding-right: 32rpx;
+        box-sizing: border-box;
+
+        &-line {
+            position: absolute;
+            bottom: 0;
+            left: 32rpx;
+            right: 32rpx;
+            height: 2px;
+            border-radius: 2px;
+            transition: transform .2s linear;
+            background-color: $sd-primary-color;
+        }
+
+        &-text {
+            white-space: nowrap;
+            display: block;
+            transition: transform .2s linear;
+        }
+
+        &.is-active {
+            color: $sd-primary-color;
+        }
+    }
+}
