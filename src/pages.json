@@ -54,6 +54,8 @@
             "path": "pages/examples/operate/popup/main"
         }, {
             "path": "pages/examples/operate/drawer/main"
+        }, {
+            "path": "pages/examples/operate/actionsheet/main"
         },
 
         // 导航组件

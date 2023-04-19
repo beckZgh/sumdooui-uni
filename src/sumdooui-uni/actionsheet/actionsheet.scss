@@ -1,0 +1,39 @@
+@use '../styles/variables.scss' as *;
+
+.sd-actionsheet {
+    &__desc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 110rpx;
+        font-size: $sd-font-size-base;
+        color: $sd-text-color-secondary;
+
+        @include hairline($sd-border-color, 'bottom');
+    }
+
+
+    &__item {
+        @include hairline($sd-border-color, 'bottom');
+
+        .sd-button-wrap {
+            font-weight: 500;
+        }
+
+        &--left .sd-button-wrap {
+            justify-content: flex-start;
+        }
+
+        &--right .sd-button-wrap {
+            justify-content: flex-end;
+        }
+    }
+
+    &__bottom {
+        border-top: 20rpx solid $sd-bg-color-container;
+        height: 100rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

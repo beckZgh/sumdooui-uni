@@ -112,7 +112,7 @@ export default [{
     }, {
         icon: 'actionsheet',
         name: 'ActionSheet 上拉菜单',
-        page: '',
+        page: 'actionsheet',
     }, {
         icon: 'dialog',
         name: 'Dialog 对话框',

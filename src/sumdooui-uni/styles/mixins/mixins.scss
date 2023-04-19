@@ -24,3 +24,47 @@
         opacity: 0.1;
     }
 }
+
+// 细边框
+@mixin hairline($border-color, $postion: '') {
+    position: relative;
+
+    &::after {
+        content: ' ';
+        position: absolute;
+        box-sizing: border-box;
+        pointer-events: none;
+        border-radius: inherit;
+        z-index: 0;
+
+        @if ($postion == 'top' or $postion == 'bottom') {
+            left: 0;
+            right: 0;
+            #{ $postion }: 0;
+            #{ 'border-' + $postion }: 1px solid $border-color;
+        } @else if ($postion == 'left' or $postion == 'right') {
+            top: 0;
+            bottom: 0;
+            #{ $postion }: 0;
+            #{ 'border-' + $postion }: 1px solid $border-color;
+        } @else {
+            right: -50%;
+            bottom: -50%;
+            left: -50%;
+            top: -50%;
+            border: 1px solid $border-color;
+        }
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        &::after {
+            @if ($postion == 'top' or $postion == 'bottom') {
+                transform: scaleY(0.5);
+            } @else if ($postion == 'left' or $postion == 'right') {
+                transform: scaleX(0.5);
+            } @else {
+                transform: scale(0.5);
+            }
+        }
+    }
+}
