@@ -1,0 +1,62 @@
+@use '../styles/variables.scss' as *;
+
+$switch-bar-bg-color: var(--sd-switch-bar-bg-color, $sd-bg-color-container);
+$switch-bar-text-color: var(--sd-switch-bar-text-color, $sd-text-color-secondary);
+$switch-bar-active-text-color: var(--sd-switch-bar-active-text-color, $sd-text-color);
+
+.sd-switch-bar-box {
+    display: inline-block;
+    padding: 1px;
+    border: 1px solid $switch-bar-bg-color;
+    background-color: $switch-bar-bg-color;
+}
+
+.sd-switch-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    height: 100%;
+
+    &__item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6rpx;
+        line-height: 1.5;
+        border-radius: $sd-border-radius-base;
+        color: $switch-bar-text-color;
+        font-size: $sd-font-size-base;
+        z-index: 2;
+        box-sizing: border-box;
+
+        &.is-active {
+            color: $switch-bar-active-text-color;
+            font-weight: bold;
+        }
+    }
+
+    &__focus {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        background-color: $sd-white;
+        box-shadow: 0 1px 10rpx rgba(0,0,0,0.1);
+        transition: transform 0.15s ease-out;
+    }
+}
+
+.sd-switch-bar-box,
+.sd-switch-bar-box .sd-switch-bar__focus {
+    border-radius: 12rpx;
+}
+
+.sd-switch-bar-box--round,
+.sd-switch-bar-box--round .sd-switch-bar__focus {
+    border-radius: 32rpx;
+}

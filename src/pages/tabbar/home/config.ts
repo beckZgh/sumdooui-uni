@@ -66,17 +66,25 @@ export default [{
         name: 'Navbar 头部导航',
         page: 'navbar',
     }, {
-        icon: 'pagination',
-        name: 'Pagination 分页器',
-        page: '',
-    }, {
         icon: 'segmentedcontrol',
         name: 'Tabbar 底部标签栏',
         page: 'tabbar',
     }, {
-        icon: 'tabs',
+        icon: 'segmentedcontrol',
         name: 'Tabs 标签页',
         page: 'tabs',
+    }, {
+        icon: 'segmentedcontrol',
+        name: 'SwitchBar 条件切换栏',
+        page: 'switch-bar',
+    }, {
+        icon: 'segmentedcontrol',
+        name: 'IndexList 索引列表',
+        page: '',
+    }, {
+        icon: 'pagination',
+        name: 'Pagination 分页器',
+        page: '',
     }],
 },  {
     id  : 'operate',
@@ -108,10 +116,6 @@ export default [{
     }, {
         icon: 'dropdownmenu',
         name: 'DropdownMenu 下拉菜单',
-        page: '',
-    }, {
-        icon: 'dropdownmenu',
-        name: 'DropdownList 下拉菜单',
         page: '',
     }, {
         icon: 'loading',
