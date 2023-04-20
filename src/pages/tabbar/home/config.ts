@@ -79,9 +79,13 @@ export default [{
         page: 'switch-bar',
     }, {
         icon: 'segmentedcontrol',
+        name: 'Sticky 吸顶组件',
+        page: 'sticky',
+    }, {
+        icon: 'segmentedcontrol',
         name: 'IndexList 索引列表',
         page: '',
-    },  {
+    }, {
         icon: 'segmentedcontrol',
         name: 'Steps 步骤条',
         page: 'steps',

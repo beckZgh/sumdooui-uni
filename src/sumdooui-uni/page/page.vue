@@ -1,6 +1,7 @@
 <script lang="ts">
-import { defineComponent, reactive, computed, getCurrentInstance, onMounted } from 'vue'
+import { defineComponent, reactive, computed, getCurrentInstance, onMounted, provide } from 'vue'
 import { page_props } from './page'
+import { PAGE_KEY } from '../common/tokens'
 
 export default defineComponent({
     name : 'SdPage',
@@ -18,6 +19,8 @@ export default defineComponent({
             first_page   : pages.length === 1,
             navbar_height: 20 + 44, // 默认 status_height 20，navbar_content 44
         })
+
+        provide(PAGE_KEY, { instance, props, state })
 
         // 页面标题
         const page_title$ = computed(() => props.title || app_base_info?.appName || '')

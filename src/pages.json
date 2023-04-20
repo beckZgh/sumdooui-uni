@@ -70,7 +70,21 @@
         }, {
             "path": "pages/examples/nav/switch-bar/main"
         }, {
-            "path": "pages/examples/nav/steps/main"
+            "path": "pages/examples/nav/sticky/main"
+        }, {
+            "path": "pages/examples/nav/sticky/page-base",
+            "style": {
+                "navigationStyle": "default"
+            }
+        }, {
+            "path": "pages/examples/nav/sticky/page-offset",
+            "style": {
+                "navigationStyle": "default"
+            }
+        }, {
+            "path": "pages/examples/nav/sticky/page-container"
+        }, {
+            "path": "pages/examples/nav/steps/page-scroll-view"
         },
 
         // 数据组件
@@ -101,9 +115,10 @@
 
     // https://uniapp.dcloud.net.cn/collocation/pages.html#globalstyle
     "globalStyle": {
-        "navigationBarTitleText": "Sumdoo Weapp",
+        "navigationBarTitleText": "Sumdooui-Uni",
+        "navigationBarTextStyle": "black",
         "navigationStyle": "custom",
-        "navigationBarTextStyle": "black"
+        "navigationBarBackgroundColor": "#fff"
 	},
 
     // https://uniapp.dcloud.net.cn/collocation/pages.html#tabbar
