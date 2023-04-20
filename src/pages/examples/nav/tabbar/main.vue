@@ -76,6 +76,20 @@ const m = reactive({
                 />
             </view>
         </view>
+
+        <view class="demo-card is-custom">
+            <view class="demo-card__title">
+                显示上边框
+            </view>
+            <view class="demo-card__body">
+                <sd-tabbar
+                    v-model="m.active_tab"
+                    type="image"
+                    show-top-border
+                    :items="m.image_items"
+                />
+            </view>
+        </view>
     </sd-page>
 </template>
 
