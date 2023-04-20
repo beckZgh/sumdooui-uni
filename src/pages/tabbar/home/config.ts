@@ -81,6 +81,10 @@ export default [{
         icon: 'segmentedcontrol',
         name: 'IndexList 索引列表',
         page: '',
+    },  {
+        icon: 'segmentedcontrol',
+        name: 'Steps 步骤条',
+        page: 'steps',
     }, {
         icon: 'pagination',
         name: 'Pagination 分页器',

@@ -1,0 +1,123 @@
+@use '../styles/variables.scss' as *;
+
+$steps-desc-color: var(--sd-steps-desc-color, $sd-text-color-placeholder);
+
+.sd-steps {
+    display: flex;
+
+    &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44rpx;
+        height: 44rpx;
+        box-sizing: border-box;
+        border-radius: $sd-border-radius-circle;
+        font-size: $sd-font-size-s;
+        border: 1px solid $sd-border-color;
+    }
+
+    &__item {
+        position: relative;
+
+        > .sd-icon {
+            color: $sd-border-color;
+        }
+
+        &-name {
+            font-size: $sd-font-size-base;
+            font-weight: bold;
+            color: $sd-text-color;
+        }
+
+        &-desc {
+            padding-top: 10rpx;
+            font-size: 22rpx;
+            color: $steps-desc-color;
+        }
+
+        &.is-done {
+            .sd-steps__number {
+                color: $sd-white;
+                border-color: $sd-success-color;
+                background-color: $sd-success-color;
+            }
+
+            > .sd-icon {
+                color: $sd-success-color;
+            }
+        }
+    }
+
+
+    &--row {
+        flex-direction: row;
+        text-align: center;
+
+        .sd-steps__item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &-name {
+                padding-top: 20rpx;
+            }
+        }
+
+        .sd-steps__line {
+            position: absolute;
+            top: 22rpx;
+            left: 50%;
+            margin-left: 20%;
+            width: 60%;
+            border-top: 1px solid $sd-border-color;
+        }
+    }
+
+    &--column {
+        flex-direction: column;
+
+        .sd-steps__item {
+            position: relative;
+            display: flex;
+
+            &-name {
+                line-height: 44rpx;
+            }
+
+            &-desc {
+                font-size: 22rpx;
+                display: inline-block;
+                line-height: 1.5;
+                // margin-bottom: 24rpx;
+            }
+        }
+
+        .sd-steps__item {
+            padding-bottom: 24rpx;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+
+        .sd-steps__line {
+            position: absolute;
+            left: 24rpx;
+            bottom: 8rpx;
+            top: 52rpx;
+            border-right: 1px solid $sd-border-color;
+        }
+
+        .sd-steps__content {
+            flex: 1;
+            padding-left: 20rpx;
+            min-height: 120rpx;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+    }
+}

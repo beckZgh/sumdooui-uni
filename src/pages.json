@@ -69,6 +69,8 @@
             "path": "pages/examples/nav/tabbar/main"
         }, {
             "path": "pages/examples/nav/switch-bar/main"
+        }, {
+            "path": "pages/examples/nav/steps/main"
         },
 
         // 数据组件
