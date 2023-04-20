@@ -99,7 +99,7 @@ export default defineComponent({
     >
         <view class="sd-image__content">
             <image
-                v-if="(src && showError && !state.show_error)"
+                v-if="(src && (!showError || (showError && !state.show_error)))"
                 class="sd-image__img"
                 :object-fit="fit"
                 :object-position="position"

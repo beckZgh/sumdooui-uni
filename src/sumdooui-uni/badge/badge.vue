@@ -4,8 +4,11 @@ import { defineComponent, computed } from 'vue'
 import { badge_props } from './badge'
 
 export default defineComponent({
-    name : 'SdBadge',
-    props: badge_props,
+    name   : 'SdBadge',
+    props  : badge_props,
+    options: {
+        virtualHost: true,
+    },
     setup(props) {
         // 徽标背景色、文本色
         const badge_style$ = computed(() => {
