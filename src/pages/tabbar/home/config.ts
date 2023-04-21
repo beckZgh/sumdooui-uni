@@ -53,7 +53,7 @@ export default [{
         icon: 'grid',
         name: 'Grid 宫格',
         page: 'grid',
-    },{
+    }, {
         icon: 'card',
         name: 'Card 卡片',
         page: '',
@@ -208,7 +208,7 @@ export default [{
     }, {
         icon: 'switch',
         name: 'Switch 开关',
-        page: '',
+        page: 'switch',
     }, {
         icon: 'textarea',
         name: 'Textarea 多行输入框',

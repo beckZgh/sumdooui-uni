@@ -1,0 +1,31 @@
+@use '../styles/variables.scss' as *;
+
+
+.sd-switch {
+    display: inline-block;
+    width: 72rpx;
+    padding: 2px;
+    background-color: $sd-gray-color-5;
+    border-radius: $sd-border-radius-round;
+    transform: translateX(0);
+
+    &__inner {
+        width: 36rpx;
+        height: 36rpx;
+        border-radius: 50%;
+        background-color: $sd-white;
+        transition: transform .2s;
+    }
+
+    &.is-checked {
+        background-color: $sd-primary-color;
+    }
+
+    &.is-checked &__inner {
+        transform: translateX(100%);
+    }
+
+    &.is-disabled {
+        opacity: $sd-opacity-disabled;
+    }
+}

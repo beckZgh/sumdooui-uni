@@ -110,6 +110,11 @@
             "path": "pages/examples/data/collapse/main"
         },
 
+        // 表单组件
+        {
+            "path": "pages/examples/form/switch/main"
+        },
+
         // 共享页面
         {
             "path": "pages/common/coding/main"

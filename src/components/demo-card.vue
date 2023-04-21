@@ -4,9 +4,10 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name : 'DemoCard',
     props: {
-        title: { type: String },
-        dark : { type: Boolean },
-        card : { type: Boolean },
+        title    : { type: String , default: ''    },
+        dark     : { type: Boolean, default: false },
+        card     : { type: Boolean, default: true  },
+        bodyStyle: { type: [Object, String], default: '' },
     },
 })
 </script>
@@ -16,7 +17,7 @@ export default defineComponent({
         <view class="card__title">
             {{ title }}
         </view>
-        <view class="card__body">
+        <view class="card__body" :style="bodyStyle">
             <slot />
         </view>
         <view class="card__footer">
