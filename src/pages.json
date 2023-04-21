@@ -106,6 +106,8 @@
             "path": "pages/examples/data/avatar/main"
         }, {
             "path": "pages/examples/data/swiper/main"
+        }, {
+            "path": "pages/examples/data/collapse/main"
         },
 
         // 共享页面
@@ -163,7 +165,8 @@
             "nut-(.*)?-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1$2/index.vue",
             "nut-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1/index.vue",
             "^sd-(.*)": "@/sumdooui-uni/$1/$1.vue",
-            "^app-(.*)": "@/components/app-$1.vue"
+            "^app-(.*)": "@/components/app-$1.vue",
+            "^demo-(.*)": "@/components/demo-$1.vue"
         }
     }
 }

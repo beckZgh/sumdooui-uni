@@ -15,5 +15,6 @@ export function useProvide<ProvideValue>(key: InjectionKey<ProvideValue>) {
 
     return (value?: ProvideValue) => {
         provide(key, Object.assign({ add, remove, internal_children }, value))
+        return { internal_children }
     }
 }

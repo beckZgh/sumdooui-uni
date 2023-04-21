@@ -13,6 +13,7 @@ export default defineComponent({
     options: {
         virtualHost: true,
     },
+    emits: ['click'],
     setup(props) {
         // 字体图标
         const icon$ = computed(() => {
@@ -42,6 +43,7 @@ export default defineComponent({
         class="sd-icon"
         :class="[{ 'is-loading': loading }, customClass]"
         :style="icon_styles$"
+        @tap="$emit('click', $event)"
     >
         {{ icon$ }}
     </text>

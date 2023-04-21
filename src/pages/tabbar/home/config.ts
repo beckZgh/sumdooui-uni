@@ -168,7 +168,7 @@ export default [{
     }, {
         icon: 'collapse',
         name: 'Collapse 折叠面板',
-        page: '',
+        page: 'collapse',
     }, {
         icon: 'divider',
         name: 'Divider 分割线',

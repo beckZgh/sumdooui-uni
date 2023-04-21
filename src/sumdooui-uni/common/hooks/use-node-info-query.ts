@@ -14,7 +14,7 @@ export function useSelectoryQuery(in_page = false) {
         return new Promise((resolve) => {
             if (!query) return resolve(0)
 
-            query.select(selector).boundingClientRect((_rect) => {
+            query.select(selector).fields({ size: true }, (_rect) => {
                 const rect = _rect as UniNamespace.NodeInfo
                 resolve(rect ? (rect.width || 0) : 0)
             }).exec()
@@ -26,7 +26,7 @@ export function useSelectoryQuery(in_page = false) {
         return new Promise((resolve) => {
             if (!query) return resolve(0)
 
-            query.select(selector).boundingClientRect((_rect) => {
+            query.select(selector).fields({ size: true }, (_rect) => {
                 const rect = _rect as UniNamespace.NodeInfo
                 resolve(rect ? (rect?.height || 0) : 0)
             }).exec()

@@ -1,0 +1,44 @@
+@use '../styles/variables.scss' as *;
+
+.sd-collapse-item {
+    position: relative;
+    padding: 0 36rpx;
+
+    &-cell {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 30rpx 0;
+
+        &__title {
+            flex: 1;
+        }
+
+        &__arrow {
+            transition: transform 0.3s;
+        }
+
+        &.is-open &__arrow {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &__body {
+        height: 0;
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: height .3s;
+
+    }
+
+    &__detail {
+        font-size: 30rpx;
+        padding: 30rpx 0;
+    }
+
+    &.has-border &-cell,
+    &.has-border &__body {
+        @include hairline($sd-border-color, 'bottom');
+    }
+}
