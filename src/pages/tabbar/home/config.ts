@@ -149,6 +149,10 @@ export default [{
         icon: 'alert',
         name: 'Alert 警告框',
         page: '',
+    },  {
+        icon: 'empty',
+        name: 'Swiper 轮播图',
+        page: 'swiper',
     }, {
         icon: 'avatar',
         name: 'Avatar 头像',

@@ -3,7 +3,7 @@ import * as dt from './dt'
 import { sleep } from './sleep'
 
 /** 转换单位 */
-function toUnit(val: string | number, unit = 'rpx') {
+function toUnit(val: string | number | undefined, unit = 'rpx') {
     return is.isNumber(val) ? `${ val }${ unit }` : val
 }
 

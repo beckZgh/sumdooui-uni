@@ -84,7 +84,7 @@
         }, {
             "path": "pages/examples/nav/sticky/page-container"
         }, {
-            "path": "pages/examples/nav/steps/page-scroll-view"
+            "path": "pages/examples/nav/steps/main"
         },
 
         // 数据组件
@@ -104,6 +104,8 @@
             "path": "pages/examples/data/divider/main"
         }, {
             "path": "pages/examples/data/avatar/main"
+        }, {
+            "path": "pages/examples/data/swiper/main"
         },
 
         // 共享页面
