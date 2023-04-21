@@ -113,6 +113,8 @@
         // 表单组件
         {
             "path": "pages/examples/form/switch/main"
+        },  {
+            "path": "pages/examples/form/textarea/main"
         },
 
         // 共享页面

@@ -1,0 +1,48 @@
+@use '../styles/variables.scss' as *;
+
+.sd-textarea {
+    position: relative;
+    padding: 20rpx;
+    box-sizing: border-box;
+    border-radius: $sd-border-radius-base;
+
+    &--border {
+        border: 1px solid $sd-border-color;
+    }
+
+    &__content {
+        font-weight: 400;
+        width: 100%;
+        height: 152rpx;
+        min-height: 152rpx;
+        font-size: $sd-font-size-m;
+        color: $sd-text-color;
+        line-height: 1.5;
+        padding: 0;
+    }
+
+    &__placeholder {
+        font-weight: 400;
+        font-size: $sd-font-size-m;
+        color: $sd-text-color-placeholder;
+        line-height: 1.5;
+    }
+
+    &__limit {
+        text-align: right;
+        font-size: $sd-font-size-s;
+        color: $sd-text-color-secondary;
+    }
+
+    &.is-disabled {
+        background-color: #f1f3f7;
+    }
+
+    &.is-disabled &__content {
+        color: $sd-text-color-disabled;
+    }
+
+    &.is-focus::after {
+        border-color: $sd-primary-color;
+    }
+}
