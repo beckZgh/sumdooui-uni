@@ -40,12 +40,17 @@ export default defineComponent({
             emit('blur', e)
         }
 
+        function onConfirm(e: any) {
+            emit('confirm', e.detail.value)
+        }
+
         return {
             state,
             textarea_style$,
             onInput,
             onFocus,
             onBlur,
+            onConfirm,
         }
     },
 })
@@ -80,6 +85,7 @@ export default defineComponent({
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
+            @confirm="onConfirm"
         />
 
         <view v-if="showWordLimit" class="sd-textarea__limit">

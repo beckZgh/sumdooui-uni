@@ -42,7 +42,7 @@
         color: $sd-text-color-disabled;
     }
 
-    &.is-focus::after {
+    &.is-focus {
         border-color: $sd-primary-color;
     }
 }
