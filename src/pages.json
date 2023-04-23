@@ -119,6 +119,8 @@
             "path": "pages/examples/form/textarea/main"
         }, {
             "path": "pages/examples/form/checkbox/main"
+        }, {
+            "path": "pages/examples/form/radio/main"
         },
 
         // 共享页面

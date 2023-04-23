@@ -1,0 +1,92 @@
+@use '../styles/variables.scss' as *;
+
+.sd-radio {
+    color: $sd-text-color;
+
+    &__label {
+        flex: 1;
+        font-size: $sd-font-size-m;
+    }
+
+    // 禁用状态
+    &.is-disabled {
+        opacity: $sd-opacity-disabled;
+    }
+
+    // 隐藏原生元素
+    &__original {
+        display: none;
+        opacity: 0;
+    }
+
+}
+
+.sd-radio-default {
+    display: inline-flex;
+    align-items: center;
+
+    // 选中状态
+    &.is-checked {
+        color: $sd-primary-color;
+    }
+
+    .sd-radio__label {
+        margin-left: 15rpx;
+
+        &-left {
+            margin-left: 0;
+            margin-right: 20rpx;
+        }
+    }
+}
+
+.sd-radio-tag {
+    display: inline-block;
+    padding: 32rpx;
+    box-sizing: border-box;
+    border-radius: $sd-border-radius-base;
+    text-align: center;
+    background-color: $sd-bg-color-container;
+
+    // 选中状态
+    &.is-checked {
+        background-color: $sd-primary-color;
+        color: $sd-white;
+    }
+}
+
+.sd-radio-card {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    padding: 32rpx;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: $sd-border-radius-base;
+    border: 1px solid $sd-border-color;
+
+    &__check {
+        position: absolute;
+        top: -40rpx;
+        left: -72rpx;
+        background-color: $sd-primary-color;
+        color: $sd-white;
+        width: 140rpx;
+        height: 80rpx;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        transform: rotate(-45deg);
+
+        .sd-icon {
+            font-size: 24rpx;
+            transform: rotate(45deg);
+        }
+    }
+
+     // 选中状态
+     &.is-checked {
+        color: $sd-primary-color;
+        border-color: $sd-primary-color;
+    }
+}

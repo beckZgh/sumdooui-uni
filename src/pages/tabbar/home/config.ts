@@ -200,7 +200,7 @@ export default [{
     }, {
         icon: 'radio',
         name: 'Radio 单选框',
-        page: '',
+        page: 'radio',
     }, {
         icon: 'checkbox',
         name: 'Checkbox 复选框',
