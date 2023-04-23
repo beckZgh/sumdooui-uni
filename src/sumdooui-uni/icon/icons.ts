@@ -32,6 +32,7 @@ const ICONS: Record<string, string> = {
     'close-circle-fill'   : '\uE848',
     'square'              : '\uE6D5',
     'square-check'        : '\uE6D6',
+    'square-check-fill'   : '\uE6D4',
     'circle'              : '\uE6D7',
     'question'            : '\uE7FF',
     'question-circle'     : '\uE784',

@@ -3,6 +3,7 @@ import type { PageProps     } from '../../page/page'
 import type { GridProps     } from '../../grid/grid'
 import type { RowProps      } from '../../row/row'
 import type { CollapseProps } from '../../collapse/collapse'
+import type { CheckboxGroupProps } from '../../checkbox-group/checkbox-group'
 
 export const PAGE_KEY   = Symbol('page')
 export type PageProvide = {
@@ -22,3 +23,9 @@ export type GridProvide = { props: GridProps }
 
 export const ROW_KEY = Symbol('row')
 export type RowProvide = { props: RowProps }
+
+export const CHECKBOX_GROUP_KEY = Symbol('chekcbox-group')
+export type CheckboxGroupProvide = {
+    props: CheckboxGroupProps
+    onChange: (checked: boolean, value: string | number | boolean) => void
+}

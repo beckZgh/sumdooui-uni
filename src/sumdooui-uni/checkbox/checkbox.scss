@@ -1,0 +1,81 @@
+@use '../styles/variables.scss' as *;
+
+.sd-checkbox {
+    display: inline-flex;
+    align-items: center;
+    color: $sd-text-color;
+
+    &--card,
+    &--block {
+        display: block;
+    }
+
+    &__card {
+        overflow: hidden;
+        position: relative;
+        display: block;
+        padding: 32rpx;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: $sd-border-radius-base;
+        border: 1px solid $sd-border-color;
+
+        &-check {
+            position: absolute;
+            top: -40rpx;
+            left: -72rpx;
+            background-color: $sd-primary-color;
+            color: $sd-white;
+            width: 140rpx;
+            height: 80rpx;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            transform: rotate(-45deg);
+
+            .sd-icon {
+                font-size: 24rpx;
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    &__desc {
+        font-size: $sd-font-size-base;
+        margin-top: 16rpx;
+        color: $sd-text-color-secondary;
+    }
+
+    // 选中状态
+    &.is-checked {
+        color: $sd-primary-color;
+    }
+
+    &.is-checked &__card {
+        border-color: $sd-primary-color;
+    }
+
+    // 禁用状态
+    &.is-disabled {
+        opacity: $sd-opacity-disabled;
+    }
+
+    // 隐藏原生元素
+    &__original {
+        display: none;
+        opacity: 0;
+    }
+
+    &__text {
+        flex: 1;
+        vertical-align: middle;
+        margin-left: 15rpx;
+        font-size: $sd-font-size-m;
+        line-height: 1.5;
+
+        &--left {
+            margin-left: 0;
+            margin-right: 20rpx;
+        }
+    }
+}

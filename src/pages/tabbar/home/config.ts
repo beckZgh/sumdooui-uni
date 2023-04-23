@@ -204,7 +204,7 @@ export default [{
     }, {
         icon: 'checkbox',
         name: 'Checkbox 复选框',
-        page: '',
+        page: 'checkbox',
     }, {
         icon: 'switch',
         name: 'Switch 开关',
