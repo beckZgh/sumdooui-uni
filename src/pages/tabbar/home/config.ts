@@ -188,7 +188,7 @@ export default [{
     data: [{
         icon: 'input',
         name: 'Input 输入框',
-        page: '',
+        page: 'input',
     }, {
         icon: 'inputnumber',
         name: 'InputNumber 数字输入框',
@@ -212,6 +212,6 @@ export default [{
     }, {
         icon: 'textarea',
         name: 'Textarea 多行输入框',
-        page: '',
+        page: 'textarea',
     }],
 }]

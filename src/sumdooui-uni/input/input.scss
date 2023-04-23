@@ -1,0 +1,74 @@
+@use '../styles/variables.scss' as *;
+
+.sd-input {
+    position: relative;
+    padding: 24rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: $sd-border-radius-base;
+
+    &__before {
+        padding: 0 25rpx;
+        box-sizing: border-box;
+    }
+
+    &--border {
+        border: 1px solid $sd-border-color;
+    }
+
+    &__content {
+        font-weight: 400;
+        width: 100%;
+        height: 40rpx;
+        min-height: 40rpx;
+        font-size: $sd-font-size-m;
+        color: $sd-text-color;
+        line-height: 1.5;
+        padding: 0;
+    }
+
+    &__placeholder {
+        font-weight: 400;
+        font-size: $sd-font-size-m;
+        color: $sd-text-color-placeholder;
+        line-height: 1.5;
+    }
+
+    &__prefix,
+    &__suffix {
+        display: flex;
+        align-items: center;
+        vertical-align: middle;
+        line-height: 1;
+        height: 100%;
+    }
+
+    &__prefix .sd-icon {
+        margin-right: 16rpx;
+    }
+
+    &__limit,
+    &__suffix .sd-icon {
+        margin-left: 16rpx;
+    }
+
+    &__limit {
+        text-align: right;
+        font-size: $sd-font-size-s;
+        color: $sd-text-color-secondary;
+    }
+
+    &.is-disabled {
+        background-color: #f1f3f7;
+    }
+
+    &.is-disabled &__content {
+        color: $sd-text-color-disabled;
+    }
+
+    &.is-focus {
+        border-color: $sd-primary-color;
+    }
+}
