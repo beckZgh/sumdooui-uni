@@ -1,0 +1,58 @@
+@use '../styles/variables.scss' as *;
+
+.sd-form-item {
+    display: flex;
+    margin: 0 36rpx;
+    padding: 16rpx 0;
+    box-sizing: border-box;
+    background-color: $sd-white;
+
+    @include hairline($sd-border-color, 'bottom');
+
+    &__label {
+        font-size: $sd-font-size-m;
+        color: $sd-text-color;
+        margin-right: 16rpx;
+    }
+
+    &__required {
+        font-size: $sd-font-size-m;
+        color: $sd-danger-color;
+        margin-left: 6rpx;
+    }
+
+    &__content {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    &__tips {
+        width: 100%;
+        font-size: $sd-font-size-s;
+        padding-top: 10rpx;
+        line-height: 1.5;
+    }
+
+    &__error {
+        width: 100%;
+        font-size: $sd-font-size-s;
+        color: $sd-danger-color;
+        padding-top: 10rpx;
+        line-height: 1.5;
+    }
+
+    // 标题在上模式
+    &--column {
+        flex-direction: column;
+        align-items: normal;
+
+        .sd-form-item__label {
+            margin-right: 0;
+        }
+    }
+
+    // 重置包裹的受控组件
+    .sd-input {
+        padding: 0;
+    }
+}

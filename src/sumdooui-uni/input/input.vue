@@ -1,6 +1,8 @@
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, computed, watch } from 'vue'
 import { input_props } from './input'
+import { FORM_KEY, FormItemKey, type FormProvide, type FormItemProvide } from '../common/tokens'
+import { useInject } from '../common/hooks'
 
 export default defineComponent({
     name : 'SdInput',
@@ -14,10 +16,17 @@ export default defineComponent({
         'confirm',
     ],
     setup(props, { emit }) {
+        const { parent: form }      = useInject<FormProvide>(FORM_KEY)
+        const { parent: form_item } = useInject<FormItemProvide>(FormItemKey)
+
         const state = reactive({
             focus        : false,
             show_password: false,
         })
+
+        const show_border$ = computed(() => !form && !form_item && props.border)
+
+        const disabled$ = computed(() => props.disabled || form?.props.disabled || false)
 
         // 显示、隐藏密码
         function handleTogglePassword() {
@@ -47,7 +56,13 @@ export default defineComponent({
             if (props.disabled || props.readonly) return
             state.focus = false
             emit('blur', e)
+
+            form_item?.validate('blur')
         }
+
+        watch(() => props.modelValue, () => {
+            form_item?.validate('change')
+        })
 
         function onConfirm(e: any) {
             emit('confirm', e.detail.value)
@@ -55,6 +70,8 @@ export default defineComponent({
 
         return {
             state,
+            show_border$,
+            disabled$,
             handleTogglePassword,
             handleClear,
             onInput,
@@ -70,9 +87,9 @@ export default defineComponent({
     <view
         class="sd-input"
         :class="{
-            'sd-input--border': border,
-            'is-disabled'     : disabled,
-            'is-focus'        : !disabled && !readonly && state.focus,
+            'sd-input--border': show_border$,
+            'is-disabled'     : disabled$,
+            'is-focus'        : !disabled$ && !readonly && state.focus,
         }"
         :style="{ background }"
     >
@@ -85,7 +102,7 @@ export default defineComponent({
             :type="type !== 'password' ? type : 'text'"
             :password="type === 'password' && !state.show_password"
             :placeholder="placeholder"
-            :disabled="disabled || readonly"
+            :disabled="disabled$ || readonly"
             :maxlength="maxlength"
             :auto-height="autoHeight"
             :focus="focus"

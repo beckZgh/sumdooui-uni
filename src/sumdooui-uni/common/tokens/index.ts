@@ -5,6 +5,8 @@ import type { RowProps      } from '../../row/row'
 import type { CollapseProps } from '../../collapse/collapse'
 import type { CheckboxGroupProps } from '../../checkbox-group/checkbox-group'
 import type { RadioGroupProps } from '../../radio-group/radio-group'
+import type { FormProps } from '../../form/form'
+import type { FormItemProps } from '../../form-item/form-item'
 
 export const PAGE_KEY   = Symbol('page')
 export type PageProvide = {
@@ -35,4 +37,15 @@ export const RADIO_GROUP_KEY = Symbol('radio-group')
 export type RadioGroupProvide = {
     props: RadioGroupProps
     onChange: (value: string | number | boolean) => void
+}
+
+export const FORM_KEY = Symbol('form')
+export type FormProvide = {
+    props: FormProps
+}
+
+export const FormItemKey = Symbol('field')
+export type FormItemProvide = {
+    props: FormItemProps
+    validate: (trigger: string | string[]) => void
 }

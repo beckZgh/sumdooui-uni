@@ -213,5 +213,9 @@ export default [{
         icon: 'textarea',
         name: 'Textarea 多行输入框',
         page: 'textarea',
+    }, {
+        icon: 'textarea',
+        name: 'Form 表单应用',
+        page: 'form',
     }],
 }]

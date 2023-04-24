@@ -25,3 +25,20 @@ export type ComponentType = 'primary' | 'success' | 'warning' | 'danger' | 'defa
 
 /** 组件通用大小 */
 export type ComponentSize = 'small' | 'normal' | 'large'
+
+
+export namespace Form {
+    /** 标题显示位置 */
+    export type LalbePosition = 'left' | 'right' | 'top'
+
+    /** 显示错误类型 */
+    export type ErrorType = 'none' | 'message' | 'border-bottom' | 'toast'
+
+
+    export type RuleItem = {
+        required?: boolean
+        message: string
+        regex?: RegExp
+        validator?: (value: any, rule: RuleItem) => boolean | string | Promise<boolean | string>
+    }
+}
