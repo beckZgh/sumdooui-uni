@@ -18,6 +18,8 @@ export const form_item_props = {
     labelWidth   : { type: [Number, String] as PropType<string | number>, default: '' },
     /** 标签位置 */
     labelPosition: { type: String as PropType<Form.LalbePosition> },
+    /** 内容区域方向 */
+    bodyAlign    : { type: String as PropType<'left' | 'right'>  },
     /** 显示底部边框 */
     borderBottom : { type: Boolean },
     /** 是否添加冒号 */

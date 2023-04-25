@@ -26,7 +26,6 @@ export type ComponentType = 'primary' | 'success' | 'warning' | 'danger' | 'defa
 /** 组件通用大小 */
 export type ComponentSize = 'small' | 'normal' | 'large'
 
-
 export namespace Form {
     /** 标题显示位置 */
     export type LalbePosition = 'left' | 'right' | 'top'

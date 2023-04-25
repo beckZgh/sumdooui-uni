@@ -2,31 +2,30 @@
 
 .sd-radio-group {
     .sd-radio + .sd-radio {
-        margin-left: 16rpx;
+        margin-left: 20rpx;
     }
 
-    .sd-radio-default + .sd-radio-default,
-    .sd-radio-card + .sd-radio-card,
-    .sd-radio-tag + .sd-radio-tag {
-        margin-left: 16rpx;
+    &.is-multi-column {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: inherit;
+        width: 100%;
+
+        .sd-radio {
+            margin-left: 0;
+            justify-content: inherit;
+        }
     }
 
     &.is-wrap {
-        .sd-radio-default {
+        .sd-radio {
             display: flex;
+            width: 100%;
         }
 
-        .sd-radio-card,
-        .sd-radio-tag {
-            display: block;
+        .sd-radio + .sd-radio {
             margin-left: 0;
-        }
-
-        .sd-radio-default + .sd-radio-default,
-        .sd-radio-card + .sd-radio-card,
-        .sd-radio-tag + .sd-radio-tag {
-            margin-left: 0;
-            margin-top: 16rpx;
+            margin-top: 20rpx;
         }
     }
 }

@@ -1,8 +1,11 @@
 <script lang="ts">
-import { defineComponent   } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { radio_group_props } from './radio-group'
-import { useProvide        } from '../common/hooks'
-import { RADIO_GROUP_KEY   } from '../common/tokens'
+import { useProvide } from '../common/hooks'
+import {
+    RADIO_GROUP_KEY,
+    FORM_ITEM_KEY, type FormItemProvide,
+} from '../common/tokens'
 
 export default defineComponent({
     name : 'SdRadioGroup',
@@ -15,11 +18,14 @@ export default defineComponent({
         virtualHost: true,
     },
     setup(props, { emit }) {
+        const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
+
         useProvide(RADIO_GROUP_KEY)({ props, onChange })
 
         function onChange(value: string | number | boolean) {
             emit('update:modelValue', value)
             emit('change', value)
+            form_item?.validate('change')
         }
 
         return {}
@@ -28,17 +34,11 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-radio-group" :class="{ 'is-wrap': wrap }">
+    <view class="sd-radio-group" :class="{ 'is-wrap': wrap, 'is-multi-column': column > 1 }">
         <slot v-if="$slots.default" />
         <template v-else>
             <template v-for="(opt, index) in options" :key="index">
-                <sd-radio
-                    :label="opt.label"
-                    :type="type"
-                    :name="opt.value"
-                    :icon-position="iconPosition"
-                    :align="align"
-                />
+                <sd-radio v-bind="opt" :name="opt.value" />
             </template>
         </template>
     </view>

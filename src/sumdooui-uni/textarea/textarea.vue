@@ -1,6 +1,7 @@
 <script lang="ts">
-import { defineComponent, reactive, computed } from 'vue'
+import { defineComponent, reactive, computed, inject, watch } from 'vue'
 import { textarea_props } from './textarea'
+import { FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
 
 import Utils from '../utils'
 export default defineComponent({
@@ -13,7 +14,12 @@ export default defineComponent({
         'blur',
         'confirm',
     ],
+    options: {
+        virtualHost: true,
+    },
     setup(props, { emit }) {
+        const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
+
         const state = reactive({
             focus: false,
         })
@@ -38,11 +44,16 @@ export default defineComponent({
             if (props.disabled || props.readonly) return
             state.focus = false
             emit('blur', e)
+            form_item?.validate('blur')
         }
 
         function onConfirm(e: any) {
             emit('confirm', e.detail.value)
         }
+
+        watch(() => props.modelValue, () => {
+            form_item?.validate('change')
+        })
 
         return {
             state,

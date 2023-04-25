@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent, reactive, computed, watch } from 'vue'
+import { defineComponent, reactive, computed, watch, inject } from 'vue'
 import { input_props } from './input'
-import { FORM_KEY, FormItemKey, type FormProvide, type FormItemProvide } from '../common/tokens'
-import { useInject } from '../common/hooks'
+import { FORM_KEY, FORM_ITEM_KEY, type FormProvide, type FormItemProvide } from '../common/tokens'
 
 export default defineComponent({
     name : 'SdInput',
@@ -15,16 +14,19 @@ export default defineComponent({
         'blur',
         'confirm',
     ],
+    options: {
+        virtualHost: true,
+    },
     setup(props, { emit }) {
-        const { parent: form }      = useInject<FormProvide>(FORM_KEY)
-        const { parent: form_item } = useInject<FormItemProvide>(FormItemKey)
+        const form      = inject<FormProvide>(FORM_KEY)
+        const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
 
         const state = reactive({
             focus        : false,
             show_password: false,
         })
 
-        const show_border$ = computed(() => !form && !form_item && props.border)
+        const show_border$ = computed(() => props.border)
 
         const disabled$ = computed(() => props.disabled || form?.props.disabled || false)
 

@@ -1,31 +1,60 @@
 @use '../styles/variables.scss' as *;
 
 .sd-form-item {
-    display: flex;
+    position: relative;
     margin: 0 36rpx;
-    padding: 16rpx 0;
+    padding: 24rpx 0;
     box-sizing: border-box;
     background-color: $sd-white;
 
-    @include hairline($sd-border-color, 'bottom');
-
-    &__label {
-        font-size: $sd-font-size-m;
-        color: $sd-text-color;
-        margin-right: 16rpx;
+    &.has-border {
+        @include hairline($sd-border-color, 'bottom');
     }
 
+    // 内容区域
+    &__content {
+        display: flex;
+
+        &-left {
+            font-size: $sd-font-size-m;
+            color: $sd-text-color;
+            padding-right: 16rpx;
+            box-sizing: border-box;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+        }
+
+        &-right {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex: 1;
+            overflow: hidden;
+
+            &.is-content-right {
+                justify-content: flex-end;
+                text-align: right;
+            }
+        }
+
+        &.is-column {
+            flex-direction: column;
+
+            .sd-form-item__content-left {
+                margin-bottom: 16rpx;
+            }
+        }
+    }
+
+    // 必填图标
     &__required {
         font-size: $sd-font-size-m;
         color: $sd-danger-color;
-        margin-left: 6rpx;
     }
 
-    &__content {
-        flex: 1;
-        overflow: hidden;
-    }
-
+    // 表单域提示
     &__tips {
         width: 100%;
         font-size: $sd-font-size-s;
@@ -33,11 +62,14 @@
         line-height: 1.5;
     }
 
+    // 表单域错误提示
     &__error {
         width: 100%;
         font-size: $sd-font-size-s;
         color: $sd-danger-color;
         padding-top: 10rpx;
+        padding-right: 16rpx;
+        box-sizing: border-box;
         line-height: 1.5;
     }
 
@@ -52,7 +84,7 @@
     }
 
     // 重置包裹的受控组件
-    .sd-input {
-        padding: 0;
-    }
+    // .sd-input {
+    //     padding: 0;
+    // }
 }

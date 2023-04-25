@@ -1,8 +1,13 @@
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import type { CSSProperties } from 'vue'
+
+import { defineComponent, computed, inject } from 'vue'
 import { checkbox_props } from './checkbox'
-import { useInject } from '../common/hooks'
-import { CHECKBOX_GROUP_KEY, type CheckboxGroupProvide } from '../common/tokens'
+import {
+    CHECKBOX_GROUP_KEY, type CheckboxGroupProvide,
+    FORM_ITEM_KEY, type FormItemProvide,
+    FORM_KEY, type FormProvide,
+} from '../common/tokens'
 
 export default defineComponent({
     name : 'SdCheckbox',
@@ -15,13 +20,14 @@ export default defineComponent({
         virtualHost: true,
     },
     setup(props, { emit }) {
-        const { parent } = useInject<CheckboxGroupProvide>(CHECKBOX_GROUP_KEY)
+        const checkbox_group = inject<CheckboxGroupProvide>(CHECKBOX_GROUP_KEY)
+        const form_item      = inject<FormItemProvide>(FORM_ITEM_KEY)
+        const form           = inject<FormProvide>(FORM_KEY)
 
         const checked$ = computed<string | boolean | number>({
             get() {
-                // checkbox-group
-                if (parent) {
-                    return parent.props.modelValue.includes(props.activeValue)
+                if (checkbox_group) {
+                    return checkbox_group.props.modelValue.includes(props.activeValue)
                 } else {
                     if (props.modelValue !== null && props.modelValue !== undefined) {
                         return props.modelValue === props.activeValue
@@ -37,25 +43,46 @@ export default defineComponent({
 
         /** 超出最多选择，未选中的禁用 */
         const is_limit_disabled$ = computed(() => {
-            if (parent && parent.props.max && parent.props.modelValue.length >= parent.props.max) {
-                if (!checked$.value) return true
+            if (checkbox_group) {
+                const { max, modelValue } = checkbox_group.props
+                if (max && modelValue.length >= max && !checked$.value) return true
             }
             return false
         })
 
         const disabled$ = computed(() => {
+            const disabled = props.disabled || form?.props.disabled
             return (
-                parent
-                    ? parent?.props.disabled || props.disabled || is_limit_disabled$.value
-                    : props.disabled
+                checkbox_group
+                    ? checkbox_group?.props.disabled || disabled || is_limit_disabled$.value
+                    : disabled
             ) ?? false
         })
 
-        function handleToggle() {
-            if (disabled$.value || props.readonly) return
+        const root_style$ = computed(() => {
+            const style: CSSProperties = {}
+            if (checkbox_group?.props.column && checkbox_group?.props.column > 1) {
+                style.width     = `${ 100 / checkbox_group.props.column }%`
+                style.flexBasis = style.width
+            }
+            return style
+        })
 
-            if (parent) {
-                parent.onChange(!checked$.value, props.activeValue)
+        const active_color$ = computed(() => checkbox_group?.props.activeColor)
+
+        const label_style$ = computed(() => {
+            const style: CSSProperties = {}
+            if (active_color$.value) {
+                style.color = checked$.value ? active_color$.value : undefined
+            }
+            return style
+        })
+
+        function handleToggle() {
+            if (disabled$.value) return
+
+            if (checkbox_group) {
+                checkbox_group.onChange(!checked$.value, props.activeValue)
                 return
             }
 
@@ -65,10 +92,14 @@ export default defineComponent({
                 checked$.value = props.inactiveValue
             }
 
+            form_item?.validate('change')
             emit('change', checked$.value)
         }
 
         return {
+            root_style$,
+            label_style$,
+            active_color$,
             checked$,
             disabled$,
             handleToggle,
@@ -81,31 +112,34 @@ export default defineComponent({
     <label
         class="sd-checkbox"
         :class="{
-            [`sd-checkbox--${ type }`]: !!type,
+            [`sd-checkbox--${ size }`]: true,
             'is-checked'              : checked$,
             'is-disabled'             : disabled$,
         }"
-        :style="{
-            color: checked$ ? activeColor : inactiveColor,
-        }"
+        :style="root_style$"
         @tap="handleToggle"
     >
         <checkbox :value="checked$" :disabled="disabled$" class="sd-checkbox__original" />
 
-        <view v-if="type === 'card'" class="sd-checkbox__card">
-            <view class="sd-checkbox__label">{{ label }}</view>
-            <view v-if="desc" class="sd-checkbox__desc">{{ desc }}</view>
-
-            <view v-show="checked$" class="sd-checkbox__card-check">
-                <sd-icon name="check" />
-            </view>
-        </view>
-
-        <!-- 默认类型 -->
-        <template v-if="!type">
-            <text v-if="iconPosition === 'right'" class="sd-checkbox__text sd-checkbox__text-left">{{ label }}</text>
-            <sd-icon size="46rpx" :name="checked$ ? 'square-check-fill' : 'square'" />
-            <text v-if="iconPosition === 'left'" class="sd-checkbox__text sd-checkbox__text-right">{{ label }}</text>
-        </template>
+        <text
+            v-if="iconPosition === 'right'"
+            class="sd-checkbox__label sd-checkbox__label-left"
+            :style="label_style$"
+        >
+            {{ label }}
+        </text>
+        <sd-icon
+            custom-class="sd-checkbox__icon"
+            :size="iconSize"
+            :color="checked$ ? active_color$ : undefined"
+            :name="checked$ ? `${ shape }-check-fill` : shape"
+        />
+        <text
+            v-if="iconPosition === 'left'"
+            class="sd-checkbox__label sd-checkbox__label-right"
+            :style="label_style$"
+        >
+            {{ label }}
+        </text>
     </label>
 </template>

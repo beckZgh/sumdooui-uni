@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { checkbox_group_props      } from './checkbox-group'
-import { useProvide                } from '../common/hooks'
-import { CHECKBOX_GROUP_KEY        } from '../common/tokens'
+import { defineComponent, computed, inject } from 'vue'
+import { checkbox_group_props } from './checkbox-group'
+import { useProvide } from '../common/hooks'
+import { CHECKBOX_GROUP_KEY, FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
 
 export default defineComponent({
     name : 'SdCheckboxGroup',
@@ -15,6 +15,8 @@ export default defineComponent({
         virtualHost: true,
     },
     setup(props, { emit }) {
+        const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
+
         const values$ = computed({
             get() {
                 return Array.isArray(props.modelValue) ? props.modelValue : []
@@ -35,6 +37,7 @@ export default defineComponent({
             }
 
             emit('change', [...values$.value])
+            form_item?.validate('change')
         }
 
         return {
@@ -45,15 +48,11 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-checkbox-group">
+    <view class="sd-checkbox-group" :class="{ 'is-wrap': wrap, 'is-multi-column': column > 1 }">
         <slot v-if="$slots.default" />
         <template v-else>
             <template v-for="(opt, index) in options" :key="index">
-                <sd-checkbox
-                    :label="opt.label"
-                    :type="type"
-                    :active-value="opt.value"
-                />
+                <sd-checkbox v-bind="opt" :active-value="opt.value" />
             </template>
         </template>
     </view>

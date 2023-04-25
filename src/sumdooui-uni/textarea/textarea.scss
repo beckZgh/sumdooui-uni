@@ -1,12 +1,13 @@
 @use '../styles/variables.scss' as *;
 
 .sd-textarea {
+    width: 100%;
     position: relative;
-    padding: 20rpx;
     box-sizing: border-box;
     border-radius: $sd-border-radius-base;
 
     &--border {
+        padding: 20rpx;
         border: 1px solid $sd-border-color;
     }
 
@@ -25,7 +26,6 @@
         font-weight: 400;
         font-size: $sd-font-size-m;
         color: $sd-text-color-placeholder;
-        line-height: 1.5;
     }
 
     &__limit {

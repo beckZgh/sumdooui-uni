@@ -2,7 +2,7 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, computed, onMounted, ref } from 'vue'
 import { form_item_props } from './form-item'
-import { FORM_KEY, FormItemKey, type FormProvide } from '../common/tokens'
+import { FORM_KEY, FORM_ITEM_KEY, type FormProvide } from '../common/tokens'
 import { useInject, useProvide } from '../common/hooks'
 import Utils from '../utils'
 
@@ -11,11 +11,11 @@ export default defineComponent({
     props: form_item_props,
     setup(props) {
         const { parent: form } = useInject<FormProvide>(FORM_KEY)
-        useProvide(FormItemKey)({ props, validate, resetField, clearValidate })
+        useProvide(FORM_ITEM_KEY)({ props, validate, resetField, clearValidate })
 
         const error = ref('')
 
-        let initial_value // 初始化值
+        let initial_value: any // 初始化值
         onMounted(() => {
             if (form) {
                 if (props.prop) {
@@ -25,10 +25,16 @@ export default defineComponent({
         })
 
         // 显示冒号
-        const colon$ = computed(() => props.colon ?? form?.props.colon)
+        const colon$ = computed(() => props.colon || form?.props.colon)
 
         // 标题位置
         const label_position$ = computed(() => (props.labelPosition || form?.props.labelPosition) || '')
+
+        // 内容区域排版
+        const body_align$ = computed(() => props.bodyAlign || form?.props.bodyAlign )
+
+        // 显示底部边框
+        const show_border$ = computed(() => form?.props.borderBottom)
 
         // 标题样式
         const label_style$ = computed(() => {
@@ -44,7 +50,7 @@ export default defineComponent({
             return style
         })
 
-        async function validate(trigger: string | string[]) {
+        async function validate(trigger?: string | string[]) {
             const rules = getFilteredRules(trigger)
             if ( !rules.length ) return true
 
@@ -82,12 +88,12 @@ export default defineComponent({
             })
         }
 
-        function getFilteredRules(curr_trigger: string | string[]) {
+        function getFilteredRules(curr_trigger?: string | string[]) {
             const rules = props.rules || form?.props.rules[props.prop]
             if ( !rules || !rules.length ) return []
 
             return rules.filter((rule: any) => {
-                if (!rule.trggier) return true
+                if (!rule.trggier || !curr_trigger) return true
                 if (Array.isArray(rule.trggier)) {
                     return rule.trggier.includes(curr_trigger)
                 } else {
@@ -97,40 +103,52 @@ export default defineComponent({
         }
 
         function resetField() {
-            // form?.props.model[props.prop] = initial_value
+            if (props.prop) {
+                (form?.props.model || {})[props.prop] = initial_value
+            }
+            error.value = ''
         }
 
         function clearValidate() {
             error.value = ''
         }
 
-
         return {
             colon$,
             error,
             label_position$,
             label_style$,
+            body_align$,
+            show_border$,
+            validate,
+            resetField,
+            clearValidate,
         }
     },
 })
 </script>
 
 <template>
-    <view class="sd-form-item" :class="{ 'sd-form-item--column': label_position$ === 'top' }">
-        <view class="sd-form-item__label" :style="label_style$ ">
-            {{ label }}
-            <text v-if="required" class="sd-form-item__required">
-                *
-            </text>
+    <view
+        class="sd-form-item"
+        :class="{ 'has-border': show_border$ }"
+    >
+        <view class="sd-form-item__content" :class="{ 'is-column': label_position$ === 'top' }">
+            <view class="sd-form-item__content-left" :style="label_style$ ">
+                <text v-if="required && label_position$ === 'right'" class="sd-form-item__required">
+                    *
+                </text>
+                {{ label }}
+                <text v-if="required && (label_position$ === 'left' || label_position$ === 'top')" class="sd-form-item__required">
+                    *
+                </text>
+            </view>
+            <view class="sd-form-item__content-right" :class="{ 'is-content-right': body_align$ === 'right' }">
+                <slot />
+            </view>
         </view>
-        <view class="sd-form-item__content">
-            <slot />
-            <view v-if="tips" class="sd-form-item__tips">
-                {{ tips }}
-            </view>
-            <view v-if="error" class="sd-form-item__error">
-                {{ error }}
-            </view>
+        <view v-if="error" class="sd-form-item__error" :style="{ paddingLeft: label_style$.width }">
+            {{ error }}
         </view>
     </view>
 </template>

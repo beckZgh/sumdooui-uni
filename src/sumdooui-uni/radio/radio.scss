@@ -1,11 +1,48 @@
 @use '../styles/variables.scss' as *;
 
+@mixin radio-size($text-size, $icon-size) {
+    .sd-radio__label {
+        font-size: $text-size;
+    }
+
+    .sd-radio__icon {
+        font-size: $icon-size;
+        width: $icon-size;
+        height: $icon-size;
+    }
+}
+
 .sd-radio {
+    display: inline-flex;
+    align-items: center;
     color: $sd-text-color;
 
     &__label {
-        flex: 1;
-        font-size: $sd-font-size-m;
+        color: $sd-text-color;
+        margin-left: 8rpx;
+
+        &-left {
+            margin-left: 0;
+            margin-right: 8rpx;
+        }
+    }
+
+    &__icon {
+        line-height: 1;
+        color: $sd-gray-color-3;
+        vertical-align: middle
+    }
+
+    &--small {
+        @include radio-size($sd-font-size-base, 38rpx);
+    }
+
+    &--normal {
+        @include radio-size($sd-font-size-m, 44rpx);
+    }
+
+    &--large {
+        @include radio-size($sd-font-size-m, 50rpx);
     }
 
     // 禁用状态
@@ -13,80 +50,16 @@
         opacity: $sd-opacity-disabled;
     }
 
+    // 选中状态
+    &.is-checked &__label,
+    &.is-checked &__icon {
+        color: $sd-primary-color;
+    }
+
     // 隐藏原生元素
     &__original {
         display: none;
         opacity: 0;
     }
-
 }
 
-.sd-radio-default {
-    display: inline-flex;
-    align-items: center;
-
-    // 选中状态
-    &.is-checked {
-        color: $sd-primary-color;
-    }
-
-    .sd-radio__label {
-        margin-left: 15rpx;
-
-        &-left {
-            margin-left: 0;
-            margin-right: 20rpx;
-        }
-    }
-}
-
-.sd-radio-tag {
-    display: inline-block;
-    padding: 32rpx;
-    box-sizing: border-box;
-    border-radius: $sd-border-radius-base;
-    text-align: center;
-    background-color: $sd-bg-color-container;
-
-    // 选中状态
-    &.is-checked {
-        background-color: $sd-primary-color;
-        color: $sd-white;
-    }
-}
-
-.sd-radio-card {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    padding: 32rpx;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: $sd-border-radius-base;
-    border: 1px solid $sd-border-color;
-
-    &__check {
-        position: absolute;
-        top: -40rpx;
-        left: -72rpx;
-        background-color: $sd-primary-color;
-        color: $sd-white;
-        width: 140rpx;
-        height: 80rpx;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        transform: rotate(-45deg);
-
-        .sd-icon {
-            font-size: 24rpx;
-            transform: rotate(45deg);
-        }
-    }
-
-     // 选中状态
-     &.is-checked {
-        color: $sd-primary-color;
-        border-color: $sd-primary-color;
-    }
-}

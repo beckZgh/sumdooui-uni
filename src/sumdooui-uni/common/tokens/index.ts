@@ -31,6 +31,7 @@ export const CHECKBOX_GROUP_KEY = Symbol('chekcbox-group')
 export type CheckboxGroupProvide = {
     props: CheckboxGroupProps
     onChange: (checked: boolean, value: string | number | boolean) => void
+    disabled: boolean
 }
 
 export const RADIO_GROUP_KEY = Symbol('radio-group')
@@ -44,7 +45,7 @@ export type FormProvide = {
     props: FormProps
 }
 
-export const FormItemKey = Symbol('field')
+export const FORM_ITEM_KEY = Symbol('field')
 export type FormItemProvide = {
     props: FormItemProps
     validate: (trigger: string | string[]) => void

@@ -194,10 +194,6 @@ export default [{
         name: 'InputNumber 数字输入框',
         page: '',
     }, {
-        icon: 'label',
-        name: 'Label 标签',
-        page: '',
-    }, {
         icon: 'radio',
         name: 'Radio 单选框',
         page: 'radio',

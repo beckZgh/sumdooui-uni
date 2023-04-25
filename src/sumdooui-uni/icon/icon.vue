@@ -24,8 +24,12 @@ export default defineComponent({
         const icon_styles$ = computed(() => {
             const styles: CSSProperties = { ...props.customStyle }
 
-            if (props.color) styles.color    = props.color
-            if (props.size ) styles.fontSize = Utils.toUnit(props.size)
+            if (props.color) styles.color = props.color
+            if (props.size ) {
+                styles.fontSize = Utils.toUnit(props.size)
+                styles.width    = Utils.toUnit(props.size)
+                styles.height   = Utils.toUnit(props.size)
+            }
 
             return styles
         })

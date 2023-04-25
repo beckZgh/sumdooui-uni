@@ -76,11 +76,11 @@ $sd-bg-color-disabled : var(--sd-bg-color-disabled , #f1f3f7);
 $sd-bg-color-mask     : var(--sd-bg-color-mask     , rgba(0, 0, 0, 0.6));
 
 // 文本颜色
-$sd-text-color            : var(--sd-text-color, rgba(0, 0, 0, 0.6));
-$sd-text-color-primary    : var(--sd-text-color-primary, rgba(0, 0, 0, 0.9));
-$sd-text-color-secondary  : var(--sd-text-colorr-secondary, rgba(0, 0, 0, 0.4));
-$sd-text-color-placeholder: var(--sd-text-color-placeholder, rgba(0, 0, 0, 0.26));
-$sd-text-color-disabled   : var(--sd-text-color-disabled, rgba(0, 0, 0, 0.26));
+$sd-text-color            : var(--sd-text-color, #333333);
+$sd-text-color-primary    : var(--sd-text-color-primary, #181818);
+$sd-text-color-secondary  : var(--sd-text-colorr-secondary, #7F7F7F);
+$sd-text-color-placeholder: var(--sd-text-color-placeholder, #B2B2B2);
+$sd-text-color-disabled   : var(--sd-text-color-disabled, #CCCCCC);
 $sd-text-color-link       : var(--sd-text-color-link, $sd-blue);
 
 // 边框颜色
