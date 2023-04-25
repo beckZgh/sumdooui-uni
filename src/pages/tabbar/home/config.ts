@@ -93,6 +93,10 @@ export default [{
         icon: 'pagination',
         name: 'Pagination 分页器',
         page: '',
+    }, {
+        icon: 'pagination',
+        name: 'FixedNav 悬浮导航',
+        page: 'fixed-nav',
     }],
 },  {
     id  : 'operate',
@@ -181,6 +185,26 @@ export default [{
         icon: 'empty',
         name: 'Empty 缺省页',
         page: 'empty',
+    }, {
+        icon: 'empty',
+        name: 'Noticebar 公告栏',
+        page: 'noticebar',
+    }, {
+        icon: 'empty',
+        name: 'Result 结果页',
+        page: 'result',
+    }, {
+        icon: 'empty',
+        name: 'Table 表格',
+        page: 'table',
+    }, {
+        icon: 'empty',
+        name: 'ImagePreview 图片预览',
+        page: 'image-preview',
+    }, {
+        icon: 'empty',
+        name: 'PullRefresh 下拉刷新',
+        page: 'pull-refresh',
     }],
 }, {
     id  : 'form',
@@ -191,7 +215,7 @@ export default [{
         page: 'input',
     }, {
         icon: 'inputnumber',
-        name: 'InputNumber 数字输入框',
+        name: 'Stepper 步进器',
         page: '',
     }, {
         icon: 'radio',
@@ -213,5 +237,37 @@ export default [{
         icon: 'textarea',
         name: 'Form 表单应用',
         page: 'form',
+    }, {
+        icon: 'textarea',
+        name: 'Picker 数据选择器',
+        page: 'picker',
+    }, {
+        icon: 'textarea',
+        name: 'DatePicker 日期时间选择器',
+        page: 'date-picker',
+    }, {
+        icon: 'textarea',
+        name: 'AreaPicker 地区选择器',
+        page: 'area-picker',
+    }, {
+        icon: 'textarea',
+        name: 'Uploader 上传',
+        page: 'uploader',
+    }, {
+        icon: 'textarea',
+        name: 'Rate 评分',
+        page: 'rate',
+    }, {
+        icon: 'textarea',
+        name: 'SliderRange 滑块区间',
+        page: 'slider-range',
+    }, {
+        icon: 'textarea',
+        name: 'Keyboard 键盘',
+        page: 'keyboard',
+    }, {
+        icon: 'textarea',
+        name: 'Calendar 日历',
+        page: 'calendar',
     }],
 }]

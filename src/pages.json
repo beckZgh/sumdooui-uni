@@ -123,6 +123,8 @@
             "path": "pages/examples/form/radio/main"
         }, {
             "path": "pages/examples/form/form/main"
+        }, {
+            "path": "pages/examples/form/picker/main"
         },
 
         // 共享页面
