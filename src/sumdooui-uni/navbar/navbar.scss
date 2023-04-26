@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $navbar-padding-top: var(--sd-navbar-padding-top, 40rpx);
 $navbar-height     : var(--sd-navbar-height, 86rpx);

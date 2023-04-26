@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $image-bg-color  : var(--sd-image-bg-color, $sd-bg-color-container);
 $image-width     : var(--sd-image-width, 160rpx);

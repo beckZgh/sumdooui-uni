@@ -115,5 +115,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@use './page.scss';
+@import './page.scss';
 </style>

@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $sd-popup-top          : var(--sd-page-navbar-height, 0);
 $sd-popup-z-index      : var(--sd-popup-z-index, $sd-popup-z-index);

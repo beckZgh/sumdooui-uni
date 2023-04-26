@@ -1,5 +1,5 @@
 
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $overlay-bg-color: var(--sd-overlay-bg-color, $sd-bg-color-mask);
 $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);

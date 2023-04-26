@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $switch-bar-bg-color: var(--sd-switch-bar-bg-color, $sd-bg-color-container);
 $switch-bar-text-color: var(--sd-switch-bar-text-color, $sd-text-color-secondary);

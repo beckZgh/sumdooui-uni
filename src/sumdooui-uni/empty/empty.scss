@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $empty-bg-color: var(--sd-empty-bg-color, $sd-white);
 $empty-text-color: var(--sd-empty-text-color, $sd-text-color);

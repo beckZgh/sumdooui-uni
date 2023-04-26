@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $toast-bg-color: var(--sd-toast-bg-color, $sd-black);
 $toast-mask-z-index: var(--sd-toast-z-index, 998);

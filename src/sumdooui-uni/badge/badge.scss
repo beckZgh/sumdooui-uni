@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $badge-bg-color: var(--sd-badge-bg-color, $sd-danger-color);
 $badge-color   : var(--sd-badge-color, $sd-white);

@@ -181,6 +181,7 @@
         "custom": {
             "nut-(.*)?-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1$2/index.vue",
             "nut-(.*)": "@/uni_modules/sky-nutui/components/sky-nutui/packages/__VUE/$1/index.vue",
+            "u-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
             "^sd-(.*)": "@/sumdooui-uni/$1/$1.vue",
             "^app-(.*)": "@/components/app-$1.vue",
             "^demo-(.*)": "@/components/demo-$1.vue"

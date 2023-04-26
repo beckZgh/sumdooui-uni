@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $tabbar-height: var(--sd-tabbar-height, 112rpx);
 $tabbar-icon-size: var(--sd-tabbar-icon-size, 56rpx);

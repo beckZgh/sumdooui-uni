@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $tag-padding   : var(--sd-tag-padding, 10rpx);
 $tag-font-size : var(--sd-tag-font-size, $sd-font-size-xs);

@@ -21,7 +21,6 @@ report.html
 # 自动生成 hooks 类型
 shims-auto-import-hooks.d.ts
 
-sky-nutui
-colorui
+uni_modules
 
 *.7z

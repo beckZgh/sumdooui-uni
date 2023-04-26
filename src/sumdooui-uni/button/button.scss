@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 // 按钮高度
 $button-small-height : var(--sd-button-small-height, 70rpx);

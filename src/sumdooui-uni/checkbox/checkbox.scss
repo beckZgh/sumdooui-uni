@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 @mixin checkbox-size($text-size, $icon-size) {
     .sd-checkbox__label {

@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 $steps-desc-color: var(--sd-steps-desc-color, $sd-text-color-placeholder);
 

@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as *;
+@import '../styles/variables.scss'  ;
 
 @mixin radio-size($text-size, $icon-size) {
     .sd-radio__label {
