@@ -1,0 +1,196 @@
+@import '../styles/variables.scss';
+
+.sd-transition {
+    position: fixed;
+    z-index: $sd-popup-z-index;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &--top {
+        top: var(--sd-page-navbar-height, 0);
+        left: 0;
+        right: 0;
+        transform: translate3d(0, -100%, 0);
+
+        &.is-show {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideInDown;
+        }
+
+        &.is-hide {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideOutUp;
+        }
+    }
+
+    @keyframes animationSlideInDown {
+        from {
+            transform: translate3d(0, -100%, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes animationSlideOutUp {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(0, -100%, 0);
+        }
+    }
+
+    &--bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translate3d(0, 100%, 0);
+
+        &.is-show {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideInUp;
+        }
+
+        &.is-hide {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideOutDown;
+        }
+    }
+
+    @keyframes animationSlideOutDown {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 100%, 0);
+        }
+    }
+
+    @keyframes animationSlideInUp {
+        from {
+            transform: translate3d(0, 100%, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    &--left {
+        bottom: 0;
+        top: var(--sd-page-navbar-height, 0);
+        left: 0;
+        width: 75%;
+        transform: translate3d(-100%, 0, 0);
+
+        &.is-show {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideInLeft;
+        }
+
+        &.is-hide {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideOutLeft;
+        }
+    }
+
+    @keyframes animationSlideInLeft {
+        from {
+            transform: translate3d(-100%, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes animationSlideOutLeft {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(-100%, 0, 0);
+        }
+    }
+
+    &--right {
+        bottom: 0;
+        top: var(--sd-page-navbar-height, 0);
+        right: 0;
+        width: 75%;
+        transform: translate3d(100%, 0, 0);
+
+        &.is-show {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideInRight;
+        }
+
+        &.is-hide {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationSlideOutRight;
+        }
+    }
+
+    @keyframes animationSlideInRight {
+        from {
+            transform: translate3d(100%, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes animationSlideOutRight {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(100%, 0, 0);
+        }
+    }
+
+    &--center {
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        overflow: visible;
+        transform: translate(-50%, -50%) scale3d(0, 0, 0);
+
+        &.is-show {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationScaleInCenter;
+        }
+
+        &.is-hide {
+            animation-duration: 0.3s;
+            animation-fill-mode: both;
+            animation-name: animationScaleOutCenter;
+        }
+
+        @keyframes animationScaleInCenter {
+            from {
+                transform: translate(-50%, -50%) scale3d(0, 0, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes animationScaleOutCenter {
+            from {
+                transform: translate(-50%, -50%) scale3d(1, 1, 1);
+            }
+            to {
+                transform: translate(-50%, -50%) scale3d(0, 0, 0);
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, watch, onMounted } from 'vue'
 import { overlay_props } from './overlay'
 
 export default defineComponent({
@@ -17,10 +17,24 @@ export default defineComponent({
         virtualHost: true,
     },
     setup(props, { emit }) {
+        const status = ref<'show' | 'hide' | ''>('')
+
+        watch(() => props.visible, (visible) => {
+            status.value = visible ? 'show' : 'hide'
+        })
+
+        onMounted(() => {
+            if (props.visible) status.value = 'show'
+        })
+
+        function onTransitionEnd() {
+            if (!props.visible) status.value = ''
+        }
+
         const root_style$ = computed(() => {
-            const style: CSSProperties = {
-                ...props.customStyle,
-                transitionDuration: `${ props.duration }s`,
+            const style: CSSProperties = { ...props.customStyle }
+            if (status.value && props.duration) {
+                style.transitionDuration = `${ props.duration }s`
             }
             if (props.zIndex) style.zIndex = props.zIndex
             return style
@@ -28,7 +42,6 @@ export default defineComponent({
 
         function onClick(e: Event) {
             emit('click', e)
-
             if (props.closeOnClickOverlay) {
                 emit('update:visible', false)
             }
@@ -38,13 +51,12 @@ export default defineComponent({
             emit('touchmove', e)
         }
 
-        function stopEvent() {}
-
         return {
+            status,
             root_style$,
             onClick,
-            stopEvent,
             onTouchMove,
+            onTransitionEnd,
         }
     },
 })
@@ -53,8 +65,9 @@ export default defineComponent({
 <template>
     <view
         class="sd-overlay"
-        :class="[customClass, { 'is-show': visible }]"
+        :class="[{ [`is-${ status }`]: !!status }, customClass]"
         :style="root_style$"
+        @transitionend="onTransitionEnd"
         @touchstart="$emit('touchstart', $event)"
         @touchend="$emit('touchend', $event)"
         @touchmove.stop="onTouchMove"

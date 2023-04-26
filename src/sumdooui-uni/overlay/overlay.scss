@@ -17,10 +17,18 @@ $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
     backface-visibility: hidden;
     perspective: 1000;
     opacity: 0;
+    transform: translateZ(0);
     transform: scale3d(1, 1, 0);
 
     &.is-show {
+        transition-property: opacity;
         opacity: 1;
         transform: scale3d(1, 1, 1);
+    }
+
+    &.is-hide {
+        transition-property: opacity;
+        opacity: 0;
+        transform: scale3d(1, 1, 0);
     }
 }

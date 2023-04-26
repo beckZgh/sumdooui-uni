@@ -21,8 +21,6 @@ export const popup_props = {
     round           : { type: Boolean, default: true },
     /** 弹出层宽度 */
     width           : { type: [Number, String] },
-    /** 弹出层高度 */
-    height          : { type: [Number, String], default: 'auto' },
     /** 最大滚动区域 */
     maxHeight       : { type: [Number, String], default: '60vh' },
     /** 开启手势关闭 */
@@ -31,8 +29,8 @@ export const popup_props = {
     duration        : { type: Number, default: 0.3 },
     /** 是否可滚动 */
     scrollable      : { type: Boolean, default: true },
-    /** 锁定滚动，不允许穿透滚动 */
-    lockScroll      : { type: Boolean, default: false },
+    /** 关闭时，销毁其中的元素 */
+    destroyOnclose  : { type: Boolean, default: true },
 }
 
 export type PopupProps = ExtractPropTypes<typeof popup_props>
