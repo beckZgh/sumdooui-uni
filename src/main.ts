@@ -13,5 +13,11 @@ export function createApp() {
         home_path: '/pages/tabbar/home/main',
     }
 
+    // Vue 提示函数屏蔽注入寻找相关提示
+    app.config.warnHandler = (msg) => {
+        if (msg.includes('injection')) return
+        console.warn(msg)
+    }
+
     return { app }
 }
