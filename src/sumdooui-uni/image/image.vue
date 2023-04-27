@@ -2,17 +2,17 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, reactive, watch, computed } from 'vue'
+import { MpMixin     } from '../common/mixins'
 import { image_props } from './image'
 
 import Utils from '../utils'
 
 export default defineComponent({
-    name   : 'SdImage',
-    props  : image_props,
-    emits  : ['click', 'load', 'error'],
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdImage',
+    props: image_props,
+    emits: ['click', 'load', 'error'],
     setup(props, { emit }) {
         const state = reactive({
             show_loading  : false,

@@ -12,7 +12,6 @@ $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
     vertical-align: bottom;
     width: $image-width;
     height: $image-height;
-    border-radius: $sd-border-radius-s;
     overflow: hidden;
 
     &--round {
