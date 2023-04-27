@@ -12,7 +12,7 @@ onLoad((query) => {
 </script>
 
 <template>
-    <sd-page>
+    <sd-page background="#fff">
         <view class="content__box">
             <view class="img__box">
                 <image src="/static/common/img_coding_3x.png" class="img" mode="widthFix" />

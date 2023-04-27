@@ -1,19 +1,20 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import { defineComponent, computed } from 'vue'
-import { col_props } from './col'
 
 import { ROW_KEY, type RowProvide } from '../common/tokens'
-import { useInject } from '../common/hooks'
+import { useInject    } from '../common/hooks'
+import { MpMixin      } from '../common/mixins'
+import { col_props    } from './col'
 
 import Utils from '../utils'
 
 export default defineComponent({
-    name   : 'SdCol',
-    props  : col_props,
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdCol',
+    props: col_props,
     setup(props) {
         const { parent } = useInject<RowProvide>(ROW_KEY)
 
@@ -26,13 +27,14 @@ export default defineComponent({
         })
 
         const root_style$ = computed(() => {
-            const style: CSSProperties = {}
+            const style: CSSProperties = { ...props.customStyle }
 
             const gutter = parent?.props.gutter
             if (Utils.isNumber(gutter)) {
                 style.paddingLeft  = `${ gutter / 2 }px`
                 style.paddingRight = `${ gutter / 2 }px`
             }
+
             return style
         })
 
@@ -45,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-col" :class="root_class$" :style="root_style$">
+    <view class="sd-col" :class="[customClass, root_class$]" :style="root_style$">
         <slot />
     </view>
 </template>

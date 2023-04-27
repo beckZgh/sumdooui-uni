@@ -4,99 +4,84 @@
 
 <template>
     <sd-page title="Layout 栅格布局">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                基本用法
-            </view>
-            <view class="demo-card__body">
-                <sd-row>
-                    <sd-col>
-                        <view class="span-box">
-                            span 24
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row>
-                    <sd-col v-for="idx in 2" :key="idx" :span="12">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 12
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row>
-                    <sd-col v-for="idx in 3" :key="idx" :span="8">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 8
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row>
-                    <sd-col v-for="idx in 4" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-            </view>
-        </view>
+        <demo-card title="基本用法">
+            <sd-row>
+                <sd-col>
+                    <view class="span-box">
+                        span 24
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row>
+                <sd-col v-for="idx in 2" :key="idx" :span="12">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 12
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row>
+                <sd-col v-for="idx in 3" :key="idx" :span="8">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 8
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row>
+                <sd-col v-for="idx in 4" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                分栏间隔
-            </view>
-            <view class="demo-card__body">
-                <sd-row :gutter="10">
-                    <sd-col v-for="idx in 3" :key="idx" :span="8">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 8
-                        </view>
-                    </sd-col>
-                </sd-row>
-            </view>
-        </view>
+        <demo-card title="分栏间隔">
+            <sd-row :gutter="10">
+                <sd-col v-for="idx in 3" :key="idx" :span="8">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 8
+                    </view>
+                </sd-col>
+            </sd-row>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                Flex布局
-            </view>
-            <view class="demo-card__body">
-                <sd-row>
-                    <sd-col v-for="idx in 3" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row flex :custom-style="{ justifyContent: 'center' }">
-                    <sd-col v-for="idx in 3" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row flex :custom-style="{ justifyContent: 'flex-end' }">
-                    <sd-col v-for="idx in 3" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row flex :custom-style="{ justifyContent: 'space-between' }">
-                    <sd-col v-for="idx in 3" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-                <sd-row flex :custom-style="{ justifyContent: 'space-around' }">
-                    <sd-col v-for="idx in 3" :key="idx" :span="6">
-                        <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
-                            span 6
-                        </view>
-                    </sd-col>
-                </sd-row>
-            </view>
-        </view>
+        <demo-card title="Flex布局">
+            <sd-row>
+                <sd-col v-for="idx in 3" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row flex :custom-style="{ justifyContent: 'center' }">
+                <sd-col v-for="idx in 3" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row flex :custom-style="{ justifyContent: 'flex-end' }">
+                <sd-col v-for="idx in 3" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row flex :custom-style="{ justifyContent: 'space-between' }">
+                <sd-col v-for="idx in 3" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+            <sd-row flex :custom-style="{ justifyContent: 'space-around' }">
+                <sd-col v-for="idx in 3" :key="idx" :span="6">
+                    <view class="span-box" :class="{ 'is-even': (idx % 2) === 0 }">
+                        span 6
+                    </view>
+                </sd-col>
+            </sd-row>
+        </demo-card>
     </sd-page>
 </template>
 
