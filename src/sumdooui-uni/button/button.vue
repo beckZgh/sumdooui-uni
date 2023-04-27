@@ -1,8 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { button_props } from './button'
+import { button_props    } from './button'
+import { MpMixin         } from '../common/mixins'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdButton',
     props: button_props,
     emits: [
@@ -15,9 +18,6 @@ export default defineComponent({
         'chooseavatar',
         'error',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         // 监听按钮点击
         function onClick(event: Event) {
@@ -25,9 +25,7 @@ export default defineComponent({
             emit('click', event)
         }
 
-        return {
-            onClick,
-        }
+        return { onClick }
     },
 })
 </script>
@@ -38,8 +36,8 @@ export default defineComponent({
         :class="[
             customClass,
             {
+                [`sd-button--${ theme }`]  : true,
                 [`sd-button--${ shape }`]  : true,
-                [`sd-button--${ type }`]   : true,
                 [`sd-button--${ size }`]   : true,
                 [`sd-button--${ variant }`]: !!variant,
                 'is-block'                 : block,

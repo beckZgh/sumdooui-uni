@@ -3,8 +3,29 @@ import ICONS from '@/sumdooui-uni/icon/icons'
 </script>
 
 <template>
-    <sd-page tilte="Icon 图标" background="#fff">
-        <view class="demo-page__spacing">
+    <sd-page tilte="Icon 图标">
+        <demo-card title="预设主题">
+            <sd-icon name="sound" :size="40" />
+            <sd-icon name="sound" :size="40" theme="primary" />
+            <sd-icon name="sound" :size="40" theme="success" />
+            <sd-icon name="sound" :size="40" theme="warning" />
+            <sd-icon name="sound" :size="40" theme="danger" />
+        </demo-card>
+
+        <demo-card title="自定义颜色">
+            <sd-icon name="sound" :size="40" color="#626aef" />
+            <sd-icon name="link" :size="40" color="#626aef" />
+            <sd-icon name="like" :size="40" color="#626aef" />
+            <sd-icon name="unlike" :size="40" color="#626aef" />
+        </demo-card>
+
+        <demo-card title="自定义大小">
+            <sd-icon name="sound" :size="40" />
+            <sd-icon name="sound" :size="50" />
+            <sd-icon name="sound" :size="60" />
+        </demo-card>
+
+        <demo-card title="所有图标" :card="false">
             <view class="icons-box">
                 <template v-for="(_, name) in ICONS" :key="name">
                     <view class="icons-box-item">
@@ -15,7 +36,7 @@ import ICONS from '@/sumdooui-uni/icon/icons'
                     </view>
                 </template>
             </view>
-        </view>
+        </demo-card>
     </sd-page>
 </template>
 
@@ -23,8 +44,6 @@ import ICONS from '@/sumdooui-uni/icon/icons'
 .icons-box {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid #eee;
-    border-left: 1px solid #eee;
 
     &-item {
         display: flex;
@@ -34,10 +53,10 @@ import ICONS from '@/sumdooui-uni/icon/icons'
         flex-basis: 33.33333%;
         overflow: hidden;
         height: 160rpx;
-        background-color: #fff;
+        background-color: $sd-white;
         box-sizing: border-box;
-        border-bottom: 1px solid #eee;
-        border-right: 1px solid #eee;
+        border-bottom: 1px solid $sd-border-color;
+        border-right: 1px solid $sd-border-color;
 
         &__text {
             width: 100%;

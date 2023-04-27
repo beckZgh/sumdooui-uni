@@ -27,7 +27,7 @@ $button-large-padding-horizontal : var(--sd-button-large-padding-horizontal, 40r
 
 // 按钮默认背景色、文本颜色、边框颜色
 $button-default-color   : var(--sd-button-default-color   , $sd-text-color);
-$button-default-bg-color: var(--sd-button-default-bg-color, $sd-bg-color-container);
+$button-default-bg-color: var(--sd-button-default-bg-color, #f0f2f5); // #f0f2f5
 $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
 
 // 按钮大小

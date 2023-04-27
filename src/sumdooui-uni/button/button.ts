@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { ComponentType, ComponentSize } from '../common/types'
+import type { Component } from '../common/types'
 
 type ButtonShapeType = 'square' | 'round' | 'circle'
 type ButtonVariant   = 'light' | 'plain' | 'text'
@@ -8,10 +8,11 @@ import { COMMON_PROPS } from '../common/props'
 
 export const button_props = {
     ...COMMON_PROPS,
+
     /** 预设按钮主题 */
-    type            : { type: String as PropType<ComponentType>  , default: 'default' },
+    theme           : { type: String as PropType<Component.Theme>, default: 'default' },
     /** 按钮尺寸 */
-    size            : { type: String as PropType<ComponentSize>  , default: 'normal'  },
+    size            : { type: String as PropType<Component.Size>, default: 'normal'  },
     /** 按钮形状 */
     shape           : { type: String as PropType<ButtonShapeType>, default: 'round'   },
     /** 按钮形态 */

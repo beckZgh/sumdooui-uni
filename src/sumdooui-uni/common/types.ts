@@ -23,8 +23,19 @@ export interface Styles {
 /** 组件通用类型 */
 export type ComponentType = 'primary' | 'success' | 'warning' | 'danger' | 'default'
 
+/** 组件默认主题 */
+export type ComponentTheme = 'primary' | 'success' | 'warning' | 'danger' | 'default'
+
 /** 组件通用大小 */
 export type ComponentSize = 'small' | 'normal' | 'large'
+
+export namespace Component {
+    /** 预设主题 */
+    export type Theme  = 'primary' | 'success' | 'warning' | 'danger' | 'default'
+
+    /** 预设尺寸 */
+    export type Size = 'small' | 'normal' | 'large'
+}
 
 export namespace Form {
     /** 标题显示位置 */

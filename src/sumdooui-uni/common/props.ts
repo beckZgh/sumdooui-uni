@@ -6,7 +6,7 @@ import type { PropType, CSSProperties } from 'vue'
  */
 export const COMMON_PROPS = {
     /** 自定义类名 */
-    customClass: { type: String },
+    customClass: { type: [Object, String] },
     /** 自定义样式 */
     customStyle: { type: Object as PropType<CSSProperties> },
 }
