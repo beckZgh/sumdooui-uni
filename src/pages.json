@@ -21,7 +21,7 @@
         }, {
             "path": "pages/examples/basics/image/main"
         }, {
-            "path": "pages/examples/basics/animate-box/main"
+            "path": "pages/examples/basics/animate/main"
         },
 
         // 布局组件

@@ -13,24 +13,29 @@ $grid-item-icon-size: var(--sd-grid-item-icon-size, 60rpx);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 30rpx;
-        box-sizing: border-box;
+        padding: 20rpx 0;
         height: 100%;
+        box-sizing: border-box;
+        line-height: 1;
         border: 0 solid $sd-border-color;
         font-size: $grid-item-text-size;
 
-        .sd-image {
-            margin-bottom: 16rpx;
-        }
-
         .sd-icon {
             font-size: $grid-item-icon-size;
+            width: $grid-item-icon-size;
+            height: $grid-item-icon-size;
         }
     }
 
-    &__desc {
-        font-size: $sd-font-size-s;
-        color: $sd-text-color-placeholder;
+    &__text {
+        margin-top: 12rpx;
+        color: $sd-text-color;
+        line-height: 1;
+    }
+
+    &__button-box {
+        @include reset-button();
+        height: 100%;
     }
 
     &--border &__content {
@@ -46,8 +51,15 @@ $grid-item-icon-size: var(--sd-grid-item-icon-size, 60rpx);
         right: 0;
     }
 
-    &--row &__content {
-        flex-direction: row;
+    &--row {
+        .sd-grid-item__content {
+            flex-direction: row;
+        }
+
+        .sd-grid-item__text {
+            margin-top: 0;
+            margin-left: 8rpx;
+        }
     }
 
     &--column &__content {

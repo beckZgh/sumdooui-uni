@@ -37,7 +37,7 @@ export const button_props = {
     disabled        : { type: Boolean, default: false },
     // 小程序按钮特殊属性
     // https://developers.weixin.qq.com/miniprogram/dev/component/button.html
-    openType        : { type: String },
+    openType        : { type: String as PropType<Component.ButtonOpenType> },
     formType        : { type: String },
     appParameter    : { type: String },
     sessionForm     : { type: String },

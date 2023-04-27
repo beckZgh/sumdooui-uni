@@ -1,4 +1,4 @@
-import type { ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance, SetupContext } from 'vue'
 import type { PageProps     } from '../../page/page'
 import type { GridProps     } from '../../grid/grid'
 import type { RowProps      } from '../../row/row'
@@ -22,7 +22,7 @@ export type CollapseProvide = {
 }
 
 export const GRID_KEY = Symbol('grid')
-export type GridProvide = { props: GridProps }
+export type GridProvide = { props: GridProps; emit: SetupContext['emit'] }
 
 export const ROW_KEY = Symbol('row')
 export type RowProvide = { props: RowProps }

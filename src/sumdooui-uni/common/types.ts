@@ -35,6 +35,9 @@ export namespace Component {
 
     /** 预设尺寸 */
     export type Size = 'small' | 'normal' | 'large'
+
+    // 微信开放能力
+    export type ButtonOpenType = 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' | 'chooseAvatar'
 }
 
 export namespace Form {
