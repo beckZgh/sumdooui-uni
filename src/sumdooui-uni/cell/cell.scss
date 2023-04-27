@@ -1,43 +1,86 @@
+@import '../styles/variables.scss';
+
+$cell-bg-color: var(--sd-cell-bg-color, var(--sd-bg-color-white, $sd-white));
+$cell-padding: var(--sd-cell-padding, 30rpx 36rpx);
+$cell-round-radius: var(--sd-cell-round-radius, 16rpx);
+$cell-icon-size: var(--sd-cell-icon-size, 48rpx);
+$cell-border-color: var(--sd-cell-border-color, $sd-border-color);
+$cell-title-size: var(--sd-cell-title-size, $sd-font-size-m);
+$cell-title-color: var(--sd-cell-title-color, $sd-text-color);
+$cell-description-color: var(--sd-cell-description-color, $sd-text-color-secondary);
+$cell-description-size: var(--sd-cell-description-size, $sd-font-size-base);
+$cell-value-color: var(--sd-cell-value-color, $sd-text-color);
+$cell-value-size: var(--sd-cell-value-size, $sd-font-size-base);
+$cell-arrow-color: var(--sd-cell-arrow-color, $sd-border-color);
+
 .sd-cell {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 26rpx 32rpx;
-    background-color: var(--sd-cell-bg-color, var(--sd-bg-color-white, #fff));
+    padding: $cell-padding;
+    background-color: $cell-bg-color;
     box-sizing: border-box;
 
+    // 左侧内容
+    &__left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin-right: 16rpx;
+
+        .sd-icon {
+            font-size: $cell-icon-size;
+            width: $cell-icon-size;
+            height: $cell-icon-size;
+        }
+
+        .sd-image {
+            width: $cell-icon-size;
+            height: $cell-icon-size;
+        }
+
+        .sd-icon,
+        .sd-image {
+            margin-right: 16rpx;
+        }
+
+        .sd-cell__title {
+            font-size: $cell-title-size;
+            color: $cell-title-color;
+        }
+
+        .sd-cell__desc {
+            margin-top: 12rpx;
+            font-size: $cell-description-size;
+            color: $cell-description-color;
+            line-height: 1;
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .sd-cell-value {
+            font-size: $cell-value-size;
+            color: $cell-value-color;
+        }
+    }
+
     &.is-active:active {
-        background-color: var(--sd-bg-color-hover, rgba(0, 0, 0, 0.2));
+        @include clickable($sd-black);
     }
 
     &.is-round {
-        border-radius: var(--sd-cell-border-radius, 16rpx);
+        border-radius: $cell-round-radius;
     }
 
-    &__content {
-        flex: 1;
+    &.is-round + &.is-round {
+        margin-top: 24rpx;
     }
 
-    &__value {
-        text-align: right;
-        flex: 1;
-    }
-
-    &__icon {
-        font-size: 0;
-        margin-right: 32rpx;
-    }
-
-    &__title {
-        color: var(--sd-text-color);
-    }
-
-    &__sub-title {
-        font-size: 28rpx;
-        margin-top: 16rpx;
-        color: var(--sd-text-color-subtitle, #7F7F7F);
-    }
-
+    // 右侧箭头
     &__arrow {
         width: 40rpx;
         height: 40rpx;
@@ -49,26 +92,19 @@
         box-sizing: border-box;
         transform-origin: center center;
         margin-right: -5.8579rpx;
-        border-color: var(--sd-cell-arrow-border-color, #969799);
+        border-color: $cell-arrow-color;
     }
 
-    &__top-border,
+    // 顶部和底部边框
     &__bottom-border {
         position: absolute;
         left: 0;
         right: 0;
+        bottom: 0;
         height: 1px;
         transform: scaleY(.5);
         transform-origin: 0 0;
         z-index: 1;
-        background-color: var(--sd-border-color, #dcdfe6);
-    }
-
-    &__top-border {
-        top: 0;
-    }
-
-    &__bottom-border {
-        bottom: 0;
+        background-color: $cell-border-color;
     }
 }

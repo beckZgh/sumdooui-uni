@@ -2,9 +2,8 @@
 // 定义页面基础样式
 page {
     background-color: $sd-bg-color;
-    font-size: 32rpx;
-    font-weight: 500;
-    color: #181818;
+    font-size: $sd-font-size-base;
+    color: $sd-text-color;
     font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 

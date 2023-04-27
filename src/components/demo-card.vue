@@ -4,21 +4,24 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name : 'DemoCard',
     props: {
-        title    : { type: String , default: ''    },
-        dark     : { type: Boolean, default: false },
-        card     : { type: Boolean, default: true  },
-        bodyStyle: { type: [Object, String], default: '' },
+        title      : { type: String , default: ''    },
+        dark       : { type: Boolean, default: false },
+        card       : { type: Boolean, default: true  },
+        bodyStyle  : { type: [Object, String], default: '' },
+        bottomGap  : { type: Boolean }, // 底部留白
+        transparent: { type: Boolean },
     },
 })
 </script>
 
 <template>
-    <view class="card" :class="{ 'is-dark': dark, 'card--card': card }">
+    <view class="card" :class="{ 'is-dark': dark, 'card--card': card, 'not-content': transparent || !$slots.default }">
         <view class="card__title">
             {{ title }}
         </view>
-        <view class="card__body" :style="bodyStyle">
+        <view v-if="$slots.default" class="card__body" :style="bodyStyle">
             <slot />
+            <view v-if="bottomGap" style="height: 60rpx" />
         </view>
         <view class="card__footer">
             <slot nmae="footer" />
@@ -28,10 +31,14 @@ export default defineComponent({
 
 <style lang='scss' scoped>
 .card {
-    background-color: $sd-white;
     margin-top: 30rpx;
     margin-bottom: 30rpx;
     padding: 40rpx 0 0;
+    background-color: $sd-white;
+
+    &.not-content {
+        background-color: transparent;
+    }
 
     &__title {
         font-size: 30rpx;

@@ -1,7 +1,13 @@
+@import '../styles/variables.scss';
+
+$cell-group-title-color: var(--sd-cell-group-title-color, $sd-text-color-secondary);
+$cell-group-title-padding: var(--sd-cell-group-title-padding, 32rpx 32rpx 20rpx 32rpx);
+$cell-group-title-size: var(--sd-cell-group-title-size, $sd-font-size-base);
+
 .sd-cell-group {
     &__title {
-        padding: 32rpx 32rpx 20rpx 32rpx;
-        font-size: 28rpx;
-        color: var(--sd-cell-group-title-color, var(--sd-text-color-subtitle, #7F7F7F));
+        padding: $cell-group-title-padding;
+        font-size: $cell-group-title-size;
+        color: $cell-group-title-color;
     }
 }

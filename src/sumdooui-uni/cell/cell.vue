@@ -1,47 +1,84 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { cell_props } from './cell'
+import { defineComponent, computed } from 'vue'
+import { cell_props      } from './cell'
+import { MpMixin         } from '../common/mixins'
+import { CELL_GROUP_KEY, type CellGroupProvide  } from '../common/tokens'
+import { useInject       } from '../common/hooks'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdCell',
     props: cell_props,
     emits: ['click'],
+    setup(props) {
+        const { parent: cell_group } = useInject<CellGroupProvide>(CELL_GROUP_KEY)
+
+        const show_border$ = computed(() => {
+            return props.border ?? cell_group?.props.border
+        })
+
+        const show_arrow$ = computed(() => {
+            return props.arrow ?? cell_group?.props.arrow
+        })
+
+        const show_round$ = computed(() => {
+            return props.round ?? cell_group?.props.round
+        })
+
+        const clickable$ = computed(() => {
+            return props.clickable ?? cell_group?.props.clickable
+        })
+
+        return { show_border$, show_arrow$, show_round$, clickable$ }
+    },
 })
 </script>
 
 <template>
-    <view class="sd-cell" :class="[{ 'is-round': round, 'is-active': clickable }, customClass]" :style="customStyle" @tap="$emit('click', $event)">
-        <!-- 顶部边框 -->
-        <view v-if="topBorder" class="sd-cell__top-border" :style="topBorderStyle" />
-
+    <view
+        class="sd-cell"
+        :class="[customClass, { 'is-round': show_round$, 'is-active': clickable$ }]"
+        :style="customStyle"
+        @tap="$emit('click', $event)"
+    >
         <!-- 单元格内容区域 -->
-        <slot>
-            <!-- 单元格图标内容 -->
-            <view v-if="$slots.icon" class="sd-cell__icon">
-                <slot name="icon" />
+        <slot v-if="$slots.default" />
+        <template v-else>
+            <slot v-if="$slots.left" name="left" />
+            <view v-else class="sd-cell__left" :style="leftStyle">
+                <!-- 左侧icon/图片区域 -->
+                <slot v-if="$slots.icon" name="icon" />
+                <sd-image v-else-if="image" v-bind="imageProps" :src="image" />
+                <sd-icon v-else-if="icon" v-bind="iconProps" :name="icon" />
+
+                <!-- 左侧标题、描述 -->
+                <view>
+                    <view class="sd-cell__title" :style="titleStyle">
+                        {{ title }}
+                    </view>
+                    <view v-if="description" class="sd-cell__desc" :style="descriptionStyle">
+                        {{ description }}
+                    </view>
+                </view>
             </view>
 
-            <!-- 单元格标题、副标题内容 -->
-            <view v-if="title" class="sd-cell__content">
-                <view class="sd-cell__title" :style="titleStyle">
-                    {{ title }}
+            <slot v-if="$slots.right" name="right" />
+            <template v-else>
+                <view class="sd-cell__right" :style="rightStyle">
+                    <!-- 单元格右侧内容 -->
+                    <slot v-if="$slots.extra" name="extra" />
+                    <view v-else-if="value" class="sd-cell__value" :style="valueStyle">
+                        {{ value }}
+                    </view>
                 </view>
-                <view v-if="subTitle" class="sd-cell__sub-title" :style="subTitleStyle">
-                    {{ subTitle }}
-                </view>
-            </view>
-
-            <!-- 单元格右侧内容 -->
-            <slot v-if="$slots.extra" name="extra" />
-            <view v-else-if="value" class="sd-cell__value" :style="valueStyle">
-                {{ value }}
-            </view>
+            </template>
 
             <!-- 右侧箭头 -->
-            <view v-if="arrow" class="sd-cell__arrow" />
-        </slot>
+            <view v-if="show_arrow$" class="sd-cell__arrow" />
+        </template>
 
         <!-- 底部边框 -->
-        <view v-if="bottomBorder" class="sd-cell__bottom-border" :style="bottomBorderStyle" />
+        <view v-if="show_border$" class="sd-cell__bottom-border" :style="borderStyle" />
     </view>
 </template>

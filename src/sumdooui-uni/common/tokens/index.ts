@@ -1,8 +1,9 @@
 import type { ComponentInternalInstance, SetupContext } from 'vue'
-import type { PageProps     } from '../../page/page'
-import type { GridProps     } from '../../grid/grid'
-import type { RowProps      } from '../../row/row'
-import type { CollapseProps } from '../../collapse/collapse'
+import type { PageProps      } from '../../page/page'
+import type { GridProps      } from '../../grid/grid'
+import type { CellGroupProps } from '../../cell-group/cell-group'
+import type { RowProps       } from '../../row/row'
+import type { CollapseProps  } from '../../collapse/collapse'
 import type { CheckboxGroupProps } from '../../checkbox-group/checkbox-group'
 import type { RadioGroupProps } from '../../radio-group/radio-group'
 import type { FormProps } from '../../form/form'
@@ -50,3 +51,6 @@ export type FormItemProvide = {
     props: FormItemProps
     validate: (trigger: string | string[]) => void
 }
+
+export const CELL_GROUP_KEY = Symbol('cell-group')
+export type CellGroupProvide = { props: CellGroupProps }
