@@ -65,7 +65,7 @@ export default defineComponent({
             @launchapp="$emit('launchapp', $event)"
             @chooseavatar="$emit('chooseavatar', $event)"
             @error="$emit('error', $event)"
-            @tap.stop="onClick"
+            @tap="onClick"
         >
             <view v-if="loading || icon" class="sd-button__icon">
                 <sd-icon

@@ -27,8 +27,8 @@ export default [{
         page: '',
     }, {
         icon: 'animation',
-        name: 'AnimateBox 动画容器',
-        page: 'animate-box',
+        name: 'Animtae 动画/动效',
+        page: 'animate',
     }],
 }, {
     id  : 'layout',
