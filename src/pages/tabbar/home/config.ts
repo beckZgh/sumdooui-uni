@@ -27,10 +27,6 @@ export default [{
         page: '',
     }, {
         icon: 'animation',
-        name: 'Animation 动画',
-        page: 'animation',
-    }, {
-        icon: 'animation',
         name: 'AnimateBox 动画容器',
         page: 'animate-box',
     }],
