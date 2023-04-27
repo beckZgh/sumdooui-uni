@@ -5,14 +5,14 @@ import Utils from '../utils'
 import ICONS from './icons'
 
 import { defineComponent, computed } from 'vue'
+import { MpMixin } from '../common/mixins'
 import { icon_props } from './icon'
 
 export default defineComponent({
-    name   : 'SdIcon',
-    props  : icon_props,
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdIcon',
+    props: icon_props,
     emits: ['click'],
     setup(props) {
         // 字体图标
@@ -22,13 +22,15 @@ export default defineComponent({
 
         // 图标样式
         const icon_styles$ = computed(() => {
-            const styles: CSSProperties = { ...props.customStyle }
+            const styles: CSSProperties = {
+                ...props.customStyle,
+            }
 
             if (props.color) styles.color = props.color
             if (props.size ) {
                 styles.fontSize = Utils.toUnit(props.size)
-                styles.width    = Utils.toUnit(props.size)
-                styles.height   = Utils.toUnit(props.size)
+                styles.width    = Utils.toUnit(props.size) // 解决字体加载不及时，高度产生变化
+                styles.height   = Utils.toUnit(props.size) // 解决字体加载不及时，高度产生变化
             }
 
             return styles
@@ -45,7 +47,7 @@ export default defineComponent({
 <template>
     <text
         class="sd-icon"
-        :class="[{ 'is-loading': loading }, customClass]"
+        :class="[customClass, { 'is-loading': loading, [`sd-icon--${ theme }`]: !!theme }]"
         :style="icon_styles$"
         @tap="$emit('click', $event)"
     >

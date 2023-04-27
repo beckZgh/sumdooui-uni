@@ -1,15 +1,28 @@
-@font-face {
-    font-family: "sd-iconfont"; /* Project id 4005820 */
-    src: url('./iconfont.ttf?t=1681114183334') format('truetype');
-}
+@import '../styles/variables.scss';
 
 .sd-icon {
     font-family: 'sd-iconfont';
     text-decoration: none;
     text-align: center;
-    animation-duration: 1s;
+    animation-duration: 1.2s;
     animation-timing-function: linear;
     animation-fill-mode: both;
+
+    &--primary {
+        color: $sd-primary-color;
+    }
+
+    &--success {
+        color: $sd-success-color;
+    }
+
+    &--warning {
+        color: $sd-warning-color;
+    }
+
+    &--danger {
+        color: $sd-danger-color
+    }
 
     &.is-loading {
         display: inline-block;
