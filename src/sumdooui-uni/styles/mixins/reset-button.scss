@@ -1,0 +1,26 @@
+@mixin reset-button() {
+    display: block;
+    outline: none;
+    padding: 0;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    overflow: hidden;
+    --webkit-touch-callout: none;
+    --webkit-user-select: none;
+    user-select: none;
+
+    &::before,
+    &::after {
+        border: none;
+    }
+
+    // 继承属性
+    color: inherit;
+    background-color: inherit;
+    border-radius: inherit;
+    height: inherit;
+    line-height: 1;
+    font-size: inherit;
+    font-weight: inherit;
+}

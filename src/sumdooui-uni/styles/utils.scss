@@ -1,0 +1,286 @@
+/**
+* 工具类样式
+*/
+
+@import './mixins/index.scss';
+
+.sd-clearfix {
+    @include clearfix()
+}
+
+.sd-ellipsis {
+    @include ellipsis()
+}
+
+.sd-multi-ellipsis-l2 {
+    @include multi-ellipsis(2)
+}
+
+.sd-multi-sllipsis-l3 {
+    @include multi-ellipsis(3)
+}
+
+.sd-safe-area-top {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+}
+
+.sd-safe-area-bottomm {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.sd-fl {
+    float: left;
+}
+
+.sd-fr {
+    float: right;
+}
+
+// 盒子
+.sd-flex,
+.sd-flex-x,
+.sd-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.sd-flex-y,
+.sd-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.sd-flex-x-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sd-flex-xy-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sd-flex-y-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sd-flex-wrap {
+    flex-wrap: wrap;
+}
+.sd-flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.sd-flex-fill {
+    flex: 1 1 auto;
+}
+
+// 字体粗细
+.sd-fw-400 {
+    font-weight: 400;
+}
+.sd-fw-500 {
+    font-weight: 500;
+}
+.sd-fw-bold {
+    font-weight: bold;
+}
+.sd-fw-lighter {
+    font-weight: lighter;
+}
+.sd-fw-normal {
+    font-weight: normal;
+}
+
+// 文本修饰
+.sd-t-underline {
+    text-decoration: underline;
+}
+.sd-t-overline {
+    text-decoration: overline;
+}
+.sd-t-through {
+    text-decoration: line-through;
+}
+
+// 元素定位
+.sd-absolute {
+    position: absolute;
+}
+.sd-relative {
+    position: relative;
+}
+.sd-static {
+    position: static;
+}
+.sd-sticky {
+    position: sticky;
+}
+.sd-fixed {
+    position: fixed;
+}
+
+// 溢出
+.sd-over-hide {
+    overflow: hidden;
+}
+.sd-over-hide-x {
+    overflow-x: hidden;
+}
+.sd-over-hide-y {
+    overflow-y: hidden;
+}
+
+.sd-over-scroll {
+    overflow: scroll;
+}
+.sd-over-scroll-x {
+    overflow-x: scroll;
+}
+.sd-over-scroll-y {
+    overflow-y: scroll;
+}
+
+.sd-over-auto {
+    overflow: auto;
+}
+.sd-over-auto-x {
+    overflow-x: auto;
+}
+.sd-over-auto-y {
+    overflow-y: auto;
+}
+
+.sd-over-visible {
+    overflow: visible;
+}
+.sd-over-visible-x {
+    overflow-x: visible;
+}
+.sd-over-visible-y {
+    overflow-y: visible;
+}
+
+// 文字对齐
+.sd-tl {
+    text-align: left;
+}
+.sd-tc {
+    text-align: center;
+}
+.sd-tr {
+    text-align: right;
+}
+
+// 显示
+.sd-dn {
+    display: none;
+}
+.sd-di {
+    display: inline;
+}
+.sd-db {
+    display: block;
+}
+.sd-dib {
+    display: inline-block;
+}
+
+// 宽度
+.sd-w-fill {
+    width: 100%;
+}
+.sd-h-fill {
+    height: 100%;
+}
+
+// 定义内外边距，历遍1-80
+@for $i from 0 through 50 {
+    // 宽
+    .sd-w-#{$i} {
+        width: $i + rpx;
+    }
+
+    // 高
+    .sd-h-#{$i} {
+        height: $i + rpx;
+    }
+
+    // 文字大小
+    .sd-fs-#{$i} {
+        font-size: $i + rpx;
+    }
+
+    // 圆角
+    .sd-br-#{$i} {
+        border-radius: $i + rpx;
+    }
+    .sd-br-tlr-#{$i} {
+        border-radius: ($i + rpx) ($i + rpx) 0 0;
+    }
+    .sd-br-blr-#{$i} {
+        border-radius: 0 0 ($i + rpx) ($i + rpx);
+    }
+
+    // 行高
+    .sd-lh-#{$i} {
+        line-height: $i + rpx;
+    }
+
+    // 外边距
+    .sd-ml-#{$i} {
+        margin-left: $i + rpx;
+    }
+    .sd-mr-#{$i} {
+        margin-right: $i + rpx;
+    }
+    .sd-mt-#{$i} {
+        margin-top: $i + rpx;
+    }
+    .sd-mb-#{$i} {
+        margin-bottom: $i + rpx;
+    }
+    .sd-mlr-#{$i} {
+        margin-left: $i + rpx;
+        margin-right: $i + rpx;
+    }
+    .sd-mtb-#{$i} {
+        margin-top: $i + rpx;
+        margin-bottom: $i + rpx;
+    }
+    .sd-m-#{$i} {
+        margin: $i + rpx;
+    }
+
+    // 内边距
+    .sd-pl-#{$i} {
+        padding-left: $i + rpx;
+    }
+    .sd-pr-#{$i} {
+        padding-right: $i + rpx;
+    }
+    .sd-pt-#{$i} {
+        padding-top: $i + rpx;
+    }
+    .sd-pb-#{$i} {
+        padding-bottom: $i + rpx;
+    }
+    .sd-plr-#{$i} {
+        padding-left: $i + rpx;
+        padding-right: $i + rpx;
+    }
+    .sd-ptb-#{$i} {
+        padding-top: $i + rpx;
+        padding-bottom: $i + rpx;
+    }
+    .sd-p-#{$i} {
+        padding: $i + rpx;
+    }
+}
