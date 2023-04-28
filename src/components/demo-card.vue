@@ -8,6 +8,7 @@ export default defineComponent({
         dark       : { type: Boolean, default: false },
         card       : { type: Boolean, default: true  },
         bodyStyle  : { type: [Object, String], default: '' },
+        bodyClass  : { type: [Object, String] },
         bottomGap  : { type: Boolean }, // 底部留白
         transparent: { type: Boolean },
     },
@@ -19,7 +20,7 @@ export default defineComponent({
         <view class="card__title">
             {{ title }}
         </view>
-        <view v-if="$slots.default" class="card__body" :style="bodyStyle">
+        <view v-if="$slots.default" class="card__body"  :class="bodyClass" :style="bodyStyle">
             <slot />
             <view v-if="bottomGap" style="height: 60rpx" />
         </view>

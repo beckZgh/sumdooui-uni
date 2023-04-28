@@ -12,56 +12,32 @@ function toPage(name: string) {
 
 <template>
     <sd-page title="Empty 缺省页">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                基本用法
-            </view>
-            <view class="demo-card__body">
-                <sd-empty />
-            </view>
-        </view>
+        <demo-card title="基本用法">
+            <sd-empty />
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                定义缺省图片与文本
-            </view>
-            <view class="demo-card__body">
-                <sd-empty
-                    :src="img_search"
-                    :img-style="{ width: '230rpx', height: '230rpx' }"
-                    text="没有找到对应的内容～"
-                />
-            </view>
-        </view>
-        <view class="demo-card">
-            <view class="demo-card__title">
-                定义扩展按钮
-            </view>
-            <view class="demo-card__body">
-                <sd-empty button-text="返回" @click-button="onClickButton" />
-            </view>
-        </view>
+        <demo-card title="自定义缺省图片与文本">
+            <sd-empty
+                :image="img_search"
+                :image-props="{ width: '230rpx', height: '230rpx' }"
+                text="没有找到对应的内容～"
+            />
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                页面内容为空
-            </view>
-            <view class="demo-card__body" style="text-align: center;">
-                <sd-button type="primary" :custom-style="{ width: '70%' }" variant="plain" @click="toPage('page-empty-data')">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="使用扩展按钮">
+            <sd-empty button-text="返回" @click-button="onClickButton" />
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                所有缺省预设
-            </view>
-            <view class="demo-card__body" style="text-align: center;">
-                <sd-button type="primary" :custom-style="{ width: '70%' }" variant="plain" @click="toPage('page-empty-parse')">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="页面内容为空" body-class="sd-flex-x-center">
+            <sd-button width="70%" variant="plain" @click="toPage('page-empty-data')">
+                应用
+            </sd-button>
+        </demo-card>
+
+        <demo-card title="所有缺省预设" body-class="sd-flex-x-center">
+            <sd-button width="70%" variant="plain" @click="toPage('page-empty-parse')">
+                应用
+            </sd-button>
+        </demo-card>
     </sd-page>
 </template>

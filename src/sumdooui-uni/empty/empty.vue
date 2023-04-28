@@ -1,12 +1,18 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import img_data    from  './images/img_data_3x.png'
+import img_data    from './images/img_data_3x.png'
 import img_order   from './images/img_order_3x.png'
 import img_search  from './images/img_search_3x.png'
 import img_network from './images/img_network_3x.png'
 import img_address from './images/img_address_3x.png'
 import img_news    from './images/img_news_3x.png'
+
+import { defineComponent, computed } from 'vue'
+import { MpMixin     } from '../common/mixins'
+import { empty_props } from './empty'
+
+import Utils from '../utils'
 
 const EMPTY_IMGS: Record<string, string> = {
     img_data,
@@ -26,20 +32,16 @@ const EMPTY_TEXT: Record<string, string> = {
     img_news   : '暂无新消息～',
 }
 
-import { defineComponent, computed } from 'vue'
-import { empty_props } from './empty'
-
-import Utils from '../utils'
-
-
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdEmpty',
     props: empty_props,
     emits: ['click-button'],
     setup(props) {
         // 缺省容器样式
         const empty_style$ = computed(() => {
-            const style: CSSProperties = {}
+            const style: CSSProperties = { ...props.customStyle }
             if (props.background) style.backgroundColor = props.background
             if (props.height    ) style.height = Utils.toUnit(props.height)
             return style
@@ -47,7 +49,7 @@ export default defineComponent({
 
         // 缺省图片
         const empty_img$ = computed(() => {
-            return props.src ? props.src : (EMPTY_IMGS[`img_${ props.type }`] || EMPTY_IMGS.img_data)
+            return props.image ? props.image : (EMPTY_IMGS[`img_${ props.type }`] || EMPTY_IMGS.img_data)
         })
 
         // 缺省w文案
@@ -65,8 +67,15 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-empty" :class="{ [`sd-empty--${ scene }`]: true }" :style="empty_style$">
-        <image :src="empty_img$" mode="widthFix" class="sd-empty__img" :style="imgStyle" />
+    <view class="sd-empty" :class="[customClass, { [`sd-empty--${ scene }`]: true }]" :style="empty_style$">
+        <sd-image
+            width="100%"
+            height="50%"
+            v-bind="imageProps"
+            :src="empty_img$"
+            :show-loading="false"
+            :show-error="false"
+        />
         <view v-if="empty_text$" class="sd-empty__text">
             {{ empty_text$ }}
         </view>
