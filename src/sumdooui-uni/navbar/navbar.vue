@@ -2,9 +2,12 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, ref, computed } from 'vue'
+import { MpMixin      } from '../common/mixins'
 import { navbar_props } from './navbar'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdNavbar',
     props: navbar_props,
     emits: [
@@ -55,10 +58,13 @@ export default defineComponent({
             id="navbar"
             ref="navbar_ref"
             class="sd-navbar"
-            :class="{
-                [`is-fixed`]   : fixed,
-                [`is-safe-top`]: safeAreaInsertTop,
-            }"
+            :class="[
+                customClass,
+                {
+                    [`is-fixed`]   : fixed,
+                    [`is-safe-top`]: safeAreaInsertTop,
+                },
+            ]"
             :style="navbar_styles$"
         >
             <view v-if="leftArrow || leftIcon || $slots.left" class="sd-navbar__left" @tap="$emit('click-left', $event)">
