@@ -1,6 +1,8 @@
 @import '../styles/variables.scss'  ;
 
 $divider-line-color: var(--sd-divider-line-color, $sd-border-color);
+$divider-content-size: var(--sd-divider-content-size, $sd-font-size-base);
+$divider-content-color: var(--sd-divider-content-color, $sd-text-color-placeholder);
 
 @mixin divider-theme($theme-color) {
     &.sd-divider--sence-default {
@@ -36,6 +38,7 @@ $divider-line-color: var(--sd-divider-line-color, $sd-border-color);
         flex: 1;
         height: 1px;
         border-top: 1px solid $divider-line-color;
+        transform: scaleY(0.5);
 
         &--dotted {
             border-top-style: dotted;
@@ -49,8 +52,8 @@ $divider-line-color: var(--sd-divider-line-color, $sd-border-color);
     &__content {
         max-width: 500rpx;
         padding: 0 36rpx;
-        font-size: $sd-font-size-base;
-        color: $sd-text-color-placeholder;
+        font-size: $divider-content-size;
+        color: $divider-content-color;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -72,17 +75,5 @@ $divider-line-color: var(--sd-divider-line-color, $sd-border-color);
     }
     &--danger {
         @include divider-theme($sd-danger-color);
-    }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) {
-    .sd-divider__line {
-        transform: scaleY(0.5);
-    }
-}
-
-@media (-webkit-min-device-pixel-ratio: 3) {
-    .sd-divider__line {
-        transform: scaleY(0.333);
     }
 }

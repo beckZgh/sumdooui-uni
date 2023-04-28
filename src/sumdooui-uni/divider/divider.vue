@@ -2,10 +2,13 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed } from 'vue'
-import { divider_props   } from './divider'
+import { divider_props } from './divider'
+import { MpMixin       } from '../common/mixins'
 
 import Utils from '../utils'
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdDivider',
     props: divider_props,
     setup(props) {
@@ -16,9 +19,7 @@ export default defineComponent({
             return style
         })
 
-        return {
-            content_style$,
-        }
+        return { content_style$ }
     },
 })
 </script>
@@ -26,8 +27,14 @@ export default defineComponent({
 <template>
     <view
         class="sd-divider"
-        :class="{ [`sd-divider--${ type }`]: true, [`sd-divider--sence-${ typeSence }`]: true }"
-        :style="{ padding: `${ columnGap }rpx ${ rowGap }rpx` }"
+        :class="[
+            customClass,
+            {
+                [`sd-divider--${ theme }`]           : true,
+                [`sd-divider--sence-${ themeSence }`]: !!themeSence,
+            },
+        ]"
+        :style="{ ...customStyle, padding: `${ columnGap }rpx ${ rowGap }rpx` }"
     >
         <view
             class="sd-divider__line"
