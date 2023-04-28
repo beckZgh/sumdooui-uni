@@ -1,7 +1,8 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { ComponentType } from '../common/types'
+import type { Component } from '../common/types'
 
-type TagVariant = 'light' | 'plain'
+export type TagVariant = 'light' | 'plain'
+export type TagShape = 'square' | 'round' | 'mark'
 
 import { COMMON_PROPS } from '../common/props'
 
@@ -9,11 +10,13 @@ export const tag_props = {
     ...COMMON_PROPS,
 
     /** 类型 */
-    type      : { type: String as PropType<ComponentType>, default: 'default' },
+    theme     : { type: String as PropType<Component.Theme>, default: 'default' },
+    /** 尺寸 */
+    size      : { type: String as PropType<Component.Size>, default: 'normal' },
+    /** 图标 */
+    icon      : { type: String },
     /** 文本 */
     text      : { type: String },
-    /** 是否圆角 */
-    round     : { type: Boolean, default: false },
     /** 最大宽度 */
     maxWidth  : { type: [String, Number] },
     /** 背景颜色 */
@@ -22,6 +25,10 @@ export const tag_props = {
     color     : { type: String },
     /** 形态 */
     variant   : { type: String as PropType<TagVariant> },
+    /** 标签形状 */
+    shape     : { type: String as PropType<TagShape>, default: 'square' },
+    /** 可关闭的 */
+    closeable : { type: Boolean, default: false },
 }
 
 export type TagProps = ExtractPropTypes<typeof tag_props>

@@ -1,7 +1,21 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$tag-padding   : var(--sd-tag-padding, 10rpx);
-$tag-font-size : var(--sd-tag-font-size, $sd-font-size-xs);
+$tag-small-padding       : var(--sd-tag-small-padding, 10rpx);
+$tag-small-round-padding : var(--sd-tag-small-padding, 10rpx 16rpx);
+$tag-small-mark-padding  : var(--sd-tag-small-padding, 10rpx 16rpx);
+
+$tag-normal-padding      : var(--sd-tag-normal-padding, 14rpx 16rpx);
+$tag-normal-round-padding: var(--sd-tag-normal-padding, 14rpx 16rpx);
+$tag-normal-mark-padding : var(--sd-tag-normal-padding, 14rpx 16rpx);
+
+$tag-large-padding       : var(--sd-tag-large-padding, 16rpx 18rpx);
+$tag-large-round-padding : var(--sd-tag-large-padding, 16rpx 18rpx);
+$tag-large-mark-padding  : var(--sd-tag-large-padding, 16rpx 18rpx);
+
+$tag-small-font-size     : var(--sd-tag-samll-font-size, $sd-font-size-xs);
+$tag-normal-font-size    : var(--sd-tag-normal-font-size, $sd-font-size-s);
+$tag-large-font-size     : var(--sd-tag-large-font-size, $sd-font-size-base);
+
 $tag-bg-color  : var(--sd-tag-bg-color, $sd-bg-color-container);
 $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
 
@@ -24,15 +38,59 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
     }
 }
 
+@mixin tag-size($size: 'nomarl') {
+    $tag_size         : $tag-normal-font-size;
+    $tag_padding      : $tag-normal-padding;
+    $tag_round_padding: $tag-normal-round-padding;
+    $tag_mark_padding : $tag-normal-mark-padding;
+
+    @if ($size == 'small') {
+        $tag_size         : $tag-small-font-size;
+        $tag_padding      : $tag-small-padding;
+        $tag_round_padding: $tag-small-round-padding;
+        $tag_mark_padding : $tag-small-mark-padding;
+    } @else if($size == 'large') {
+        $tag_size         : $tag-large-font-size;
+        $tag_padding      : $tag-large-padding;
+        $tag_round_padding: $tag-large-round-padding;
+        $tag_mark_padding : $tag-large-mark-padding;
+    }
+
+    padding: $tag_padding;
+    font-size: $tag_size;
+
+    .sd-tag__icon {
+        width: $tag_size;
+        height: $tag_size;
+    }
+
+    // 标签形状
+    &.sd-tag--square {
+        border-radius: $sd-border-radius-s;
+    }
+    &.sd-tag--round {
+        border-radius: $sd-border-radius-round;
+        padding: $tag_round_padding;
+        &::after {
+            border-radius: calc($sd-border-radius-round * 2);
+        }
+    }
+    &.sd-tag--mark {
+        border-radius: 0 $sd-border-radius-round $sd-border-radius-round 0;
+        padding: $tag_mark_padding;
+        &::after {
+            border-radius: 0 calc($sd-border-radius-round * 2) calc($sd-border-radius-round * 2) 0;
+        }
+    }
+
+}
+
 .sd-tag {
     position: relative;
     display: inline-block;
     justify-content: center;
     align-items: center;
-    padding: $tag-padding;
-    font-size: $tag-font-size;
     box-sizing: border-box;
-    border-radius: $sd-border-radius-s;
     line-height: 1;
 
     &__text {
@@ -43,6 +101,14 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
         overflow: hidden;
         line-height: 1;
         vertical-align: middle;
+    }
+
+    &__icon {
+        margin-right: 6rpx;
+    }
+
+    &__close {
+        margin-left: 8rpx;
     }
 
     // 按钮边框
@@ -65,16 +131,18 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
         border-width: 2px;
     }
 
-    &--round {
-        border-radius: $sd-border-radius-round;
-        padding: 10rpx 16rpx;
-
-        &::after {
-            border-radius: calc($sd-border-radius-round * 2);
-        }
+    // 标签尺寸
+    &--small {
+        @include tag-size('small');
+    }
+    &--normal {
+        @include tag-size('normal');
+    }
+    &--large {
+        @include tag-size('large');
     }
 
-    // 主题
+    // 标签主题
     &--default {
         background-color: $tag-bg-color;
         color: $tag-text-color;
@@ -89,15 +157,19 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
         }
     }
     &--primary {
-        @include tag-theme($sd-primary-color, $sd-primary-color-7);
+        @include tag-theme($sd-primary-color, $sd-primary-color-9);
     }
     &--success {
-        @include tag-theme($sd-success-color, $sd-success-color-7);
+        @include tag-theme($sd-success-color, $sd-success-color-9);
     }
     &--warning {
-        @include tag-theme($sd-warning-color, $sd-warning-color-7);
+        @include tag-theme($sd-warning-color, $sd-warning-color-9);
     }
     &--danger {
-        @include tag-theme($sd-danger-color, $sd-danger-color-7);
+        @include tag-theme($sd-danger-color, $sd-danger-color-9);
     }
+}
+
+.sd-tag + .sd-tag {
+    margin-left: 16rpx;
 }
