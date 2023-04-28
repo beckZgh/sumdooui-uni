@@ -1,50 +1,33 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, provide      } from 'vue'
 import { tabbar_props, type TabbarItem } from './tabbar'
+import { MpMixin                       } from '../common/mixins'
+import { TABBLE_KEY                    } from '../common/tokens'
 
 export default defineComponent({
-    name   : 'SdTabbar',
-    props  : tabbar_props,
-    emits  : ['update:modelValue', 'change'],
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdTabbar',
+    props: tabbar_props,
+    emits: ['update:modelValue', 'change'],
     setup(props, { emit }) {
-        const getColor = (index: number) => {
-            if (Number(props.modelValue) === index) {
-                return props.activeColor || undefined
-            } else {
-                return props.inactiveColor || undefined
-            }
-        }
+        // 注入
+        provide(TABBLE_KEY, { props, onChange })
 
-        const getImage = (index: number) => {
-            const item = props.items[index]
-            if ( !item ) return ''
+        async function onChange(item: TabbarItem) {
+            if (item.name === undefined || item.name === null) return
 
-            return (Number(props.modelValue) === index ? item.activeImage : item.image) || ''
-        }
-
-        const getIcon = (index: number) => {
-            const item = props.items[index]
-            if ( !item ) return ''
-
-            return (Number(props.modelValue) === index ? (item.activeIcon || item.icon) : item.icon) || ''
-        }
-
-        async function onChange(item: TabbarItem, index: number) {
-            const params = { ...item, index }
+            const params = { ...item }
             if (typeof props.beforeChange === 'function') {
                 const result = await props.beforeChange(params)
                 if ( !result ) return
             }
 
-            emit('update:modelValue', index)
-            emit('change', params)
+            emit('update:modelValue', params.name)
+            emit('change', params.name, params)
         }
 
-        return { getColor, getIcon, getImage, onChange }
+        return { onChange }
     },
 })
 </script>
@@ -53,55 +36,20 @@ export default defineComponent({
     <view class="sd-tabbar-box">
         <view
             class="sd-tabbar"
-            :class="{
-                'is-fixed'         : fixed,
-                'sd-tabbar--border': showTopBorder,
-            }"
-            :style="zIndex ? `z-index: ${ zIndex }` : ''"
+            :class="[
+                customClass,
+                {
+                    'is-fixed'         : fixed,
+                    'sd-tabbar--border': showTopBorder,
+                    'sd-tabbar--round' : round,
+                },
+            ]"
+            :style="{ ...customStyle, 'z-index': zIndex ? zIndex : undefined }"
         >
-            <!-- 图标模式 -->
-            <template v-if="type === 'icon'">
-                <template v-for="(tab, _idx) in items" :key="_idx">
-                    <view
-                        class="sd-tabbar__item"
-                        :class="{ 'is-active': Number(modelValue) === _idx }"
-                        :style="{ color: getColor(_idx) }"
-                        @tap="onChange(tab, _idx)"
-                    >
-                        <template v-if="tab.icon">
-                            <sd-badge v-bind="{ ...tab.badgeProps, dot: tab.dot, content: tab.badge }">
-                                <sd-icon :name="getIcon(_idx)" />
-                            </sd-badge>
-                        </template>
-                        <text v-if="tab.name" class="sd-tabbar__item-text">
-                            {{ tab.name }}
-                        </text>
-                    </view>
-                </template>
-            </template>
-
-            <!-- 图片模式 -->
-            <template v-if="type === 'image'">
-                <template v-for="(tab, _idx) in items" :key="_idx">
-                    <view
-                        class="sd-tabbar__item"
-                        :class="{ 'is-active': Number(modelValue) === _idx }"
-                        :style="{ color: getColor(_idx) }"
-                        @tap="onChange(tab, _idx)"
-                    >
-                        <sd-badge v-bind="{ ...tab.badgeProps, dot: tab.dot, content: tab.badge }">
-                            <sd-image
-                                v-if="tab.image"
-                                :src="getImage(_idx)"
-                                width="56rpx" height="56rpx"
-                                :show-loading="false"
-                                :show-error="false"
-                            />
-                        </sd-badge>
-                        <text v-if="tab.name" class="sd-tabbar__item-text">
-                            {{ tab.name }}
-                        </text>
-                    </view>
+            <slot v-if="$slots.default" />
+            <template v-else>
+                <template v-for="(item, index) in items" :key="index">
+                    <sd-tabbar-item v-bind="item" :name="index" />
                 </template>
             </template>
         </view>

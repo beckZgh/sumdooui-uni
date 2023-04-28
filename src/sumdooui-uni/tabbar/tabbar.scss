@@ -5,6 +5,7 @@ $tabbar-icon-size: var(--sd-tabbar-icon-size, 56rpx);
 $tabbar-text-size: var(--sd-tabbar-text-size, 20rpx);
 $tabbar-inactive-color: var(--sd-tabbar-inactive-color, $sd-text-color-secondary);
 $tabbar-active-color: var(--sd-tabbar-inactive-color, $sd-primary-color);
+$tabbar-round-box-shadow: var(--sd-tabbar-round-box-shadow, 0 6px 30px 5px rgba(0, 0, 0, 0.05), 0 16px 24px 2px rgba(0, 0, 0, 0.04), 0 8px 10px -5px rgba(0, 0, 0, 0.08));
 
 .sd-tabbar {
     background-color: $sd-white;
@@ -26,6 +27,13 @@ $tabbar-active-color: var(--sd-tabbar-inactive-color, $sd-primary-color);
         @include hairline($sd-border-color, 'top');
     }
 
+    &--round {
+        margin-left: 32rpx;
+        margin-right: 32rpx;
+        border-radius: $sd-border-radius-round;
+        box-shadow: $tabbar-round-box-shadow;
+    }
+
     &__item {
         flex: 1;
         position: relative;
@@ -36,10 +44,6 @@ $tabbar-active-color: var(--sd-tabbar-inactive-color, $sd-primary-color);
         align-items: center;
         color: $tabbar-inactive-color;
 
-        &.is-active {
-            color: $tabbar-active-color;
-        }
-
         .sd-icon {
             font-size: $tabbar-icon-size;
         }
@@ -47,6 +51,29 @@ $tabbar-active-color: var(--sd-tabbar-inactive-color, $sd-primary-color);
         &-text {
             margin-top: 6rpx;
             font-size: $tabbar-text-size;
+        }
+
+        &.only-text &-text {
+            font-size: $sd-font-size-m;
+            margin-top: 0;
+        }
+
+        &.is-active {
+            color: $tabbar-active-color;
+        }
+
+        &.is-active.only-text::after {
+            content: '';
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            background-color: $sd-primary-color-9;
+            border-radius: $sd-border-radius-round;
+        }
+        &.is-active.only-text &-text {
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
         }
     }
 

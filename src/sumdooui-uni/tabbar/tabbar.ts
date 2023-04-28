@@ -1,24 +1,19 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { BadgeProps } from '../badge/badge'
+import type { TabbarItemProps } from '../tabbar-item/tabbar-item'
 
-export type TabbarItem = {
-    name        : string
-    icon       ?: string
-    activeIcon ?: string
-    image      ?: string
-    activeImage?: String
-    badge      ?: number
-    dot        ?: boolean
-    badgeProps ?: Omit<BadgeProps, 'badge' | 'dot'>
-    [key: string]: any
-}
+import { COMMON_PROPS } from '../common/props'
 
+export type TabbarItem = (TabbarItemProps & { [key: string]: any })
 export const tabbar_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue   : { type: [Number, String] },
-    /** 图标或图片模式 */
-    type         : { type: String as PropType<'icon' | 'image'>, default: 'icon' },
+    /** 文本模式 */
+    text         : { type: Boolean },
+    /** 圆角显示 */
+    round        : { type: Boolean },
     /** 标签选项 */
     items        : { type: Array as PropType<TabbarItem[]>, default: () => [] },
     /** 激活的颜色 */

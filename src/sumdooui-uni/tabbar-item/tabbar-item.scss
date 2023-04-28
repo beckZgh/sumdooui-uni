@@ -1,0 +1,30 @@
+@import '../styles/variables.scss';
+
+$tabbar-item-inactive-color: var(--sd-tabbar-item-inactive-color, $sd-text-color-secondary);
+$tabbar-item-active-color: var(--sd-tabbar-item-inactive-color, $sd-primary-color);
+$tabbar-item-icon-size: var(--sd-tabbar-item-icon-size, 56rpx);
+$tabbar-item-text-size: var(--sd-tabbar-item-text-size, 20rpx);
+
+.sd-tabbar-item {
+    flex: 1;
+    position: relative;
+    height: 112rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $tabbar-item-inactive-color;
+
+    &.is-active {
+        color: $tabbar-item-active-color;
+    }
+
+    .sd-icon {
+        font-size: $tabbar-item-icon-size;
+    }
+
+    &-text {
+        margin-top: 6rpx;
+        font-size: $tabbar-item-text-size;
+    }
+}

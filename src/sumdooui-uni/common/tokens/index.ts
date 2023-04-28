@@ -8,6 +8,8 @@ import type { CheckboxGroupProps } from '../../checkbox-group/checkbox-group'
 import type { RadioGroupProps } from '../../radio-group/radio-group'
 import type { FormProps } from '../../form/form'
 import type { FormItemProps } from '../../form-item/form-item'
+import type { TabbarProps } from '../../tabbar/tabbar'
+import type { TabbarItemProps } from '../../tabbar-item/tabbar-item'
 
 export const PAGE_KEY   = Symbol('page')
 export type PageProvide = {
@@ -54,3 +56,9 @@ export type FormItemProvide = {
 
 export const CELL_GROUP_KEY = Symbol('cell-group')
 export type CellGroupProvide = { props: CellGroupProps }
+
+export const TABBLE_KEY = Symbol('tabbar')
+export type TabbarProvide = {
+    props: TabbarProps
+    onChange: (item: TabbarItemProps) => void
+}
