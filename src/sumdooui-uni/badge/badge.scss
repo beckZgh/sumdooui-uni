@@ -2,6 +2,8 @@
 
 $badge-bg-color: var(--sd-badge-bg-color, $sd-danger-color);
 $badge-color   : var(--sd-badge-color, $sd-white);
+$badge-content-size: var(--sd-badge-content-size, $sd-font-size-s);
+$badge-dot-size: var(--sd-badge-dot-size, 8px);
 
 @mixin badge-theme($bg-color) {
     .sd-badge__dot,
@@ -20,9 +22,9 @@ $badge-color   : var(--sd-badge-color, $sd-white);
         justify-content: center;
         white-space: nowrap;
         padding: 0 12rpx;
-        font-size: 24rpx;
-        line-height: 36rpx;
-        border-radius: $sd-border-radius-round;
+        font-size: $badge-content-size;
+        height: 36rpx;
+        line-height: 1;
         box-sizing: border-box;
         color: $badge-color;
         background-color: $badge-bg-color;
@@ -30,8 +32,8 @@ $badge-color   : var(--sd-badge-color, $sd-white);
     }
 
     &__dot {
-        width: 8px;
-        height: 8px;
+        width: $badge-dot-size;
+        height: $badge-dot-size;
         padding: 0;
         border-radius: $sd-border-radius-circle;
         background-color: $badge-bg-color;
@@ -51,16 +53,51 @@ $badge-color   : var(--sd-badge-color, $sd-white);
         @include badge-theme($sd-danger-color);
     }
 
+    // 徽标形状
+    &--circle &__content {
+        border-radius: $sd-border-radius-round;
+    }
+
+    &--square &__content {
+        border-radius: $sd-border-radius-s;
+    }
+
+    &--bubble &__content {
+        border-radius: 10px 10px 10px 1px;
+    }
+
     &.is-absolute &__content {
         position: absolute;
-        top: 0;
-        right: 0;
-        transform: translateY(-50%) translateX(50%);
     }
 
     &.is-absolute &__dot  {
         position: absolute;
-        right: -4px;
-        top: -4px;
+        right: calc(($badge-dot-size / 2 * -1));
+        top: calc(($badge-dot-size / 2 * -1));
+    }
+
+    // 徽标位置
+    &.is-top-right.is-absolute &__content {
+        transform: translateY(-50%) translateX(50%);
+        top: 0;
+        right: 0;
+    }
+
+    &.is-top-left.is-absolute &__content {
+        transform: translateY(-50%) translateX(-50%);
+        top: 0;
+        left: 0;
+    }
+
+    &.is-bottom-left.is-absolute &__content {
+        bottom: 0;
+        left: 0;
+        transform: translateY(-50%) translateX(-50%);
+    }
+
+    &.is-bottom-right.is-absolute &__content {
+        bottom: 0;
+        right: 0;
+        transform: translateY(-50%) translateX(50%);
     }
 }

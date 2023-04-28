@@ -1,20 +1,52 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import { defineComponent, computed } from 'vue'
 import { badge_props } from './badge'
+import { MpMixin     } from '../common/mixins'
+
+import Utils from '../utils'
 
 export default defineComponent({
-    name   : 'SdBadge',
-    props  : badge_props,
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdBadge',
+    props: badge_props,
     setup(props) {
         // 徽标背景色、文本色
         const badge_style$ = computed(() => {
             const style: CSSProperties = {}
             if (props.background) style.backgroundColor = props.background
             if (props.color) style.color = props.color
+            if (props.size ) style.fontSize = Utils.toUnit(props.size)
+            if (props.offset) {
+                switch (props.position) {
+                    case 'top-right': {
+                        const [top, right] = props.offset
+                        if (top   !== undefined) style.top   = Utils.toUnit(top)
+                        if (right !== undefined) style.right = Utils.toUnit(right)
+                        break
+                    }
+                    case 'top-left': {
+                        const [top, left] = props.offset
+                        if (top  !== undefined) style.top  = Utils.toUnit(top)
+                        if (left !== undefined) style.right = Utils.toUnit(left)
+                        break
+                    }
+                    case 'bottom-right': {
+                        const [bottom, right] = props.offset
+                        if (bottom !== undefined) style.top   = Utils.toUnit(bottom)
+                        if (right  !== undefined) style.right = Utils.toUnit(right)
+                        break
+                    }
+                    case 'bottom-left': {
+                        const [bottom, left] = props.offset
+                        if (bottom !== undefined) style.top   = Utils.toUnit(bottom)
+                        if (left   !== undefined) style.right = Utils.toUnit(left)
+                        break
+                    }
+                }
+            }
             return style
         })
 
@@ -44,10 +76,16 @@ export default defineComponent({
 <template>
     <view
         class="sd-badge"
-        :class="{
-            [`sd-badge--${ type }`]: !!type,
-            'is-absolute'          : !!$slots.default,
-        }"
+        :class="[
+            customClass,
+            {
+                [`sd-badge--${ theme }`]: !!theme,
+                [`sd-badge--${ shape }`]: !!shape,
+                [`is-${ position }`]    : true,
+                'is-absolute'           : !!$slots.default,
+            },
+        ]"
+        :style="customStyle"
     >
         <slot />
         <view v-if="dot" class="sd-badge__dot" :style="badge_style$" />
