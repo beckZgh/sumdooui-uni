@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { onPageScroll } from '@dcloudio/uni-app'
 
-/** 页面不执行一次，不会输出 pageScroll 的监听函数，组件内部监听也不会触发 */
-onPageScroll(() => {})
 </script>
 
 <template>

@@ -15,7 +15,8 @@ export const PAGE_KEY   = Symbol('page')
 export type PageProvide = {
     instance: ComponentInternalInstance
     props: PageProps
-    state: { first_page: boolean; navbar_height: number }
+    isFirstPage: () => boolean
+    getNavbarHeight: () => number
 }
 
 export const COLLAPSE_KEY = Symbol('collapse')

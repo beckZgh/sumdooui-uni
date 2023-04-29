@@ -1,18 +1,36 @@
 <script setup lang="ts">
-import { onPageScroll } from '@dcloudio/uni-app'
-
-/** 页面不执行一次，不会输出 pageScroll 的监听函数，组件内部监听也不会触发 */
-onPageScroll(() => {})
+import { ref, onMounted } from 'vue'
+const offset_top = ref(0)
+const sticky_container = ref<any>(null)
+onMounted(() => {
+    sticky_container.value = () => {
+        return uni.createSelectorQuery().select('#sticky_container')
+    }
+})
 </script>
 
 <template>
-    <sd-page>
-        <sd-image width="100%" height="50%" />
-        <sd-sticky>
-            <view class="demo-sticky__title">
-                标题信息
+    <sd-page @navbar-ready="(height: number) => { offset_top = height }">
+        <view id="sticky_container" ref="sticky_container">
+            <sd-sticky :offset-top="offset_top" :container="sticky_container">
+                <view class="demo-sticky__title">
+                    容器标题
+                </view>
+            </sd-sticky>
+            <view class="placeholder" style="height: 300px;">
+                容器范围
             </view>
-        </sd-sticky>
+        </view>
         <sd-cell v-for="idx in 20" :key="idx" title="名称" arrow />
     </sd-page>
 </template>
+
+<style lang="scss" scoped>
+.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+    background-color: $sd-bg-color-container;
+}
+</style>

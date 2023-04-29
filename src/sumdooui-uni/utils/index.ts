@@ -22,10 +22,16 @@ function getValueByPath(model: any, key_path: string): any {
     }
 }
 
+export function getCurrentPage<T>() {
+    const pages = getCurrentPages()
+    return pages[pages.length - 1] as T & Page.PageInstance
+}
+
 export default {
     ...is,
     dt,
     toUnit,
     getValueByPath,
+    getCurrentPage,
     sleep,
 }

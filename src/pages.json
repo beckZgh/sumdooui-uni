@@ -80,8 +80,12 @@
                 "navigationStyle": "default"
             }
         }, {
+            "path": "pages/examples/nav/sticky/page-custom-page"
+        },{
             "path": "pages/examples/nav/sticky/page-container"
         }, {
+            "path": "pages/examples/nav/sticky/page-scroll-view"
+        },{
             "path": "pages/examples/nav/steps/main"
         },
 
