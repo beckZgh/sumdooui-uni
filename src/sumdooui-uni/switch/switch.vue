@@ -1,9 +1,12 @@
 <script lang="ts">
 import { defineComponent, ref, inject } from 'vue'
+import { MpMixin       } from '../common/mixins'
 import { switch_props } from './switch'
 import { FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdSwitch',
     props: switch_props,
     emits: ['update:modelValue', 'change'],
