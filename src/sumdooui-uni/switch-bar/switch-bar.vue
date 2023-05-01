@@ -37,8 +37,8 @@ export default defineComponent({
 <template>
     <view
         class="sd-switch-bar"
-        :class="{ 'sd-switch-bar--round': round }"
-        :style="{ background: backgrond }"
+        :class="[customClass, { 'sd-switch-bar--round': round }]"
+        :style="{ ...customStyle, background: backgrond }"
     >
         <view class="sd-switch-bar__items">
             <template v-for="(item, index) in items$" :key="index">

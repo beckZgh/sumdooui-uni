@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 export type SwitchBarItem = {
     name: string
@@ -6,6 +7,8 @@ export type SwitchBarItem = {
 }
 
 export const switch_props = {
+    ...COMMON_PROPS,
+
     /** 默认值 */
     modelValue: { type: Number, default: 0 },
     /** 是否圆角 */
