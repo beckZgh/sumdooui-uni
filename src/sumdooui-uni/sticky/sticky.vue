@@ -67,6 +67,12 @@ export default defineComponent({
         // 监听滚动设置是否吸附
         const { queryNodeInfo } = useSelectoryQuery()
         function onScroll({ scrollTop }: { scrollTop?: number } = {}) {
+            // 外部禁用，不处理
+            if (props.disabled) {
+                throttle({ fixed: false })
+                return
+            }
+
             // 指定容器范围
             if (Utils.isFunction(props.container)) {
                 Promise.all([
