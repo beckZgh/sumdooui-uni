@@ -132,7 +132,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-tabs">
+    <view class="sd-tabs" :class="customStyle" :style="customStyle">
         <sd-sticky :disabled="!sticky" :offset-top="offsetTop">
             <scroll-view
                 scroll-with-animation

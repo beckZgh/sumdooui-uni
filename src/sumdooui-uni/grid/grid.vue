@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-grid" :class="{ 'sd-grid--border': border }">
+    <view class="sd-grid" :class="[customClass, { 'sd-grid--border': border }]" :style="customStyle">
         <slot />
     </view>
 </template>

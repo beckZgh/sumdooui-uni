@@ -1,5 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { BadgeProps } from '../badge/badge'
+import { COMMON_PROPS } from '../common/props'
 
 export type TabsItem = {
     title     : string
@@ -11,6 +12,8 @@ export type TabsItem = {
 }
 
 export const tabs_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue  : { type: [String, Number], default: 0 },
     /** 标签项 */

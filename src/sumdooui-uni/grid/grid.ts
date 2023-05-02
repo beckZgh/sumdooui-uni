@@ -1,8 +1,11 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 type GridDirection = 'row' | 'column'
 
 export const grid_props = {
+    ...COMMON_PROPS,
+
     /** 每一行列数 */
     column   : { type: Number, default: 4 },
     /** 点击反馈 */
