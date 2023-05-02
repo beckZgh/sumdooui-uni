@@ -12,13 +12,8 @@
         @include hairline($sd-border-color, 'bottom');
     }
 
-
     &__item {
         @include hairline($sd-border-color, 'bottom');
-
-        .sd-button-wrap {
-            font-weight: 500;
-        }
 
         &--left .sd-button-wrap {
             justify-content: flex-start;
@@ -35,5 +30,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: $sd-font-size-m;
     }
 }

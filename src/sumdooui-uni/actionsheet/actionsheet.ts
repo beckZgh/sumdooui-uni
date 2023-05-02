@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 export interface ActionsheetItem {
     id?: string
@@ -10,6 +11,8 @@ export interface ActionsheetItem {
 }
 
 export const actionsheet_props = {
+    ...COMMON_PROPS,
+
     /** 显示隐藏绑定值 */
     visible    : { type: Boolean, default: false },
     /** 数据项目 */
