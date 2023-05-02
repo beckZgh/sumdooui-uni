@@ -27,7 +27,7 @@ export const steps_props = {
     /** 未激活时的图标 */
     inactiveIcon : { type: String, default: 'circle' },
     /** 激活时的图标 */
-    activeIcon   : { type: String, default: 'check-circle' },
+    activeIcon   : { type: String, default: 'circle-check-fill' },
     /** 未激活时的图片 */
     inactiveImage: { type: String },
     /** 激活时的图片 */
