@@ -1,16 +1,16 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted, computed, getCurrentInstance } from 'vue'
+import { MpMixin } from '../common/mixins'
 import { collapse_item_props } from './collapse-item'
 import { COLLAPSE_KEY, type CollapseProvide } from '../common/tokens'
 import { useInject, useSelectoryQuery } from '../common/hooks'
 
 export default defineComponent({
-    name   : 'SdCollapseItem',
-    props  : collapse_item_props,
-    emits  : ['change'],
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdCollapseItem',
+    props: collapse_item_props,
+    emits: ['change'],
     setup(props, { emit, expose }) {
         const { parent } = useInject<CollapseProvide>(COLLAPSE_KEY)
 
@@ -58,16 +58,20 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-collapse-item" :class="{ 'has-border': show_border$ }">
-        <view class="sd-collapse-item-cell" :class="{ 'is-open': is_open }" @tap="onClick">
+    <view
+        class="sd-collapse-item"
+        :class="[customClass, { 'has-border': show_border$ }]"
+        :style="customStyle"
+    >
+        <view class="sd-collapse-item-header" :class="{ 'is-open': is_open }" @tap="onClick">
             <sd-icon v-if="icon" :name="icon" :color="iconColor" :size="iconSize" />
-            <text class="sd-collapse-item-cell__title" :style="icon ? 'padding-left: 16rpx' : ''">
+            <text class="sd-collapse-item-header__title" :style="icon ? 'padding-left: 16rpx' : ''">
                 <slot v-if="$slots.title" />
                 <template v-else>
                     {{ title }}
                 </template>
             </text>
-            <sd-icon v-if="show_arrow$" custom-class="sd-collapse-item-cell__arrow" name="down" />
+            <sd-icon v-if="show_arrow$" custom-class="sd-collapse-item-header__arrow" name="down" />
         </view>
         <view
             class="sd-collapse-item__body"

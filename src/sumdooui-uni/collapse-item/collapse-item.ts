@@ -1,6 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 export const collapse_item_props = {
+    ...COMMON_PROPS,
+
     /** 唯一标识 */
     index    : { type: [Number, String], default: 0 },
     /** 图标 */

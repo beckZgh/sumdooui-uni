@@ -1,18 +1,26 @@
 @import '../styles/variables.scss'  ;
 
+$collapse-item-padding          : var(--sd-collapse-item-padding, 0 36rpx);
+$collapse-item-border-color     : var(--sd-collapse-item-border-color, $sd-border-color);
+$collapse-item-header-padding   : var(--sd-collapse-item-padding, 30rpx 0);
+$collapse-item-header-font-size : var(--sd-collapse-item-header-font-size, $sd-font-size-m);
+$collapse-item-header-text-color: var(--sd-collapse-item-header-text-color, $sd-text-color);
+
 .sd-collapse-item {
     position: relative;
-    padding: 0 36rpx;
+    padding: $collapse-item-padding;
 
-    &-cell {
+    &-header {
         width: 100%;
         position: relative;
         display: flex;
         align-items: center;
-        padding: 30rpx 0;
+        padding: $collapse-item-header-padding;
 
         &__title {
             flex: 1;
+            color: $collapse-item-header-text-color;
+            font-size: $collapse-item-header-font-size;
         }
 
         &__arrow {
@@ -29,7 +37,6 @@
         overflow: hidden;
         box-sizing: border-box;
         transition: height .3s;
-
     }
 
     &__detail {
@@ -39,6 +46,6 @@
 
     &.has-border &-cell,
     &.has-border &__body {
-        @include hairline($sd-border-color, 'bottom');
+        @include hairline($collapse-item-border-color, 'bottom');
     }
 }
