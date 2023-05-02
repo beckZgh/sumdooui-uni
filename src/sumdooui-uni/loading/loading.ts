@@ -1,10 +1,13 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
-type IconType = 'circle' | 'line' | 'image' | 'meet'
-type IconScene = 'page' | 'local' | 'auto'
-type IconDirection = 'row' | 'column'
+export type IconType = 'circle' | 'line' | 'image' | 'meet'
+export type IconScene = 'page' | 'local' | 'auto'
+export type IconDirection = 'row' | 'column'
 
 export const loading_props = {
+    ...COMMON_PROPS,
+
     /** loading 类型 */
     type      : { type: String as PropType<IconType>, default: 'circle' },
     /** 场景 */

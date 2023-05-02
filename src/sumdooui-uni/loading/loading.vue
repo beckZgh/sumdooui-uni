@@ -3,26 +3,24 @@ import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed } from 'vue'
 import { loading_props } from './loading'
+import { MpMixin } from '../common/mixins'
 import Utils from '../utils'
 
 export default defineComponent({
-    name   : 'SdLoading',
-    props  : loading_props,
-    options: {
-        virtualHost: true,
-    },
+    ...MpMixin,
+
+    name : 'SdLoading',
+    props: loading_props,
     setup(props) {
-        const loading_style$ = computed(() => {
-            const style: CSSProperties = {}
+        const root_style$ = computed(() => {
+            const style: CSSProperties = { ...props.customStyle }
             if (props.height    ) style.height = Utils.toUnit(props.height)
             if (props.background) style.backgroundColor = props.background
             if (props.color     ) style['--sd-loading-color'] = props.color
             return style
         })
 
-        return {
-            loading_style$,
-        }
+        return { root_style$ }
     },
 })
 </script>
@@ -30,16 +28,16 @@ export default defineComponent({
 <template>
     <view
         class="sd-loading"
-        :class="{
-            [`sd-loading--${ scene }`]                                  : true,
-            [`sd-loading--${ scene === 'page' ? 'column' : direction }`]: true,
-        }"
-        :style="loading_style$"
+        :class="[
+            customClass,
+            {
+                [`sd-loading--${ scene }`]                                  : true,
+                [`sd-loading--${ scene === 'page' ? 'column' : direction }`]: true,
+            },
+        ]"
+        :style="root_style$"
     >
-        <view
-            v-if="type === 'circle'"
-            class="sd-loading__circle"
-        />
+        <view v-if="type === 'circle'" class="sd-loading__circle" />
 
         <view v-if="type === 'line'" class="sd-loading__line">
             <template v-for="idx in 5" :key="idx">
@@ -50,10 +48,7 @@ export default defineComponent({
             </template>
         </view>
 
-        <view
-            v-if="type === 'meet'"
-            class="sd-loading__meet"
-        />
+        <view v-if="type === 'meet'" class="sd-loading__meet" />
 
         <text v-if="text" class="sd-loading__text">
             {{ text }}
