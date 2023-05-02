@@ -1,18 +1,21 @@
 <script lang="ts">
-import { defineComponent, reactive, toRef, computed } from 'vue'
+import { defineComponent, reactive, toRefs, computed } from 'vue'
 import { DEFAULT_OPTIONS, type ToastProps } from './toast'
+import { COMMON_PROPS } from '../common/props'
+import { MpMixin      } from '../common/mixins'
 
 export default defineComponent({
-    name: 'SdToast',
+    ...MpMixin,
+
+    name : 'SdToast',
+    props: COMMON_PROPS,
     setup(_, { expose }) {
         const state = reactive({
             visible    : false,
             toast_props: { ...DEFAULT_OPTIONS } as ToastProps,
         })
 
-        /**
-         * 纯文本使用 row 模式
-         */
+        /** 纯文本使用 row 模式 */
         const root_class$ = computed(() => {
             const toast_props = state.toast_props
             let is_row = toast_props.direction === 'row'
@@ -74,9 +77,9 @@ export default defineComponent({
         function stopEvent() {}
 
         expose({ show, hide })
+
         return {
-            visible    : toRef(state, 'visible'),
-            total_props: toRef(state, 'toast_props'),
+            ...toRefs(state),
             root_class$,
             stopEvent,
         }
@@ -85,29 +88,30 @@ export default defineComponent({
 </script>
 
 <template>
-    <view v-if="visible && total_props.mask" clas="sd-toast-mask" catchtouchmove="stopEvent" />
+    <view v-if="visible && toast_props.mask" clas="sd-toast-mask" catchtouchmove="stopEvent" />
     <view
         v-if="visible"
         class="sd-toast"
-        :class="root_class$"
+        :class="[customClass, root_class$]"
+        :style="customStyle"
         catchtouchmove="stopEvent"
     >
         <view class="sd-toast__content">
-            <sd-loading v-if="total_props.type === 'loading'" color="#fff" :type="total_props.loadingType" />
+            <sd-loading v-if="toast_props.type === 'loading'" color="#fff" :type="toast_props.loadingType" />
             <sd-icon
-                v-else-if="total_props.icon"
-                :name="total_props.icon"
-                :color="total_props.iconColor ? total_props.iconColor : undefined"
-                :size="total_props.iconSize"
+                v-else-if="toast_props.icon"
+                :name="toast_props.icon"
+                :color="toast_props.iconColor ? toast_props.iconColor : undefined"
+                :size="toast_props.iconSize"
             />
             <sd-image
-                v-if="total_props.image"
-                :src="total_props.image"
-                :width="total_props.imageWidth"
-                :height="total_props.imageHeight"
+                v-if="toast_props.image"
+                :src="toast_props.image"
+                :width="toast_props.imageWidth"
+                :height="toast_props.imageHeight"
             />
             <view class="sd-toast__text">
-                {{ total_props.message }}
+                {{ toast_props.message }}
             </view>
         </view>
     </view>

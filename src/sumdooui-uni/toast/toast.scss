@@ -1,10 +1,10 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$toast-bg-color: var(--sd-toast-bg-color, $sd-black);
-$toast-mask-z-index: var(--sd-toast-z-index, 998);
-$toast-z-index: var(--sd-toast-z-index, 999);
-$toast-padding: var(--sd-toast-padding, 24rpx 42rpx);
-$toast-font-size: var(--sd-toast-font-size, $sd-font-size-m);
+$toast-bg-color     : var(--sd-toast-bg-color, $sd-black);
+$toast-mask-z-index : var(--sd-toast-z-index, 998);
+$toast-z-index      : var(--sd-toast-z-index, 999);
+$toast-padding      : var(--sd-toast-padding, 24rpx 42rpx);
+$toast-font-size    : var(--sd-toast-font-size, $sd-font-size-m);
 $toast-border-radius: var(--sd-toast-border-radius, $sd-border-radius-l);
 
 .sd-toast-mask {
