@@ -101,7 +101,6 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
     display: inline-block;
     flex-shrink: 0;
     box-sizing: border-box;
-    font-weight: bold;
 
     // 点击态
     &::before {
