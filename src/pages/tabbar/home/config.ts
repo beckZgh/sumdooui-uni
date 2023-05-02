@@ -29,6 +29,14 @@ export default [{
         icon: 'animation',
         name: 'Animtae 动画/动效',
         page: 'animate',
+    }, {
+        icon: 'backdrop',
+        name: 'Overlay 遮罩层',
+        page: 'overlay',
+    }, {
+        icon: 'bottompopup',
+        name: 'Popup 弹出层',
+        page: 'popup',
     }],
 }, {
     id  : 'layout',
@@ -50,10 +58,14 @@ export default [{
         name: 'Grid 宫格',
         page: 'grid',
     }, {
-        icon: 'card',
-        name: 'Card 卡片',
-        page: '',
-    }],
+        icon: 'divider',
+        name: 'Divider 分割线',
+        page: 'divider',
+    }, {
+        icon: 'empty',
+        name: 'Empty 缺省页',
+        page: 'empty',
+    } ],
 }, {
     id  : 'nav',
     name: '导航组件',
@@ -92,27 +104,19 @@ export default [{
     }, {
         icon: 'pagination',
         name: 'FixedNav 悬浮导航',
-        page: 'fixed-nav',
-    }],
+        page: '',
+    }, {
+        icon: 'dropdownmenu',
+        name: 'DropdownMenu 下拉菜单',
+        page: '',
+    } ],
 },  {
     id  : 'operate',
     name: '操作反馈',
-    data: [{
-        icon: 'backdrop',
-        name: 'Overlay 遮罩层',
-        page: 'overlay',
-    }, {
+    data: [ {
         icon: 'toast',
         name: 'Toast 轻提示',
         page: 'toast',
-    }, {
-        icon: 'bottompopup',
-        name: 'Popup 弹出层',
-        page: 'popup',
-    }, {
-        icon: 'drawer',
-        name: 'Drawer 抽屉',
-        page: 'drawer',
     }, {
         icon: 'actionsheet',
         name: 'ActionSheet 上拉菜单',
@@ -121,10 +125,6 @@ export default [{
         icon: 'dialog',
         name: 'Dialog 对话框',
         page: 'dialog',
-    }, {
-        icon: 'dropdownmenu',
-        name: 'DropdownMenu 下拉菜单',
-        page: '',
     }, {
         icon: 'loading',
         name: 'Loading 加载',
@@ -136,6 +136,10 @@ export default [{
     }, {
         icon: 'swipeaction',
         name: 'Backtop 返回顶部',
+        page: '',
+    }, {
+        icon: 'empty',
+        name: 'PullRefresh 下拉刷新',
         page: '',
     }],
 }, {
@@ -170,17 +174,9 @@ export default [{
         name: 'Collapse 折叠面板',
         page: 'collapse',
     }, {
-        icon: 'divider',
-        name: 'Divider 分割线',
-        page: 'divider',
-    }, {
         icon: 'loadmore',
         name: 'LoadMore 加载更多',
         page: '',
-    }, {
-        icon: 'empty',
-        name: 'Empty 缺省页',
-        page: 'empty',
     }, {
         icon: 'empty',
         name: 'Noticebar 公告栏',
@@ -188,19 +184,15 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Result 结果页',
-        page: 'result',
+        page: '',
     }, {
         icon: 'empty',
         name: 'Table 表格',
-        page: 'table',
+        page: '',
     }, {
         icon: 'empty',
         name: 'ImagePreview 图片预览',
-        page: 'image-preview',
-    }, {
-        icon: 'empty',
-        name: 'PullRefresh 下拉刷新',
-        page: 'pull-refresh',
+        page: '',
     }],
 }, {
     id  : 'form',
@@ -240,19 +232,19 @@ export default [{
     }, {
         icon: 'textarea',
         name: 'DatePicker 日期时间选择器',
-        page: 'date-picker',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'AreaPicker 地区选择器',
-        page: 'area-picker',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'Uploader 上传',
-        page: 'uploader',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'Rate 评分',
-        page: 'rate',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'SliderRange 滑块区间',
@@ -260,10 +252,10 @@ export default [{
     }, {
         icon: 'textarea',
         name: 'Keyboard 键盘',
-        page: 'keyboard',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'Calendar 日历',
-        page: 'calendar',
+        page: '',
     }],
 }]

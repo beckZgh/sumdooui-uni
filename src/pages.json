@@ -22,6 +22,10 @@
             "path": "pages/examples/basics/image/main"
         }, {
             "path": "pages/examples/basics/animate/main"
+        }, {
+            "path": "pages/examples/basics/overlay/main"
+        }, {
+            "path": "pages/examples/basics/popup/main"
         },
 
         // 布局组件
@@ -45,13 +49,7 @@
         }, {
             "path": "pages/examples/operate/loading/page-meet"
         }, {
-            "path": "pages/examples/operate/overlay/main"
-        }, {
             "path": "pages/examples/operate/toast/main"
-        }, {
-            "path": "pages/examples/operate/popup/main"
-        }, {
-            "path": "pages/examples/operate/drawer/main"
         }, {
             "path": "pages/examples/operate/actionsheet/main"
         }, {
@@ -63,6 +61,11 @@
             "path": "pages/examples/nav/navbar/main"
         }, {
             "path": "pages/examples/nav/tabs/main"
+        }, {
+            "path": "pages/examples/nav/tabs/tabs-sticky",
+            "style": {
+                "navigationStyle": "default"
+            }
         }, {
             "path": "pages/examples/nav/tabbar/main"
         }, {
