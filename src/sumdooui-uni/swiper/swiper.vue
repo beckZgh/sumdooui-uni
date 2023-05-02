@@ -1,9 +1,12 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { swiper_props, type SwiperItem } from './swiper'
+import { MpMixin } from '../common/mixins'
 
 import Utils from '../utils'
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdSwiper',
     props: swiper_props,
     emits: [
@@ -19,12 +22,13 @@ export default defineComponent({
         'chooseavatar',
         'error',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const root_style$ = computed(() => {
-            return { width: Utils.toUnit(props.width), height: Utils.toUnit(props.height) }
+            return {
+                ...props.customStyle,
+                width : Utils.toUnit(props.width),
+                height: Utils.toUnit(props.height),
+            }
         })
 
         function onClick(item: SwiperItem, index: number) {
@@ -66,7 +70,10 @@ export default defineComponent({
 <template>
     <view
         class="sd-swiper"
-        :class="{ [`sd-swiper--${ type }`]: !!type, 'sd-swiper--vertical': vertical }"
+        :class="[
+            customClass,
+            { [`sd-swiper--${ type }`]: !!type, 'sd-swiper--vertical': vertical },
+        ]"
         :style="root_style$"
     >
         <swiper

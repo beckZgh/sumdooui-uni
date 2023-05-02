@@ -1,4 +1,4 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
 .sd-swiper {
     position: relative;
@@ -14,8 +14,6 @@
     &__item-button {
         @include reset-button()
     }
-
-
 
     // 指示器
     &__dots {
