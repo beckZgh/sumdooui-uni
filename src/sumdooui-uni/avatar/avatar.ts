@@ -1,9 +1,12 @@
 import type { PropType, ExtractPropTypes , CSSProperties } from 'vue'
+import type { Component } from '../common/types'
+import { COMMON_PROPS } from '../common/props'
 
 type AvatarShapeType = 'circle' | 'round' | 'none'
-type AvatarSize = 'small' | 'medium' | 'large'
 
 export const avatar_props = {
+    ...COMMON_PROPS,
+
     /** 头像资源路径 */
     src       : { type: String },
     /** 图标显示 */
@@ -23,7 +26,7 @@ export const avatar_props = {
     /** 标识内容 */
     markText  : { type: String },
     // 预设大小
-    size      : { type: String as PropType<AvatarSize>, default: 'large' },
+    size      : { type: String as PropType<Component.Size>, default: 'normal' },
     /** 背景色 */
     background: { type: String },
 }

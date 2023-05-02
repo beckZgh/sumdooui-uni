@@ -1,44 +1,56 @@
 @import '../styles/variables.scss'  ;
 
+$avatar-color               : var(--sd-avatar-color, $sd-text-color);
+$avatar-bg-color            : var(--sd-avatar-bg-color, $sd-bg-color-container);
+$avatar-small-size          : var(--sd-avatar-small-size, 64rpx);
+$avatar-normal-size         : var(--sd-avatar-normal-size, 96rpx);
+$avatar-large-size          : var(--sd-avatar-large-size, 128rpx);
+$avatar-small-font-size     : var(--sd-avatar-small-size, 32rpx);
+$avatar-normal-font-size    : var(--sd-avatar-normal-size, 36rpx);
+$avatar-large-font-size     : var(--sd-avatar-large-size, 50rpx);
+$avatar-border-radius-circle: var(--sd-avatar-border-radius-circle, $sd-border-radius-circle);
+$avatar-border-radius-round : var(--sd-avatar-border-radius-round, $sd-border-radius-round);
+
+@mixin avatar-size($size, $font-size) {
+    width: $size;
+    height: $size;
+
+    .sd-icon {
+        width: $font-size;
+        height: $font-size;
+    }
+
+    .sd-icon,
+    .sd-avatar__text {
+        font-size: $font-size;
+    }
+}
+
 .sd-avatar {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: $sd-bg-color-container;
+    background-color: $avatar-bg-color;
+    color: $avatar-color;
 
     &--small {
-        width: 64rpx;
-        height: 64rpx;
+        @include avatar-size($avatar-small-size, $avatar-small-font-size);
     }
 
-    &--medium {
-        width: 96rpx;
-        height: 96rpx;
-
-        .sd-icon,
-        .sd-avatar__text {
-            font-size: 36rpx;
-        }
+    &--normal {
+        @include avatar-size($avatar-normal-size, $avatar-normal-font-size);
     }
 
     &--large {
-        width: 128rpx;
-        height: 128rpx;
-
-        .sd-icon,
-        .sd-avatar__text {
-            font-size: 50rpx;
-        }
+        @include avatar-size($avatar-large-size, $avatar-large-font-size);
     }
 
     &--circle {
-        border-radius: $sd-border-radius-circle;
+        border-radius: $avatar-border-radius-circle;
     }
 
     &--round {
-        border-radius: $sd-border-radius-base;
+        border-radius: $avatar-border-radius-round;
     }
-
-
 }

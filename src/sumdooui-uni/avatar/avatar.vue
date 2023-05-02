@@ -1,29 +1,27 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { avatar_props   } from './avatar'
+import { defineComponent } from 'vue'
+import { MpMixin         } from '../common/mixins'
+import { avatar_props    } from './avatar'
 
 export default defineComponent({
-    name   : 'SdAvatar',
-    props  : avatar_props,
-    options: {
-        virtualHost: true,
-    },
-    setup(props, { emit }) {
-        const visible = ref(false)
-        return {
-            visible,
-        }
-    },
+    ...MpMixin,
+
+    name : 'SdAvatar',
+    props: avatar_props,
 })
 </script>
 
 <template>
     <view
         class="sd-avatar"
-        :class="{
-            [`sd-avatar--${ shape }`]: true,
-            [`sd-avatar--${ size }`] : ['small', 'medium', 'large'].includes(size || ''),
-        }"
+        :class="[
+            customClass,
+            {
+                [`sd-avatar--${ shape }`]: true,
+                [`sd-avatar--${ size }`] : true,
+            },
+        ]"
+        :style="customStyle"
     >
         <slot v-if="$slots.default" />
         <template v-else>
