@@ -1,0 +1,119 @@
+@import '../styles/variables.scss';
+
+$notice-bar-height   : 80rpx;
+$notice-bar-padding  : var(--sd-notice-bar-padding, 0 32rpx);
+$notice-bar-font-size: var(--sd-notice-bar-font-size, $sd-font-size-base);
+$notice-bar-icon-size: var(--sd-notice-bar-icon-size, 40rpx);
+$notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
+
+@mixin notice-bar-theme($bg-color, $color) {
+    background-color: $bg-color;
+    color: $color;
+}
+
+.sd-notice-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: $notice-bar-height;
+    padding: $notice-bar-padding;
+    font-size: $notice-bar-font-size;
+    box-sizing: border-box;
+
+    &__prefix,
+    &__suffix {
+        min-width: 60rpx;
+    }
+    &__prefix .sd-icon {
+        font-size: $notice-bar-icon-size;
+        width: $notice-bar-icon-size;
+        height: $notice-bar-icon-size;
+    }
+    &__suffix .sd-icon {
+        font-size: $notice-bar-icon-close-size;
+        width: $notice-bar-icon-close-size;
+        height: $notice-bar-icon-close-size;
+    }
+
+    &__suffix {
+        text-align: right;
+    }
+
+    &__body {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+        height: $notice-bar-height;
+        line-height: $notice-bar-height;
+    }
+
+    &__content {
+        position: absolute;
+        white-space: nowrap;
+
+        // 只跑一次
+        &.play {
+            animation: sd-notice-bar-play linear both running;
+        }
+
+        &.play-infinite {
+            animation: sd-notice-bar-play-infinite linear infinite both running;
+        }
+
+        &.is-ellipsis {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &--wrapable {
+        padding-top: 24rpx;
+        padding-bottom: 24rpx;
+        height: auto;
+
+        .sd-notice-bar__body {
+            height: auto;
+            line-height: 1.5;
+        }
+
+        .sd-notice-bar__content {
+            position: relative;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+    }
+
+    &--default {
+        @include notice-bar-theme($sd-bg-color-container, $sd-text-color);
+    }
+
+    &--primary {
+        @include notice-bar-theme($sd-primary-color-9, $sd-primary-color);
+    }
+
+    &--success {
+        @include notice-bar-theme($sd-success-color-9, $sd-success-color);
+    }
+
+    &--warning {
+        @include notice-bar-theme($sd-warning-color-9, $sd-warning-color);
+    }
+
+    &--danger {
+        @include notice-bar-theme($sd-danger-color-9, $sd-danger-color);
+    }
+}
+
+@keyframes sd-notice-bar-play {
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes sd-notice-bar-play-infinite {
+    to {
+        transform: translateX(-100%);
+    }
+}
