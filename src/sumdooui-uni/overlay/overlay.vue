@@ -1,9 +1,12 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import { defineComponent, computed, ref, watch, onMounted } from 'vue'
+import { MpMixin       } from '../common/mixins'
 import { overlay_props } from './overlay'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdOverlay',
     props: overlay_props,
     emits: [
@@ -13,9 +16,6 @@ export default defineComponent({
         'touchmove',
         'touchend',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const status = ref<'show' | 'hide' | ''>('')
 
@@ -36,7 +36,8 @@ export default defineComponent({
             if (status.value && props.duration) {
                 style.transitionDuration = `${ props.duration }s`
             }
-            if (props.zIndex) style.zIndex = props.zIndex
+            if (props.background) style.backgroundColor = props.background
+            if (props.zIndex    ) style.zIndex = props.zIndex
             return style
         })
 
@@ -65,7 +66,7 @@ export default defineComponent({
 <template>
     <view
         class="sd-overlay"
-        :class="[{ [`is-${ status }`]: !!status }, customClass]"
+        :class="[customClass, { [`is-${ status }`]: !!status }]"
         :style="root_style$"
         @transitionend="onTransitionEnd"
         @touchstart="$emit('touchstart', $event)"

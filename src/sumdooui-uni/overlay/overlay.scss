@@ -6,11 +6,10 @@ $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
 
 .sd-overlay {
     position: fixed;
-    top: var(--sd-page-navbar-height, 0);
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: $overlay-bg-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,6 +18,7 @@ $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
     opacity: 0;
     transform: translateZ(0);
     transform: scale3d(1, 1, 0);
+    background-color: $overlay-bg-color;
 
     &.is-show {
         transition-property: opacity;
