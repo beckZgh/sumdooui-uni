@@ -1,0 +1,110 @@
+@import '../styles/variables.scss';
+
+$stepper-button-width: 56rpx;
+$stepper-button-height: 56rpx;
+$stepper-input-width: 72rpx;
+$stepper-input-height: 56rpx;
+$stepper-icon-size: 38rpx;
+
+.sd-stepper {
+    display: flex;
+
+    &__minus,
+    &__plus,
+    &__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $sd-bg-color-container;
+        border-radius: $sd-border-radius-s;
+        box-sizing: border-box;
+    }
+
+    &__minus,
+    &__plus {
+        position: relative;
+        width: $stepper-button-width;
+        height: $stepper-button-height;
+
+        .sd-icon {
+            font-size: $stepper-icon-size;
+            width: $stepper-icon-size;
+            height: $stepper-icon-size;
+        }
+
+        &:active {
+            opacity: $sd-opacity-hover;
+        }
+
+        &.is-disabled:active {
+            opacity: 1;
+        }
+    }
+
+    &__minus::before {
+        content: '';
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        top: 50%;
+        height: 2px;
+        border-radius: 2px;
+        background-color: $sd-text-color;
+        transform: translateY(-50%);
+    }
+    &__plus::before {
+        content: '';
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        top: 50%;
+        height: 2px;
+        border-radius: 2px;
+        background-color: $sd-text-color;
+        transform: translateY(-50%);
+    }
+    &__plus:after {
+        content: '';
+        position: absolute;
+        top: 25%;
+        bottom: 25%;
+        left: 50%;
+        width: 2px;
+        border-radius: 2px;
+        background-color: $sd-text-color;
+        transform: translateX(-50%);
+    }
+
+    &__minus::before,
+    &__plus::before,
+    &__plus::after {
+        border-radius: $sd-border-radius-s;
+        z-index: 1;
+    }
+
+    &__input {
+        width: $stepper-input-width;
+        height: $stepper-input-height;
+        margin: 0 2px;
+
+        &:active {
+            opacity: $sd-opacity-hover;
+        }
+
+        &.is-disabled:active {
+            opacity: 1;
+        }
+    }
+
+    &__minus,
+    &__plus,
+    &__input {
+        &.is-disabled {
+            opacity: $sd-opacity-disabled;
+        }
+
+        .sd-icon {
+            color: $sd-text-color-disabled;
+        }
+    }
+}
