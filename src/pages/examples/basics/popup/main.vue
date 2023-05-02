@@ -7,88 +7,68 @@ const m = reactive({
     top_popup_2        : false,
     center_popup       : false,
     center_popup_2     : false,
+    left_popup         : false,
+    right_popup        : false,
     custom_bottom_popup: false,
 })
 </script>
 
 <template>
     <sd-page title="Popup 弹出层">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                底部弹层
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.bottom_popup = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="底部弹层" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.bottom_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                底部弹层 (支持手势关闭)
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.bottom_popup_2 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="底部弹层 (支持手势关闭)" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.bottom_popup_2 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                顶部弹层
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.top_popup = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="顶部弹层" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.top_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                顶部弹层 (支持手势关闭)
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.top_popup_2 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="顶部弹层 (支持手势关闭)" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.top_popup_2 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                居中弹层
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.center_popup = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="左侧弹层" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.left_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                幕帘效果
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.center_popup_2 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                自定义底部
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.custom_bottom_popup = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="右侧弹层" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.right_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
+
+        <demo-card title="居中弹层" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.center_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
+
+        <demo-card title="幕帘效果" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.center_popup_2 = true">
+                应用
+            </sd-button>
+        </demo-card>
+
+        <demo-card title="自定义底部" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.custom_bottom_popup = true">
+                应用
+            </sd-button>
+        </demo-card>
 
         <!-- 底部弹窗 -->
         <sd-popup v-model:visible="m.bottom_popup" title="标题">
@@ -115,6 +95,22 @@ const m = reactive({
         <sd-popup v-model:visible="m.top_popup_2" position="top" gesture-closeable title="标题">
             <template v-for="idx in 30" :key="idx">
                 <sd-cell :title="`标题 - ${ idx }`" />
+            </template>
+        </sd-popup>
+
+        <!-- 左抽屉 -->
+        <sd-popup v-model:visible="m.left_popup" position="left">
+            <sd-image width="100%" height="50%" />
+            <template v-for="idx in 5" :key="idx">
+                <sd-cell title="标题" arrow />
+            </template>
+        </sd-popup>
+
+        <!-- 右抽屉 -->
+        <sd-popup v-model:visible="m.right_popup" position="right">
+            <sd-image width="100%" height="50%" />
+            <template v-for="idx in 5" :key="idx">
+                <sd-cell title="标题" arrow />
             </template>
         </sd-popup>
 

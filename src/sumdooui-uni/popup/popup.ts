@@ -1,8 +1,11 @@
 import type { ExtractPropTypes , PropType } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 type PopupPosition = 'left' | 'right' | 'top' | 'bottom' | 'center'
 
 export const popup_props = {
+    ...COMMON_PROPS,
+
     /** 显示绑定值 */
     visible         : { type: Boolean, default: false },
     /** 弹出位置 */
@@ -31,6 +34,8 @@ export const popup_props = {
     scrollable      : { type: Boolean, default: true },
     /** 关闭时，销毁其中的元素 */
     destroyOnclose  : { type: Boolean, default: true },
+    /** 层叠值 */
+    zIndex          : { type: Number },
 }
 
 export type PopupProps = ExtractPropTypes<typeof popup_props>

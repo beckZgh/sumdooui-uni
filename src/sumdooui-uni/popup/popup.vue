@@ -1,11 +1,14 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
+import { MpMixin         } from '../common/mixins'
 import { popup_props     } from './popup'
 import { useGestureSlide } from './use-gesture-slide'
 
 import Utils from '../utils'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdPopup',
     props: popup_props,
     emits: [
@@ -18,9 +21,6 @@ export default defineComponent({
         'close',
         'closed',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         // 手势滑动
         const {
@@ -89,6 +89,7 @@ export default defineComponent({
     <sd-overlay
         :visible="mask && visible"
         :duration="duration"
+        :z-index="zIndex"
         @touchstart="onTouchStart"
         @touchend="onTouchEnd"
         @touchmove.stop="onTouchMove"
@@ -99,6 +100,7 @@ export default defineComponent({
         :mode="position"
         :duration="duration"
         :width="width"
+        :z-index="zIndex"
         :custom-style="slide_style"
         @touchstart="onTouchStart"
         @touchend="onTouchEnd"
@@ -111,7 +113,8 @@ export default defineComponent({
         <view
             v-if="!is_closed"
             class="sd-popup"
-            :class="{ [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true }"
+            :class="[customClass, { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true }]"
+            :style="customStyle"
         >
             <!-- 顶部区域 -->
             <view v-if="title || show_top_close$" class="sd-popup__header">

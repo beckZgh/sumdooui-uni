@@ -1,11 +1,14 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import { defineComponent, onMounted, ref, watch, computed } from 'vue'
+import { MpMixin          } from '../common/mixins'
 import { transition_props } from './transition'
 
 import Utils from '../utils'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdTransition',
     props: transition_props,
     emits: [
@@ -18,9 +21,6 @@ export default defineComponent({
         'opened',
         'closed',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const status = ref<'show' | 'hide' | ''>('')
 
