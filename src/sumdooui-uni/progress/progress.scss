@@ -1,5 +1,9 @@
 @import '../styles/variables.scss'  ;
 
+$progress-outer-bg-color: var(--sd-progress-outer-bg-color, $sd-bg-color-container);
+$progress-inner-bg-color: var(--sd-progress-inner-bg-color, $sd-primary-color);
+$progress-border-radius : var(--sd-progress-outer-border-radius, $sd-border-radius-round);
+
 .sd-progress {
     position: relative;
     width: 100%;
@@ -11,18 +15,18 @@
         position: relative;
         flex: 1;
         height: 10px;
-        background-color: $sd-bg-color-container;
-        border-radius: $sd-border-radius-round;
+        background-color: $progress-outer-bg-color;
+        border-radius: $progress-border-radius;
 
         .sd-progress__text {
             position: absolute;
             left: 0;
             top: 50%;
+            padding: 6rpx 12rpx;
+            color: $sd-white;
             font-size: $sd-font-size-xs;
             background-color: $sd-primary-color;
-            padding: 6rpx 12rpx;
             border-radius: $sd-border-radius-s;
-            color: $sd-white;
             transition: all .4s;
         }
     }
@@ -31,8 +35,8 @@
         position: relative;
         width: 0;
         height: 100%;
-        border-radius: $sd-border-radius-round;
-        background-color: $sd-primary-color;
+        border-radius: $progress-border-radius;
+        background-color: $progress-inner-bg-color;
         transition: all .4s;
     }
 

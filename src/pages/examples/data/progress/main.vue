@@ -18,79 +18,59 @@ function minus(key: keyof typeof m) {
 
 <template>
     <sd-page title="Progress 进度条">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                基本用法
-            </view>
-            <view class="demo-card__body">
-                <sd-progress :value="m.percentage_1" />
-                <sd-progress :value="m.percentage_1" :text-inside="false" />
+        <demo-card title="基本用法">
+            <sd-progress :value="m.percentage_1" />
+            <sd-progress :value="m.percentage_1" :text-inside="false" />
 
-                <view class="btn-wrap">
-                    <sd-button type="primary" size="small" @click="plus('percentage_1')">
-                        增加
-                    </sd-button>
-                    <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" variant="plain" @click="minus('percentage_1')">
-                        减少
-                    </sd-button>
-                </view>
+            <view class="sd-flex-x-center">
+                <sd-button size="small" @click="plus('percentage_1')">
+                    增加
+                </sd-button>
+                <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" @click="minus('percentage_1')">
+                    减少
+                </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                设置进度条高度
-            </view>
-            <view class="demo-card__body">
-                <sd-progress :value="m.percentage_2" :stoke-width="16" circle />
+        <demo-card title="设置进度条高度">
+            <sd-progress :value="m.percentage_1" :stoke-width="16" circle />
 
-                <view class="btn-wrap">
-                    <sd-button type="primary" size="small" @click="plus('percentage_2')">
-                        增加
-                    </sd-button>
-                    <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" variant="plain" @click="minus('percentage_2')">
-                        减少
-                    </sd-button>
-                </view>
+            <view class="sd-flex-x-center">
+                <sd-button size="small" @click="plus('percentage_1')">
+                    增加
+                </sd-button>
+                <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" @click="minus('percentage_1')">
+                    减少
+                </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                设置进度条颜色
-            </view>
-            <view class="demo-card__body">
-                <sd-progress :value="m.percentage_2" stoke-color="#85ce61" />
+        <demo-card title="设置进度条颜色">
+            <sd-progress :value="m.percentage_1" stoke-color="#85ce61" />
 
-                <view class="btn-wrap">
-                    <sd-button type="primary" size="small" @click="plus('percentage_2')">
-                        增加
-                    </sd-button>
-                    <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" variant="plain" @click="minus('percentage_2')">
-                        减少
-                    </sd-button>
-                </view>
+            <view class="sd-flex-x-center">
+                <sd-button size="small" @click="plus('percentage_1')">
+                    增加
+                </sd-button>
+                <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" @click="minus('percentage_1')">
+                    减少
+                </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                不显示文本及自定义文本
-            </view>
-            <view class="demo-card__body">
-                <sd-progress :value="m.percentage_2" :show-text="false" />
-                <sd-progress :value="m.percentage_2" text="差的远了" />
+        <demo-card title="不显示文本及自定义文本">
+            <sd-progress :value="m.percentage_2" :show-text="false" />
+            <sd-progress :value="m.percentage_2" text="差的远了" />
 
-                <view class="btn-wrap">
-                    <sd-button type="primary" size="small" @click="plus('percentage_2')">
-                        增加
-                    </sd-button>
-                    <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" variant="plain" @click="minus('percentage_2')">
-                        减少
-                    </sd-button>
-                </view>
+            <view class="sd-flex-x-center">
+                <sd-button size="small" @click="plus('percentage_2')">
+                    增加
+                </sd-button>
+                <sd-button size="small" :custom-style="{ marginLeft: '30rpx' }" @click="minus('percentage_2')">
+                    减少
+                </sd-button>
             </view>
-        </view>
+        </demo-card>
     </sd-page>
 </template>
 

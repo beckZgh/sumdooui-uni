@@ -1,9 +1,12 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import { defineComponent, computed } from 'vue'
+import { MpMixin        } from '../common/mixins'
 import { progress_props } from './progress'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdProgress',
     props: progress_props,
     setup(props) {
@@ -15,15 +18,13 @@ export default defineComponent({
             return style
         })
 
-        return {
-            inner_style$,
-        }
+        return { inner_style$ }
     },
 })
 </script>
 
 <template>
-    <view class="sd-progress">
+    <view class="sd-progress" :class="customClass" :style="customStyle">
         <view
             class="sd-progress-outer"
             :style="{ height: stokeWidth ? `${ stokeWidth }px` : undefined }"

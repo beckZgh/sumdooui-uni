@@ -1,6 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
+import { COMMON_PROPS } from '../common/props'
 
 export const progress_props = {
+    ...COMMON_PROPS,
+
     /** 当前进度  0-100 */
     value     : { type: Number, default: 0 },
     /** 进度条颜色 */
