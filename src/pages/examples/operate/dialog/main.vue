@@ -18,104 +18,59 @@ const m = reactive({
 
 <template>
     <sd-page title="Dialog 对话框">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                默认对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_1 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="默认对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_1 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                成功对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_2 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="成功对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_2 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                错误对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_3 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="错误对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_3 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                警告对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_4 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="警告对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_4 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                确认对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_5 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="确认对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_5 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                输入对话框
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_6 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="输入对话框" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_6 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                按钮纵向排列
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_7 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="按钮纵向排列" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_7 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                显示头部情景图
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_8 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="显示头部情景图" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_8 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                显示超长内容
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.dialog_9 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="显示超长内容" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.dialog_9 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
         <!-- 确认消息 -->
         <sd-dialog v-model:visible="m.dialog_1" type="alert" title="标题" :content="m.dialog_content" />

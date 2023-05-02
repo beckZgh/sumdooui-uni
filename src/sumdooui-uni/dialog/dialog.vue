@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { dialog_props } from './dialog'
+import Utils from '../utils'
 
 export default defineComponent({
     name : 'SdDialog',
@@ -13,7 +14,11 @@ export default defineComponent({
     setup(props, { emit }) {
         const visible$ = computed({
             get() { return props.visible },
-            set(value) {
+            async set(value) {
+                if (!value && Utils.isFunction(props.beforeClose)) {
+                    const res = await props.beforeClose()
+                    if ( !res ) return
+                }
                 emit('update:visible', value)
             },
         })
@@ -105,7 +110,6 @@ export default defineComponent({
                         :type="inputType"
                         :placeholder="placeholder"
                         :maxlength="maxLength"
-                        :focus="true"
                         @input="onInput"
                     >
                 </template>
@@ -118,11 +122,11 @@ export default defineComponent({
             <slot v-if="$slots.footer" name="footer" />
             <template v-else>
                 <template v-if="show_cancel_button$">
-                    <sd-button block size="small" @click="onClickCancel">
+                    <sd-button block @click="onClickCancel">
                         {{ cancelButtonText }}
                     </sd-button>
                 </template>
-                <sd-button block size="small" type="primary" @click="onClickConfirm">
+                <sd-button block type="primary" @click="onClickConfirm">
                     {{ confirmButtonText }}
                 </sd-button>
             </template>
@@ -132,11 +136,11 @@ export default defineComponent({
         <view v-if="buttonLayout === 'column'" class="sd-dialog__footer sd-dialog__footer--column">
             <slot v-if="$slots.footer" name="footer" />
             <template v-else>
-                <sd-button block size="small" type="primary" @click="onClickConfirm">
+                <sd-button block type="primary" @click="onClickConfirm">
                     {{ confirmButtonText }}
                 </sd-button>
                 <template v-if="show_cancel_button$">
-                    <sd-button block size="small" variant="text" @click="onClickCancel">
+                    <sd-button block variant="text" @click="onClickCancel">
                         {{ cancelButtonText }}
                     </sd-button>
                 </template>

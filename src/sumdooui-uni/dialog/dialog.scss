@@ -16,7 +16,7 @@ $image-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
     &__icon {
         display: flex;
         justify-content: center;
-        margin-bottom: 36rpx;
+        margin-bottom: 12rpx;
 
         &.is-success {
             color: $sd-success-color;
