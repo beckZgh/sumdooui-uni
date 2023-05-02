@@ -1,8 +1,11 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { ConfirmType } from '../common/types'
+import { COMMON_PROPS } from '../common/props'
 
 export const textarea_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue   : { type: String, default: '' },
     /** 显示边框 */

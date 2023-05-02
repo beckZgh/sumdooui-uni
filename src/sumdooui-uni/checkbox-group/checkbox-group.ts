@@ -1,10 +1,13 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { CheckboxProps } from '../checkbox/checkbox'
+import { COMMON_PROPS } from '../common/props'
 
 export type CheckboxOptionItem = Omit<CheckboxProps, 'modelValue'> & { value: CheckboxProps['activeValue'] }
 
 export const checkbox_group_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue  : { type: Array as PropType<(string | number | boolean)[]>, default: () => [] },
     /** 选择框选项 */

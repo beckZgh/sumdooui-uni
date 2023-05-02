@@ -3,6 +3,7 @@ import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed, inject } from 'vue'
 import { checkbox_props } from './checkbox'
+import { MpMixin } from '../common/mixins'
 import {
     CHECKBOX_GROUP_KEY, type CheckboxGroupProvide,
     FORM_ITEM_KEY, type FormItemProvide,
@@ -10,15 +11,14 @@ import {
 } from '../common/tokens'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdCheckbox',
     props: checkbox_props,
     emits: [
         'update:modelValue',
         'change',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const checkbox_group = inject<CheckboxGroupProvide>(CHECKBOX_GROUP_KEY)
         const form_item      = inject<FormItemProvide>(FORM_ITEM_KEY)
@@ -60,7 +60,7 @@ export default defineComponent({
         })
 
         const root_style$ = computed(() => {
-            const style: CSSProperties = {}
+            const style: CSSProperties = { ...props.customStyle }
             if (checkbox_group?.props.column && checkbox_group?.props.column > 1) {
                 style.width     = `${ 100 / checkbox_group.props.column }%`
                 style.flexBasis = style.width
@@ -111,11 +111,14 @@ export default defineComponent({
 <template>
     <label
         class="sd-checkbox"
-        :class="{
-            [`sd-checkbox--${ size }`]: true,
-            'is-checked'              : checked$,
-            'is-disabled'             : disabled$,
-        }"
+        :class="[
+            customClass,
+            {
+                [`sd-checkbox--${ size }`]: true,
+                'is-checked'              : checked$,
+                'is-disabled'             : disabled$,
+            },
+        ]"
         :style="root_style$"
         @tap="handleToggle"
     >

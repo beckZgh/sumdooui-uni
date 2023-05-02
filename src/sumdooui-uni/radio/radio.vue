@@ -1,23 +1,23 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import { defineComponent, computed, inject } from 'vue'
-import { radio_props } from './radio'
+import { MpMixin } from '../common/mixins'
 import {
     RADIO_GROUP_KEY, type RadioGroupProvide,
     FORM_ITEM_KEY, type FormItemProvide,
 } from '../common/tokens'
+import { radio_props } from './radio'
 import Utils from '../utils'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdRadio',
     props: radio_props,
     emits: [
         'update:modelValue',
         'change',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const radio_group = inject<RadioGroupProvide>(RADIO_GROUP_KEY)
         const form_item   = inject<FormItemProvide>(FORM_ITEM_KEY)
@@ -44,7 +44,7 @@ export default defineComponent({
         })
 
         const root_style$ = computed(() => {
-            const style: CSSProperties = {}
+            const style: CSSProperties = { ...props.customStyle }
             if (radio_group?.props.column && radio_group?.props.column > 1) {
                 style.flexBasis = `${ 100 / radio_group?.props.column }%`
             }
@@ -87,11 +87,14 @@ export default defineComponent({
 <template>
     <label
         class="sd-radio"
-        :class="{
-            [`sd-radio--${ size }`]: true,
-            'is-checked'           : checked$,
-            'is-disabled'          : disabled$,
-        }"
+        :class="[
+            customClass,
+            {
+                [`sd-radio--${ size }`]: true,
+                'is-checked'           : checked$,
+                'is-disabled'          : disabled$,
+            },
+        ]"
         :style="root_style$"
         @tap="handleToggle"
     >

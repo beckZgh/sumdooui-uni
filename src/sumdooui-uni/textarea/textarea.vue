@@ -1,10 +1,13 @@
 <script lang="ts">
 import { defineComponent, reactive, computed, inject, watch } from 'vue'
-import { textarea_props } from './textarea'
 import { FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
+import { MpMixin } from '../common/mixins'
+import { textarea_props } from './textarea'
 
 import Utils from '../utils'
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdTextarea',
     props: textarea_props,
     emits: [
@@ -14,9 +17,6 @@ export default defineComponent({
         'blur',
         'confirm',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
 
@@ -70,12 +70,15 @@ export default defineComponent({
 <template>
     <view
         class="sd-textarea"
-        :class="{
-            'sd-textarea--border': border,
-            'is-disabled'        : disabled,
-            'is-focus'           : !disabled && !readonly && state.focus,
-        }"
-        :style="{ background }"
+        :class="[
+            customClass,
+            {
+                'sd-textarea--border': border,
+                'is-disabled'        : disabled,
+                'is-focus'           : !disabled && !readonly && state.focus,
+            },
+        ]"
+        :style="{ ...customStyle, background }"
     >
         <textarea
             :value="modelValue"

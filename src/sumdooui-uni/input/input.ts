@@ -1,8 +1,11 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { ConfirmType, InputType } from '../common/types'
+import { COMMON_PROPS } from '../common/props'
 
 export const input_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue   : { type: String, default: '' },
     /** input 类型 */

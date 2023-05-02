@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, inject } from 'vue'
-import { MpMixin       } from '../common/mixins'
+import { MpMixin      } from '../common/mixins'
 import { switch_props } from './switch'
 import { FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
 
@@ -33,8 +33,8 @@ export default defineComponent({
 <template>
     <view
         class="sd-switch"
-        :class="{ 'is-checked': checked, 'is-disabled': disabled }"
-        :style="{ background: checked ? activeColor : inactiveColor }"
+        :class="[customClass, { 'is-checked': checked, 'is-disabled': disabled }]"
+        :style="{ ...customStyle, background: checked ? activeColor : inactiveColor }"
         @tap="handleToggle"
     >
         <view class="sd-switch__inner" />

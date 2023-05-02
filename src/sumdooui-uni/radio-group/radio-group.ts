@@ -1,10 +1,13 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { RadioProps } from '../radio/radio'
+import { COMMON_PROPS } from '../common/props'
 
 export type RadioOptionItem = Omit<RadioProps, 'modelValue' | 'name'> & { value: RadioProps['name'] }
 
 export const radio_group_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue  : { type: [String, Number, Boolean] as PropType<string | number | boolean>, default: false },
     /** 选择框选项 */

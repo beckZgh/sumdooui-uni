@@ -1,9 +1,12 @@
 <script lang="ts">
 import { defineComponent, reactive, computed, watch, inject } from 'vue'
-import { input_props } from './input'
 import { FORM_KEY, FORM_ITEM_KEY, type FormProvide, type FormItemProvide } from '../common/tokens'
+import { MpMixin } from '../common/mixins'
+import { input_props } from './input'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdInput',
     props: input_props,
     emits: [
@@ -14,9 +17,6 @@ export default defineComponent({
         'blur',
         'confirm',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const form      = inject<FormProvide>(FORM_KEY)
         const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
@@ -88,12 +88,15 @@ export default defineComponent({
 <template>
     <view
         class="sd-input"
-        :class="{
-            'sd-input--border': show_border$,
-            'is-disabled'     : disabled$,
-            'is-focus'        : !disabled$ && !readonly && state.focus,
-        }"
-        :style="{ background }"
+        :class="[
+            customClass,
+            {
+                'sd-input--border': show_border$,
+                'is-disabled'     : disabled$,
+                'is-focus'        : !disabled$ && !readonly && state.focus,
+            },
+        ]"
+        :style="{ ...customStyle, background }"
     >
         <view v-if="$slots.prefix" class="sd-input__prefix">
             <slot name="prefix" />

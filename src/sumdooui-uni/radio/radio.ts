@@ -1,8 +1,11 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { ComponentSize } from '../common/types'
+import { COMMON_PROPS } from '../common/props'
 
 export const radio_props = {
+    ...COMMON_PROPS,
+
     /** 绑定值 */
     modelValue  : { type: [Boolean, String, Number] as PropType<boolean | string | number>, default: false },
     /** 唯一标识符 */

@@ -1,7 +1,10 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { Form } from '../common/types'
+import { COMMON_PROPS } from '../common/props'
 
 export const form_item_props = {
+    ...COMMON_PROPS,
+
     /** 关联数据 key */
     prop         : { type: String, default: '' },
     /** 校验规则 */

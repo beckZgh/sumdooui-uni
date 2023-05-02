@@ -1,11 +1,14 @@
 <script lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { defineComponent } from 'vue'
+import { MpMixin         } from '../common/mixins'
 import { form_props      } from './form'
 import { useProvide      } from '../common/hooks'
 import { FORM_KEY        } from '../common/tokens'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdForm',
     props: form_props,
     setup(props, { expose }) {
@@ -51,7 +54,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-form">
+    <view class="sd-form" :class="customClass" :style="customStyle">
         <slot />
     </view>
 </template>

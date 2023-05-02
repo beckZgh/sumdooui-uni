@@ -1,19 +1,19 @@
 <script lang="ts">
 import { defineComponent, computed, inject } from 'vue'
 import { checkbox_group_props } from './checkbox-group'
+import { MpMixin    } from '../common/mixins'
 import { useProvide } from '../common/hooks'
 import { CHECKBOX_GROUP_KEY, FORM_ITEM_KEY, type FormItemProvide } from '../common/tokens'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdCheckboxGroup',
     props: checkbox_group_props,
     emits: [
         'update:modelValue',
         'change',
     ],
-    options: {
-        virtualHost: true,
-    },
     setup(props, { emit }) {
         const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
 
@@ -40,15 +40,17 @@ export default defineComponent({
             form_item?.validate('change')
         }
 
-        return {
-            values$,
-        }
+        return { values$ }
     },
 })
 </script>
 
 <template>
-    <view class="sd-checkbox-group" :class="{ 'is-wrap': wrap, 'is-multi-column': column > 1 }">
+    <view
+        class="sd-checkbox-group"
+        :class="[customClass, { 'is-wrap': wrap, 'is-multi-column': column > 1 }]"
+        :style="customStyle"
+    >
         <slot v-if="$slots.default" />
         <template v-else>
             <template v-for="(opt, index) in options" :key="index">

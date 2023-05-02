@@ -1,12 +1,15 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import { defineComponent, computed, onMounted, ref } from 'vue'
-import { form_item_props } from './form-item'
+import { MpMixin } from '../common/mixins'
 import { FORM_KEY, FORM_ITEM_KEY, type FormProvide } from '../common/tokens'
 import { useInject, useProvide } from '../common/hooks'
+import { form_item_props } from './form-item'
 import Utils from '../utils'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdFormItem',
     props: form_item_props,
     setup(props) {
@@ -131,7 +134,8 @@ export default defineComponent({
 <template>
     <view
         class="sd-form-item"
-        :class="{ 'has-border': show_border$ }"
+        :class="[customClass, { 'has-border': show_border$ }]"
+        :style="customStyle"
     >
         <view class="sd-form-item__content" :class="{ 'is-column': label_position$ === 'top' }">
             <view class="sd-form-item__content-left" :style="label_style$ ">
