@@ -1,0 +1,88 @@
+@import '../styles/variables.scss';
+
+$number-keyboard-width: 100%;
+$number-keyboard-bg-color: $sd-white;
+
+$number-keyboard-header-height: 34px;
+$number-keyboard-header-padding: 6px 0 0 0;
+$number-keyboard-header-font-color: $sd-text-color-secondary;
+$number-keyboard-header-font-size: 16px;
+
+$number-keyboard-header-close-padding: 0 16px;
+$number-keyboard-header-close-font-size: 14px;
+$number-keyboard-header-close-font-color: $sd-text-color-secondary;
+$number-keyboard-header-close-bg-color: $sd-bg-color-container;
+
+$number-keyboard-key-height: 48px;
+$number-keyboard-key-line-height: 1.5;
+$number-keyboard-key-border-radius: 8px;
+$number-keyboard-key-font-size: 28px;
+$number-keyboard-key-font-color: $sd-text-color;
+$number-keyboard-key-finish-font-size: 16px;
+$number-keyboard-key-finish-font-color: $sd-white;
+$number-keyboard-key-finish-bg-color: $sd-primary-color;
+
+.sd-number-keyboard {
+    width: $number-keyboard-width;
+    background-color: $sd-bg-color-container;
+
+    &__body {
+        display: flex;
+        padding: 6px 0 0 6px;
+        width: 100%;
+        box-sizing: border-box;
+
+        &-left {
+            display: flex;
+            flex: 3;
+            flex-wrap: wrap;
+        }
+
+        &-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+// 键盘容器
+.sd-number-keyboard .keyboard-wrapper {
+    position: relative;
+    flex: 1;
+    flex-basis: 33%;
+    padding: 0 6px 6px 0;
+    box-sizing: border-box;
+
+    &.is-large {
+        flex: 2;
+        flex-basis: 66%;
+    }
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $number-keyboard-key-height;
+        line-height: $number-keyboard-key-line-height;
+        border-radius: $number-keyboard-key-border-radius;
+        font-size: $number-keyboard-key-font-size;
+        color: $number-keyboard-key-font-color;
+        background-color: $sd-white;
+
+        &.is-finish-key {
+            background-color: $number-keyboard-key-finish-bg-color;
+            font-size: $number-keyboard-key-finish-font-size;
+            color: $number-keyboard-key-finish-font-color;
+        }
+
+        &:active {
+            @include clickable($sd-black);
+        }
+    }
+}
+
+.sd-number-keyboard__body-right .keyboard-wrapper__item {
+    height: 100%;
+}
