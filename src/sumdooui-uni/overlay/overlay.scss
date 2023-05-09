@@ -22,7 +22,7 @@ $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
 
     &.is-show {
         transition-property: opacity;
-        opacity: 1;
+        opacity: $overlay-z-index;
         transform: scale3d(1, 1, 1);
     }
 

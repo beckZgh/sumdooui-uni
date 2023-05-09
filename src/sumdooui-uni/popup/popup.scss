@@ -1,6 +1,5 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$sd-popup-top          : var(--sd-page-navbar-height, 0);
 $sd-popup-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
 
 .sd-popup {
@@ -37,11 +36,15 @@ $sd-popup-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
     }
 
     &__header {
-        height: 90rpx;
+        min-height: 90rpx;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: nowrap;
+    }
+
+    &__title {
+        font-size: $sd-font-size-m;
     }
 
     &__header-close {

@@ -40,7 +40,7 @@ export default defineComponent({
     emits: ['click-button'],
     setup(props) {
         // 缺省容器样式
-        const empty_style$ = computed(() => {
+        const root_style$ = computed(() => {
             const style: CSSProperties = { ...props.customStyle }
             if (props.background) style.backgroundColor = props.background
             if (props.height    ) style.height = Utils.toUnit(props.height)
@@ -58,7 +58,7 @@ export default defineComponent({
         })
 
         return {
-            empty_style$,
+            root_style$,
             empty_img$,
             empty_text$,
         }
@@ -67,7 +67,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-empty" :class="[customClass, { [`sd-empty--${ scene }`]: true }]" :style="empty_style$">
+    <view class="sd-empty" :class="[customClass, { [`sd-empty--${ scene }`]: true }]" :style="root_style$">
         <sd-image
             width="100%"
             height="50%"

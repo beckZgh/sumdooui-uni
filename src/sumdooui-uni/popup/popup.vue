@@ -118,7 +118,8 @@ export default defineComponent({
         >
             <!-- 顶部区域 -->
             <view v-if="title || show_top_close$" class="sd-popup__header">
-                <view class="sd-popup__title">
+                <slot v-if="$slots.header" name="header" />
+                <view v-else class="sd-popup__title">
                     {{ title }}
                 </view>
 

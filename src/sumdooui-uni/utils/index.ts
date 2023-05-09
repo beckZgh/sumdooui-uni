@@ -27,6 +27,10 @@ export function getCurrentPage<T>() {
     return pages[pages.length - 1] as T & Page.PageInstance
 }
 
+export {
+    dt,
+}
+
 export default {
     ...is,
     dt,

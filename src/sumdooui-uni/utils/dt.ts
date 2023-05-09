@@ -225,3 +225,51 @@ export function getDiffDays(start_date: string | number | Date, end_date: string
     end_date   = new Date(end_date)
     return (Number(end_date) - Number(start_date)) / (1000 * 60 * 60 * 24)
 }
+
+/** 取得日期范围的月份数量 */
+export function getMonths(start_date: string | number | Date, end_date: string | number | Date) {
+    const months: number[] = []
+    const cursor = new Date(start_date)
+
+    cursor.setDate(1)
+
+    do {
+        months.push(cursor.getTime())
+        cursor.setMonth(cursor.getMonth() + 1)
+    } while (compareMonth(cursor, end_date) !== 1)
+
+    return months
+}
+
+/** 比较月 */
+export function compareMonth(date1: string | number | Date, date2: string | number | Date) {
+    if (!(date1 instanceof Date)) date1 = new Date(date1)
+    if (!(date2 instanceof Date)) date2 = new Date(date2)
+
+    const year1  = date1.getFullYear()
+    const year2  = date2.getFullYear()
+    const month1 = date1.getMonth()
+    const month2 = date2.getMonth()
+
+    if (year1 === year2) {
+        return month1 === month2 ? 0 : month1 > month2 ? 1 : -1
+    } else {
+        return year1 > year2 ? 1 : -1
+    }
+}
+
+/** 比较天 */
+export function compareDay(day1: string | number | Date, day2: string | number | Date) {
+    if (!(day1 instanceof Date)) day1 = new Date(day1)
+    if (!(day2 instanceof Date)) day2 = new Date(day2)
+
+    const result = compareMonth(day1, day2)
+
+    if (result === 0) {
+        const date1 = day1.getDate()
+        const date2 = day2.getDate()
+        return date1 === date2 ? 0 : date1 > date2 ? 1 : -1
+    }
+
+    return result
+}

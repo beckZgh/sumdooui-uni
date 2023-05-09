@@ -37,6 +37,14 @@
             "path": "pages/examples/layout/grid/main"
         }, {
             "path": "pages/examples/layout/layout/main"
+        }, {
+            "path": "pages/examples/layout/empty/main"
+        }, {
+            "path": "pages/examples/layout/empty/page-empty-data"
+        }, {
+            "path": "pages/examples/layout/empty/page-empty-parse"
+        }, {
+            "path": "pages/examples/layout/divider/main"
         },
 
         // 操作反馈
@@ -96,23 +104,19 @@
         {
             "path": "pages/examples/data/badge/main"
         }, {
-            "path": "pages/examples/data/empty/main"
-        }, {
-            "path": "pages/examples/data/empty/page-empty-data"
-        }, {
-            "path": "pages/examples/data/empty/page-empty-parse"
-        }, {
             "path": "pages/examples/data/tag/main"
         }, {
             "path": "pages/examples/data/progress/main"
-        }, {
-            "path": "pages/examples/data/divider/main"
         }, {
             "path": "pages/examples/data/avatar/main"
         }, {
             "path": "pages/examples/data/swiper/main"
         }, {
             "path": "pages/examples/data/collapse/main"
+        }, {
+            "path": "pages/examples/data/notice-bar/main"
+        }, {
+            "path": "pages/examples/data/table/main"
         },
 
         // 表单组件
@@ -130,6 +134,12 @@
             "path": "pages/examples/form/form/main"
         }, {
             "path": "pages/examples/form/picker/main"
+        }, {
+            "path": "pages/examples/form/stepper/main"
+        }, {
+            "path": "pages/examples/form/number-keyboard/main"
+        }, {
+            "path": "pages/examples/form/calendar/main"
         },
 
         // 共享页面
