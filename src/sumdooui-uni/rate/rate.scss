@@ -1,9 +1,9 @@
 @import '../styles/variables.scss';
 
 $rate-icon-size          : var(--sd-rate-icon-size, 20px);
-$rate-icon-inactive-color: var(--sd-icon-inactive-color, $sd-text-color-placeholder);
-$rate-icon-active-color  : var(--sd-icon-active-color, $sd-danger-color);
-$rate-icon-disabled-color: var(--sd-icon-disabled-color, $sd-text-color-disabled);
+$rate-icon-inactive-color: var(--sd-rate-icon-inactive-color, $sd-text-color-placeholder);
+$rate-icon-active-color  : var(--sd-rate-icon-active-color  , $sd-danger-color);
+$rate-icon-disabled-color: var(--sd-rate-icon-disabled-color, $sd-text-color-disabled);
 
 .sd-rate {
     display: flex;

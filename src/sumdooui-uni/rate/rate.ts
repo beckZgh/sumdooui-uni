@@ -12,7 +12,7 @@ export const rate_props = {
     /** 图标总数 */
     count        : { type: Number, default: 5 },
     /** 图标大小 */
-    size         : { type: [Number, String] as PropType<string | number>, default: 40 },
+    size         : { type: [Number, String] as PropType<string | number> },
     /** 图标间距 */
     gutter       : { type: Number, default: 4 },
     /** 未激活的颜色 */
