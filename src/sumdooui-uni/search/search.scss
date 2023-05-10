@@ -1,0 +1,32 @@
+@import '../styles/variables.scss';
+
+$search-bg-color: var(--sd-search-bg-color, $sd-white);
+
+.sd-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    background-color: $search-bg-color;
+    overflow: hidden;
+
+    &.has-action {
+        padding-right: 0;
+    }
+
+    &__input {
+        flex: 1;
+    }
+
+    &__action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 30rpx;
+        height: 76rpx;
+
+        &:active {
+            @include clickable($sd-black);
+        }
+    }
+}
