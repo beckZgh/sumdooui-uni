@@ -1,0 +1,49 @@
+@import '../styles/variables.scss';
+
+$footer-text-font-size: var(--sd-footer-text-font-size, $sd-font-size-base);
+$footer-text-color: var(--sd-footer-text-color, $sd-text-color-placeholder);
+
+.sd-footer {
+    text-align: center;
+
+    &.is-fixed {
+        position: fixed;
+        bottom: 20rpx;
+        left: 0;
+        right: 0;
+    }
+
+    &.safe-area-insert-bottom {
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        color: $sd-text-color-link;
+        text-decoration: underline;
+        margin-bottom: 16rpx;
+    }
+
+    &__link-item + &__link-item {
+        position: relative;
+        margin-left: 30rpx;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: -15rpx;
+            top: 6rpx;
+            bottom: 6rpx;
+            width: 1px;
+            background-color: $sd-border-color;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        font-size: $footer-text-font-size;
+        color: $footer-text-color;
+    }
+}
