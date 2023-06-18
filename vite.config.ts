@@ -14,7 +14,7 @@ export default defineConfig({
     },
     plugins: [
         uni(),
-        resolve(),
+        resolve() as any,
         inject({
             $utils: path.resolve('./src/utils/index.ts'),
         }),

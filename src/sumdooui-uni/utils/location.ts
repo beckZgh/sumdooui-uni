@@ -1,5 +1,3 @@
-import { $http } from '@/apis'
-
 // 计算两个坐标之间的直线距离
 function transformDistance(lng1:number, lat1:number, lng2:number, lat2:number) {
     const R    = 6378.137 // 地球半径
@@ -31,15 +29,4 @@ function foramtDistance(val:number) {
     return (val >= 1000 && `${ (val / 1000).toFixed(1)  } km`) || `${ val  } m`
 }
 
-// 根据经纬度获取地址
-async function getAddressByLocation(latitude:number, longitude:number) {
-    const data = {
-        key     : 'NH6BZ-O7WKF-3YJJW-NABOC-LFXUE-DWFD3', // 腾讯API KEY
-        location: `${ latitude  },${  longitude }`,
-    }
-
-    const res = await $http.get('https://apis.map.qq.com/ws/geocoder/v1', data, {})
-    return res
-}
-
-export { transformDistance, foramtDistance, getAddressByLocation }
+export { transformDistance, foramtDistance }
