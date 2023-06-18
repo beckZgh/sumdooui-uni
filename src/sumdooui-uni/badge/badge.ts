@@ -11,7 +11,7 @@ export const badge_props = {
     ...COMMON_PROPS,
 
     /** 徽标类型 */
-    theme     : { type: String as PropType<Omit<ComponentType, 'default'>> },
+    type      : { type: String as PropType<Omit<ComponentType, 'default'>> },
     /** 显示小红点 */
     dot       : { type: Boolean },
     /** 徽标内容 */

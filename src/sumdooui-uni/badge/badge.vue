@@ -79,7 +79,7 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                [`sd-badge--${ theme }`]: !!theme,
+                [`sd-badge--${ type }`] : !!type,
                 [`sd-badge--${ shape }`]: !!shape,
                 [`is-${ position }`]    : true,
                 'is-absolute'           : !!$slots.default,
@@ -94,7 +94,10 @@ export default defineComponent({
             class="sd-badge__content"
             :style="badge_style$"
         >
-            {{ content$ }}
+            <slot v-if="$slots.content" name="content" />
+            <template v-else>
+                {{ content$ }}
+            </template>
         </view>
     </view>
 </template>

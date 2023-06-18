@@ -1,9 +1,9 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$badge-bg-color: var(--sd-badge-bg-color, $sd-danger-color);
-$badge-color   : var(--sd-badge-color, $sd-white);
-$badge-content-size: var(--sd-badge-content-size, $sd-font-size-s);
-$badge-dot-size: var(--sd-badge-dot-size, 8px);
+$badge-background  : var(--sd-badge-background, $sd-danger-color);
+$badge-color       : var(--sd-badge-color     , $sd-white);
+$badge-font-size   : var(--sd-badge-font-size , $sd-font-size-sm);
+$badge-dot-size    : var(--sd-badge-dot-size  , 16rpx);
 
 @mixin badge-theme($bg-color) {
     .sd-badge__dot,
@@ -22,12 +22,12 @@ $badge-dot-size: var(--sd-badge-dot-size, 8px);
         justify-content: center;
         white-space: nowrap;
         padding: 0 12rpx;
-        font-size: $badge-content-size;
+        font-size: $badge-font-size;
         height: 36rpx;
         line-height: 1;
         box-sizing: border-box;
         color: $badge-color;
-        background-color: $badge-bg-color;
+        background-color: $badge-background;
         z-index: 1;
     }
 
@@ -36,7 +36,7 @@ $badge-dot-size: var(--sd-badge-dot-size, 8px);
         height: $badge-dot-size;
         padding: 0;
         border-radius: $sd-border-radius-circle;
-        background-color: $badge-bg-color;
+        background-color: $badge-background;
     }
 
     // 徽标主题

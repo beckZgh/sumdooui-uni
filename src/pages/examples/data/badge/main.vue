@@ -40,10 +40,6 @@
             </sd-badge>
         </demo-card>
 
-        <demo-card title="图标徽标">
-            <sd-badge icon="setting" :size="30" />
-        </demo-card>
-
         <demo-card title="自定义颜色">
             <sd-badge background="#626aef" dot />
             <sd-badge background="#626aef" :content="1" />
@@ -55,26 +51,26 @@
 
         <demo-card title="预设主题">
             <sd-badge :content="10" />
-            <sd-badge :content="10" theme="primary" />
-            <sd-badge :content="10" theme="success" />
-            <sd-badge :content="10" theme="warning" />
+            <sd-badge :content="10" type="primary" />
+            <sd-badge :content="10" type="success" />
+            <sd-badge :content="10" type="warning" />
             <sd-badge dot />
-            <sd-badge dot theme="primary" />
-            <sd-badge dot theme="success" />
-            <sd-badge dot theme="warning" />
+            <sd-badge dot type="primary" />
+            <sd-badge dot type="success" />
+            <sd-badge dot type="warning" />
         </demo-card>
 
         <demo-card title="场景应用">
             <sd-badge :content="10">
                 <view class="badge-block" />
             </sd-badge>
-            <sd-badge :content="10" theme="primary">
+            <sd-badge :content="10" type="primary">
                 <view class="badge-block" />
             </sd-badge>
-            <sd-badge :content="10" theme="success">
+            <sd-badge :content="10" type="success">
                 <view class="badge-block" />
             </sd-badge>
-            <sd-badge :content="10" theme="warning">
+            <sd-badge :content="10" type="warning">
                 <view class="badge-block" />
             </sd-badge>
 
@@ -82,14 +78,41 @@
                 <sd-badge dot>
                     <view class="badge-block" />
                 </sd-badge>
-                <sd-badge dot theme="primary">
+                <sd-badge dot type="primary">
                     <view class="badge-block" />
                 </sd-badge>
-                <sd-badge dot theme="success">
+                <sd-badge dot type="success">
                     <view class="badge-block" />
                 </sd-badge>
-                <sd-badge dot theme="warning">
+                <sd-badge dot type="warning">
                     <view class="badge-block" />
+                </sd-badge>
+            </view>
+
+            <view>
+                <sd-badge>
+                    <view class="badge-block" />
+                    <template #content>
+                        <sd-icon custom-class="badge-icon" name="check" />
+                    </template>
+                </sd-badge>
+                <sd-badge type="primary">
+                    <view class="badge-block" />
+                    <template #content>
+                        <sd-icon custom-class="badge-icon" name="check" />
+                    </template>
+                </sd-badge>
+                <sd-badge type="success">
+                    <view class="badge-block" />
+                    <template #content>
+                        <sd-icon custom-class="badge-icon" name="check" />
+                    </template>
+                </sd-badge>
+                <sd-badge type="warning">
+                    <view class="badge-block" />
+                    <template #content>
+                        <sd-icon custom-class="badge-icon" name="check" />
+                    </template>
                 </sd-badge>
             </view>
         </demo-card>
@@ -107,5 +130,11 @@
     height: 120rpx;
     margin-bottom: 30rpx;
     background-color: #ddd;
+}
+
+.badge-icon {
+    display: block;
+    font-size: 10px;
+    line-height: 16px;
 }
 </style>
