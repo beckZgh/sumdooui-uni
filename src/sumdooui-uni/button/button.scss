@@ -1,79 +1,97 @@
 @import '../styles/variables.scss'  ;
 
 // 按钮高度
-$button-small-height : var(--sd-button-small-height, 70rpx);
-$button-normal-height: var(--sd-button-normal-height, 90rpx);
-$button-large-height : var(--sd-button-large-height, 110rpx);
-
-// 按钮形状
-$button-circle-border-radius: var(--sd-button-circle-border-radius, $sd-border-radius-circle);
-$button-round-border-radius : var(--sd-button-round-border-radius , $sd-border-radius-round);
-$button-square-border-radius: var(--sd-button-square-border-radius, $sd-border-radius-base);
+$button-mini-height   : var(--sd-button-small-height  , 24px);
+$button-small-height  : var(--sd-button-small-height  , 32px);
+$button-default-height: var(--sd-button-default-height, 44px);
+$button-large-height  : var(--sd-button-large-height  , 50px);
 
 // 按钮文本大小
-$button-small-font-size : var(--sd-button-small-font-size, $sd-font-size-base);
-$button-normal-font-size: var(--sd-button-normal-font-size, $sd-font-size-m);
-$button-large-font-size : var(--sd-button-large-font-size, $sd-font-size-m);
+$button-mini-font-size   : var(--sd-button-mini-font-size   , $sd-font-size-xs);
+$button-small-font-size  : var(--sd-button-small-font-size  , $sd-font-size-xs);
+$button-default-font-size: var(--sd-button-default-font-size, $sd-font-size-md);
+$button-large-font-size  : var(--sd-button-large-font-size  , $sd-font-size-md);
 
-// 按钮图标大小
-$button-small-icon-size : var(--sd-button-small-icon-size, $sd-font-size-m);
-$button-normal-icon-size: var(--sd-button-normal-icon-size, $sd-font-size-l);
-$button-large-icon-size : var(--sd-button-large-icon-size, $sd-font-size-l);
+// 按钮左右间距
+$button-mini-padding   : var(--sd-button-mini-padding   , $sd-padding-base);
+$button-small-padding  : var(--sd-button-small-padding  , $sd-padding-xs);
+$button-default-padding: var(--sd-button-default-padding, 30rpx);
+$button-large-padding  : var(--sd-button-large-padding  , 30rpx);
 
-// 按钮图标大小
-$button-small-padding-horizontal : var(--sd-button-small-padding-horizontal, 24rpx);
-$button-normal-padding-horizontal: var(--sd-button-normal-padding-horizontal, 32rpx);
-$button-large-padding-horizontal : var(--sd-button-large-padding-horizontal, 40rpx);
-
-// 按钮默认背景色、文本颜色、边框颜色
-$button-default-color   : var(--sd-button-default-color   , $sd-text-color);
-$button-default-bg-color: var(--sd-button-default-bg-color, #f0f2f5); // #f0f2f5
-$button-border-color    : var(--sd-button-border-color    , $sd-border-color);
+// 按钮背景色
+$button-default-background  : var(--sd-button-default-bg-color, #f0f2f5);
+$button-default-color       : var(--sd-button-default-color       , $sd-text-color);
+$button-default-border-color: var(--sd-button-default-border-color, $sd-border-color);
 
 // 按钮大小
-@mixin button-size($padding, $height, $font-size, $icon-size) {
+@mixin button-size($height, $padding, $font-size) {
     height: $height;
+    padding: 0 $padding;
     font-size: $font-size;
 
-    .sd-button-wrap {
-        padding-left: $padding;
-        padding-right: $padding;
+    .sd-button__icon {
+        font-size: 1.2em;
+    }
+}
+
+// 按钮默认主题
+@mixin button-default-theme() {
+    background-color: $button-default-background;
+    color: $button-default-color;
+
+    // 幽灵按钮
+    &.sd-button--ghost {
+        background-color: $sd-white;
+
+        &::after {
+            border-color: $button-default-border-color;
+        }
     }
 
-    .sd-button__icon {
-        font-size: $icon-size;
+    // 朴素按钮
+    &.sd-button--plain {
+        background-color: $sd-white;
+
+        &::after {
+            border-color: $button-default-border-color;
+        }
+    }
+
+    // 文本按钮
+    &.sd-button--text {
+        background-color: transparent !important;
+
+        &::after {
+            border-width: 0;
+        }
     }
 }
 
 // 按钮主题
-@mixin button-theme($bg-color, $disabeld-color, $light-color) {
+@mixin button-theme($bg-color, $plain-color) {
     background-color: $bg-color;
     color: $sd-white;
 
-    &::after {
-        border-color: $bg-color;
-    }
-
     // 幽灵按钮
-    &.sd-button--plain {
+    &.sd-button--ghost {
         background-color: $sd-white;
         color: $bg-color;
 
         &::after {
             border-width: 2px;
-        }
-
-        &.is-disabled {
-            &::after {
-                opacity: $sd-opacity-disabled;
-            }
+            border-color: $bg-color;
         }
     }
 
-    // 填充按钮
-    &.sd-button--light {
-        background-color: $light-color;
+    // 朴素按钮
+    &.sd-button--plain {
+        background-color: $plain-color;
         color: $bg-color;
+
+        &::after {
+            border-width: 2px;
+            border-color: $bg-color;
+        }
     }
 
     // 文本按钮
@@ -88,7 +106,7 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
 }
 
 // 按钮边框形状
-@mixin button-shape($border-radius) {
+@mixin button-radius($border-radius) {
     border-radius: $border-radius;
 
     &::after {
@@ -98,48 +116,81 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
 
 .sd-button {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    outline: none;
+    overflow: hidden;
+    --webkit-touch-callout: none;
+    --webkit-user-select: none;
+    user-select: none;
     box-sizing: border-box;
+    @include button-size($button-default-height, $button-default-padding, $button-default-font-size);
+    @include button-default-theme();
+    @include button-radius($sd-radius-md);
 
-    // 点击态
-    &::before {
-        content: ' ';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        border: inherit;
-        background-color: $sd-black;
-        border-color: $sd-black;
-        border-radius: inherit;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        pointer-events: none;
-        z-index: 1;
+    &::before,
+    &::after {
+        border: none;
     }
 
     // 按钮边框
     &::after {
-        content: ' ';
-        position: absolute;
-        box-sizing: border-box;
+        content: '';
         pointer-events: none;
-        top: -50%;
-        right: -50%;
-        bottom: -50%;
-        left: -50%;
-        border: 0 solid $button-border-color;
-        border-radius: inherit;
-        transform: scale(.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        box-sizing: border-box;
+        border-style: solid;
+        border-color: transparent;
+        transform: scale(0.5);
+        transform-origin: 0 0;
         z-index: 0;
     }
 
+    // 按钮类型
+    &--primary {
+        @include button-theme($sd-primary-color, $sd-primary-color-9);
+    }
+    &--success {
+        @include button-theme($sd-success-color, $sd-success-color-9);
+    }
+    &--warning {
+        @include button-theme($sd-warning-color, $sd-warning-color-9);
+    }
+    &--danger {
+        @include button-theme($sd-danger-color, $sd-danger-color-9);
+    }
+
+    // 按钮边框形状
+    &--round { // 椭圆
+        @include button-radius($sd-radius-max);
+    }
+    &--circle { // 圆形
+        @include button-radius($sd-radius-circle);
+    }
+
+    // 按钮大小
+    &--mini {
+        @include button-size($button-mini-height, $button-mini-padding, $button-mini-font-size);
+    }
+    &--small {
+        @include button-size($button-small-height, $button-small-padding, $button-small-font-size);
+    }
+    &--large {
+        @include button-size($button-large-height, $button-large-padding, $button-large-font-size);
+    }
+
     // 按钮图标
-    .sd-button__icon {
+    &__icon {
         display: inline-block;
-        font-size: inherit;
         color: inherit;
     }
 
@@ -147,69 +198,14 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
         margin-right: 8rpx;
     }
 
-    // 按钮边框形状
-    &--round { // 椭圆
-        @include button-shape($button-round-border-radius);
-    }
-    &--square { // 方形
-        @include button-shape($button-square-border-radius);
-    }
-    &--circle { // 圆形
-        @include button-shape($button-circle-border-radius);
-    }
-
-    // 按钮大小
-    &--small {
-        @include button-size($button-small-padding-horizontal, $button-small-height, $button-small-font-size, $button-small-icon-size);
-    }
-    &--normal {
-        @include button-size($button-normal-padding-horizontal, $button-normal-height, $button-normal-font-size, $button-normal-icon-size);
-    }
-    &--large {
-        @include button-size($button-large-padding-horizontal, $button-large-height, $button-large-font-size, $button-large-icon-size);
-    }
-
-    // 按钮主题
-    &--default {
-        background-color: $button-default-bg-color;
-        color: $button-default-color;
-
-        &.sd-button--plain {
-            background-color: transparent;
-
-            &::after {
-                border-width: 2px;
-                // border-color: $button-default-bg-color;
-            }
-        }
-
-        &.sd-button--text {
-            background-color: transparent;
-        }
-    }
-    &--primary {
-        @include button-theme($sd-primary-color, $sd-primary-color-7, $sd-primary-color-8);
-    }
-    &--success {
-        @include button-theme($sd-success-color, $sd-success-color-7, $sd-success-color-8);
-    }
-    &--warning {
-        @include button-theme($sd-warning-color, $sd-warning-color-7, $sd-warning-color-8);
-    }
-    &--danger {
-        @include button-theme($sd-danger-color, $sd-danger-color-7, $sd-danger-color-8);
-    }
-
-    // 点击
-    &:active::before {
-        opacity: 0.1;
-    }
-
     // 块级按钮
     @include when(block) {
-        display: block;
+        display: flex;
         width: 100%;
     }
+
+    // 点击态
+    @include clickable($sd-black);
 
     // 禁用按钮
     @include when(disabled) {
@@ -223,41 +219,9 @@ $button-border-color    : var(--sd-button-border-color    , $sd-border-color);
 
     // 加载状态
     @include when(loading) {
-        opacity: $sd-opacity-loading;
-
         &::before {
             display: none;
         }
     }
-
-    // 原生按钮
-    &-wrap {
-        outline: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 0;
-        padding-bottom: 0;
-        box-sizing: border-box;
-        border-width: 0;
-        border-style: solid;
-        overflow: hidden;
-        --webkit-touch-callout: none;
-        --webkit-user-select: none;
-        user-select: none;
-
-        &::before,
-        &::after {
-            border: none;
-        }
-
-        // 继承属性
-        color: inherit;
-        background-color: inherit;
-        border-radius: inherit;
-        height: inherit;
-        line-height: 1;
-        font-size: inherit;
-        font-weight: inherit;
-    }
 }
+

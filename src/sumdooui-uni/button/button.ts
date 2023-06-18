@@ -1,22 +1,25 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { Component } from '../common/types'
 
-type ButtonShapeType = 'square' | 'round' | 'circle'
-type ButtonVariant   = 'light' | 'plain' | 'text'
-
 import { COMMON_PROPS } from '../common/props'
 
 export const button_props = {
     ...COMMON_PROPS,
 
     /** 预设按钮主题 */
-    theme           : { type: String as PropType<Component.Theme>, default: 'default' },
+    type            : { type: String as PropType<Component.Type> },
     /** 按钮尺寸 */
-    size            : { type: String as PropType<Component.Size>, default: 'normal'  },
-    /** 按钮形状 */
-    shape           : { type: String as PropType<ButtonShapeType>, default: 'round'   },
-    /** 按钮形态 */
-    variant         : { type: String as PropType<ButtonVariant> },
+    size            : { type: String as PropType<Component.Size> },
+    /** 椭圆按钮 */
+    round           : { type: Boolean, default: false },
+    /** 圆角按钮 */
+    circle          : { type: Boolean, default: false },
+    /** 朴素按钮 */
+    plain           : { type: Boolean, default: false },
+    /** 幽灵按钮 */
+    ghost           : { type: Boolean, default: false },
+    /** 文本按钮 */
+    text            : { type: Boolean, default: false },
     /** 块级按钮 */
     block           : { type: Boolean, default: false  },
     /** 按钮宽度 */
@@ -32,7 +35,7 @@ export const button_props = {
     /** 加载中文本 */
     loadingText     : { type: String },
     /** 按钮文本 */
-    text            : { type: String },
+    buttonText      : { type: String },
     /** 禁用按钮 */
     disabled        : { type: Boolean, default: false },
     // 小程序按钮特殊属性

@@ -31,57 +31,56 @@ export default defineComponent({
 </script>
 
 <template>
-    <view
+    <button
         class="sd-button"
         :class="[
             customClass,
             {
-                [`sd-button--${ theme }`]  : true,
-                [`sd-button--${ shape }`]  : true,
-                [`sd-button--${ size }`]   : true,
-                [`sd-button--${ variant }`]: !!variant,
-                'is-block'                 : block,
-                'is-loading'               : loading,
-                'is-disabled'              : disabled,
-                'has-text'                 : loadingText || text || $slots.default,
+                [`sd-button--${ type }`]: !!type,
+                [`sd-button--${ size }`]: !!size,
+                [`sd-button--round`]    : !!round,
+                [`sd-button--circle`]   : !!circle,
+                [`sd-button--ghost`]    : !!ghost,
+                [`sd-button--plain`]    : !!plain,
+                [`sd-button--text`]     : !!text,
+                'is-block'              : block,
+                'is-loading'            : loading,
+                'is-disabled'           : disabled,
+                'has-text'              : loadingText || buttonText || $slots.default,
             },
         ]"
         :style="{ ...customStyle, width }"
+        :form-type="formType"
+        :open-type="openType"
+        :app-parameter="appParameter"
+        :session-form="sessionForm"
+        :send-message-title="sendMessageTitle"
+        :send-message-path="sendMessagePath"
+        :send-message-img="sendMessageImg"
+        :show-message-card="showMessageCard"
+        @getuserinfo="$emit('getuserinfo', $event)"
+        @contact="$emit('contact', $event)"
+        @getphonenumber="$emit('getphonenumber', $event)"
+        @opensetting="$emit('opensetting', $event)"
+        @launchapp="$emit('launchapp', $event)"
+        @chooseavatar="$emit('chooseavatar', $event)"
+        @error="$emit('error', $event)"
+        @tap="onClick"
     >
-        <button
-            class="sd-button-wrap"
-            :form-type="formType"
-            :open-type="openType"
-            :app-parameter="appParameter"
-            :session-form="sessionForm"
-            :send-message-title="sendMessageTitle"
-            :send-message-path="sendMessagePath"
-            :send-message-img="sendMessageImg"
-            :show-message-card="showMessageCard"
-            @getuserinfo="$emit('getuserinfo', $event)"
-            @contact="$emit('contact', $event)"
-            @getphonenumber="$emit('getphonenumber', $event)"
-            @opensetting="$emit('opensetting', $event)"
-            @launchapp="$emit('launchapp', $event)"
-            @chooseavatar="$emit('chooseavatar', $event)"
-            @error="$emit('error', $event)"
-            @tap="onClick"
-        >
-            <view v-if="loading || icon" class="sd-button__icon">
-                <sd-icon
-                    :name="loading ? 'loading' : icon"
-                    :loading="loading"
-                    :size="iconSize"
-                    :color="iconColor"
-                />
-            </view>
-            <text v-if="loadingText">
-                {{ loadingText }}
-            </text>
-            <slot v-else-if="$slots.default" />
-            <text v-else-if="text">
-                {{ text }}
-            </text>
-        </button>
-    </view>
+        <sd-icon
+            v-if="loading || icon"
+            custom-class="sd-button__icon"
+            :name="loading ? 'loading' : icon"
+            :loading="loading"
+            :size="iconSize"
+            :color="iconColor"
+        />
+        <text v-if="loadingText">
+            {{ loadingText }}
+        </text>
+        <slot v-else-if="$slots.default" />
+        <text v-else-if="buttonText">
+            {{ buttonText }}
+        </text>
+    </button>
 </template>
