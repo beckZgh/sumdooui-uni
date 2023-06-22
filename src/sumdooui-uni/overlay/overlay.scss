@@ -1,8 +1,8 @@
 
 @import '../styles/variables.scss'  ;
 
-$overlay-bg-color: var(--sd-overlay-bg-color, $sd-bg-color-mask);
-$overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
+$overlay-background: var(--sd-overlay-background, $sd-bg-color-mask);
+$overlay-z-index   : var(--sd-overlay-z-index   , $sd-popup-z-index);
 
 .sd-overlay {
     position: fixed;
@@ -13,22 +13,13 @@ $overlay-z-index : var(--sd-overlay-z-index, $sd-popup-z-index);
     display: flex;
     align-items: center;
     justify-content: center;
-    backface-visibility: hidden;
-    perspective: 1000;
     opacity: 0;
-    transform: translateZ(0);
-    transform: scale3d(1, 1, 0);
-    background-color: $overlay-bg-color;
+    visibility: hidden;
+    transition: all .3s;
+    background-color: $overlay-background;
 
     &.is-show {
-        transition-property: opacity;
-        opacity: $overlay-z-index;
-        transform: scale3d(1, 1, 1);
-    }
-
-    &.is-hide {
-        transition-property: opacity;
-        opacity: 0;
-        transform: scale3d(1, 1, 0);
+        visibility: visible;
+        opacity: 1;
     }
 }

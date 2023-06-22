@@ -14,13 +14,13 @@ function showOverlay(close_on_click_overlay = false) {
 <template>
     <sd-page title="Overlay 遮罩层">
         <demo-card title="基本用法" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="showOverlay(false)">
+            <sd-button width="75%" @click="showOverlay(false)">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="点击遮罩层可关闭" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="showOverlay(true)">
+            <sd-button width="75%" @click="showOverlay(true)">
                 应用
             </sd-button>
         </demo-card>

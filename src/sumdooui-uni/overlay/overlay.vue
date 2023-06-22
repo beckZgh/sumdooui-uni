@@ -1,8 +1,9 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
-import { defineComponent, computed, ref, watch, onMounted } from 'vue'
-import { MpMixin       } from '../common/mixins'
-import { overlay_props } from './overlay'
+
+import { defineComponent, computed } from 'vue'
+import { MpMixin                   } from '../common/mixins'
+import { overlay_props             } from './overlay'
 
 export default defineComponent({
     ...MpMixin,
@@ -17,23 +18,9 @@ export default defineComponent({
         'touchend',
     ],
     setup(props, { emit }) {
-        const status = ref<'show' | 'hide' | ''>('')
-
-        watch(() => props.visible, (visible) => {
-            status.value = visible ? 'show' : 'hide'
-        })
-
-        onMounted(() => {
-            if (props.visible) status.value = 'show'
-        })
-
-        function onTransitionEnd() {
-            if (!props.visible) status.value = ''
-        }
-
         const root_style$ = computed(() => {
             const style: CSSProperties = { ...props.customStyle }
-            if (status.value && props.duration) {
+            if (props.duration) {
                 style.transitionDuration = `${ props.duration }s`
             }
             if (props.background) style.backgroundColor = props.background
@@ -43,21 +30,23 @@ export default defineComponent({
 
         function onClick(e: Event) {
             emit('click', e)
-            if (props.closeOnClickOverlay) {
+            if (props.closeOnClick) {
                 emit('update:visible', false)
             }
         }
 
         function onTouchMove(e: TouchEvent) {
-            emit('touchmove', e)
+            if (props.lockScroll) {
+                e.stopPropagation()
+            } else {
+                emit('touchmove', e)
+            }
         }
 
         return {
-            status,
             root_style$,
             onClick,
             onTouchMove,
-            onTransitionEnd,
         }
     },
 })
@@ -66,9 +55,8 @@ export default defineComponent({
 <template>
     <view
         class="sd-overlay"
-        :class="[customClass, { [`is-${ status }`]: !!status }]"
+        :class="[customClass, { [`is-show`]: visible }]"
         :style="root_style$"
-        @transitionend="onTransitionEnd"
         @touchstart="$emit('touchstart', $event)"
         @touchend="$emit('touchend', $event)"
         @touchmove.stop="onTouchMove"

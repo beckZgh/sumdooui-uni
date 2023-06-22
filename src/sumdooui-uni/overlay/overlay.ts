@@ -6,15 +6,17 @@ export const overlay_props = {
     ...COMMON_PROPS,
 
     /** 显示隐藏绑定值 */
-    visible            : { type: Boolean, default: false },
+    visible     : { type: Boolean, default: false },
     /** 背景色 */
-    background         : { type: String },
+    background  : { type: String },
     /** 过渡动画时间 */
-    duration           : { type: Number, default: 0.3 },
+    duration    : { type: Number },
     /** 遮罩层层级 */
-    zIndex             : { type: Number },
+    zIndex      : { type: Number },
     /** 点击遮罩层关闭 */
-    closeOnClickOverlay: { type: Boolean },
+    closeOnClick: { type: Boolean },
+    /** 锁定滚动 */
+    lockScroll  : { type: Boolean, default: false },
 }
 
 export type OverlayProps = ExtractPropTypes<typeof overlay_props>
