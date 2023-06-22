@@ -19,7 +19,8 @@ $button-default-padding: var(--sd-button-default-padding, 30rpx);
 $button-large-padding  : var(--sd-button-large-padding  , 30rpx);
 
 // 按钮背景色
-$button-default-background  : var(--sd-button-default-bg-color, #f0f2f5);
+$button-default-background      : var(--sd-button-default-bg-color    , $sd-fill-color);
+$button-default-plain-background: var(--sd-button-default-bg-color    , $sd-fill-color-lighter);
 $button-default-color       : var(--sd-button-default-color       , $sd-text-color);
 $button-default-border-color: var(--sd-button-default-border-color, $sd-border-color);
 
@@ -50,7 +51,7 @@ $button-default-border-color: var(--sd-button-default-border-color, $sd-border-c
 
     // 朴素按钮
     &.sd-button--plain {
-        background-color: $sd-white;
+        background-color: $button-default-plain-background;
 
         &::after {
             border-color: $button-default-border-color;
@@ -131,7 +132,7 @@ $button-default-border-color: var(--sd-button-default-border-color, $sd-border-c
     box-sizing: border-box;
     @include button-size($button-default-height, $button-default-padding, $button-default-font-size);
     @include button-default-theme();
-    @include button-radius($sd-radius-md);
+    @include button-radius($sd-radius-sm);
 
     &::before,
     &::after {
@@ -171,7 +172,7 @@ $button-default-border-color: var(--sd-button-default-border-color, $sd-border-c
 
     // 按钮边框形状
     &--round { // 椭圆
-        @include button-radius($sd-radius-max);
+        @include button-radius($sd-radius-round);
     }
     &--circle { // 圆形
         @include button-radius($sd-radius-circle);
