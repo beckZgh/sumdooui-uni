@@ -1,8 +1,8 @@
 // 动画
+@import './animations/index.scss';
 @import './animations.scss';
 
 // 基础组件
-@import '../animate/animate.scss';
 @import '../button/button.scss';
 @import '../icon/icon.scss';
 @import '../image/image.scss';
@@ -45,6 +45,7 @@
 @import '../collapse-item/collapse-item.scss';
 @import '../table/table.scss';
 @import '../notice-bar/notice-bar.scss';
+@import '../footer/footer.scss';
 
 // 表单组件
 @import '../switch/switch.scss';

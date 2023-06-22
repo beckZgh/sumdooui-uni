@@ -1,0 +1,25 @@
+/* Animation css */
+[class*='sd-animation-'] {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+
+    //循环
+    &.loop {
+        animation-iteration-count: infinite;
+    }
+}
+
+@import './slide-bottom.scss'; // 下面向上面划入
+@import './slide-top.scss';    // 上面向下面划入
+@import './slide-left.scss';   // 左侧向右侧划入
+@import './slide-right.scss';  // 右侧向左侧划入
+
+@import './shake.scss';   // 抖动
+@import './ripple.scss';  // 心跳
+@import './breath.scss';  // 呼吸灯
+@import './twinkle.scss'; // 水波
+@import './flicker.scss'; // 擦亮
+@import './jump.scss';    // 跳跃
+@import './float.scss';   // 漂浮
+@import './rotate.scss';  // 旋转

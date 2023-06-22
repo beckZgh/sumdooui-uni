@@ -27,15 +27,6 @@
     &.is-loading {
         display: inline-block;
         animation-iteration-count: infinite;
-        animation-name: jump;
-    }
-
-    @keyframes jump {
-        0% {
-            transform: rotate(0deg)
-        }
-        to {
-            transform: rotate(360deg)
-        }
+        animation-name: rotate;
     }
 }

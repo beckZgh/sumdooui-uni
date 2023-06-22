@@ -1,0 +1,15 @@
+// 右侧向左侧划入
+.sd-animation-slide-right {
+    animation-name: slide-right;
+}
+
+@keyframes slide-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

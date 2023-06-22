@@ -1,0 +1,29 @@
+// 擦亮
+.sd-animation-flicker {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        width: 100 * 1px;
+        height: 60 * 1px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.73;
+        content: '';
+        background-image: linear-gradient(106deg, rgba(232, 224, 255, 0) 24%, #e8e0ff 91%);
+        animation: flicker 1.5s linear infinite;
+        transform: skewX(-20deg);
+        filter: blur(3 * 1px);
+    }
+}
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-100 * 1px) skewX(-20deg);
+    }
+    40%,
+    100% {
+        transform: translateX(150 * 1px) skewX(-20deg);
+    }
+}

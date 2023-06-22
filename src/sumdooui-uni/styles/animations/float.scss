@@ -1,0 +1,24 @@
+// 漂浮
+.sd-animation-float {
+    position: relative;
+    animation-name: float-pop;
+}
+
+// 漂浮 float
+@keyframes float-pop {
+    0% {
+        top: 0px;
+    }
+    25% {
+        top: 1px;
+    }
+    50% {
+        top: 4px;
+    }
+    75% {
+        top: 1px;
+    }
+    100% {
+        top: 0px;
+    }
+}

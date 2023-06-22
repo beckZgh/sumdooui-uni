@@ -1,0 +1,39 @@
+// 水波
+.sd-animation-twinkle {
+    position: relative;
+    &::after,
+    &::before {
+        width: 60 * 1px;
+        height: 60 * 1px;
+        content: '';
+        box-sizing: border-box;
+        border: 4 * 1px solid rgba(255, 255, 255, 0.6);
+        position: absolute;
+        border-radius: calc(60 / 2) * 1px;
+        right: 50%;
+        margin-top: calc(-30 / 2) * 1px;
+        margin-right: calc(-60 / 2) * 1px;
+        z-index: 1;
+        transform: scale(0);
+        animation: twinkle 2s ease-out infinite;
+    }
+
+    &::after {
+        animation-delay: 0.4s;
+    }
+}
+
+// 水波
+@keyframes twinkle {
+    0% {
+        transform: scale(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}

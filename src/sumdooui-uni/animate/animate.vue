@@ -18,9 +18,8 @@ export default defineComponent({
 
         const animate_box_class$ = computed(() => {
             return {
-                'sd-ani-container'              : true,
                 [`sd-animation-${ props.type }`]: props.trigger === 'initial' || (clicked.value ? props.type : false),
-                'loop'                          : props.loop,
+                loop                            : props.loop,
             }
         })
 
@@ -44,9 +43,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-animate" :class="[customClass]" :style="customStyle">
-        <view :class="animate_box_class$" @tap="onClick">
-            <slot />
-        </view>
+    <view :class="animate_box_class$" @tap="onClick">
+        <slot />
     </view>
 </template>

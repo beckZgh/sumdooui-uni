@@ -1,0 +1,28 @@
+// 跳跃
+.sd-animation-jump {
+    transform-origin: center center;
+    animation: jump 0.7s linear;
+}
+
+@keyframes jump {
+    0% {
+        animation-timing-function: ease-in;
+        transform: rotate(0deg) translateY(0);
+    }
+    25% {
+        animation-timing-function: ease-out;
+        transform: rotate(10deg) translateY(20 * 1px);
+    }
+    50% {
+        animation-timing-function: ease-in;
+        transform: rotate(0deg) translateY(-10 * 1px);
+    }
+    75% {
+        animation-timing-function: ease-out;
+        transform: rotate(-10deg) translateY(20 * 1px);
+    }
+    100% {
+        animation-timing-function: ease-in;
+        transform: rotate(0deg) translateY(0);
+    }
+}
