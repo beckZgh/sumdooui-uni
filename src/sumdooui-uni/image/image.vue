@@ -24,7 +24,7 @@ export default defineComponent({
             const style: CSSProperties = { ...props.customStyle }
 
             const { radius, width, height } = props
-            if (width ) style.width        = Utils.toUnit(width)
+            if (width ) style.width = Utils.toUnit(width)
             if (height) {
                 if (typeof height === 'string' && height !== '100%' && height.endsWith('%')) {
                     style.height = 0
@@ -87,19 +87,40 @@ export default defineComponent({
         class="sd-image"
         :class="[
             {
-                [`sd-image--${ shape }`]: !!shape,
-                'is-loading'            : showLoading && state.show_loading,
-                'is-error'              : showError && state.show_error,
-                'is-empty'              : !src,
+                [`sd-image--circle`]: !!circle,
+                'is-loading'        : showLoading && state.show_loading,
+                'is-error'          : showError && state.show_error,
+                'is-empty'          : !src,
             },
             customClass,
         ]"
         :style="image_style$"
         @tap="onClick"
     >
-        <view class="sd-image__content">
+        <!-- 占位显示 -->
+        <view v-if="!src" class="sd-image__placeholder">
+            <slot v-if="$slots.placeholder" name="placeholder" />
+            <sd-icon v-else name="image" class="sd-image__placeholder-icon" />
+        </view>
+
+        <!-- 加载中区域 -->
+        <view v-if="src && showLoading && state.show_loading" class="sd-image__loading">
+            <slot v-if="$slots.loading" name="loading" />
+            <sd-icon name="loading" loading />
+        </view>
+
+        <!-- 加载失败区域 -->
+        <view v-if="showError && state.show_error" class="sd-image__error">
+            <slot v-if="$slots.error" name="error" />
+            <sd-icon v-else name="image" />
+        </view>
+
+        <!-- 加载成功区域 -->
+        <view
+            v-if="(src && (!showError || (showError && !state.show_error)))"
+            class="sd-image__content"
+        >
             <image
-                v-if="(src && (!showError || (showError && !state.show_error)))"
                 class="sd-image__img"
                 :object-fit="fit"
                 :object-position="position"
@@ -108,18 +129,6 @@ export default defineComponent({
                 @load="onLoad"
                 @error="onError"
             />
-
-            <view v-if="!src" class="sd-image__placeholder-icon">
-                <slot v-if="$slots.placeholder" name="placeholder" />
-                <sd-icon v-else name="image" class="sd-image__placeholder-icon" />
-            </view>
-
-            <sd-loading v-if="src && showLoading && state.show_loading" />
-
-            <view v-if="showError && state.show_error" class="sd-image__error-icon">
-                <slot v-if="$slots.error" name="error" />
-                <sd-icon v-else name="image" />
-            </view>
         </view>
     </view>
 </template>

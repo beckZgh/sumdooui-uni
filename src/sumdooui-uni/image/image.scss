@@ -1,9 +1,9 @@
 @import '../styles/variables.scss'  ;
 
-$image-bg-color  : var(--sd-image-bg-color, $sd-bg-color-container);
-$image-width     : var(--sd-image-width, 160rpx);
-$image-height    : var(--sd-iamge-height, 160rpx);
-$image-icon-size : var(--sd-image-icon-size, 60rpx);
+$image-background: var(--sd-image-background, $sd-fill-color);
+$image-width     : var(--sd-image-width     , 160rpx);
+$image-height    : var(--sd-iamge-height    , 160rpx);
+$image-icon-size : var(--sd-image-icon-size , 1.4em);
 $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
 
 .sd-image {
@@ -12,28 +12,17 @@ $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
     vertical-align: bottom;
     width: $image-width;
     height: $image-height;
+    border-radius: $sd-radius-sm;
     overflow: hidden;
 
-    &--round {
-        border-radius: $sd-border-radius-l;
-    }
-
     &--circle {
-        border-radius: $sd-border-radius-circle;
+        border-radius: $sd-radius-circle;
     }
 
-    &--block {
-        display: block;
-        width: 100%;
-        height: auto;
-
-        .sd-image__img {
-            width: none;
-            height: none;
-        }
-    }
-
-    &__content {
+    &__content,
+    &__loading,
+    &__error,
+    &__placeholder {
         position: absolute;
         left: 0;
         right: 0;
@@ -50,17 +39,9 @@ $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
         font-size: 0;
     }
 
-    .sd-loading {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-    }
-
-    &__placeholder-icon,
-    &__error-icon {
+    &__loading,
+    &__error,
+    &__placeholder{
         font-size: $image-icon-size;
         color: $image-icon-color;
     }
@@ -68,6 +49,6 @@ $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
     &.is-loading,
     &.is-error,
     &.is-empty {
-        background-color: $image-bg-color;
+        background-color: $image-background;
     }
 }

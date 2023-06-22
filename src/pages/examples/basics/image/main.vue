@@ -10,20 +10,18 @@ const error_img  = ref('https://img0.baidu.com/error.png')
     <sd-page title="Image 图片">
         <demo-card title="本地图片">
             <sd-image :src="local_img" />
-            <sd-image :src="local_img" shape="round" />
-            <sd-image :src="local_img" shape="circle" />
+            <sd-image :src="local_img" circle />
         </demo-card>
 
         <demo-card title="网络图片">
             <sd-image :src="online_img" />
-            <sd-image :src="online_img" shape="round" />
-            <sd-image :src="online_img" shape="circle" />
+            <sd-image :src="online_img" circle />
         </demo-card>
 
         <demo-card title="自定义圆角值">
-            <sd-image :src="online_img" :radius="20" />
-            <sd-image :src="online_img" :radius="30" />
-            <sd-image :src="online_img" :radius="40" />
+            <sd-image :src="online_img" :radius="0" />
+            <sd-image :src="online_img" :radius="8" />
+            <sd-image :src="online_img" :radius="16" />
         </demo-card>
 
         <demo-card title="图片展示模式">

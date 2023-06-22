@@ -2,7 +2,6 @@ import type { PropType, ExtractPropTypes } from 'vue'
 import { COMMON_PROPS } from '../common/props'
 
 export type ImageMode     = 'scaleToFill' | 'apectFit' | 'aspectFill' | 'widthFix' | 'heightFix' | 'top' | 'bottom' | 'left' | 'right' | 'center' | 'top left' | 'top right' | 'bottom left' | 'bottom right'
-export type ImageShape    = 'round' | 'circle'
 export type ImageFit      = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 export type ImagePosition = 'center' | 'top' | 'bottom' | 'left' | 'right'
 
@@ -19,8 +18,8 @@ export const image_props = {
     position          : { type: String as PropType<ImagePosition>, default: 'center' },
     /** 懒加载 */
     lazyload          : { type: Boolean },
-    /** 图片形状 */
-    shape             : { type: String as PropType<ImageShape> },
+    /** 圆形图片 */
+    circle            : { type: Boolean, default: false },
     /** 显示图片加载中 */
     showLoading       : { type: Boolean, default: true },
     /** 显示图片异常 */
