@@ -47,7 +47,7 @@ export default defineComponent({
 <template>
     <text
         class="sd-icon"
-        :class="[customClass, { 'is-loading': loading, [`sd-icon--${ theme }`]: !!theme }]"
+        :class="[customClass, { 'is-loading': loading, [`sd-icon--${ type }`]: !!type }]"
         :style="icon_styles$"
         @tap="$emit('click', $event)"
     >

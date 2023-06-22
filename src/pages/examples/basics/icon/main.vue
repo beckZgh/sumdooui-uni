@@ -6,10 +6,10 @@ import ICONS from '@/sumdooui-uni/icon/icons'
     <sd-page tilte="Icon 图标">
         <demo-card title="预设主题">
             <sd-icon name="sound" :size="40" />
-            <sd-icon name="sound" :size="40" theme="primary" />
-            <sd-icon name="sound" :size="40" theme="success" />
-            <sd-icon name="sound" :size="40" theme="warning" />
-            <sd-icon name="sound" :size="40" theme="danger" />
+            <sd-icon name="sound" :size="40" type="primary" />
+            <sd-icon name="sound" :size="40" type="success" />
+            <sd-icon name="sound" :size="40" type="warning" />
+            <sd-icon name="sound" :size="40" type="danger" />
         </demo-card>
 
         <demo-card title="自定义颜色">
