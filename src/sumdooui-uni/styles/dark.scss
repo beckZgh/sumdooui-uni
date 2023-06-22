@@ -1,7 +1,22 @@
-.sd-theme-dark {
-    --sd-text-color: rgba(0, 0, 0, 0.6);
-    --sd-text-color-primary: rgba(0, 0, 0, 0.9);
-    --sd-text-color-secondary: rgba(0, 0, 0, 0.4);
-    --sd-text-color-placeholder: rgba(0, 0, 0, 0.26);
+.is-dark {
+    // 文本颜色 - 深色
+    --sd-text-color-primary    : #E5EAF3;
+    --sd-text-color            : #CFD3DC;
+    --sd-text-colorr-secondary : #A3A6AD;
+    --sd-text-color-placeholder: #8D9095;
+    --sd-text-color-disabled   : #6C6E72;
+
+    // 填充色
+    --sd-fill-color        : #4b4b4b;
+    --sd-fill-color-light  : #393939;
+    --sd-fill-color-lighter: #2c2c2c;
+
+    // 边框颜色
     --sd-border-color: #777777;
+    --sd-border-color-light: #5e5e5e;
+    --sd-border-color-lighter: #4b4b4b;
+
+    // 页面背景色
+    --sd-bg-color: #0A0A0A;
+    --sd-bg-color-mask: #1D1E1F;
 }

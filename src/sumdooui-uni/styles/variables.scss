@@ -3,68 +3,68 @@
 // 基础色
 $sd-white: var(--sd-white, #fff);
 $sd-black: var(--sd-black, #000);
-$sd-blue : var(--sd-blue, #1989fa);
+$sd-blue : var(--sd-blue , #1D6FE9);
 
-// 灰色
+// 中性色
 $sd-gray-color-1 : var(--sd-gray-color-1 , #f3f3f3);
 $sd-gray-color-2 : var(--sd-gray-color-2 , #eeeeee);
-$sd-gray-color-3 : var(--sd-gray-color-3 , #e7e7e7);
-$sd-gray-color-4 : var(--sd-gray-color-4 , #dcdcdc);
-$sd-gray-color-5 : var(--sd-gray-color-5 , #c5c5c5);
+$sd-gray-color-3 : var(--sd-gray-color-3 , #e8e8e8);
+$sd-gray-color-4 : var(--sd-gray-color-4 , #dddddd);
+$sd-gray-color-5 : var(--sd-gray-color-5 , #c6c6c6);
 $sd-gray-color-6 : var(--sd-gray-color-6 , #a6a6a6);
 $sd-gray-color-7 : var(--sd-gray-color-7 , #8b8b8b);
 $sd-gray-color-8 : var(--sd-gray-color-8 , #777777);
 $sd-gray-color-9 : var(--sd-gray-color-9 , #5e5e5e);
 $sd-gray-color-10: var(--sd-gray-color-10, #4b4b4b);
-$sd-gray-color-11: var(--sd-gray-color-11, #383838);
+$sd-gray-color-11: var(--sd-gray-color-11, #393939);
 $sd-gray-color-12: var(--sd-gray-color-12, #2c2c2c);
 $sd-gray-color-13: var(--sd-gray-color-13, #242424);
 $sd-gray-color-14: var(--sd-gray-color-14, #181818);
 
 // 主题色
 $sd-primary-color  : var(--sd-primary-color  , #465CFF);
-$sd-primary-color-1: var(--sd-primary-color-1, #596cff);
-$sd-primary-color-2: var(--sd-primary-color-2, #6b7dff);
+// $sd-primary-color-1: var(--sd-primary-color-1, #596cff);
+// $sd-primary-color-2: var(--sd-primary-color-2, #6b7dff);
 $sd-primary-color-3: var(--sd-primary-color-3, #7e8dff);
-$sd-primary-color-4: var(--sd-primary-color-4, #909dff);
+// $sd-primary-color-4: var(--sd-primary-color-4, #909dff);
 $sd-primary-color-5: var(--sd-primary-color-5, #a3aeff);
-$sd-primary-color-6: var(--sd-primary-color-6, #b5beff);
+// $sd-primary-color-6: var(--sd-primary-color-6, #b5beff);
 $sd-primary-color-7: var(--sd-primary-color-7, #c8ceff);
 $sd-primary-color-8: var(--sd-primary-color-8, #dadeff);
 $sd-primary-color-9: var(--sd-primary-color-9, #edefff);
 
 // 辅助色 - 成功
 $sd-success-color  : var(--sd-success-color  , #09BE4F);
-$sd-success-color-1: var(--sd-success-color-1, #76c84e);
-$sd-success-color-2: var(--sd-success-color-2, #85ce61);
+// $sd-success-color-1: var(--sd-success-color-1, #76c84e);
+// $sd-success-color-2: var(--sd-success-color-2, #85ce61);
 $sd-success-color-3: var(--sd-success-color-3, #95d475);
-$sd-success-color-4: var(--sd-success-color-4, #a4da89);
+// $sd-success-color-4: var(--sd-success-color-4, #a4da89);
 $sd-success-color-5: var(--sd-success-color-5, #b3e19d);
-$sd-success-color-6: var(--sd-success-color-6, #c2e7b0);
+// $sd-success-color-6: var(--sd-success-color-6, #c2e7b0);
 $sd-success-color-7: var(--sd-success-color-7, #d1edc4);
 $sd-success-color-8: var(--sd-success-color-8, #e1f3d8);
 $sd-success-color-9: var(--sd-success-color-9, #f0f9eb);
 
 // 辅助色 - 提醒
 $sd-warning-color  : var(--sd-warning-color  , #FFB703);
-$sd-warning-color-1: var(--sd-warning-color-1, #e9ab50);
-$sd-warning-color-2: var(--sd-warning-color-2, #ebb563);
+// $sd-warning-color-1: var(--sd-warning-color-1, #e9ab50);
+// $sd-warning-color-2: var(--sd-warning-color-2, #ebb563);
 $sd-warning-color-3: var(--sd-warning-color-3, #eebe77);
-$sd-warning-color-4: var(--sd-warning-color-4, #f0c78a);
+// $sd-warning-color-4: var(--sd-warning-color-4, #f0c78a);
 $sd-warning-color-5: var(--sd-warning-color-5, #f3d19e);
-$sd-warning-color-6: var(--sd-warning-color-6, #f5dab1);
+// $sd-warning-color-6: var(--sd-warning-color-6, #f5dab1);
 $sd-warning-color-7: var(--sd-warning-color-7, #f8e3c5);
 $sd-warning-color-8: var(--sd-warning-color-8, #faecd8);
 $sd-warning-color-9: var(--sd-warning-color-9, #fdf6ec);
 
 // 辅助色 - 警告、失败
 $sd-danger-color  : var(--sd-danger-color  , #FF2B2B);
-$sd-danger-color-1: var(--sd-danger-color-1, #f67b7b);
-$sd-danger-color-2: var(--sd-danger-color-2, #f78989);
+// $sd-danger-color-1: var(--sd-danger-color-1, #f67b7b);
+// $sd-danger-color-2: var(--sd-danger-color-2, #f78989);
 $sd-danger-color-3: var(--sd-danger-color-3, #f89898);
-$sd-danger-color-4: var(--sd-danger-color-4, #f9a7a7);
+// $sd-danger-color-4: var(--sd-danger-color-4, #f9a7a7);
 $sd-danger-color-5: var(--sd-danger-color-5, #fab6b6);
-$sd-danger-color-6: var(--sd-danger-color-6, #fbc4c4);
+// $sd-danger-color-6: var(--sd-danger-color-6, #fbc4c4);
 $sd-danger-color-7: var(--sd-danger-color-7, #fcd3d3);
 $sd-danger-color-8: var(--sd-danger-color-8, #fde2e2);
 $sd-danger-color-9: var(--sd-danger-color-9, #fef0f0);
@@ -72,19 +72,25 @@ $sd-danger-color-9: var(--sd-danger-color-9, #fef0f0);
 // 背景色
 $sd-bg-color          : var(--sd-bg-color          , $sd-gray-color-2);
 $sd-bg-color-container: var(--sd-bg-color-container, $sd-gray-color-3);
-$sd-bg-color-disabled : var(--sd-bg-color-disabled , #f1f3f7);
 $sd-bg-color-mask     : var(--sd-bg-color-mask     , rgba(0, 0, 0, 0.5));
 
-// 文本颜色
-$sd-text-color            : var(--sd-text-color, #333333);
-$sd-text-color-primary    : var(--sd-text-color-primary, #181818);
-$sd-text-color-secondary  : var(--sd-text-colorr-secondary, #808080);
-$sd-text-color-placeholder: var(--sd-text-color-placeholder, #B2B2B2);
-$sd-text-color-disabled   : var(--sd-text-color-disabled, #CCCCCC);
-$sd-text-color-link       : var(--sd-text-color-link, $sd-blue);
+// 文本颜色 - 亮色
+$sd-text-color-primary    : var(--sd-text-color-primary     , #303133);
+$sd-text-color            : var(--sd-text-color             , #606266);
+$sd-text-color-secondary  : var(--sd-text-colorr-secondary  , #909399);
+$sd-text-color-placeholder: var(--sd-text-color-placeholder , #A8ABB2);
+$sd-text-color-disabled   : var(--sd-text-color-disabled    , #C0C4CC);
+$sd-text-color-link       : var(--sd-text-color-link        , $sd-blue );
+
+// 填充色
+$sd-fill-color: var(--sd-fill-color, #F0F2F5);
+$sd-fill-color-light: var(--sd-fill-color-light, #FAFAFA);
+$sd-fill-color-lighter: var(--sd-fill-color-lighter, #FAFCFF);
 
 // 边框颜色
-$sd-border-color: var(--sd-border-color, #e9e9e9); // #e9e9e9 #dcdfe6
+$sd-border-color        : var(--sd-border-color, $sd-gray-color-4);
+$sd-border-color-light  : var(--sd-border-color, $sd-gray-color-3);
+$sd-border-color-lighter: var(--sd-border-color, $sd-gray-color-2);
 
 // 阴影
 $sd-shadow-color: var(--sd-shadow-color, rgba(2, 4, 38, 0.05));
@@ -95,35 +101,44 @@ $sd-opacity-hover   : var(--sd-opacity-hover   , 0.8);
 $sd-opacity-disabled: var(--sd-opacity-disabled, 0.5);
 
 // 文本大小
-$sd-font-size-xs  : var(--sd-font-size-xs  , 20rpx); // 10px
-$sd-font-size-s   : var(--sd-font-size-s   , 24rpx); // 12px
-$sd-font-size-base: var(--sd-font-size-base, 28rpx); // 14px
-$sd-font-size-m   : var(--sd-font-size-m   , 32rpx); // 16px
-$sd-font-size-l   : var(--sd-font-size-l   , 40rpx); // 20px
-$sd-font-size-xl  : var(--sd-font-size-xl  , 72rpx); // 36px
+$sd-font-size-xs: var(--sd-font-size-xs, 20rpx); // 10px -> 行高 18
+$sd-font-size-sm: var(--sd-font-size-sm, 24rpx); // 12px -> 行高 20
+$sd-font-size-md: var(--sd-font-size-md, 28rpx); // 14px -> 行高 22
+$sd-font-size-lg: var(--sd-font-size-lg, 32rpx); // 16px -> 行高 24
+$sd-font-size-h3: var(--sd-font-size-h3, 32rpx); // 16px -> 行高 24
+$sd-font-size-h2: var(--sd-font-size-h3, 36rpx); // 18px -> 行高 26
+$sd-font-size-h1: var(--sd-font-size-h3, 40rpx); // 20px -> 行高 28
 
-// 边框大小
-$sd-border-radius-s     : var(--sd-border-radius-sm  , 6rpx) ; // 3px
-$sd-border-radius-base  : var(--sd-border-radius-base, 12rpx); // 6px
-$sd-border-radius-m     : var(--sd-border-radius-lg  , 18rpx); // 9px
-$sd-border-radius-l     : var(--sd-border-radius-lg  , 24rpx); // 12px
-$sd-border-radius-round : 999px;
-$sd-border-radius-circle: 50%;
+// 文本行高
+$sd-line-height-xs: var(--sd-line-height-xs, 28rpx); // 14px
+$sd-line-height-sm: var(--sd-line-height-sm, 36rpx); // 18px
+$sd-line-height-md: var(--sd-line-height-md, 40rpx); // 20px
+$sd-line-height-lg: var(--sd-line-height-lg, 44rpx); // 22px
 
-// 图片大小
-$sd-img-sm  : var(--sd-img-sm  , 20rpx); // 10px
-$sd-img-base: var(--sd-img-base, 30rpx); // 15px
-$sd-img-lg  : var(--sd-img-lg  , 40rpx); // 20px
+// 圆角值
+$sd-radius-xs    : var(--sd-radius-sm, 4rpx);
+$sd-radius-sm    : var(--sd-radius-sm, 8rpx);
+$sd-radius-md    : var(--sd-radius-md, 16rpx);
+$sd-radius-lg    : var(--sd-radius-lg, 32rpx);
+$sd-radius-round : 999px;
+$sd-radius-circle: 50%;
 
-// 间距
-$sd-spacer  : var(--sd-spacer  , 16rpx);  // 8px
-$sd-spacer-1: var(--sd-spacer-1, 24rpx);  // 12px 间距-小-x
-$sd-spacer-2: var(--sd-spacer-2, 32rpx);  // 16px 间距-小
-$sd-spacer-3: var(--sd-spacer-3, 48rpx);  // 24px 间距-中
-$sd-spacer-4: var(--sd-spacer-4, 64rpx);  // 32px 间距-大
-$sd-spacer-5: var(--sd-spacer-5, 96rpx);  // 48px 间距-大-x
-$sd-spacer-6: var(--sd-spacer-6, 160rpx); // 80px 间距-大-xx
+// 内边距
+$sd-padding-base: var(--sd-padding-base, 8rpx );
+$sd-padding-xs  : var(--sd-padding-base, 16rpx);
+$sd-padding-sm  : var(--sd-padding-base, 24rpx);
+$sd-padding-md  : var(--sd-padding-base, 32rpx);
+$sd-padding-lg  : var(--sd-padding-base, 48rpx);
+$sd-padding-xl  : var(--sd-padding-base, 64rpx);
+
+// 外边距
+$sd-margin-base: var(--sd-margin-base, 8rpx );
+$sd-margin-xs  : var(--sd-margin-base, 16rpx);
+$sd-margin-sm  : var(--sd-margin-base, 24rpx);
+$sd-margin-md  : var(--sd-margin-base, 32rpx);
+$sd-margin-lg  : var(--sd-margin-base, 48rpx);
+$sd-margin-xl  : var(--sd-margin-base, 64rpx);
 
 // 层叠
 $sd-navbar-z-index: 3000;
-$sd-popup-z-index: 2000;
+$sd-popup-z-index : 2000;
