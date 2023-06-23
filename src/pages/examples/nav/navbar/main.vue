@@ -58,6 +58,20 @@ function onClickRight() {
                 @click-right="onClickRight"
             />
         </demo-card>
+
+        <demo-card title="自定义插槽">
+            <sd-navbar>
+                <template #left>
+                    <sd-icon name="home" />
+                </template>
+                <template #title>
+                    自定义插槽标题
+                </template>
+                <template #right>
+                    <sd-icon name="location" />
+                </template>
+            </sd-navbar>
+        </demo-card>
     </sd-page>
 </template>
 

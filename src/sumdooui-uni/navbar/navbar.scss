@@ -1,12 +1,14 @@
 @import '../styles/variables.scss'  ;
 
-$navbar-padding-top: var(--sd-navbar-padding-top, 40rpx);
-$navbar-height     : var(--sd-navbar-height, 86rpx);
-$navbar-bg-color   : var(--sd-navbar-bg-color, $sd-white);
-$navbar-color      : var(--sd-navbar-color, $sd-text-color);
-$navbar-icon-size  : var(--sd-navbar-icon-size, 38rpx);
-$navbar-icon-color : var(--sd-navbar-icon-color, 'inherit');
-$navbar-z-index    : var(--sd-navbar-z-index, $sd-navbar-z-index);
+$navbar-padding-top    : var(--sd-navbar-padding-top, 40rpx);
+$navbar-height         : var(--sd-navbar-height     , 86rpx);
+$navbar-background     : var(--sd-navbar-background , $sd-white);
+$navbar-color          : var(--sd-navbar-color      , $sd-text-color);
+$navbar-icon-size      : var(--sd-navbar-icon-size  , 28rpx);
+$navbar-icon-color     : var(--sd-navbar-icon-color , 'inherit');
+$navbar-z-index        : var(--sd-navbar-z-index    , $sd-navbar-z-index);
+$navbar-title-font-size: var(--sd-navbar-title-font-size, 32rpx);
+
 
 .sd-navbar {
     position: relative;
@@ -14,7 +16,7 @@ $navbar-z-index    : var(--sd-navbar-z-index, $sd-navbar-z-index);
     align-items: center;
     height: $navbar-height;
     color: $navbar-color;
-    background-color: $navbar-bg-color;
+    background-color: $navbar-background;
 
     &.is-fixed {
         position: fixed;
@@ -64,7 +66,7 @@ $navbar-z-index    : var(--sd-navbar-z-index, $sd-navbar-z-index);
         justify-content: center;
         align-items: center;
         font-weight: 600;
-        font-size: 32rpx;
+        font-size: $navbar-title-font-size;
         height: 100%;
     }
 

@@ -21,7 +21,7 @@ export default defineComponent({
         const navbar_styles$ = computed(() => {
             const styles: CSSProperties = { ...props.customStyle }
             if (props.background) styles.backgroundColor = props.background
-            if (props.color) styles.color = props.color
+            if (props.color     ) styles.color           = props.color
             return styles
         })
 
@@ -46,10 +46,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <view
-        class="sd-navbar-box"
-        :style="{ '--sd-navbar-padding-top': `${ status_height }px` }"
-    >
+    <view :style="{ '--sd-navbar-padding-top': `${ status_height }px` }">
         <!-- 固定定位时，占位区域 -->
         <view v-if="fixed && placholder" class="sd-navbar-placeholder" />
 
@@ -68,24 +65,28 @@ export default defineComponent({
             :style="navbar_styles$"
         >
             <view v-if="leftArrow || leftIcon || $slots.left" class="sd-navbar__left" @tap="$emit('click-left', $event)">
-                <sd-icon v-if="leftArrow || leftIcon" :name="leftArrow ? 'left' : leftIcon" />
-                <text v-if="leftText">
-                    {{ leftText }}
-                </text>
-                <slot name="left" />
+                <slot v-if="$slots.left" name="left" />
+                <template v-else>
+                    <sd-icon v-if="leftArrow || leftIcon" :name="leftArrow ? 'left' : leftIcon" />
+                    <text v-if="leftText">
+                        {{ leftText }}
+                    </text>
+                </template>
             </view>
             <view class="sd-navbar__center">
                 <slot v-if="$slots.title" name="title" />
-                <text class="sd-navbar__center-title" :style="titleStyle">
+                <text v-else class="sd-navbar__center-title" :style="titleStyle">
                     {{ title }}
                 </text>
             </view>
             <view class="sd-navbar__right" @tap="$emit('click-right', $event)">
-                <slot name="right" />
-                <text v-if="rightText">
-                    {{ rightText }}
-                </text>
-                <sd-icon v-if="rightIcon" :name="rightIcon" />
+                <slot v-if="$slots.right" name="right" />
+                <template v-else>
+                    <text v-if="rightText">
+                        {{ rightText }}
+                    </text>
+                    <sd-icon v-if="rightIcon" :name="rightIcon" />
+                </template>
             </view>
         </view>
     </view>
