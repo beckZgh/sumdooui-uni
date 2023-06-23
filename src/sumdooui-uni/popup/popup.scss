@@ -1,42 +1,117 @@
 @import '../styles/variables.scss';
 
-$sd-popup-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
+$popup-radius    : var(--sd-popup-radius , $sd-radius-md);
+$popup-z-index   : var(--sd-popup-z-index, $sd-popup-z-index);
+$popup-background: var(--sd-popup-background, $sd-white);
+
+.sd-popup-wrap {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    z-index: $popup-z-index;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+
+    &.has-overlay {
+        background-color: $sd-bg-color-overlay;
+    }
+
+    &.is-show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &--center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 .sd-popup {
-    background-color: $sd-white;
+    position: fixed;
+    background-color: $popup-background;
     box-sizing: border-box;
-    overflow: hidden;
+    transition: all .3s ease-in-out;
 
-    &--bottom {
-        padding-bottom: env(safe-area-inset-bottom);
+    &--top {
+        top: var(--sd-page-navbar-height, 0);
+        left: 0;
+        right: 0;
+        transform: translate3d(0, -100%, 0);
+
+        &.is-show {
+            transform: translate3d(0, 0, 0);
+        }
 
         &.sd-popup--round {
-            border-radius: $sd-popup-border-radius $sd-popup-border-radius 0 0;
+            border-radius: 0 0 $popup-radius $popup-radius;
         }
     }
 
-    &--top {
+    &--bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translate3d(0, 100%, 0);
+        padding-bottom: env(safe-area-inset-bottom);
+
+        &.is-show {
+            transform: translate3d(0, 0, 0);
+        }
+
         &.sd-popup--round {
-            border-radius: 0 0 $sd-popup-border-radius $sd-popup-border-radius;
+            border-radius: $popup-radius $popup-radius 0 0;
+        }
+    }
+
+    &--left {
+        top: var(--sd-page-navbar-height, 0);
+        bottom: 0;
+        left: 0;
+        width: 75%;
+        transform: translate3d(-100%, 0, 0);
+
+        &.is-show {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    &--right {
+        top: var(--sd-page-navbar-height, 0);
+        bottom: 0;
+        right: 0;
+        width: 75%;
+        transform: translate3d(100%, 0, 0);
+
+        &.is-show {
+            transform: translate3d(0, 0, 0);
         }
     }
 
     &--center {
+        width: 90%;
+        transform: scale3d(0, 0, 0);
+
+        &.is-show {
+            transform: scale3d(1, 1, 1);
+        }
+
         &.sd-popup--round {
-            border-radius: $sd-popup-border-radius;
+            border-radius: $popup-radius;
         }
         &.sd-popup--round .sd-popup__body {
-            border-radius: 0 0 $sd-popup-border-radius $sd-popup-border-radius;
+            border-radius: 0 0 $popup-radius $popup-radius;
         }
-    }
-
-    &--left,
-    &--right {
-        height: 100%;
     }
 
     &__header {
-        min-height: 90rpx;
+        padding: 40rpx 0 30rpx;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -44,7 +119,8 @@ $sd-popup-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
     }
 
     &__title {
-        font-size: $sd-font-size-m;
+        font-weight: bold;
+        font-size: $sd-font-size-lg;
     }
 
     &__header-close {
@@ -53,6 +129,7 @@ $sd-popup-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
         right: 20rpx;
         width: 60rpx;
         height: 60rpx;
+        font-size: 32rpx;
         display: flex;
         justify-content: center;
         align-items: center;

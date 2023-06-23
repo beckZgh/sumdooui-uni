@@ -1,8 +1,10 @@
 <script lang="ts">
-import { defineComponent, computed, ref, watch } from 'vue'
-import { MpMixin         } from '../common/mixins'
-import { popup_props     } from './popup'
-import { useGestureSlide } from './use-gesture-slide'
+import type { CSSProperties } from 'vue'
+
+import { defineComponent, computed } from 'vue'
+import { MpMixin                   } from '../common/mixins'
+import { popup_props               } from './popup'
+// import { useGestureSlide } from './use-gesture-slide'
 
 import Utils from '../utils'
 
@@ -17,114 +19,109 @@ export default defineComponent({
         'click-close',
         'loadmore',
         'open',
-        'opened',
         'close',
-        'closed',
     ],
     setup(props, { emit }) {
-        // 手势滑动
-        const {
-            slide_style,
-            onTouchStart,
-            onTouchMove,
-            onTouchEnd,
-            onScrollTop,
-        } = useGestureSlide(props, close)
+        const visible$ = computed({
+            get() { return props.visible },
+            set(value) {
+                value ? open() : close()
+            },
+        })
+
+        function open() {
+            emit('update:visible', true)
+            emit('open')
+        }
+
+        async function close() {
+            // 关闭弹窗前回调
+            if (props.beforeClose && typeof props.beforeClose === 'function') {
+                const can_close = await props.beforeClose()
+                if ( !can_close ) return
+            }
+
+            emit('update:visible', false)
+            emit('close')
+        }
+
+        // 遮罩层样式
+        const overlay_style$ = computed(() => {
+            const style: CSSProperties = { ...props.overlayStyle }
+            if (props.duration) style.transitionDuration = `${ props.duration }s`
+            if (props.zIndex  ) style.zIndex = props.zIndex
+            return style
+        })
+
+        // 弹层样式
+        const popup_style$ = computed(() => {
+            const style: CSSProperties = { ...props.customStyle }
+            if (props.duration) style.transitionDuration = `${ props.duration }s`
+            if (props.width   ) style.width = Utils.toUnit(props.width)
+            return style
+        })
 
         // 抽屉模式
         const is_darwer$ = computed(() => ['left', 'right'].includes(props.position))
 
-        // 底部弹窗 & 居中弹窗默认显示顶部关闭按钮
-        const show_top_close$ = computed(() => {
-            if (Utils.isBoolean(props.showTopClose)) return props.showTopClose
-            return !!['bottom', 'center'].includes(props.position)
-        })
-
         // 监听遮罩层点击
-        function onMaskClick() {
-            if (props.maskCloseable) {
-                close()
+        function onClickOverlay() {
+            if (props.closeOnClickOverlay) {
                 emit('click-overlay')
+                close()
             }
         }
 
         // 监听关闭按钮点击
-        function onCloseClick() {
+        function onClickClose() {
             emit('click-close')
             close()
         }
 
-        function close() {
-            emit('update:visible', false)
-        }
-
-        const is_closed = ref(true)
-        watch(() => props.visible, (visible) => {
-            if (visible) is_closed.value = false
-        }, { immediate: true })
-
-        function onClosed() {
-            is_closed.value = true
-            emit('closed')
-        }
+        function onTouchMove() {}
 
         return {
-            slide_style,
+            visible$,
+            overlay_style$,
+            popup_style$,
             is_darwer$,
-            show_top_close$,
-            onMaskClick,
-            onCloseClick,
-            onTouchStart,
+            onClickOverlay,
+            onClickClose,
             onTouchMove,
-            onTouchEnd,
-            onScrollTop,
-            is_closed,
-            onClosed,
         }
     },
 })
 </script>
 
 <template>
-    <sd-overlay
-        :visible="mask && visible"
-        :duration="duration"
-        :z-index="zIndex"
-        @touchstart="onTouchStart"
-        @touchend="onTouchEnd"
+    <view
+        class="sd-popup-wrap"
+        :class="[
+            overlayClass,
+            { [`sd-popup-wrap--${ position }`]: true, 'is-show': visible$, 'has-overlay': overlay },
+        ]"
+        :style="overlay_style$"
+        @tap="onClickOverlay"
         @touchmove.stop="onTouchMove"
-        @click="onMaskClick"
-    />
-    <sd-transition
-        :visible="visible"
-        :mode="position"
-        :duration="duration"
-        :width="width"
-        :z-index="zIndex"
-        :custom-style="slide_style"
-        @touchstart="onTouchStart"
-        @touchend="onTouchEnd"
-        @touchmove.stop="onTouchMove"
-        @open="$emit('open')"
-        @opened="$emit('opened')"
-        @close="$emit('close')"
-        @closed="onClosed"
     >
         <view
-            v-if="!is_closed"
             class="sd-popup"
-            :class="[customClass, { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true }]"
-            :style="customStyle"
+            :class="[
+                customClass,
+                { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true, 'is-show': visible$ },
+            ]"
+            :style="popup_style$"
+            @touchmove.stop="onTouchMove"
         >
             <!-- 顶部区域 -->
-            <view v-if="title || show_top_close$" class="sd-popup__header">
+            <view v-if="title || showTopClose" class="sd-popup__header">
                 <slot v-if="$slots.header" name="header" />
                 <view v-else class="sd-popup__title">
                     {{ title }}
                 </view>
 
                 <!-- 顶部区域关闭按钮 -->
-                <view v-if="show_top_close$" class="sd-popup__header-close" @tap="onCloseClick">
+                <view v-if="showTopClose" class="sd-popup__header-close" @tap="onClickClose">
                     <sd-icon name="close" />
                 </view>
             </view>
@@ -139,7 +136,6 @@ export default defineComponent({
                     height   : is_darwer$ ? '100%' : 'auto',
                     maxHeight: is_darwer$ ? 'none' : maxHeight,
                 }"
-                @scroll="onScrollTop"
                 @scrolltolower="$emit('loadmore')"
             >
                 <slot />
@@ -151,12 +147,12 @@ export default defineComponent({
             </view>
 
             <!-- 底部插槽 -->
-            <slot v-if="$slots.bottom" name="bottom" />
+            <slot v-if="$slots.footer" name="footer" />
 
             <!-- 底部关闭按钮 -->
-            <view v-if="showBottomClose" class="sd-popup__footer-close" @tap="onCloseClick">
+            <view v-if="showBottomClose" class="sd-popup__footer-close" @tap="onClickClose">
                 <sd-icon name="close-circle" />
             </view>
         </view>
-    </sd-transition>
+    </view>
 </template>
