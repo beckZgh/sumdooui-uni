@@ -79,7 +79,7 @@ export default defineComponent({
         <view v-if="empty_text$" class="sd-empty__text">
             {{ empty_text$ }}
         </view>
-        <slot v-if="$slots.exra" name="extra" />
+        <slot v-if="$slots.extra" name="extra" />
         <sd-button v-if="buttonText" custom-class="sd-empty__btn" @click="$emit('click-button')">
             {{ buttonText }}
         </sd-button>
