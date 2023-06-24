@@ -1,8 +1,8 @@
 @import '../styles/variables.scss';
 
-$cell-group-title-color: var(--sd-cell-group-title-color, $sd-text-color-secondary);
+$cell-group-title-color  : var(--sd-cell-group-title-color  , $sd-text-color-secondary);
 $cell-group-title-padding: var(--sd-cell-group-title-padding, 32rpx 32rpx 20rpx 32rpx);
-$cell-group-title-size: var(--sd-cell-group-title-size, $sd-font-size-base);
+$cell-group-title-size   : var(--sd-cell-group-title-size   , $sd-font-size-md);
 
 .sd-cell-group {
     &__title {

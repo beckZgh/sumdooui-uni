@@ -1,24 +1,24 @@
 @import '../styles/variables.scss';
 
-$cell-bg-color: var(--sd-cell-bg-color, var(--sd-bg-color-white, $sd-white));
-$cell-padding: var(--sd-cell-padding, 30rpx 36rpx);
-$cell-round-radius: var(--sd-cell-round-radius, 16rpx);
-$cell-icon-size: var(--sd-cell-icon-size, 48rpx);
-$cell-border-color: var(--sd-cell-border-color, $sd-border-color);
-$cell-title-size: var(--sd-cell-title-size, $sd-font-size-m);
-$cell-title-color: var(--sd-cell-title-color, $sd-text-color);
+$cell-background       : var(--sd-cell-background       , $sd-white);
+$cell-padding          : var(--sd-cell-padding          , 30rpx 36rpx);
+$cell-round-radius     : var(--sd-cell-round-radius     , 16rpx);
+$cell-icon-size        : var(--sd-cell-icon-size        , 48rpx);
+$cell-border-color     : var(--sd-cell-border-color     , $sd-border-color);
+$cell-title-size       : var(--sd-cell-title-size       , $sd-font-size-md);
+$cell-title-color      : var(--sd-cell-title-color      , $sd-text-color);
 $cell-description-color: var(--sd-cell-description-color, $sd-text-color-secondary);
-$cell-description-size: var(--sd-cell-description-size, $sd-font-size-base);
-$cell-value-color: var(--sd-cell-value-color, $sd-text-color);
-$cell-value-size: var(--sd-cell-value-size, $sd-font-size-base);
-$cell-arrow-color: var(--sd-cell-arrow-color, $sd-border-color);
+$cell-description-size : var(--sd-cell-description-size , $sd-font-size-sm);
+$cell-value-color      : var(--sd-cell-value-color      , $sd-text-color);
+$cell-value-size       : var(--sd-cell-value-size       , $sd-font-size-md);
+$cell-arrow-color      : var(--sd-cell-arrow-color      , $sd-gray-color-7);
 
 .sd-cell {
     position: relative;
     display: flex;
     align-items: center;
     padding: $cell-padding;
-    background-color: $cell-bg-color;
+    background-color: $cell-background;
     box-sizing: border-box;
 
     // 左侧内容
