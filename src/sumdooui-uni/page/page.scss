@@ -1,22 +1,94 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$page-bg-color: var(--sd-page-bg-color, $sd-bg-color);
+$page-background       : var(--sd-page-background, $sd-bg-color);
+$page-header-z-index   : var(--sd-page-header-z-index, 10);
+$page-footer-background: var(--sd-page-footer-background, transparent);
+$page-footer-padding   : var(--sd-page-footer-padding, $sd-padding-md);
 
 .sd-page {
-    display: flex;
-    flex-direction: column;
-    background-color: $page-bg-color;
+    background-color: $page-background;
     min-height: 100vh;
     box-sizing: border-box;
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: env(safe-area-inset-bottom);
+    display: flex;
+    flex-direction: column;
 
-    &.is-lock-scroll {
+    &__header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: $page-header-z-index;
+
+        .sd-navbar .sd-icon {
+            font-size: 36rpx;
+        }
+    }
+
+    // 页面内容
+    &__body {
+        opacity: 0;
+        flex: 1;
+
+        &.is-visible {
+            opacity: 1;
+        }
+    }
+
+    // 页面底部
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: $page-footer-padding;
+        box-sizing: border-box;
+        background-color: $page-footer-background;
+    }
+
+    // --- 页面不允许滚动 ----------
+    &.lock-scroll {
         height: 100vh;
         overflow: hidden;
     }
 
-    &__content {
-        flex: 1;
+    &.lock-scroll &__body {
+        overflow: hidden;
     }
+    // ----------------------------
+
+    // --- 显示页面背景图 ----------
+    &.has-bg-img {
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        .sd-navbar {
+            background-color: transparent;
+        }
+    }
+
+    &.lock-scroll &__body {
+        overflow: hidden;
+    }
+    // ----------------------------
+
+    &__loading-wrap,
+    &__error-wrap {
+        position: fixed;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .sd-loading {
+        color: $sd-primary-color;
+    }
+}
+
+.sd-page-safe-area-bottom {
+    padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS<11.2 */
+    padding-bottom: env(safe-area-inset-bottom); /* 兼容iOS>= 11.2 */
 }

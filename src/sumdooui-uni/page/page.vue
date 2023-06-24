@@ -1,83 +1,91 @@
 <script lang="ts">
-import { defineComponent, reactive, computed, getCurrentInstance, onMounted, provide } from 'vue'
+import type { CSSProperties } from 'vue'
+
+import { defineComponent, ref, computed, onMounted, provide } from 'vue'
 import { page_props } from './page'
-import { PAGE_KEY } from '../common/tokens'
+import { useSelectoryQuery } from '../common/hooks'
+import { PAGE_KEY   } from '../common/tokens'
+import { MpMixin    } from '../common/mixins'
 
 export default defineComponent({
+    ...MpMixin,
+
     name : 'SdPage',
     props: page_props,
     emits: [
-        'click-back',
-        'click-home',
+        'click-error-button',
     ],
-    setup(props, { emit }) {
+    setup(props) {
         const app_base_info = uni.getAppBaseInfo()  // 应用基础信息
         const pages         = getCurrentPages()     // 所有页面实例
-        const instance      = getCurrentInstance()  // 当前组件实例
-
-        const state = reactive({
-            first_page   : pages.length === 1,
-            navbar_height: 20 + 44, // 默认 status_height 20，navbar_content 44
-        })
-
-        provide(PAGE_KEY, { instance, props, state })
+        const first_page    = pages.length === 1
 
         // 页面标题
         const page_title$ = computed(() => props.title || app_base_info?.appName || '')
 
         // 显示返回首页按钮
-        const show_home_button$ = computed(() => props.showHomeButton && state.first_page)
+        const show_home_button$ = computed(() => props.showHome && first_page)
 
         // 显示返回上一级按钮
-        const show_back_button$ = computed(() => props.showBackButton && !state.first_page)
+        const show_back_button$ = computed(() => props.showBack && !first_page)
 
-        // 处理返回
-        function onClickNavbarLeft(e: Event) {
-            if (show_back_button$.value) {
-                if (typeof props.onClickBack === 'function') {
-                    props.onClickBack(e)
-                } else {
-                    if (props.autoRoute) {
-                        uni.navigateBack({ delta: props.delta || 1 })
-                    } else {
-                        emit('click-back')
-                    }
-                }
-            } else if (show_home_button$.value) {
-                if (typeof props.onClickHome === 'function') {
-                    props.onClickHome(e)
-                } else {
-                    if (props.autoRoute && instance) {
-                        const home_path = instance.appContext.config.globalProperties?.$sd?.home_path
-                        home_path && uni.reLaunch({ url: home_path })
-                    } else {
-                        emit('click-home')
-                    }
-                }
+        // 页面样式
+        const page_style$ = computed(() => {
+            const style: CSSProperties = {}
+            if (props.background     ) style.backgroundColor = props.background
+            if (props.backgroundImage) style.backgroundImage = `url(${ props.backgroundImage })`
+            return style
+        })
+
+        // 查询当前 navbar 高度
+        const { instance, queryNodeInfo } = useSelectoryQuery(false)
+        const header_height = ref(20 + (props.showNavbar ? 44 : 0))
+        onMounted(initRect)
+
+        function initRect() {
+            if (props.showNavbar) {
+                queryNodeInfo('#page_header')
+                    .then((rect) => {
+                        header_height.value = rect.height!
+                    })
             }
         }
 
-        // 查询当前 navbar 高度
-        onMounted(() => {
-            queryNavbarHeight()
-        })
-        function queryNavbarHeight() {
-            const query = uni.createSelectorQuery().in(instance)
-            if ( !query ) return
-
-            query.select('#page_navbar').boundingClientRect((res) => {
-                if (res) {
-                    state.navbar_height = (res as UniApp.NodeInfo).height!
-                }
-            }).exec()
+        function getPageHeaderHeight() {
+            return header_height.value
         }
 
+        function isFristPage() {
+            return first_page
+        }
+
+        // 处理返回
+        function onClickNavbarLeft() {
+            // 处理回到首页
+            if (first_page && props.showHome) {
+                const home_path = instance?.appContext.config.globalProperties?.$sd?.home_path
+                home_path && uni.reLaunch({ url: home_path })
+                return
+            }
+
+            if (typeof props.onClickBack === 'function') {
+                props.onClickBack()
+            } else {
+                uni.navigateBack({ delta: 1 })
+            }
+        }
+
+        provide(PAGE_KEY, { instance, props, getNavbarHeight: getPageHeaderHeight, isFristPage })
+
         return {
-            state,
+            header_height,
             page_title$,
+            page_style$,
             show_home_button$,
             show_back_button$,
             onClickNavbarLeft,
+            getPageHeaderHeight,
+            isFristPage,
         }
     },
 })
@@ -86,34 +94,67 @@ export default defineComponent({
 <template>
     <view
         class="sd-page"
-        :class="[{ 'is-lock-scroll': lockScroll }, customClass]"
-        :style="{ ...customStyle, background, [`--sd-page-navbar-height`]: `${ state.navbar_height }px` }"
+        :class="[{ 'lock-scroll': lockScroll, 'has-bg-img': backgroundImage }]"
+        :style="page_style$"
     >
-        <!-- 页面导航 -->
-        <view v-if="showNavbar" id="page_navbar" class="sd-page__navbar">
+        <!-- 页面顶部区域 -->
+        <div v-if="showNavbar" :style="{ height: `${ header_height }px` }" />
+        <view
+            v-if="showNavbar"
+            id="page_header"
+            class="sd-page__header"
+            :class="headerClass"
+            :style="headerStyle"
+        >
             <sd-navbar
                 :title="page_title$"
-                v-bind="{ ...navbarProps }"
                 :left-icon="show_home_button$ ? 'home' : (show_back_button$ ? 'left' : undefined)"
+                :border="false"
                 safe-area-insert-top
-                fixed
-                placholder
+                v-bind="navbarProps"
                 @click-left="onClickNavbarLeft"
             />
+            <view class="sd-page__header-extra">
+                <slot name="header-extra" />
+            </view>
         </view>
 
-        <!-- 页面顶部 -->
-        <view v-if="$slots.header" class="sd-page__header">
-            <slot name="header" />
-        </view>
-
-        <!-- 页面内容 -->
-        <view class="sd-page__content">
+        <!-- 页面内容区域 -->
+        <view
+            class="sd-page__body"
+            :class="[{ 'is-visible': loading === 0 }, bodyClass]"
+            :style="bodyStyle"
+        >
             <slot />
+            <view v-if="safeAreaInsetBottom" class="sd-page-safe-area-bottom" />
+        </view>
+
+        <!-- 页面底部区域 -->
+        <view v-show="loading === 0" class="sd-page__footer" :class="footerClass" :style="footerStyle">
+            <slot name="footer" />
+            <view v-if="safeAreaInsetBottom" class="sd-page-safe-area-bottom" />
+        </view>
+
+        <!-- 页面加载中过渡 -->
+        <view v-if="loading === 1" class="sd-page__loading-wrap">
+            <sd-loading type="line" scene="page" :text="loadingText" v-bind="loadingProps" />
+        </view>
+
+        <!-- 页面错误信息显示 -->
+        <view v-if="loading === -1" class="sd-page__error-wrap">
+            <sd-empty :text="error" v-bind="emptyProps">
+                <template #extra>
+                    <sd-button
+                        icon="replay"
+                        type="primary"
+                        round
+                        width="320rpx"
+                        @click="$emit('click-error-button')"
+                    >
+                        {{ errorButtonText }}
+                    </sd-button>
+                </template>
+            </sd-empty>
         </view>
     </view>
 </template>
-
-<style lang="scss">
-@import './page.scss';
-</style>
