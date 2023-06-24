@@ -1,7 +1,7 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$divider-line-color: var(--sd-divider-line-color, $sd-border-color);
-$divider-content-size: var(--sd-divider-content-size, $sd-font-size-base);
+$divider-line-color   : var(--sd-divider-line-color   , $sd-border-color);
+$divider-content-size : var(--sd-divider-content-size , $sd-font-size-md);
 $divider-content-color: var(--sd-divider-content-color, $sd-text-color-placeholder);
 
 @mixin divider-theme($theme-color) {

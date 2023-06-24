@@ -30,8 +30,8 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                [`sd-divider--${ theme }`]           : true,
-                [`sd-divider--sence-${ themeSence }`]: !!themeSence,
+                [`sd-divider--${ type }`]       : !!type,
+                [`sd-divider--sence-${ sence }`]: !!sence,
             },
         ]"
         :style="{ ...customStyle, padding: `${ columnGap }rpx ${ rowGap }rpx` }"
