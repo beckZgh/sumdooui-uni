@@ -9,6 +9,8 @@ export const empty_props = {
 
     /** 内置缺省图片 */
     type      : { type: String as PropType<EmptyType>, default: 'data' },
+    /** 场景 */
+    scene     : { type: String as PropType<'local' | 'page'> },
     /** 自定义缺省图片 */
     image     : { type: String },
     /** 自定义缺省图片属性 */
@@ -21,8 +23,6 @@ export const empty_props = {
     height    : { type: [String, Number] },
     /** 按钮文本 */
     buttonText: { type: String },
-    /** 场景 */
-    scene     : { type: String as PropType<'local' | 'page'> },
 }
 
 export type EmptyProps = ExtractPropTypes<typeof empty_props>

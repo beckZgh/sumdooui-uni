@@ -1,7 +1,8 @@
 @import '../styles/variables.scss';
 
-$empty-bg-color: var(--sd-empty-bg-color, $sd-white);
-$empty-text-color: var(--sd-empty-text-color, $sd-text-color-secondary);
+$empty-background    : var(--sd-empty-background, $sd-white);
+$empty-text-color    : var(--sd-empty-text-color, $sd-text-color-secondary);
+$empty-text-font-size: var(--sd-empty-text-font-size, 30rpx);
 
 .sd-empty {
     position: relative;
@@ -11,7 +12,7 @@ $empty-text-color: var(--sd-empty-text-color, $sd-text-color-secondary);
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: $empty-bg-color;
+    background-color: $empty-background;
 
     &--page {
         position: absolute;
@@ -23,7 +24,7 @@ $empty-text-color: var(--sd-empty-text-color, $sd-text-color-secondary);
     }
 
     &__text {
-        font-size: 30rpx;
+        font-size: $empty-text-font-size;
         color: $empty-text-color;
         padding: 36rpx 16vw 36rpx;
         text-align: center;

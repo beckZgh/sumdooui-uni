@@ -71,10 +71,10 @@ export default defineComponent({
         <sd-image
             width="100%"
             height="50%"
-            v-bind="imageProps"
             :src="empty_img$"
             :show-loading="false"
             :show-error="false"
+            v-bind="imageProps"
         />
         <view v-if="empty_text$" class="sd-empty__text">
             {{ empty_text$ }}
