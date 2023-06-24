@@ -1,7 +1,7 @@
 
 @import '../styles/variables.scss'  ;
 
-$overlay-background: var(--sd-overlay-background, $sd-bg-color-mask);
+$overlay-background: var(--sd-overlay-background, $sd-bg-color-overlay);
 $overlay-z-index   : var(--sd-overlay-z-index   , $sd-popup-z-index);
 
 .sd-overlay {
