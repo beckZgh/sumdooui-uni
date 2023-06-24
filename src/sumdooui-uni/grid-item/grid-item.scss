@@ -1,6 +1,6 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$grid-item-text-size: var(--sd-grid-item-text-size, $sd-font-size-base);
+$grid-item-text-size: var(--sd-grid-item-text-size, $sd-font-size-md);
 $grid-item-icon-size: var(--sd-grid-item-icon-size, 60rpx);
 
 .sd-grid-item {
