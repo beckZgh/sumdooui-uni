@@ -73,7 +73,6 @@ const m = reactive({
             <sd-tabbar v-model="m.active_tab" :items="m.image_items" show-top-border />
         </demo-card>
 
-
         <demo-card title="胶囊形式" :card="false" transparent>
             <sd-tabbar v-model="m.active_tab" :items="m.image_items" round />
         </demo-card>
