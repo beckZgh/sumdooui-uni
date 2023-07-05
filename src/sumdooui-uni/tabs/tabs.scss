@@ -1,16 +1,23 @@
 @import '../styles/variables.scss';
 
-$tabs-header-bg-color: var(--sd-tabs-bg-color, $sd-white);
-$tabs-header-height: var(--sd-tabs-header-height, 90rpx);
+$tabs-background           : var(--sd-tabs-background, $sd-white);
+$tabs-height               : var(--sd-tabs-height, 90rpx);
+$tabs-font-size            : var(--sd-tabs-font-size, $sd-font-size-md);
+$tabs-text-color           : var(--sd-tabs-text-color, $sd-text-color);
+$tabs-active-text-color    : var(--sd-tabs-active-text-color, $sd-primary-color);
+$tabs-disabled-text-color  : var(--sd-tabs-disabled-text-color, $sd-text-color-disabled);
+$tabs-item-padding         : var(--sd-tabs-padding, 32rpx);
+$tabs-bottom-bar-height    : var(--sd-tabs-bottom-bar-height, 3px);
+$tabs-bottom-bar-background: var(--sd-tabs-bottom-bar-background, $sd-primary-color);
 
 .sd-tabs {
     display: flex;
     flex-direction: column;
+    background-color: $tabs-background;
     overflow: hidden;
 
-    &__header {
-        background-color: $tabs-header-bg-color;
-        height: $tabs-header-height;
+    &__scroll-view {
+        height: $tabs-height;
     }
 
     &__items {
@@ -22,6 +29,7 @@ $tabs-header-height: var(--sd-tabs-header-height, 90rpx);
 
         .sd-tabs__item {
             flex: 1;
+            height: 100%;
         }
 
         &.is-scrollable .sd-tabs__item {
@@ -34,23 +42,28 @@ $tabs-header-height: var(--sd-tabs-header-height, 90rpx);
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-left: 32rpx;
-        padding-right: 32rpx;
+        padding-left: $tabs-item-padding;
+        padding-right: $tabs-item-padding;
         box-sizing: border-box;
+        color: $tabs-text-color;
 
         &-text {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-size: $tabs-font-size;
         }
 
         &.is-active {
-            font-weight: bold;
-            color: $sd-primary-color;
+            color: $tabs-active-text-color;
+
+            .sd-tabs__item-text {
+                font-weight: bold;
+            }
         }
 
         &.is-disabled {
-            color: $sd-text-color-disabled;
+            color: $tabs-disabled-text-color;
         }
     }
 
@@ -59,11 +72,11 @@ $tabs-header-height: var(--sd-tabs-header-height, 90rpx);
         bottom: 0;
         left: 0;
         width: 60rpx;
-        height: 3px;
+        height: $tabs-bottom-bar-height;
         border-radius: 2px;
         transition-property: transform;
         transition-timing-function: linear;
-        background-color: $sd-primary-color;
+        background-color: $tabs-bottom-bar-background;
     }
 }
 

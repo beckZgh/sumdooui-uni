@@ -31,10 +31,9 @@ export default defineComponent({
             emit('change', item.name, item)
         })
 
-        const header_style$ = computed(() => {
+        const scroll_style$ = computed(() => {
             const style: CSSProperties = {}
-            if (props.height    ) style.height = Utils.toUnit(props.height)
-            if (props.background) style.background = props.background
+            if (props.height) style.height = Utils.toUnit(props.height)
             return style
         })
 
@@ -63,10 +62,9 @@ export default defineComponent({
             state.current_idx  = current_idx
             state.current_name = current_name
 
-            nextTick(() => {
-                loadNodeInfo().then(() => {
-                    transformLine(current_idx)
-                })
+            nextTick(async () => {
+                await loadNodeInfo()
+                transformLine(current_idx)
             })
         }
 
@@ -122,7 +120,7 @@ export default defineComponent({
 
         return {
             ...toRefs(state),
-            header_style$,
+            scroll_style$,
             line_style$,
             handleSwitchTab,
             onSwiperChange,
@@ -132,12 +130,12 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-tabs" :class="customStyle" :style="customStyle">
+    <view class="sd-tabs" :class="customStyle" :style="{ background, ...customStyle }">
         <sd-sticky :disabled="!sticky" :offset-top="offsetTop">
             <scroll-view
                 scroll-with-animation
-                class="sd-tabs__header"
-                :style="header_style$"
+                class="sd-tabs__scroll-view"
+                :style="scroll_style$"
                 :show-scrollbar="false"
                 :scroll-x="scrollable"
                 :scroll-left="scroll_left"
