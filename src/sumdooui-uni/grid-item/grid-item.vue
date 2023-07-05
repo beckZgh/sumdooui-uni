@@ -13,8 +13,16 @@ export default defineComponent({
 
     name : 'SdGridItem',
     props: grid_item_props,
-    emits: ['click'],
-    setup(props) {
+    emits: [
+        'click',
+        'getuserinfo',
+        'contact',
+        'getphonenumber',
+        'opensetting',
+        'launchapp',
+        'chooseavatar',
+    ],
+    setup(props, { emit }) {
         const { parent: grid } = useInject<GridProvide>(GRID_KEY)
 
         const root_class$ = computed(() => {
@@ -41,6 +49,7 @@ export default defineComponent({
         })
 
         function handleOpenTypeEmit(type: string, e: Event) {
+            emit(type as any, e)
             grid?.emit(type, e)
         }
 
