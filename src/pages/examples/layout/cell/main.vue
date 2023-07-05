@@ -8,6 +8,14 @@ const long_text = ref('我是一段超长超长超长超长超长超长超长超
 
 <template>
     <sd-page title="Cell 单元格">
+        <demo-card title="微信开放能力" :card="false">
+            <sd-cell-group clickable arrow>
+                <sd-cell open-type="chooseAvatar" icon="user" title="选择头像" />
+                <sd-cell open-type="openSetting" icon="setting" title="打开权限设置" />
+                <sd-cell open-type="share" icon="share" title="分享好友" />
+            </sd-cell-group>
+        </demo-card>
+
         <demo-card title="单行单元格" :card="false" bottom-gap>
             <sd-cell-group border arrow>
                 <sd-cell title="单行标题" :arrow="false" />
