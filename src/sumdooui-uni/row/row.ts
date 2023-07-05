@@ -7,9 +7,8 @@ export const row_props = {
 
     /** 栅格间隔 */
     gutter: { type: [String, Number] },
-
     /** flex 布局 */
-    flex: { type: Boolean },
+    flex  : { type: Boolean },
 }
 
 export type RowProps = ExtractPropTypes<typeof row_props>

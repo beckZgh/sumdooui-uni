@@ -96,7 +96,7 @@
     background-color: $sd-primary-color;
     color: $sd-white;
     text-align: center;
-    border-radius: $sd-border-radius-base;
+    border-radius: $sd-radius-sm;
 
     &.is-even {
         background-color: $sd-primary-color-3;
