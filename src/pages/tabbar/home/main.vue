@@ -33,7 +33,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
 
 <template>
     <sd-page title="Sumdooui-Uni" :show-home-button="false" lock-scroll background="#F1F4FA">
-        <template #header>
+        <template #header-extra>
             <scroll-view
                 class="tabs-scroll-box"
                 scroll-with-animation
@@ -72,10 +72,13 @@ function handleToPage(type: string, item: { name: string; page: string }) {
                             :title="item.name"
                             :custom-style="{ height: '112rpx', marginTop: '32rpx' }"
                             round
+                            arrow
                             @click="handleToPage(tab.id, item)"
                         >
-                            <template #icon>
-                                <image class="tabs-list-item__icon" :src="`/static/index/light/icon_${ item.icon }_3x.png`" />
+                            <template #extra>
+                                <sd-tag v-if="!item.page">
+                                    开发中
+                                </sd-tag>
                             </template>
                         </sd-cell>
                     </view>

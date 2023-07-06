@@ -32,6 +32,12 @@
         {
             "path": "pages/examples/layout/page/main"
         }, {
+            "path": "pages/examples/layout/page/page-visible"
+        }, {
+            "path": "pages/examples/layout/page/page-loading"
+        }, {
+            "path": "pages/examples/layout/page/page-error"
+        }, {
             "path": "pages/examples/layout/cell/main"
         }, {
             "path": "pages/examples/layout/grid/main"
@@ -117,6 +123,8 @@
             "path": "pages/examples/data/notice-bar/main"
         }, {
             "path": "pages/examples/data/table/main"
+        }, {
+            "path": "pages/examples/data/footer/main"
         },
 
         // 表单组件
@@ -140,6 +148,10 @@
             "path": "pages/examples/form/number-keyboard/main"
         }, {
             "path": "pages/examples/form/calendar/main"
+        }, {
+            "path": "pages/examples/form/rate/main"
+        }, {
+            "path": "pages/examples/form/search/main"
         },
 
         // 共享页面

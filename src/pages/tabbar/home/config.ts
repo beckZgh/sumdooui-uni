@@ -5,11 +5,13 @@ export default [{
         icon: 'color',
         name: 'Color 色彩',
         page: 'color',
-    }, {
-        icon: 'card',
-        name: 'Text 文本',
-        page: '',
-    }, {
+    },
+    // {
+    //     icon: 'card',
+    //     name: 'Text 文本',
+    //     page: '',
+    // },
+    {
         icon: 'icon',
         name: 'Icon 图标',
         page: 'icon',
@@ -21,11 +23,13 @@ export default [{
         icon: 'button',
         name: 'Button 按钮',
         page: 'button',
-    }, {
-        icon: 'footer',
-        name: 'Footer 页脚',
-        page: '',
-    }, {
+    },
+    // {
+    //     icon: 'footer',
+    //     name: 'Footer 页脚',
+    //     page: '',
+    // },
+    {
         icon: 'animation',
         name: 'Animtae 动画/动效',
         page: 'animate',
@@ -188,7 +192,7 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Table 表格',
-        page: '',
+        page: 'table',
     }, {
         icon: 'empty',
         name: 'ImagePreview 图片预览',
@@ -204,7 +208,7 @@ export default [{
     }, {
         icon: 'inputnumber',
         name: 'Stepper 步进器',
-        page: '',
+        page: 'stepper',
     }, {
         icon: 'radio',
         name: 'Radio 单选框',
@@ -248,14 +252,14 @@ export default [{
     }, {
         icon: 'textarea',
         name: 'SliderRange 滑块区间',
-        page: 'slider-range',
+        page: '',
     }, {
         icon: 'textarea',
         name: 'Keyboard 键盘',
-        page: '',
+        page: 'number-keyboard',
     }, {
         icon: 'textarea',
         name: 'Calendar 日历',
-        page: '',
+        page: 'calendar',
     }],
 }]

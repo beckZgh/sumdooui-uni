@@ -36,6 +36,10 @@ export default defineComponent({
     margin-bottom: 30rpx;
     padding: 40rpx 0 0;
     background-color: $sd-white;
+    color: $sd-text-color;
+    &.is-dark {
+        background-color: $sd-bg-color;
+    }
 
     &.not-content {
         background-color: transparent;
@@ -44,7 +48,7 @@ export default defineComponent({
     &__title {
         font-size: 30rpx;
         line-height: 1;
-        margin-left: $sd-spacer-2;
+        margin-left: $sd-padding-sm;
         padding-left: 36rpx;
         position: relative;
         box-sizing: border-box;
@@ -56,23 +60,18 @@ export default defineComponent({
             width: 10px;
             height: 10px;
             background: #07c16c; // $sd-primary-color;
-            border-radius: $sd-border-radius-circle;
+            border-radius: $sd-radius-circle;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
         }
     }
 
-    &.is-dark {
-        background-color: #1B1B1B;
-        color: #D1D1D1;
-    }
-
     // 卡片展示
     &--card {
         margin-left: 30rpx;
         margin-right: 30rpx;
-        border-radius: $sd-spacer;
+        border-radius: $sd-padding-base;
         padding-bottom: 40rpx;
 
         .card_title {
@@ -80,7 +79,7 @@ export default defineComponent({
         }
 
         .card__body {
-            padding: $sd-spacer-2;
+            padding: $sd-padding-sm;
             box-sizing: border-box;
         }
     }
