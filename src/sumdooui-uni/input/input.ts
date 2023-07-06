@@ -1,6 +1,6 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { ConfirmType, InputType } from '../common/types'
+import type { ConfirmType, InputType, Component } from '../common/types'
 import { COMMON_PROPS } from '../common/props'
 
 export const input_props = {
@@ -42,6 +42,8 @@ export const input_props = {
     prefixIcon   : { type: String },
     /** 后置图标 */
     suffixIcon   : { type: String },
+    /** 内容对齐方式 */
+    inputAlign   : { type: String as PropType<Component.InputAlign> },
 }
 
 export type InputProps = ExtractPropTypes<typeof input_props>

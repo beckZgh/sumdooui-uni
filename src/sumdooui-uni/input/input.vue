@@ -12,9 +12,9 @@ export default defineComponent({
     emits: [
         'update:modelValue',
         'change',
-        'clear',
         'focus',
         'blur',
+        'clear',
         'confirm',
     ],
     setup(props, { emit }) {
@@ -103,10 +103,13 @@ export default defineComponent({
             <sd-icon v-if="prefixIcon" :name="prefixIcon" />
         </view>
         <input
+            class="sd-input__content"
+            placeholder-class="sd-input__placeholder"
+            :style="inputAlign ? `text-align: ${ inputAlign }` : ''"
+            :placeholder="placeholder"
             :value="modelValue"
             :type="type !== 'password' ? type : 'text'"
             :password="type === 'password' && !state.show_password"
-            :placeholder="placeholder"
             :disabled="disabled$ || readonly"
             :maxlength="maxlength"
             :auto-height="autoHeight"
@@ -117,8 +120,6 @@ export default defineComponent({
             :show-confirm-bar="false"
             disable-default-padding
             adjust-position
-            class="sd-input__content"
-            placeholder-class="sd-input__placeholder"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
