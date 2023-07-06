@@ -1,6 +1,5 @@
 @import '../styles/variables.scss'  ;
 
-$navbar-padding-top    : var(--sd-navbar-padding-top, 40rpx);
 $navbar-height         : var(--sd-navbar-height     , 86rpx);
 $navbar-background     : var(--sd-navbar-background , $sd-white);
 $navbar-color          : var(--sd-navbar-color      , $sd-text-color);
@@ -9,25 +8,24 @@ $navbar-icon-color     : var(--sd-navbar-icon-color , 'inherit');
 $navbar-z-index        : var(--sd-navbar-z-index    , $sd-navbar-z-index);
 $navbar-title-font-size: var(--sd-navbar-title-font-size, 32rpx);
 
-
 .sd-navbar {
     position: relative;
-    display: flex;
-    align-items: center;
-    height: $navbar-height;
     color: $navbar-color;
     background-color: $navbar-background;
+    z-index: $navbar-z-index;
 
     &.is-fixed {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: $navbar-z-index;
     }
 
-    &.is-safe-top {
-        padding-top: $navbar-padding-top;
+    &__content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: $navbar-height;
     }
 
     &__left,
@@ -68,15 +66,5 @@ $navbar-title-font-size: var(--sd-navbar-title-font-size, 32rpx);
         font-weight: 600;
         font-size: $navbar-title-font-size;
         height: 100%;
-    }
-
-    &.is-safe-top &__left,
-    &.is-safe-top &__right {
-        top: $navbar-padding-top;
-    }
-
-    &-placeholder {
-        height: $navbar-height;
-        padding-top: $navbar-padding-top;
     }
 }

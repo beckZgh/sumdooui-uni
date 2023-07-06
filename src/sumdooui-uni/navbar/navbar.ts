@@ -5,31 +5,29 @@ export const navbar_props = {
     ...COMMON_PROPS,
 
     /** 标题 */
-    title            : { type: String },
+    title       : { type: String },
     /** 标题样式 */
-    titleStyle       : { type: Object as PropType<CSSProperties> },
+    titleStyle  : { type: Object as PropType<CSSProperties> },
     /** 是否显示返回按钮 */
-    leftArrow        : { type: Boolean },
+    leftArrow   : { type: Boolean },
     /** 左侧图标 */
-    leftIcon         : { type: String },
+    leftIcon    : { type: String },
     /** 左侧文本 */
-    leftText         : { type: String },
+    leftText    : { type: String },
     /** 右侧图标 */
-    rightIcon        : { type: String },
+    rightIcon   : { type: String },
     /** 右侧文本 */
-    rightText        : { type: String },
+    rightText   : { type: String },
     /** 固定定位 */
-    fixed            : { type: Boolean },
+    fixed       : { type: Boolean },
     /** 是否占位 */
-    placholder       : { type: Boolean },
+    placeholder : { type: Boolean },
     /** 显示底部边框 */
-    bottomBorder     : { type: Boolean },
-    /** 顶部安全区域适配 */
-    safeAreaInsertTop: { type: Boolean },
+    bottomBorder: { type: Boolean },
     /** 背景色 */
-    background       : { type: String },
+    background  : { type: String },
     /** 文本颜色 */
-    color            : { type: String },
+    color       : { type: String },
 }
 
 export type NavbarProps = ExtractPropTypes<typeof navbar_props>

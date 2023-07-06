@@ -13,9 +13,10 @@ export default defineComponent({
     name : 'SdPage',
     props: page_props,
     emits: [
+        'mounted',
         'click-error-button',
     ],
-    setup(props) {
+    setup(props, { emit }) {
         const app_base_info = uni.getAppBaseInfo()  // 应用基础信息
         const pages         = getCurrentPages()     // 所有页面实例
         const first_page    = pages.length === 1
@@ -38,23 +39,25 @@ export default defineComponent({
         })
 
         // 查询当前 navbar 高度
-        const { instance, queryNodeInfo } = useSelectoryQuery(false)
-        const header_height = ref(20 + (props.showNavbar ? 44 : 0))
-        onMounted(initRect)
-
-        function initRect() {
-            if (props.showNavbar) {
-                queryNodeInfo('#page_header')
-                    .then((rect) => {
-                        header_height.value = rect.height!
-                    })
+        const { instance, queryNodeHeight } = useSelectoryQuery(false)
+        const header_height = ref(0)
+        onMounted(init)
+        async function init() {
+            if (props.showHeader) {
+                header_height.value = await queryNodeHeight('#page_header')
             }
+            emit('mounted', {
+                header_height: header_height.value,
+                first_page,
+            })
         }
 
+        // 取得页面顶部区域高度
         function getPageHeaderHeight() {
             return header_height.value
         }
 
+        // 判断当前页面是否为首次加载
         function isFristPage() {
             return first_page
         }
@@ -75,7 +78,7 @@ export default defineComponent({
             }
         }
 
-        provide(PAGE_KEY, { instance, props, getNavbarHeight: getPageHeaderHeight, isFristPage })
+        provide(PAGE_KEY, { instance, props, getPageHeaderHeight, isFristPage })
 
         return {
             header_height,
@@ -98,19 +101,18 @@ export default defineComponent({
         :style="page_style$"
     >
         <!-- 页面顶部区域 -->
-        <div v-if="showNavbar" :style="{ height: `${ header_height }px` }" />
+        <div v-if="showHeader && header_height" :style="{ height: `${ header_height }px` }" />
         <view
-            v-if="showNavbar"
+            v-if="showHeader"
             id="page_header"
             class="sd-page__header"
-            :class="headerClass"
+            :class="[headerClass, { 'sd-page__header--fixed': header_height }]"
             :style="headerStyle"
         >
             <sd-navbar
                 :title="page_title$"
                 :left-icon="show_home_button$ ? 'home' : (show_back_button$ ? 'left' : undefined)"
                 :border="false"
-                safe-area-insert-top
                 v-bind="navbarProps"
                 @click-left="onClickNavbarLeft"
             />

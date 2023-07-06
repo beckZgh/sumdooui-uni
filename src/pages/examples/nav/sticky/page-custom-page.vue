@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const offset_top = ref(0)
+function onPageMounted({ header_height }: { header_height: number }) {
+    offset_top.value = header_height
+}
 </script>
 
 <template>
-    <sd-page @navbar-ready="(height: number) => { offset_top = height }">
+    <sd-page ref="page_ref" @mounted="onPageMounted">
         <sd-image width="100%" height="50%" />
         <sd-sticky :offset-top="offset_top">
             <view class="demo-sticky__title">

@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+
 const offset_top = ref(0)
-const sticky_container = ref<any>(null)
-onMounted(() => {
-    sticky_container.value = () => {
-        return uni.createSelectorQuery().select('#sticky_container')
-    }
-})
+function onPageMounted({ header_height }: { header_height: number }) {
+    offset_top.value = header_height
+}
+
+const getStickyContainer = () => {
+    return uni.createSelectorQuery().select('#sticky_container')
+}
 </script>
 
 <template>
-    <sd-page @navbar-ready="(height: number) => { offset_top = height }">
+    <sd-page @mounted="onPageMounted">
         <view id="sticky_container" ref="sticky_container">
-            <sd-sticky :offset-top="offset_top" :container="sticky_container">
+            <sd-sticky :offset-top="offset_top" :container="getStickyContainer">
                 <view class="demo-sticky__title">
                     容器标题
                 </view>

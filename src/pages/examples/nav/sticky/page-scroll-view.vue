@@ -22,7 +22,7 @@ function onScroll(e: any) {
 
 <template>
     <sd-page lock-scroll>
-        <template #header>
+        <template #header-extra>
             <view class="detail">
                 <view class="detail-title">
                     Sticky
@@ -33,7 +33,7 @@ function onScroll(e: any) {
             </view>
         </template>
 
-        <scroll-view id="scroll_view" scroll-y style="position: absolute; width: 100%; height: 100%" @scroll="onScroll">
+        <scroll-view id="scroll_view" scroll-y style="height: 100%" @scroll="onScroll">
             <sd-image width="100%" height="50%" />
 
             <sd-sticky :offset-top="offset_top" :scroll-top="scroll_top">

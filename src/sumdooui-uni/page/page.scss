@@ -1,22 +1,26 @@
 @import '../styles/variables.scss';
 
-$page-background       : var(--sd-page-background, $sd-bg-color);
-$page-header-z-index   : var(--sd-page-header-z-index, 10);
+$page-background       : var(--sd-page-background       , $sd-bg-color);
+$page-header-z-index   : var(--sd-page-header-z-index   , $sd-navbar-z-index);
 $page-footer-background: var(--sd-page-footer-background, transparent);
-$page-footer-padding   : var(--sd-page-footer-padding, $sd-padding-md);
+$page-footer-padding   : var(--sd-page-footer-padding   , $sd-padding-md);
 
 .sd-page {
-    background-color: $page-background;
-    min-height: 100vh;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: $page-background;
 
     &__header {
-        position: fixed;
-        top: 0;
+        position: relative;
         width: 100%;
         z-index: $page-header-z-index;
+
+        &--fixed {
+            position: fixed;
+            top: 0;
+        }
 
         .sd-navbar .sd-icon {
             font-size: 36rpx;

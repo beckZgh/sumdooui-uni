@@ -15,30 +15,34 @@ export default defineComponent({
         'click-right',
     ],
     setup(props) {
+        // 初始化状态栏高度
         const status_height = ref(20)
+        const navbar_height = ref(0)
+        const total_height  = ref(0)
 
         // 导航栏样式
         const navbar_styles$ = computed(() => {
             const styles: CSSProperties = { ...props.customStyle }
-            if (props.background) styles.backgroundColor = props.background
-            if (props.color     ) styles.color           = props.color
+            if (props.background   ) styles.backgroundColor = props.background
+            if (props.color        ) styles.color           = props.color
+            if (status_height.value) styles.paddingTop      = `${ status_height.value }px`
             return styles
         })
 
-        // 初始化状态栏高度
-        initStatusHeight()
-        function initStatusHeight() {
-            uni.getSystemInfo({
-                success(res) {
-                    if (res.statusBarHeight) {
-                        status_height.value = res.statusBarHeight
-                    }
-                },
-            })
+        init()
+        function init() {
+            const { statusBarHeight = 0 } = uni.getSystemInfoSync()
+            const { top, height         } = uni.getMenuButtonBoundingClientRect()
+
+            status_height.value = statusBarHeight
+            navbar_height.value = height + ((top - statusBarHeight) * 2)
+            total_height.value  = status_height.value + navbar_height.value
         }
 
         return {
             status_height,
+            navbar_height,
+            total_height,
             navbar_styles$,
         }
     },
@@ -46,24 +50,15 @@ export default defineComponent({
 </script>
 
 <template>
-    <view :style="{ '--sd-navbar-padding-top': `${ status_height }px` }">
-        <!-- 固定定位时，占位区域 -->
-        <view v-if="fixed && placholder" class="sd-navbar-placeholder" />
-
-        <!-- 内容区域 -->
-        <view
-            id="navbar"
-            ref="navbar_ref"
-            class="sd-navbar"
-            :class="[
-                customClass,
-                {
-                    [`is-fixed`]   : fixed,
-                    [`is-safe-top`]: safeAreaInsertTop,
-                },
-            ]"
-            :style="navbar_styles$"
-        >
+    <!-- 固定定位时，占位区域 -->
+    <view v-if="fixed && placeholder" :style="{ height: `${ total_height }px` }" />
+    <!-- 内容区域 -->
+    <view
+        class="sd-navbar"
+        :class="[customClass, { [`is-fixed`]: fixed }]"
+        :style="navbar_styles$"
+    >
+        <view class="sd-navbar__content" :style="{ height: `${ navbar_height }px` }">
             <view v-if="leftArrow || leftIcon || $slots.left" class="sd-navbar__left" @tap="$emit('click-left', $event)">
                 <slot v-if="$slots.left" name="left" />
                 <template v-else>
