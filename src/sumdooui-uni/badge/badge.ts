@@ -1,11 +1,10 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { ComponentType } from '../common/types'
+import type { ComponentType              } from '../common/types'
 
 import { COMMON_PROPS } from '../common/props'
 
-export type BadgeShape = 'circle' | 'square' | 'bubble'
+export type BadgeShape    = 'circle' | 'square' | 'bubble'
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
-
 
 export const badge_props = {
     ...COMMON_PROPS,

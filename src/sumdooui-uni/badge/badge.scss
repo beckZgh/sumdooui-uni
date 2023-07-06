@@ -3,6 +3,8 @@
 $badge-background  : var(--sd-badge-background, $sd-danger-color);
 $badge-color       : var(--sd-badge-color     , $sd-white);
 $badge-font-size   : var(--sd-badge-font-size , $sd-font-size-sm);
+$badge-height      : var(--sd-badge-height    , 36rpx);
+$badge-padding     : var(--sd-badge-padding   , 12rpx);
 $badge-dot-size    : var(--sd-badge-dot-size  , 16rpx);
 
 @mixin badge-theme($bg-color) {
@@ -21,9 +23,9 @@ $badge-dot-size    : var(--sd-badge-dot-size  , 16rpx);
         align-items: center;
         justify-content: center;
         white-space: nowrap;
-        padding: 0 12rpx;
+        padding: 0 $badge-padding;
         font-size: $badge-font-size;
-        height: 36rpx;
+        height: $badge-height;
         line-height: 1;
         box-sizing: border-box;
         color: $badge-color;
