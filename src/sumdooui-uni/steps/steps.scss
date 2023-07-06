@@ -1,4 +1,4 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
 $steps-desc-color: var(--sd-steps-desc-color, $sd-text-color-placeholder);
 
@@ -12,8 +12,8 @@ $steps-desc-color: var(--sd-steps-desc-color, $sd-text-color-placeholder);
         width: 44rpx;
         height: 44rpx;
         box-sizing: border-box;
-        border-radius: $sd-border-radius-circle;
-        font-size: $sd-font-size-s;
+        border-radius: $sd-radius-circle;
+        font-size: $sd-font-size-sm;
         border: 1px solid $sd-border-color;
     }
 
@@ -25,7 +25,7 @@ $steps-desc-color: var(--sd-steps-desc-color, $sd-text-color-placeholder);
         }
 
         &-name {
-            font-size: $sd-font-size-base;
+            font-size: $sd-font-size-md;
             font-weight: bold;
             color: $sd-text-color;
         }

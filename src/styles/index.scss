@@ -2,7 +2,7 @@
 // 定义页面基础样式
 page {
     background-color: $sd-bg-color;
-    font-size: $sd-font-size-base;
+    font-size: $sd-font-size-md;
     color: $sd-text-color;
     font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
@@ -42,7 +42,7 @@ button.reset-button {
 }
 
 .demo-card {
-    border-radius: $sd-spacer;
+    border-radius: $sd-padding-base;
     background-color: $sd-white;
     margin: 30rpx;
     padding: 40rpx 0;
@@ -51,7 +51,7 @@ button.reset-button {
         font-size: 30rpx;
         line-height: 1;
         // font-weight: 600;
-        margin-left: $sd-spacer-2;
+        margin-left: $sd-padding-sm;
         padding-left: 36rpx;
         position: relative;
         box-sizing: border-box;
@@ -63,7 +63,7 @@ button.reset-button {
             width: 10px;
             height: 10px;
             background: #07c16c; // $sd-primary-color;
-            border-radius: $sd-border-radius-circle;
+            border-radius: $sd-radius-circle;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
@@ -71,7 +71,7 @@ button.reset-button {
     }
 
     &__body {
-        padding: $sd-spacer-2;
+        padding: $sd-padding-sm;
         box-sizing: border-box;
 
         &.flex-xc {
@@ -94,8 +94,8 @@ button.reset-button {
         .demo-card__body {
             padding-left: 0;
             padding-right: 0;
-            padding-top: $sd-spacer;
-            padding-bottom: $sd-spacer;
+            padding-top: $sd-padding-base;
+            padding-bottom: $sd-padding-base;
         }
     }
 }

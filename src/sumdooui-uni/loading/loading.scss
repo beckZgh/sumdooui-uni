@@ -1,7 +1,7 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$loading-font-size: var(--sd-loading-font-size, $sd-font-size-base);
-$loading-color: var(--sd-loading-color, $sd-gray-color-7);
+$loading-font-size: var(--sd-loading-font-size, $sd-font-size-md);
+$loading-color    : var(--sd-loading-color    , $sd-gray-color-7);
 
 .sd-loading {
     font-size: $loading-font-size;

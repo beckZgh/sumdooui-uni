@@ -1,4 +1,4 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
 @mixin radio-size($text-size, $icon-size) {
     .sd-radio__label {
@@ -34,15 +34,15 @@
     }
 
     &--small {
-        @include radio-size($sd-font-size-base, 38rpx);
+        @include radio-size($sd-font-size-md, 38rpx);
     }
 
     &--normal {
-        @include radio-size($sd-font-size-m, 44rpx);
+        @include radio-size($sd-font-size-md, 44rpx);
     }
 
     &--large {
-        @include radio-size($sd-font-size-m, 50rpx);
+        @include radio-size($sd-font-size-md, 50rpx);
     }
 
     // 禁用状态

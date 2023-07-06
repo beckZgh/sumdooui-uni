@@ -16,7 +16,7 @@ $stepper-icon-size: 38rpx;
         justify-content: center;
         align-items: center;
         background-color: $sd-bg-color-container;
-        border-radius: $sd-border-radius-s;
+        border-radius: $sd-radius-sm;
         box-sizing: border-box;
     }
 
@@ -78,7 +78,7 @@ $stepper-icon-size: 38rpx;
     &__minus::before,
     &__plus::before,
     &__plus::after {
-        border-radius: $sd-border-radius-s;
+        border-radius: $sd-radius-sm;
         z-index: 1;
     }
 

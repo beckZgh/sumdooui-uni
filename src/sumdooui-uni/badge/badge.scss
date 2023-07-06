@@ -35,7 +35,7 @@ $badge-dot-size    : var(--sd-badge-dot-size  , 16rpx);
         width: $badge-dot-size;
         height: $badge-dot-size;
         padding: 0;
-        border-radius: $sd-border-radius-circle;
+        border-radius: $sd-radius-circle;
         background-color: $badge-background;
     }
 
@@ -55,11 +55,11 @@ $badge-dot-size    : var(--sd-badge-dot-size  , 16rpx);
 
     // 徽标形状
     &--circle &__content {
-        border-radius: $sd-border-radius-round;
+        border-radius: $sd-radius-round;
     }
 
     &--square &__content {
-        border-radius: $sd-border-radius-s;
+        border-radius: $sd-radius-sm;
     }
 
     &--bubble &__content {

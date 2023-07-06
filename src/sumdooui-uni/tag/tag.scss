@@ -13,8 +13,8 @@ $tag-large-round-padding : var(--sd-tag-large-padding, 16rpx 18rpx);
 $tag-large-mark-padding  : var(--sd-tag-large-padding, 16rpx 18rpx);
 
 $tag-small-font-size     : var(--sd-tag-samll-font-size, $sd-font-size-xs);
-$tag-normal-font-size    : var(--sd-tag-normal-font-size, $sd-font-size-s);
-$tag-large-font-size     : var(--sd-tag-large-font-size, $sd-font-size-base);
+$tag-normal-font-size    : var(--sd-tag-normal-font-size, $sd-font-size-sm);
+$tag-large-font-size     : var(--sd-tag-large-font-size, $sd-font-size-md);
 
 $tag-bg-color  : var(--sd-tag-bg-color, $sd-bg-color-container);
 $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
@@ -66,20 +66,20 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
 
     // 标签形状
     &.sd-tag--square {
-        border-radius: $sd-border-radius-s;
+        border-radius: $sd-radius-sm;
     }
     &.sd-tag--round {
-        border-radius: $sd-border-radius-round;
+        border-radius: $sd-radius-round;
         padding: $tag_round_padding;
         &::after {
-            border-radius: calc($sd-border-radius-round * 2);
+            border-radius: calc($sd-radius-round * 2);
         }
     }
     &.sd-tag--mark {
-        border-radius: 0 $sd-border-radius-round $sd-border-radius-round 0;
+        border-radius: 0 $sd-radius-round $sd-radius-round 0;
         padding: $tag_mark_padding;
         &::after {
-            border-radius: 0 calc($sd-border-radius-round * 2) calc($sd-border-radius-round * 2) 0;
+            border-radius: 0 calc($sd-radius-round * 2) calc($sd-radius-round * 2) 0;
         }
     }
 
@@ -122,7 +122,7 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
         bottom: -50%;
         left: -50%;
         border: 0 solid $sd-border-color;
-        border-radius: calc($sd-border-radius-s * 2);
+        border-radius: calc($sd-radius-sm * 2);
         transform: scale(.5);
         z-index: 1;
     }

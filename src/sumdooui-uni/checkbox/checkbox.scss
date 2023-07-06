@@ -19,7 +19,7 @@
 
     &__label {
         margin-left: 8rpx;
-        font-size: $sd-font-size-base;
+        font-size: $sd-font-size-md;
 
         &--left {
             margin-left: 0;
@@ -34,15 +34,15 @@
     }
 
     &--small {
-        @include checkbox-size($sd-font-size-base, 38rpx);
+        @include checkbox-size($sd-font-size-md, 38rpx);
     }
 
     &--normal {
-        @include checkbox-size($sd-font-size-m, 44rpx);
+        @include checkbox-size($sd-font-size-md, 44rpx);
     }
 
     &--large {
-        @include checkbox-size($sd-font-size-m, 50rpx);
+        @include checkbox-size($sd-font-size-md, 50rpx);
     }
 
     // 选中状态

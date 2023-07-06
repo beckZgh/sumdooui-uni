@@ -16,7 +16,7 @@
         display: flex;
 
         &-left {
-            font-size: $sd-font-size-m;
+            font-size: $sd-font-size-md;
             color: $sd-text-color;
             padding-right: 16rpx;
             box-sizing: border-box;
@@ -50,14 +50,14 @@
 
     // 必填图标
     &__required {
-        font-size: $sd-font-size-m;
+        font-size: $sd-font-size-md;
         color: $sd-danger-color;
     }
 
     // 表单域提示
     &__tips {
         width: 100%;
-        font-size: $sd-font-size-s;
+        font-size: $sd-font-size-sm;
         padding-top: 10rpx;
         line-height: 1.5;
     }
@@ -65,7 +65,7 @@
     // 表单域错误提示
     &__error {
         width: 100%;
-        font-size: $sd-font-size-s;
+        font-size: $sd-font-size-sm;
         color: $sd-danger-color;
         padding-top: 10rpx;
         padding-right: 16rpx;

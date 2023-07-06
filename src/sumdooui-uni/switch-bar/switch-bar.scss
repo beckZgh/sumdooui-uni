@@ -1,14 +1,16 @@
 @import '../styles/variables.scss';
 
-$switch-bar-bg-color: var(--sd-switch-bar-bg-color, $sd-bg-color-container);
-$switch-bar-text-color: var(--sd-switch-bar-text-color, $sd-text-color-secondary);
+$switch-bar-background       : var(--sd-switch-bar-background       , $sd-bg-color-container);
+$switch-bar-active-background: var(--sd-switch-bar-active-background, $sd-white);
+$switch-bar-text-color       : var(--sd-switch-bar-text-color       , $sd-text-color-secondary);
 $switch-bar-active-text-color: var(--sd-switch-bar-active-text-color, $sd-text-color);
+$switch-bar-font-size        : var(--sd-switch-font-size            , $sd-font-size-md);
 
 .sd-switch-bar {
     position: relative;
     display: inline-block;
-    border: 2px solid $switch-bar-bg-color;
-    background-color: $switch-bar-bg-color;
+    border: 2px solid $switch-bar-background;
+    background-color: $switch-bar-background;
 
     &__items {
         display: flex;
@@ -27,7 +29,7 @@ $switch-bar-active-text-color: var(--sd-switch-bar-active-text-color, $sd-text-c
         padding: 6rpx;
         line-height: 1.5;
         color: $switch-bar-text-color;
-        font-size: $sd-font-size-base;
+        font-size: $switch-bar-font-size;
         z-index: 2;
         box-sizing: border-box;
 
@@ -43,7 +45,7 @@ $switch-bar-active-text-color: var(--sd-switch-bar-active-text-color, $sd-text-c
         bottom: 0;
         left: 0;
         z-index: 1;
-        background-color: $sd-white;
+        background-color: $switch-bar-active-background;
         box-shadow: 0 1px 10rpx rgba(0,0,0,0.1);
         transition: transform 0.15s ease-out;
     }

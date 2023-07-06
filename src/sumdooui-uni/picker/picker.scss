@@ -8,7 +8,7 @@
 
         &-title {
             text-align: center;
-            font-size: $sd-font-size-m;
+            font-size: $sd-font-size-md;
             flex: 1;
             font-weight: bold;
             overflow: hidden;
@@ -18,7 +18,7 @@
 
         &-btn {
             padding: 0 30rpx;
-            font-size: $sd-font-size-m;
+            font-size: $sd-font-size-md;
 
             &.is-confirm-btn {
                 color: $sd-success-color;
@@ -49,5 +49,5 @@
     padding: 0 8rpx;
     height: 100%;
     color: $sd-text-color;
-    font-size: $sd-font-size-m;
+    font-size: $sd-font-size-md;
 }

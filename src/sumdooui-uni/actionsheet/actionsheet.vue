@@ -81,7 +81,7 @@ export default defineComponent({
                     </sd-button>
                 </view>
             </template>
-            <view v-if="showCancel" class="sd-actionsheet__bottom" @tap="onCancel">
+            <view v-if="showCancel" class="sd-actionsheet__cancel" @tap="onCancel">
                 {{ cancelText }}
             </view>
         </view>

@@ -4,7 +4,7 @@
     width: 100%;
     position: relative;
     box-sizing: border-box;
-    border-radius: $sd-border-radius-base;
+    border-radius: $sd-radius-sm;
 
     &--border {
         padding: 20rpx;
@@ -16,7 +16,7 @@
         width: 100%;
         height: 152rpx;
         min-height: 152rpx;
-        font-size: $sd-font-size-m;
+        font-size: $sd-font-size-md;
         color: $sd-text-color;
         line-height: 1.5;
         padding: 0;
@@ -24,13 +24,13 @@
 
     &__placeholder {
         font-weight: 400;
-        font-size: $sd-font-size-m;
+        font-size: $sd-font-size-md;
         color: $sd-text-color-placeholder;
     }
 
     &__limit {
         text-align: right;
-        font-size: $sd-font-size-s;
+        font-size: $sd-font-size-sm;
         color: $sd-text-color-secondary;
     }
 

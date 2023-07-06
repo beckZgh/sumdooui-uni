@@ -1,13 +1,21 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
+
+$actionsheet-desc-height        : var(--sd-actionsheet-desc-height        , 110rpx);
+$actionsheet-desc-font-size     : var(--sd-actionsheet-desc-font-size     , $sd-font-size-md);
+$actionsheet-desc-text-color    : var(--sd-actionsheet-desc-text-color    , $sd-text-color-secondary);
+$actionsheet-cancel-height      : var(--sd-actionsheet-cancel-height      , 100rpx);
+$actionsheet-cabcel-font-size   : var(--sd-actionsheet-cabcel-font-size   , $sd-font-size-md);
+$actionsheet-cancel-border-width: var(--sd-actionsheet-cancel-border-width, 20rpx);
+$actionsheet-cabcel-border-color: var(--sd-actionsheet-cabcel-border-color, $sd-bg-color-container);
 
 .sd-actionsheet {
     &__desc {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 110rpx;
-        font-size: $sd-font-size-base;
-        color: $sd-text-color-secondary;
+        height: $actionsheet-desc-height;
+        font-size: $actionsheet-desc-font-size;
+        color: $actionsheet-desc-text-color;
 
         @include hairline($sd-border-color, 'bottom');
     }
@@ -24,12 +32,12 @@
         }
     }
 
-    &__bottom {
-        border-top: 20rpx solid $sd-bg-color-container;
-        height: 100rpx;
+    &__cancel {
+        border-top: $actionsheet-cancel-border-width solid $actionsheet-cabcel-border-color;
+        height: $actionsheet-cancel-height;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: $sd-font-size-m;
+        font-size: $actionsheet-cabcel-font-size;
     }
 }

@@ -3,7 +3,7 @@
 $collapse-item-padding          : var(--sd-collapse-item-padding, 0 36rpx);
 $collapse-item-border-color     : var(--sd-collapse-item-border-color, $sd-border-color);
 $collapse-item-header-padding   : var(--sd-collapse-item-padding, 30rpx 0);
-$collapse-item-header-font-size : var(--sd-collapse-item-header-font-size, $sd-font-size-m);
+$collapse-item-header-font-size : var(--sd-collapse-item-header-font-size, $sd-font-size-md);
 $collapse-item-header-text-color: var(--sd-collapse-item-header-text-color, $sd-text-color);
 
 .sd-collapse-item {

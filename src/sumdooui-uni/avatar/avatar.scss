@@ -1,15 +1,15 @@
 @import '../styles/variables.scss'  ;
 
-$avatar-color               : var(--sd-avatar-color, $sd-text-color);
-$avatar-bg-color            : var(--sd-avatar-bg-color, $sd-bg-color-container);
-$avatar-small-size          : var(--sd-avatar-small-size, 64rpx);
+$avatar-color               : var(--sd-avatar-color      , $sd-text-color);
+$avatar-background          : var(--sd-avatar-background , $sd-bg-color-container);
+$avatar-small-size          : var(--sd-avatar-small-size , 64rpx);
 $avatar-normal-size         : var(--sd-avatar-normal-size, 96rpx);
-$avatar-large-size          : var(--sd-avatar-large-size, 128rpx);
-$avatar-small-font-size     : var(--sd-avatar-small-size, 32rpx);
+$avatar-large-size          : var(--sd-avatar-large-size , 128rpx);
+$avatar-small-font-size     : var(--sd-avatar-small-size , 32rpx);
 $avatar-normal-font-size    : var(--sd-avatar-normal-size, 36rpx);
-$avatar-large-font-size     : var(--sd-avatar-large-size, 50rpx);
-$avatar-border-radius-circle: var(--sd-avatar-border-radius-circle, $sd-border-radius-circle);
-$avatar-border-radius-round : var(--sd-avatar-border-radius-round, $sd-border-radius-round);
+$avatar-large-font-size     : var(--sd-avatar-large-size , 50rpx);
+$avatar-border-radius-circle: var(--sd-avatar-border-radius-circle, $sd-radius-circle);
+$avatar-border-radius-round : var(--sd-avatar-border-radius-round , $sd-radius-round);
 
 @mixin avatar-size($size, $font-size) {
     width: $size;
@@ -31,7 +31,7 @@ $avatar-border-radius-round : var(--sd-avatar-border-radius-round, $sd-border-ra
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: $avatar-bg-color;
+    background-color: $avatar-background;
     color: $avatar-color;
 
     &--small {

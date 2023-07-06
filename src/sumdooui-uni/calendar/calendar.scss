@@ -1,18 +1,15 @@
 @import '../styles/variables.scss';
 
-$calendar-header-bg-color: $sd-white;
-
-$calendar-title-font-size: $sd-font-size-m;
-$calendar-title-font-color: $sd-text-color;
-$calendar-title-font-weight: 500;
-$calendar-title-line-height: 88rpx;
-
-$calendar-subtitle-font-size: $sd-font-size-base;
+$calendar-header-bg-color    : $sd-white;
+$calendar-title-font-size    : $sd-font-size-md;
+$calendar-title-font-color   : $sd-text-color;
+$calendar-title-font-weight  : 500;
+$calendar-title-line-height  : 88rpx;
+$calendar-subtitle-font-size : $sd-font-size-md;
 $calendar-subtitle-font-color: $sd-text-color-secondary;
-
-$calendar-footer-height: 124rpx;
-$calendar-footer-bg-color: $sd-white;
-$calendar-footer-padding: 20rpx 36rpx;
+$calendar-footer-height      : 124rpx;
+$calendar-footer-bg-color    : $sd-white;
+$calendar-footer-padding     : 20rpx 36rpx;
 
 @mixin calendar-theme($color) {
    .sd-calendar__day {
@@ -116,17 +113,17 @@ $calendar-footer-padding: 20rpx 36rpx;
         }
 
         &--start {
-            border-radius: $sd-border-radius-base 0 0 $sd-border-radius-base;
+            border-radius: $sd-radius-sm 0 0 $sd-radius-sm;
         }
 
         &--end {
-            border-radius: 0 $sd-border-radius-base $sd-border-radius-base 0;
+            border-radius: 0 $sd-radius-sm $sd-radius-sm 0;
         }
 
         &--selected,
         &--start-end,
         &--multiple-selected {
-            border-radius: $sd-border-radius-base;
+            border-radius: $sd-radius-sm;
         }
 
         &--middle {

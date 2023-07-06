@@ -1,10 +1,10 @@
 @import '../styles/variables.scss'  ;
 
-$image-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
+$image-radius: var(--sd-popup-border-radius, $sd-radius-lg);
 
 .sd-dialog {
     &__image {
-        border-radius: $image-border-radius $image-border-radius 0 0;
+        border-radius: $image-radius $image-radius 0 0;
         overflow: hidden;
     }
 
@@ -41,7 +41,7 @@ $image-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
         width: 100%;
         box-sizing: border-box;
         height: 90rpx;
-        font-size: $sd-font-size-base;
+        font-size: $sd-font-size-md;
         padding: 0 30rpx;
         outline: none;
         background-color: $sd-bg-color-container;
@@ -55,13 +55,13 @@ $image-border-radius: var(--sd-popup-border-radius, $sd-border-radius-l);
         align-items: cnter;
         margin-bottom: 30rpx;
         font-weight: bold;
-        font-size: $sd-font-size-m;
+        font-size: $sd-font-size-md;
     }
 
     &__desc {
         max-height: 500rpx;
         width: 100%;
-        font-size: $sd-font-size-base;
+        font-size: $sd-font-size-md;
         margin-bottom: 50rpx;
     }
 

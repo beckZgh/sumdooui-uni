@@ -1,9 +1,9 @@
 @import '../styles/variables.scss';
 
-$notice-bar-height   : 80rpx;
-$notice-bar-padding  : var(--sd-notice-bar-padding, 0 32rpx);
-$notice-bar-font-size: var(--sd-notice-bar-font-size, $sd-font-size-base);
-$notice-bar-icon-size: var(--sd-notice-bar-icon-size, 40rpx);
+$notice-bar-height         : 80rpx;
+$notice-bar-padding        : var(--sd-notice-bar-padding, 0 32rpx);
+$notice-bar-font-size      : var(--sd-notice-bar-font-size, $sd-font-size-md);
+$notice-bar-icon-size      : var(--sd-notice-bar-icon-size, 40rpx);
 $notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
 
 @mixin notice-bar-theme($bg-color, $color) {

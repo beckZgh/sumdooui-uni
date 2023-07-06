@@ -3,7 +3,7 @@
 $table-header-bg-color  : var(--sd-table-header-bg-color, $sd-primary-color);
 $table-header-text-color: var(--sd-table-header-text-color, $sd-white);
 $table-body-bg-color    : var(--sd-table-header-bg-color, $sd-white);
-$table-body-td-font-size: var(--sd-table-body-td-font-size, $sd-font-size-base);
+$table-body-td-font-size: var(--sd-table-body-td-font-size, $sd-font-size-md);
 
 .sd-table {
     display: flex;
@@ -49,11 +49,11 @@ $table-body-td-font-size: var(--sd-table-body-td-font-size, $sd-font-size-base);
     }
 
     &__header-th {
-        font-size: $sd-font-size-m;
+        font-size: $sd-font-size-md;
     }
 
     &__body-td {
-        font-size: $sd-font-size-base;
+        font-size: $sd-font-size-md;
         line-height: 1.2;
     }
 
