@@ -35,7 +35,7 @@ export default defineComponent({
         function onSelect(item: ActionsheetItem, index: number) {
             if (item.disabled) return
             visible$.value = false
-            emit('select', item, index)
+            emit('select', { item, index })
         }
 
         return {
@@ -51,6 +51,7 @@ export default defineComponent({
     <sd-popup
         v-model:visible="visible$"
         :show-top-close="false"
+        :close-on-click-overlay="false"
     >
         <view class="sd-actionsheet" :class="customClass" :style="customStyle">
             <view v-if="description" class="sd-actionsheet__desc">

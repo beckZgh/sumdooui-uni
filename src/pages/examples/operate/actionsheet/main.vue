@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 const m = reactive({
+    description  : '我是一段描述',
     actionsheet_1: false,
     actionsheet_2: false,
     actionsheet_3: false,
@@ -36,7 +37,7 @@ const m = reactive({
     ],
 })
 
-function onSelect(item: { text: string }, index: number) {
+function onSelect({ item, index }: { item: { text: string }; index: number }) {
     uni.showToast({
         title: `选择了${ item.text }, 下标为: ${ index }`,
     })
@@ -96,18 +97,18 @@ function onSelect(item: { text: string }, index: number) {
         <!-- 基本用法 -->
         <sd-actionsheet v-model:visible="m.actionsheet_1" :items="m.items" @select="onSelect" />
         <!-- 文本左对齐 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_2" align="left" description="我是一段描述" :items="m.items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_2" align="left" :description="m.description" :items="m.items" @select="onSelect" />
         <!-- 文本右对齐 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_3" align="right" description="我是一段描述" :items="m.items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_3" align="right" :description="m.description" :items="m.items" @select="onSelect" />
         <!-- 带描述的动作面板 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_4" description="我是一段描述" :items="m.items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_4" :description="m.description" :items="m.items" @select="onSelect" />
         <!-- 带图标的动作面板 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_5" description="我是一段描述" :items="m.icon_items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_5" :description="m.description" :items="m.icon_items" @select="onSelect" />
         <!-- 带颜色的动作面板 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_6" description="我是一段描述" :items="m.color_items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_6" :description="m.description" :items="m.color_items" @select="onSelect" />
         <!-- 带禁用的动作面板 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_7" description="我是一段描述" :items="m.disabled_items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_7" :description="m.description" :items="m.disabled_items" @select="onSelect" />
         <!-- 微信特性的动作面板 -->
-        <sd-actionsheet v-model:visible="m.actionsheet_8" description="我是一段描述" :items="m.spec_items" @select="onSelect" />
+        <sd-actionsheet v-model:visible="m.actionsheet_8" :description="m.description" :items="m.spec_items" @select="onSelect" />
     </sd-page>
 </template>

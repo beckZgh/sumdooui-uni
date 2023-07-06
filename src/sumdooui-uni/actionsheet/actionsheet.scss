@@ -1,37 +1,45 @@
 @import '../styles/variables.scss';
 
-$actionsheet-desc-height        : var(--sd-actionsheet-desc-height        , 110rpx);
-$actionsheet-desc-font-size     : var(--sd-actionsheet-desc-font-size     , $sd-font-size-md);
-$actionsheet-desc-text-color    : var(--sd-actionsheet-desc-text-color    , $sd-text-color-secondary);
+$actionsheet-descript-height    : var(--sd-actionsheet-descript-height        , 110rpx);
+$actionsheet-descript-font-size : var(--sd-actionsheet-descript-font-size     , $sd-font-size-md);
+$actionsheet-descript-text-color: var(--sd-actionsheet-descript-text-color    , $sd-text-color-secondary);
 $actionsheet-cancel-height      : var(--sd-actionsheet-cancel-height      , 100rpx);
 $actionsheet-cabcel-font-size   : var(--sd-actionsheet-cabcel-font-size   , $sd-font-size-md);
 $actionsheet-cancel-border-width: var(--sd-actionsheet-cancel-border-width, 20rpx);
 $actionsheet-cabcel-border-color: var(--sd-actionsheet-cabcel-border-color, $sd-bg-color-container);
 
 .sd-actionsheet {
+    // 顶部描述项
     &__desc {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: $actionsheet-desc-height;
-        font-size: $actionsheet-desc-font-size;
-        color: $actionsheet-desc-text-color;
+        height: $actionsheet-descript-height;
+        font-size: $actionsheet-descript-font-size;
+        color: $actionsheet-descript-text-color;
 
         @include hairline($sd-border-color, 'bottom');
     }
 
+    // 操作项
     &__item {
+        background-color: $sd-white;
         @include hairline($sd-border-color, 'bottom');
 
-        &--left .sd-button-wrap {
+        > .sd-button {
+            background-color: $sd-white;
+        }
+
+        &--left > .sd-button {
             justify-content: flex-start;
         }
 
-        &--right .sd-button-wrap {
+        &--right > .sd-button {
             justify-content: flex-end;
         }
     }
 
+    // 底部取消项
     &__cancel {
         border-top: $actionsheet-cancel-border-width solid $actionsheet-cabcel-border-color;
         height: $actionsheet-cancel-height;
