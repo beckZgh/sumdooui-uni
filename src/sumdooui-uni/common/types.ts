@@ -31,13 +31,19 @@ export type ComponentSize = 'small' | 'normal' | 'large'
 
 export namespace Component {
     /** 预设主题 */
-    export type Theme  = 'primary' | 'success' | 'warning' | 'danger' | 'default'
+    export type Theme  = 'primary' | 'success' | 'warning' | 'danger'
+
+    /** 预设主题 */
+    export type Type  = 'primary' | 'success' | 'warning' | 'danger'
 
     /** 预设尺寸 */
-    export type Size = 'small' | 'normal' | 'large'
+    export type Size = 'mini' | 'small' | 'large'
 
     // 微信开放能力
     export type ButtonOpenType = 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' | 'chooseAvatar'
+
+    // 文本方向
+    export type InputAlign = 'left' | 'center' | 'right'
 }
 
 export namespace Form {
