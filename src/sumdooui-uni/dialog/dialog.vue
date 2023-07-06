@@ -101,7 +101,7 @@ export default defineComponent({
                 {{ title }}
             </view>
 
-            <scroll-view scroll-y class="sd-dialog__desc">
+            <scroll-view scroll-y class="sd-dialog__content">
                 {{ content }}
                 <template v-if="type === 'prompt'">
                     <input
@@ -122,11 +122,11 @@ export default defineComponent({
             <slot v-if="$slots.footer" name="footer" />
             <template v-else>
                 <template v-if="show_cancel_button$">
-                    <sd-button block @click="onClickCancel">
+                    <sd-button block round @click="onClickCancel">
                         {{ cancelButtonText }}
                     </sd-button>
                 </template>
-                <sd-button block type="primary" @click="onClickConfirm">
+                <sd-button block round type="primary" @click="onClickConfirm">
                     {{ confirmButtonText }}
                 </sd-button>
             </template>
@@ -136,11 +136,11 @@ export default defineComponent({
         <view v-if="buttonLayout === 'column'" class="sd-dialog__footer sd-dialog__footer--column">
             <slot v-if="$slots.footer" name="footer" />
             <template v-else>
-                <sd-button block type="primary" @click="onClickConfirm">
+                <sd-button block round type="primary" @click="onClickConfirm">
                     {{ confirmButtonText }}
                 </sd-button>
                 <template v-if="show_cancel_button$">
-                    <sd-button block variant="text" @click="onClickCancel">
+                    <sd-button block round @click="onClickCancel">
                         {{ cancelButtonText }}
                     </sd-button>
                 </template>

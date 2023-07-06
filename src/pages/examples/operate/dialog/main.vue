@@ -19,61 +19,61 @@ const m = reactive({
 <template>
     <sd-page title="Dialog 对话框">
         <demo-card title="默认对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_1 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_1 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="成功对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_2 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_2 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="错误对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_3 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_3 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="警告对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_4 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_4 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="确认对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_5 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_5 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="输入对话框" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_6 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_6 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="按钮纵向排列" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_7 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_7 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="显示头部情景图" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_8 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_8 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <demo-card title="显示超长内容" body-class="sd-flex-x-center">
-            <sd-button width="75%" variant="plain" @click="m.dialog_9 = true">
+            <sd-button width="80%" variant="plain" @click="m.dialog_9 = true">
                 应用
             </sd-button>
         </demo-card>
 
         <!-- 确认消息 -->
-        <sd-dialog v-model:visible="m.dialog_1" type="alert" title="标题" :content="m.dialog_content" />
+        <sd-dialog v-model:visible="m.dialog_1" type="alert" title="标题" :content="m.dialog_content" :show-footer="false" />
 
         <!-- 成功对话框 -->
         <sd-dialog v-model:visible="m.dialog_2" type="success" title="操作成功" :content="m.dialog_content" />
@@ -95,7 +95,7 @@ const m = reactive({
 
         <!-- 显示头部情景图 -->
         <sd-dialog
-            v-model:visible="m.dialog_8" type="confirm" title="标题" button-layout="column"
+            v-model:visible="m.dialog_8" type="confirm"
             :content="m.dialog_content"
             image="/static/images/trunk.jpeg"
         />

@@ -1,7 +1,7 @@
 import type { ExtractPropTypes , PropType } from 'vue'
 
 
-export type DialogType = 'alert' | 'confirm' | 'prompt' | 'success' | 'warning' | 'error'
+export type DialogType         = 'alert' | 'confirm' | 'prompt' | 'success' | 'warning' | 'error'
 export type DialogButtonLayout = 'row' | 'column'
 
 export const dialog_props = {

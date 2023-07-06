@@ -1,16 +1,35 @@
 @import '../styles/variables.scss'  ;
 
-$image-radius: var(--sd-popup-border-radius, $sd-radius-lg);
+
+$dialog-icon-size          : var(--sd-dialog-icon-size          , 112rpx);
+$dialog-padding            : var(--sd-dialog-padding            , 56rpx 56rpx 0);
+$dialog-title-font-size    : var(--sd-dialog-title-font-size    , $sd-font-size-lg);
+$dialog-title-margin-bottom: var(--sd-dialog-title-margin-bottom, 30rpx);
+$dialog-image-radius       : var(--sd-dialog-image-radius       , $sd-radius-md);
+$dialog-content-font-size  : var(--sd-dialog-content-font-sizd  , $sd-font-size-md);
+$dialog-content-color      : var(--sd-dialog-content-color      , $sd-text-color-secondary);
+$dialog-content-max-height : var(--sd-dialog-content-max-height , 500rpx);
+$dialog-footer-padding     : var(--sd-dialog-padding            , 0 56rpx 56rpx);
 
 .sd-dialog {
+
     &__image {
-        border-radius: $image-radius $image-radius 0 0;
+        border-radius: $dialog-image-radius $dialog-image-radius 0 0;
         overflow: hidden;
     }
 
     &__main {
-        padding: 56rpx 56rpx 0;
+        padding: $dialog-padding;
         box-sizing: border-box;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: cnter;
+        margin-bottom: $dialog-title-margin-bottom;
+        font-weight: bold;
+        font-size: $dialog-title-font-size;
     }
 
     &__icon {
@@ -31,7 +50,7 @@ $image-radius: var(--sd-popup-border-radius, $sd-radius-lg);
         }
 
         .sd-icon {
-            font-size: 112rpx;
+            font-size: $dialog-icon-size;
         }
     }
 
@@ -49,25 +68,18 @@ $image-radius: var(--sd-popup-border-radius, $sd-radius-lg);
         text-align: left;
     }
 
-    &__title {
-        display: flex;
-        justify-content: center;
-        align-items: cnter;
-        margin-bottom: 30rpx;
-        font-weight: bold;
-        font-size: $sd-font-size-md;
-    }
-
-    &__desc {
-        max-height: 500rpx;
+    // 弹窗内容信息
+    &__content {
+        max-height: $dialog-content-max-height;
         width: 100%;
-        font-size: $sd-font-size-md;
+        font-size: $dialog-content-font-size;
+        color: $dialog-content-color;
         margin-bottom: 50rpx;
     }
 
     &__footer {
         display: flex;
-        padding: 0 56rpx 56rpx;
+        padding: $dialog-footer-padding;
 
         .sd-button {
             flex: 1;

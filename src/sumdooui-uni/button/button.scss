@@ -21,12 +21,14 @@ $button-large-padding  : var(--sd-button-large-padding  , 30rpx);
 // 按钮背景色
 $button-default-background      : var(--sd-button-default-bg-color    , $sd-fill-color);
 $button-default-plain-background: var(--sd-button-default-bg-color    , $sd-fill-color-lighter);
-$button-default-color       : var(--sd-button-default-color       , $sd-text-color);
-$button-default-border-color: var(--sd-button-default-border-color, $sd-border-color);
+$button-default-color           : var(--sd-button-default-color       , $sd-text-color);
+$button-default-border-color    : var(--sd-button-default-border-color, $sd-border-color);
 
 // 按钮大小
 @mixin button-size($height, $padding, $font-size) {
     height: $height;
+    min-height: $height;
+    max-height: $height;
     padding: 0 $padding;
     font-size: $font-size;
 
