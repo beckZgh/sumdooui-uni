@@ -33,10 +33,11 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                [`sd-tag--${ theme }`]  : true,
-                [`sd-tag--${ variant }`]: !!variant,
-                [`sd-tag--${ shape }`]  : true,
-                [`sd-tag--${ size }`]   : true,
+                [`sd-tag--light`]     : light,
+                [`sd-tag--plain`]     : plain,
+                [`sd-tag--${ type }`] : !!type,
+                [`sd-tag--${ shape }`]: true,
+                [`sd-tag--${ size }`] : !!size,
             },
         ]"
         :style="root_style$"

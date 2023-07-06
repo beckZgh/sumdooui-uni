@@ -16,7 +16,7 @@ $tag-small-font-size     : var(--sd-tag-samll-font-size, $sd-font-size-xs);
 $tag-normal-font-size    : var(--sd-tag-normal-font-size, $sd-font-size-sm);
 $tag-large-font-size     : var(--sd-tag-large-font-size, $sd-font-size-md);
 
-$tag-bg-color  : var(--sd-tag-bg-color, $sd-bg-color-container);
+$tag-background: var(--sd-tag-background, $sd-bg-color-container);
 $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
 
 @mixin tag-theme($bg-color, $light-bg-clolor) {
@@ -38,7 +38,7 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
     }
 }
 
-@mixin tag-size($size: 'nomarl') {
+@mixin tag-size($size: '') {
     $tag_size         : $tag-normal-font-size;
     $tag_padding      : $tag-normal-padding;
     $tag_round_padding: $tag-normal-round-padding;
@@ -92,6 +92,9 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
     align-items: center;
     box-sizing: border-box;
     line-height: 1;
+    background-color: $tag-background;
+    color: $tag-text-color;
+    @include tag-size();
 
     &__text {
         width: 100%;
@@ -127,6 +130,15 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
         z-index: 1;
     }
 
+    &.sd-tag--plain {
+        background-color: transparent;
+        color: $tag-text-color;
+
+        &::after {
+            border-color: $sd-border-color;
+        }
+    }
+
     &.sd-tag--plain::after {
         border-width: 2px;
     }
@@ -143,19 +155,6 @@ $tag-text-color: var(--sd-tag-text-color, $sd-text-color);
     }
 
     // 标签主题
-    &--default {
-        background-color: $tag-bg-color;
-        color: $tag-text-color;
-
-        &.sd-tag--plain {
-            background-color: transparent;
-            color: $tag-text-color;
-
-            &::after {
-                border-color: $sd-border-color;
-            }
-        }
-    }
     &--primary {
         @include tag-theme($sd-primary-color, $sd-primary-color-9);
     }
