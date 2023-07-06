@@ -11,6 +11,8 @@ $switch-bar-font-size        : var(--sd-switch-font-size            , $sd-font-s
     display: inline-block;
     border: 2px solid $switch-bar-background;
     background-color: $switch-bar-background;
+    width: 100%;
+    height: 60rpx;
 
     &__items {
         display: flex;
@@ -22,12 +24,12 @@ $switch-bar-font-size        : var(--sd-switch-font-size            , $sd-font-s
     }
 
     &__item {
+        flex: 1;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 6rpx;
-        line-height: 1.5;
+        line-height: 1;
         color: $switch-bar-text-color;
         font-size: $switch-bar-font-size;
         z-index: 2;
