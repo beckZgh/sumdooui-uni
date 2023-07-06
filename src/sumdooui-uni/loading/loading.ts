@@ -1,27 +1,28 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import type { Component } from '../common/types'
+
 import { COMMON_PROPS } from '../common/props'
 
-export type IconType = 'circle' | 'line' | 'image' | 'meet'
-export type IconScene = 'page' | 'local' | 'auto'
-export type IconDirection = 'row' | 'column'
+export type LoadingType      = 'spinner' | 'line' | 'image' | 'meet'
+export type LoadingDirection = 'row' | 'column'
 
 export const loading_props = {
     ...COMMON_PROPS,
 
+    /** 主题类型 */
+    type       : { type: String as PropType<Component.Type> },
     /** loading 类型 */
-    type      : { type: String as PropType<IconType>, default: 'circle' },
-    /** 场景 */
-    scene     : { type: String as PropType<IconScene>, default: 'local' },
-    /** 高度 */
-    height    : { type: [Number, String] },
+    loadingType: { type: String as PropType<LoadingType>, default: 'spinner' },
+    /** 全屏 */
+    fullscreen : { type: Boolean, default: false },
     /** 背景颜色 */
-    background: { type: String },
+    background : { type: String },
     /** 颜色 */
-    color     : { type: String },
+    color      : { type: String },
     /** 加载文本 */
-    text      : { type: String },
+    text       : { type: String },
     /** 排列方向 */
-    direction : { type: String as PropType<IconDirection>, default: 'row' },
+    direction  : { type: String as PropType<LoadingDirection>, default: 'row' },
 }
 
 export type LoadingProps = ExtractPropTypes<typeof loading_props>

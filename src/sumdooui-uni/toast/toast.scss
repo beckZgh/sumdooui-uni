@@ -1,6 +1,6 @@
 @import '../styles/variables.scss';
 
-$toast-bg-color     : var(--sd-toast-bg-color, $sd-black);
+$toast-background   : var(--sd-toast-background, $sd-black);
 $toast-mask-z-index : var(--sd-toast-z-index, 998);
 $toast-z-index      : var(--sd-toast-z-index, 999);
 $toast-padding      : var(--sd-toast-padding, 24rpx 42rpx);
@@ -31,7 +31,7 @@ $toast-border-radius: var(--sd-toast-border-radius, $sd-radius-lg);
         flex-wrap: nowrap;
         padding: $toast-padding;
         border-radius: $toast-border-radius;
-        background-color: $toast-bg-color;
+        background-color: $toast-background;
     }
 
     .sd-icon {

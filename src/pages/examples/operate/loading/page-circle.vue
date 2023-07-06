@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <sd-page title="页面路径 (一)">
-        <sd-loading scene="page" text="正在加载中" />
+    <sd-page title="旋转动画">
+        <sd-loading fullscreen text="加载中..." />
     </sd-page>
 </template>

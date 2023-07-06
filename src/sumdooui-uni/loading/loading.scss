@@ -1,32 +1,45 @@
 @import '../styles/variables.scss';
+@import '../styles/animations/rotate.scss';
 
-$loading-font-size: var(--sd-loading-font-size, $sd-font-size-md);
-$loading-color    : var(--sd-loading-color    , $sd-gray-color-7);
+$loading-color           : var(--sd-loading-color           , $sd-gray-color-7);
+$loading-spinner-size    : var(--sd-loading-spinner-size    , 30px);
+$loading-spinner-duration: var(--sd-loading-spinner-duration, 0.8s);
+$loading-meet-size       : var(--sd-loading-meet-size       , 30px);
+$loading-line-height     : var(--sd-loading-meet-size       , 20px);
+$loading-text-font-size  : var(--sd-loading-text-font-size  , $sd-font-size-md);
+
+@mixin loading_theme($color) {
+    .sd-loading__spinner,
+    .sd-loading__line,
+    .sd-loading__meet,
+    .sd-loading__text {
+       color: $color;
+    }
+}
 
 .sd-loading {
-    font-size: $loading-font-size;
-    transform: translate3d(0, 0, 0);
+    font-size: 0;
+    vertical-align: middle;
 
     // 排列方式
     &--row {
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
-        justify-content: center;
         align-items: center;
 
-        .sd-loading__circle,
+        .sd-loading__spinner,
         .sd-loading__line,
         .sd-loading__meet {
             margin: 0 20rpx;
         }
     }
+
     &--column {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
-        .sd-loading__circle,
+        .sd-loading__spinner,
         .sd-loading__line,
         .sd-loading__meet {
             margin-left: 0;
@@ -35,58 +48,82 @@ $loading-color    : var(--sd-loading-color    , $sd-gray-color-7);
         }
     }
 
-    // 圆圈动画
-    &__circle {
-        width: 48rpx;
-        height: 48rpx;
-        border-width: 2px 2px 2px 0;
-        border-style: solid;
-        border-radius: 48rpx ;
-        animation: rotate 1s linear infinite;
-        transform: translateZ(0);
-        overflow: hidden;
-        border-color: $loading-color $loading-color transparent transparent;
+    // 预设主题
+    &--primary {
+        @include loading_theme($sd-primary-color);
+    }
+    &--success {
+        @include loading_theme($sd-success-color);
+    }
+    &--danger {
+        @include loading_theme($sd-danger-color);
+    }
+    &--warning {
+        @include loading_theme($sd-warning-color);
     }
 
-    // 音符动画
-    &__line {
+    // 全屏模式
+    &.is-fullscreen {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
-        flex-wrap: nowrap;
-        margin: 0 20rpx;
+        align-items: center;
+    }
 
-        &-rect {
-            height: 40rpx;
-            width: 4rpx;
-            transform: translateZ(0);
-            margin: 0 10rpx;
-            animation: stretchdelay 1.2s infinite ease-in-out;
-            background-color: $loading-color;
+    // 旋转动画
+    &__spinner {
+        position: relative;
+        display: inline-block;
+        width: $loading-spinner-size;
+        max-width: 100%;
+        height: $loading-spinner-size;
+        max-height: 100%;
+        vertical-align: middle;
+        animation: rotate $loading-spinner-duration linear infinite;
+        animation-timing-function: steps(12);
+        color: $loading-color;
 
-            &-2 {
-                animation-delay: -1.1s;
+        &-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            &::before {
+                display: block;
+                width: 2px;
+                height: 25%;
+                margin: 0 auto;
+                background-color: currentColor;
+                border-radius: 40%;
+                content: ' ';
             }
-            &-3 {
-                animation-delay: -1s;
-            }
-            &-4 {
-                animation-delay: -0.9s;
-            }
-            &-5 {
-                animation-delay: -0.8s;
+        }
+
+        @for $i from 1 to 12 {
+            .sd-loading__spinner-line-#{ $i } {
+                transform: rotate($i * 30deg);
+                opacity: 1 - calc(0.75 / 12) * ($i - 1);
             }
         }
     }
+
+    // 相遇动画
     &__meet {
-        width: 120rpx;
-        height: 120rpx;
+        width: $loading-meet-size;
+        height: $loading-meet-size;
         border-radius: 50%;
-        border-top: 1px solid $loading-color;
+        color: $loading-color;
+        border-top: 1px solid currentColor;
         border-left: 1px solid transparent;
         border-right: 1px solid transparent;
-        border-bottom: 1px solid $loading-color;
+        border-bottom: 1px solid currentColor;
         transform: translateZ(0);
         animation: rotate 2s linear infinite;
 
@@ -107,10 +144,41 @@ $loading-color    : var(--sd-loading-color    , $sd-gray-color-7);
             animation: scale 1s infinite;
             transform: translateZ(0);
             content: '';
-            background-color: $loading-color;
+            background-color: currentColor;
         }
     }
 
+    // 音符动画
+    &__line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        color: $loading-color;
+
+        &-rect {
+            height: $loading-line-height;
+            width: 4rpx;
+            transform: translateZ(0);
+            margin: 0 10rpx;
+            animation: stretchdelay 1.2s infinite ease-in-out;
+            background-color: currentColor;
+
+            &-2 {
+                animation-delay: -1.1s;
+            }
+            &-3 {
+                animation-delay: -1s;
+            }
+            &-4 {
+                animation-delay: -0.9s;
+            }
+            &-5 {
+                animation-delay: -0.8s;
+            }
+        }
+    }
 
     // 文本加载
     &__text {
@@ -119,53 +187,50 @@ $loading-color    : var(--sd-loading-color    , $sd-gray-color-7);
         height: 1em;
         line-height: 1;
         overflow: hidden;
+        font-size: $loading-text-font-size;
 
-        &::after {
-            content: '...\A..\A.';
-            display: inline-block;
-            white-space: pre-wrap;
-            animation: text 3s infinite step-start both;
-            transform: translateZ(0);
+        // &::after {
+        //     content: '...\A..\A.';
+        //     display: inline-block;
+        //     white-space: pre-wrap;
+        //     animation: text 3s infinite step-start both;
+        //     transform: translateZ(0);
+        // }
+    }
+
+    @keyframes scale {
+        0% {
+            width: 0;
+            height: 0;
+        }
+        75% {
+            width: 20rpx;
+            height: 20rpx;
+        }
+        100% {
+            width: 0;
+            height: 0;
         }
     }
 
-    // Loading 场景
-    &--auto {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 0;
+
+    @keyframes stretchdelay {
+        0%,
+        40%,
+        100% {
+            transform: scaleY(0.4);
+        }
+        20% {
+            transform: scaleY(1);
+        }
     }
-    &--page {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 0;
-        opacity: 0;
-        animation: fadeIn 0.3s;
-        animation-fill-mode: forwards;
-        transform: translate(0);
 
-        .sd-loading__circle {
-            width: 100rpx;
-            height: 100rpx;
-            border-radius: 100rpx 100rpx 100rpx 0rpx;
-            margin-top: -120rpx;
-            margin-bottom: 50rpx;
+    @keyframes text {
+        33% {
+          transform: translateY(-2em);
         }
-
-        .sd-loading--page .sd-loading__text {
-            font-size: 30rpx;
-        }
-
-        .sd-loading--page .sd-loading__meet {
-            margin-top: -120rpx;
-            margin-bottom: 50rpx;
+        66% {
+          transform: translateY(-1em);
         }
     }
 }
-

@@ -18,7 +18,7 @@ export const page_props = {
     background         : { type: String                              }, // 页面背景色
     backgroundImage    : { type: String                              }, // 页面背景图片
     loading            : { type: Number   , default: 0               }, // 加载状态
-    loadingText        : { type: String   , default: '加载中'        }, // 加载状态文本
+    loadingText        : { type: String   , default: '加载中...'     }, // 加载状态文本
     loadingProps       : { type: Object as PropType<LoadingProps>    }, // 加载状态组件 Props
     error              : { type: String   , default: ''              }, // 页面异常信息
     errorButtonText    : { type: String   , default: '刷新一下'      }, // 页面异常按钮文本

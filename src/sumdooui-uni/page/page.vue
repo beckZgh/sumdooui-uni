@@ -2,10 +2,10 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, ref, computed, onMounted, provide } from 'vue'
-import { page_props } from './page'
+import { page_props        } from './page'
 import { useSelectoryQuery } from '../common/hooks'
-import { PAGE_KEY   } from '../common/tokens'
-import { MpMixin    } from '../common/mixins'
+import { PAGE_KEY          } from '../common/tokens'
+import { MpMixin           } from '../common/mixins'
 
 export default defineComponent({
     ...MpMixin,
@@ -138,9 +138,14 @@ export default defineComponent({
         </view>
 
         <!-- 页面加载中过渡 -->
-        <view v-if="loading === 1" class="sd-page__loading-wrap">
-            <sd-loading type="line" scene="page" :text="loadingText" v-bind="loadingProps" />
-        </view>
+        <sd-loading
+            v-if="loading === 1"
+            loading-type="line"
+            fullscreen
+            type="primary"
+            :text="loadingText"
+            v-bind="loadingProps"
+        />
 
         <!-- 页面错误信息显示 -->
         <view v-if="loading === -1" class="sd-page__error-wrap">

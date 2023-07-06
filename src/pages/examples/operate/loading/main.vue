@@ -8,26 +8,29 @@ const toPage = (name: string) => {
     <sd-page title="Loading 加载动画">
         <demo-card title="基本用法">
             <sd-loading />
+            <sd-loading loading-type="meet" />
+            <sd-loading loading-type="line" />
         </demo-card>
 
-        <demo-card title="显示横向文本">
-            <sd-loading text="正在加载中" />
-        </demo-card>
-
-        <demo-card title="显示纵向文本">
-            <sd-loading text="正在加载中" direction="column" />
+        <demo-card title="预设主题">
+            <sd-loading type="primary" />
+            <sd-loading type="success" />
+            <sd-loading type="danger" />
+            <sd-loading type="warning" />
         </demo-card>
 
         <demo-card title="自定义颜色">
-            <sd-loading color="#09BE4F" />
+            <sd-loading color="rgb(237, 123, 47)" />
+            <sd-loading color="rgb(237, 123, 47)" loading-type="meet" />
+            <sd-loading color="rgb(237, 123, 47)" loading-type="line" />
         </demo-card>
 
-        <demo-card title="音符动画">
-            <sd-loading type="line" color="#09BE4F" />
+        <demo-card title="显示横向文本">
+            <sd-loading text="加载中..." />
         </demo-card>
 
-        <demo-card title="相遇动画">
-            <sd-loading type="meet" color="#09BE4F" />
+        <demo-card title="显示纵向文本">
+            <sd-loading text="加载中..." direction="column" />
         </demo-card>
 
         <demo-card title="页面 Loading (一)" body-class="sd-flex-x-center">
