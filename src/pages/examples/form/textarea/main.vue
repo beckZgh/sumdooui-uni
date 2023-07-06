@@ -32,9 +32,9 @@ const input_8 = ref('做一个对业务能提效的技术工具！')
             <sd-textarea v-model="input_5" placeholder="请评论内容" />
         </demo-card>
 
-        <demo-card title="自定义文本域样式">
+        <!-- <demo-card title="自定义文本域样式">
             <sd-textarea v-model="input_6" :border="false" background="#f7f8fa" />
-        </demo-card>
+        </demo-card> -->
 
         <demo-card title="只读状态">
             <sd-textarea v-model="input_7" readonly />

@@ -51,174 +51,121 @@ function handleSwitch(index: number) {
 
 <template>
     <sd-page title="Steps 步骤条">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                数字步骤 - 横向
-            </view>
-            <view class="demo-card__body">
-                <sd-steps :current="m.curr_step" :items="m.items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="数字步骤 - 横向">
+            <sd-steps :current="m.curr_step" :items="m.items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                数字步骤 - 垂直
-            </view>
-            <view class="demo-card__body">
-                <sd-steps :current="m.curr_step" direction="column" :items="m.column_items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="数字步骤 - 垂直">
+            <sd-steps :current="m.curr_step" direction="column" :items="m.column_items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                自定义数字颜色
-            </view>
-            <view class="demo-card__body">
-                <sd-steps active-color="#f67b7b" :current="m.curr_step" :items="m.items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="自定义数字颜色">
+            <sd-steps active-color="#f67b7b" :current="m.curr_step" :items="m.items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                图标步骤 - 横向
-            </view>
-            <view class="demo-card__body">
-                <sd-steps type="icon" :current="m.curr_step" :items="m.items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="图标步骤 - 横向">
+            <sd-steps type="icon" :current="m.curr_step" :items="m.items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                图标步骤 - 垂直
-            </view>
-            <view class="demo-card__body">
-                <sd-steps type="icon" :current="m.curr_step" direction="column" :items="m.column_items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="图标步骤 - 垂直">
+            <sd-steps type="icon" :current="m.curr_step" direction="column" :items="m.column_items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                自定义图标颜色
-            </view>
-            <view class="demo-card__body">
-                <sd-steps type="icon" active-color="#f67b7b" :current="m.curr_step" :items="m.items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="自定义图标颜色">
+            <sd-steps type="icon" active-color="#f67b7b" :current="m.curr_step" :items="m.items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                图片步骤 - 横向
-            </view>
-            <view class="demo-card__body">
-                <sd-steps
-                    type="image"
-                    :current="m.curr_step" :items="m.items"
-                    active-image="/static/tabbar/assembly_selected_3x.png"
-                    inactive-image="/static/tabbar/assembly_default_3x.png"
-                />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="图片步骤 - 横向">
+            <sd-steps
+                type="image"
+                :current="m.curr_step" :items="m.items"
+                active-image="/static/tabbar/assembly_selected_3x.png"
+                inactive-image="/static/tabbar/assembly_default_3x.png"
+            />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                图片步骤 - 垂直
-            </view>
-            <view class="demo-card__body">
-                <sd-steps
-                    type="image" :current="m.curr_step" direction="column" :items="m.column_items"
-                    active-image="/static/tabbar/assembly_selected_3x.png"
-                    inactive-image="/static/tabbar/assembly_default_3x.png"
-                />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="图片步骤 - 垂直">
+            <sd-steps
+                type="image" :current="m.curr_step" direction="column" :items="m.column_items"
+                active-image="/static/tabbar/assembly_selected_3x.png"
+                inactive-image="/static/tabbar/assembly_default_3x.png"
+            />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                自定义每项图片步骤
-            </view>
-            <view class="demo-card__body">
-                <sd-steps type="image" :current="m.curr_step" :items="m.custom_image_items" />
-            </view>
-            <view class="btn-wrap">
+        <demo-card title="自定义每项图片步骤">
+            <sd-steps type="image" :current="m.curr_step" :items="m.custom_image_items" />
+            <view class="sd-flex-x-center sd-pt-30">
                 <sd-button size="small" @click="handleSwitch(-1)">
                     上一步
                 </sd-button>
-                <sd-button type="primary" size="small" :custom-style="{ marginLeft: '30rpx' }" @click="handleSwitch(1)">
+                <sd-button type="primary" size="small" custom-class="sd-ml-30" @click="handleSwitch(1)">
                     下一步
                 </sd-button>
             </view>
-        </view>
+        </demo-card>
     </sd-page>
 </template>
-
-
-<style lang="scss" scoped>
-.btn-wrap {
-    display: flex;
-    justify-content: center;
-}
-</style>

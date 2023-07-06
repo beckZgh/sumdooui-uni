@@ -45,93 +45,53 @@ function onSelect(item: { text: string }, index: number) {
 
 <template>
     <sd-page title="Actionsheet 动作面板">
-        <view class="demo-card">
-            <view class="demo-card__title">
-                基本用法
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_1 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="基本用法" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_1 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                文本左对齐
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_2 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="文本左对齐" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_2 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                文本右对齐
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_3 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="文本右对齐" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_3 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                带描述的动作面板
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_4 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="带描述的动作面板" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_4 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                带图标的动作面板
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_5 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="带图标的动作面板" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_5 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                带颜色的动作面板
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_6 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="带颜色的动作面板" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_6 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                带禁用选项的动作面板
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_7 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="带禁用选项的动作面板" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_7 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
-        <view class="demo-card">
-            <view class="demo-card__title">
-                微信特性按钮的动作面板
-            </view>
-            <view class="demo-card__body flex-xc">
-                <sd-button width="75%" variant="plain" @click="m.actionsheet_8 = true">
-                    应用
-                </sd-button>
-            </view>
-        </view>
+        <demo-card title="微信特性按钮的动作面板" body-class="sd-flex-x-center">
+            <sd-button width="75%" variant="plain" @click="m.actionsheet_8 = true">
+                应用
+            </sd-button>
+        </demo-card>
 
         <!-- 基本用法 -->
         <sd-actionsheet v-model:visible="m.actionsheet_1" :items="m.items" @select="onSelect" />

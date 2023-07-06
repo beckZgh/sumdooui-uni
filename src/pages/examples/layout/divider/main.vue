@@ -32,24 +32,24 @@
         </demo-card>
 
         <demo-card title="预设主题">
-            <sd-divider text="提示信息" theme="primary" />
-            <sd-divider text="提示信息" theme="success" />
-            <sd-divider text="提示信息" theme="warning" />
-            <sd-divider text="提示信息" theme="danger" />
+            <sd-divider text="提示信息" type="primary" />
+            <sd-divider text="提示信息" type="success" />
+            <sd-divider text="提示信息" type="warning" />
+            <sd-divider text="提示信息" type="danger" />
         </demo-card>
 
         <demo-card title="预设主题 - 线条">
-            <sd-divider text="提示信息" type-sence="line" theme="primary" />
-            <sd-divider text="提示信息" type-sence="line" theme="success" />
-            <sd-divider text="提示信息" type-sence="line" theme="warning" />
-            <sd-divider text="提示信息" type-sence="line" theme="danger" />
+            <sd-divider text="提示信息" sence="line" type="primary" />
+            <sd-divider text="提示信息" sence="line" type="success" />
+            <sd-divider text="提示信息" sence="line" type="warning" />
+            <sd-divider text="提示信息" sence="line" type="danger" />
         </demo-card>
 
         <demo-card title="预设主题 - 文本">
-            <sd-divider text="提示信息" type-sence="text" theme="primary" />
-            <sd-divider text="提示信息" type-sence="text" theme="success" />
-            <sd-divider text="提示信息" type-sence="text" theme="warning" />
-            <sd-divider text="提示信息" type-sence="text" theme="danger" />
+            <sd-divider text="提示信息" sence="text" type="primary" />
+            <sd-divider text="提示信息" sence="text" type="success" />
+            <sd-divider text="提示信息" sence="text" type="warning" />
+            <sd-divider text="提示信息" sence="text" type="danger" />
         </demo-card>
     </sd-page>
 </template>

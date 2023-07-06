@@ -1,74 +1,68 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const selector_visible = ref(false)
-const selector_value = ref()
-const selector_opts = ref([
-    { label: '苹果', value: 'apple'      },
-    { label: '香蕉', value: 'banner'     },
-    { label: '西瓜', value: 'watermelon' },
-])
+import { ref, reactive } from 'vue'
+import { citys, years, seasons, area_list } from './config'
+const state = reactive({
+    city_text   : '',
+    city_value  : '成都市',
+    city_visible: false,
+    date_text   : '',
+    date_value  : ['2020', '秋'],
+    date_visible: false,
+    area_text   : '',
+    area_value  : ['ZH', '200', '2003'],
+    area_visible: false,
+})
 
-const selector_multi_visible = ref(false)
-const selector_multi_value = ref('')
-const selector_multi_opts = ref([
-    [
-        { label: '一月', value: 1 },
-        { label: '二月', value: 2 },
-        { label: '三月', value: 3 },
-        { label: '四月', value: 4 },
-        { label: '五月', value: 5 },
-        { label: '六月', value: 6 },
-        { label: '七月', value: 7 },
-    ],
-    [
-        { label: '周一', value: 1 },
-        { label: '周二', value: 2 },
-        { label: '周三', value: 3 },
-        { label: '周四', value: 4 },
-        { label: '周五', value: 5 },
-        { label: '周六', value: 6 },
-        { label: '周日', value: 7 },
-    ],
-    [
-        { label: '上午', value: 'monring'      },
-        { label: '下午', value: 'afternoon'     },
-        { label: '晚上', value: 'evening' },
-    ],
-])
-
-function onConfirm(value: string | number, item: any) {
-    selector_value.value = item.label
+function onCityConfirm(item: any) {
+    state.city_text  = item.selectedOptions.label
 }
 
-function onMultiConfirm(value: (string | number)[], item: any[]) {
-    selector_multi_value.value = item.map(o => o.label).join(' - ')
+function onDateConfirm(item: any) {
+    state.date_text  = item.selectedValue.join('')
+}
+
+function onAreaConfirm(item: any) {
+    console.log('-=--item', item)
+    // state.area_value = value
+    // state.area_text = items.map(item => item.label).join('')
 }
 </script>
 
 <template>
     <sd-page title="Picker 选择器">
-        <demo-card title="单列选择器" :card="false">
-            <sd-cell title="单列选择器" :value="selector_value" arrow @click="selector_visible = true" />
+        <demo-card title="基础选择器" :card="false" transparent>
+            <sd-cell title="选择城市" :value="state.city_text" arrow @click="state.city_visible = true" />
+            <view class="sd-h-20" />
+            <sd-cell title="选择时间" :value="state.date_text" arrow @click="state.date_visible = true" />
+            <view class="sd-h-20" />
+            <sd-cell title="选择地区" :value="state.area_text" arrow @click="state.area_visible = true" />
         </demo-card>
 
-        <demo-card title="多列选择器" :card="false">
-            <sd-cell title="多列选择器" mode="multi-selector" :value="selector_multi_value" arrow @click="selector_multi_visible = true" />
-        </demo-card>
-
+        <!-- 单列选择器 -->
         <sd-picker
-            v-model="selector_visible"
-            title="请选择水果"
-            :options="selector_opts"
-            default-value="banner"
-            @confirm="onConfirm"
+            v-model:visible="state.city_visible"
+            title="请选择城市"
+            :default-value="state.city_value"
+            :options="citys"
+            @confirm="onCityConfirm"
         />
 
+        <!-- 多列不联动选择器 -->
         <sd-picker
-            v-model="selector_multi_visible"
-            title="请选择时辰"
-            mode="multi-selector"
-            :options="selector_multi_opts"
-            @confirm="onMultiConfirm"
+            v-model:visible="state.date_visible"
+            title="请选择时间"
+            :default-value="state.date_value"
+            :options="[years, seasons]"
+            @confirm="onDateConfirm"
+        />
+
+        <!-- 多列联动选择器 -->
+        <sd-picker
+            v-model:visible="state.area_visible"
+            title="请选择地区"
+            :default-value="state.area_value"
+            :options="area_list"
+            @confirm="onAreaConfirm"
         />
     </sd-page>
 </template>
