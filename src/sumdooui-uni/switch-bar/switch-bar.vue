@@ -1,7 +1,11 @@
 <script lang="ts">
+import type { CSSProperties } from 'vue'
+
 import { defineComponent, ref, computed } from 'vue'
 import { switch_props } from './switch-bar'
 import { MpMixin } from '../common/mixins'
+import { useSelectoryQuery } from '../common/hooks'
+import Utils from '../utils'
 
 export default defineComponent({
     ...MpMixin,
@@ -10,14 +14,25 @@ export default defineComponent({
     props: switch_props,
     emits: ['update:modelValue', 'change'],
     setup(props, { emit }) {
-        // 当前激活项
-        const current_index = ref(props.modelValue)
+        const { queryNodeWidth } = useSelectoryQuery(false)
+        const current_index = ref(props.modelValue) // 当前激活项
+        const item_width    = ref(0)                // 当前项宽度
 
-        const items$ = computed(() => {
-            return props.items.map((item) => {
-                return typeof item === 'string' ? { name: item } : item
-            })
+        const wrap_style$ = computed(() => {
+            const styles: CSSProperties = { ...props.customStyle }
+            if (props.width    ) styles.width      = Utils.toUnit(props.width)
+            if (props.height   ) styles.height     = Utils.toUnit(props.height)
+            if (props.backgrond) {
+                styles.background  = props.backgrond
+                styles.borderColor = props.backgrond
+            }
+            return styles
         })
+
+        init()
+        async function init() {
+            item_width.value = await queryNodeWidth('.sd-switch-bar__item')
+        }
 
         function onClick(index: number) {
             current_index.value = index
@@ -27,7 +42,8 @@ export default defineComponent({
 
         return {
             current_index,
-            items$,
+            item_width,
+            wrap_style$,
             onClick,
         }
     },
@@ -38,29 +54,25 @@ export default defineComponent({
     <view
         class="sd-switch-bar"
         :class="[customClass, { 'sd-switch-bar--round': round }]"
-        :style="{ ...customStyle, background: backgrond }"
+        :style="wrap_style$"
     >
         <view class="sd-switch-bar__items">
-            <template v-for="(item, index) in items$" :key="index">
+            <template v-for="(name, index) in items" :key="index">
                 <view
                     class="sd-switch-bar__item"
-                    :class="{
-                        'is-active': current_index === index,
-                    }"
-                    :style="{
-                        width: `${ itemWidth }rpx`,
-                    }"
+                    :class="{ 'is-active': current_index === index }"
+                    :style="{ color: current_index === index ? activeColor : color }"
                     @tap="onClick(index)"
                 >
-                    {{ item.name }}
+                    {{ name }}
                 </view>
             </template>
         </view>
         <view
             class="sd-switch-bar__focus"
             :style="{
-                width    : `${ itemWidth }rpx`,
-                transform: `translateX(${ current_index * itemWidth }rpx)`,
+                width    : `${ item_width }px`,
+                transform: `translateX(${ current_index * item_width }px)`,
             }"
         />
     </view>
