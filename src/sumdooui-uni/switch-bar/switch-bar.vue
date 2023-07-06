@@ -2,9 +2,10 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, ref, computed } from 'vue'
-import { switch_props } from './switch-bar'
-import { MpMixin } from '../common/mixins'
-import { useSelectoryQuery } from '../common/hooks'
+import { switch_props                   } from './switch-bar'
+import { MpMixin                        } from '../common/mixins'
+import { useSelectoryQuery              } from '../common/hooks'
+
 import Utils from '../utils'
 
 export default defineComponent({
