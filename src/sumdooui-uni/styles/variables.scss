@@ -140,5 +140,9 @@ $sd-margin-lg  : var(--sd-margin-base, 48rpx);
 $sd-margin-xl  : var(--sd-margin-base, 64rpx);
 
 // 层叠
+$sd-toast-z-index : 3000;
+$sd-dialog-z-index: 3000;
+$sd-notify-z-index: 3000;
+$sd-model-z-index : 3000;
 $sd-popup-z-index : 2000;
 $sd-navbar-z-index: 1500;

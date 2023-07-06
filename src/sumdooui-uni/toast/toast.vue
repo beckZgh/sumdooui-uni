@@ -88,7 +88,6 @@ export default defineComponent({
 </script>
 
 <template>
-    <view v-if="visible && toast_props.mask" clas="sd-toast-mask" catchtouchmove="stopEvent" />
     <view
         v-if="visible"
         class="sd-toast"

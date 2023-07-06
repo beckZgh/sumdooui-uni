@@ -52,3 +52,9 @@ const toPage = (name: string) => {
         </demo-card>
     </sd-page>
 </template>
+
+<style lang="scss" scoped>
+:deep(.sd-loading) {
+    margin-right: 10px;
+}
+</style>

@@ -27,10 +27,8 @@ $loading-text-font-size  : var(--sd-loading-text-font-size  , $sd-font-size-md);
         flex-direction: row;
         align-items: center;
 
-        .sd-loading__spinner,
-        .sd-loading__line,
-        .sd-loading__meet {
-            margin: 0 20rpx;
+        .sd-loading__text {
+            margin-left: 20rpx;
         }
     }
 
@@ -39,12 +37,8 @@ $loading-text-font-size  : var(--sd-loading-text-font-size  , $sd-font-size-md);
         flex-direction: column;
         align-items: center;
 
-        .sd-loading__spinner,
-        .sd-loading__line,
-        .sd-loading__meet {
-            margin-left: 0;
-            margin-right: 0;
-            margin-bottom: 24rpx;
+        .sd-loading__text {
+            margin-top: 24rpx;
         }
     }
 
