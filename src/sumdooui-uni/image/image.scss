@@ -9,7 +9,6 @@ $image-icon-color: var(--sd-image-icon-color, $sd-text-color-placeholder);
 .sd-image {
     position: relative;
     display: inline-block;
-    vertical-align: bottom;
     width: $image-width;
     height: $image-height;
     border-radius: $sd-radius-sm;

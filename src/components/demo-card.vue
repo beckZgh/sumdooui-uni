@@ -24,7 +24,7 @@ export default defineComponent({
             <slot />
             <view v-if="bottomGap" style="height: 60rpx" />
         </view>
-        <view class="card__footer">
+        <view v-if="$slots.footer" class="card__footer">
             <slot nmae="footer" />
         </view>
     </view>

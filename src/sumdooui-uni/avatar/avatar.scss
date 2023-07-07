@@ -1,15 +1,19 @@
 @import '../styles/variables.scss'  ;
 
-$avatar-color               : var(--sd-avatar-color      , $sd-text-color);
-$avatar-background          : var(--sd-avatar-background , $sd-bg-color-container);
-$avatar-small-size          : var(--sd-avatar-small-size , 64rpx);
-$avatar-normal-size         : var(--sd-avatar-normal-size, 96rpx);
-$avatar-large-size          : var(--sd-avatar-large-size , 128rpx);
-$avatar-small-font-size     : var(--sd-avatar-small-size , 32rpx);
-$avatar-normal-font-size    : var(--sd-avatar-normal-size, 36rpx);
-$avatar-large-font-size     : var(--sd-avatar-large-size , 50rpx);
+$avatar-color               : var(--sd-avatar-color       , $sd-text-color);
+$avatar-background          : var(--sd-avatar-background  , $sd-bg-color-container);
+$avatar-mini-size           : var(--sd-avatar-mini-size   , 64rpx);
+$avatar-small-size          : var(--sd-avatar-small-size  , 96rpx);
+$avatar-default-size        : var(--sd-avatar-default-size, 128rpx);
+$avatar-large-size          : var(--sd-avatar-large-size  , 160rpx);
+
+$avatar-mini-font-size      : var(--sd-avatar-mini-font-size    , 32rpx); // 16px
+$avatar-small-font-size     : var(--sd-avatar-small-font-size   , 36rpx); // 18px
+$avatar-default-font-size   : var(--sd-avatar-default-font-size , 40rpx); // 20px
+$avatar-large-font-size     : var(--sd-avatar-large-font-size   , 52rpx); // 26px
+
 $avatar-border-radius-circle: var(--sd-avatar-border-radius-circle, $sd-radius-circle);
-$avatar-border-radius-round : var(--sd-avatar-border-radius-round , $sd-radius-round);
+$avatar-border-radius-round : var(--sd-avatar-border-radius-round , 8rpx);
 
 @mixin avatar-size($size, $font-size) {
     width: $size;
@@ -31,15 +35,21 @@ $avatar-border-radius-round : var(--sd-avatar-border-radius-round , $sd-radius-r
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    vertical-align: top;
     background-color: $avatar-background;
     color: $avatar-color;
+    @include avatar-size($avatar-default-size, $avatar-default-font-size);
+
+    &__text {
+        line-height: 1;
+    }
+
+    &--mini {
+        @include avatar-size($avatar-mini-size, $avatar-mini-font-size);
+    }
 
     &--small {
         @include avatar-size($avatar-small-size, $avatar-small-font-size);
-    }
-
-    &--normal {
-        @include avatar-size($avatar-normal-size, $avatar-normal-font-size);
     }
 
     &--large {

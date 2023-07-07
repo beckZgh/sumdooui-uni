@@ -93,7 +93,9 @@ $sd-border-color-light  : var(--sd-border-color, $sd-gray-color-3);
 $sd-border-color-lighter: var(--sd-border-color, $sd-gray-color-2);
 
 // 阴影
-$sd-shadow-color: var(--sd-shadow-color, rgba(2, 4, 38, 0.05));
+$sd-shadow-color: var(--sd-shadow-color, 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08));
+$sd-shadow-color-lihgt: var(--sd-shadow-color-lihgt, 0px 0px 12px rgba(0, 0, 0, .12));
+$sd-shadow-color-lihgter: var(--sd-shadow-color-lighter, 0px 0px 6px rgba(0, 0, 0, .12));
 
 // 透明度
 $sd-opacity-loading : var(--sd-opacity-hover   , 0.9);

@@ -16,7 +16,7 @@ export default defineComponent({
     ],
     setup(props) {
         // 初始化状态栏高度
-        const status_height = ref(20)
+        const status_height = ref(0)
         const navbar_height = ref(0)
         const total_height  = ref(0)
 
@@ -29,6 +29,7 @@ export default defineComponent({
             return styles
         })
 
+        // #ifndef H5
         init()
         function init() {
             const { statusBarHeight = 0 } = uni.getSystemInfoSync()
@@ -38,6 +39,7 @@ export default defineComponent({
             navbar_height.value = height + ((top - statusBarHeight) * 2)
             total_height.value  = status_height.value + navbar_height.value
         }
+        // #endif
 
         return {
             status_height,
@@ -58,7 +60,7 @@ export default defineComponent({
         :class="[customClass, { [`is-fixed`]: fixed }]"
         :style="navbar_styles$"
     >
-        <view class="sd-navbar__content" :style="{ height: `${ navbar_height }px` }">
+        <view class="sd-navbar__content" :style="{ height: navbar_height ? `${ navbar_height }px` : undefined }">
             <view v-if="leftArrow || leftIcon || $slots.left" class="sd-navbar__left" @tap="$emit('click-left', $event)">
                 <slot v-if="$slots.left" name="left" />
                 <template v-else>
