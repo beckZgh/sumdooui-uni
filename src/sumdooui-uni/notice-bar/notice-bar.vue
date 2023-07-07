@@ -14,20 +14,22 @@ export default defineComponent({
     setup(props, { emit }) {
         const state  = reactive({
             visible        : true,
-            body_width     : 0,
-            content_width  : 0,
-            duration       : 0,
-            first_running  : true,
+            body_width     : 0,     // 可显示区域宽度
+            content_width  : 0,     // 内容总宽度
+            duration       : 0,     // 动画周期时间
+            first_running  : true,  // 第一次运行
             animation_class: '',
         })
 
+        // 容器自定义样式
         const root_style$ = computed(() => {
             const style: CSSProperties = { ...props.customStyle }
             if (props.background) style.backgroundColor = props.background
-            if (props.color) style.color = props.color
+            if (props.color     ) style.color           = props.color
             return style
         })
 
+        // 内容自定义样式
         const content_style$ = computed(() => {
             return {
                 animationDelay   : `${ state.first_running ? props.delay : 0 }s`,
@@ -41,27 +43,27 @@ export default defineComponent({
 
         const { queryNodeWidth } = useSelectoryQuery()
         function init() {
-            setTimeout(() => {
-                Promise.all([
+            setTimeout(async () => {
+                const [body_width, content_width] = await Promise.all([
                     queryNodeWidth('.sd-notice-bar__body'),
                     queryNodeWidth('.sd-notice-bar__content'),
-                ]).then(([body_width, content_width]) => {
-                    if (props.scrollable && content_width > body_width) {
-                        state.body_width      = body_width
-                        state.content_width   = content_width
-                        state.duration        = content_width / props.speed
-                        state.animation_class = 'play'
-                    } else {
-                        state.animation_class = ''
-                    }
-                })
+                ])
+
+                if (!props.wrapable && props.scrollable && content_width > body_width) {
+                    state.body_width      = body_width
+                    state.content_width   = content_width
+                    state.duration        = content_width / props.speed
+                    state.animation_class = 'play'
+                } else {
+                    state.animation_class = ''
+                }
             }, 100)
         }
 
         function onAnimationEnd() {
             state.first_running = false
             setTimeout(() => {
-                state.duration = (state.content_width + state.body_width) / props.speed
+                state.duration        = (state.content_width + state.body_width) / props.speed
                 state.animation_class = 'play-infinite'
             }, 0)
         }
@@ -94,9 +96,9 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                'sd-notice-bar--wrapable'    : wrapable,
-                [`sd-notice-bar--${ theme }`]: true,
-                [`is-${ direction }`]        : !!direction,
+                'sd-notice-bar--wrapable'   : wrapable,
+                [`sd-notice-bar--${ type }`]: true,
+                [`is-${ direction }`]       : !!direction,
             },
         ]"
         :style="root_style$"
@@ -110,9 +112,7 @@ export default defineComponent({
         <view class="sd-notice-bar__body">
             <view
                 class="sd-notice-bar__content"
-                :class="[animation_class, {
-                    'is-ellipsis': scrollable === false && !wrapable,
-                }]"
+                :class="[animation_class, { 'is-ellipsis': scrollable === false && !wrapable }]"
                 :style="content_style$"
                 @animationend="onAnimationEnd"
             >
@@ -123,8 +123,8 @@ export default defineComponent({
             </view>
         </view>
 
-        <view v-if="closeable" class="sd-notice-bar__suffix">
-            <sd-icon name="close" @click="onClose" />
+        <view v-if="closeable" class="sd-notice-bar__suffix" @tap="onClose">
+            <sd-icon name="close" />
         </view>
     </view>
 </template>

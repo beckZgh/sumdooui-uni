@@ -184,7 +184,7 @@ export default [{
     }, {
         icon: 'empty',
         name: 'Noticebar 公告栏',
-        page: 'noticebar',
+        page: 'notice-bar',
     }, {
         icon: 'empty',
         name: 'Result 结果页',

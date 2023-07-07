@@ -6,9 +6,9 @@ export const notice_bar_props = {
     ...COMMON_PROPS,
 
     /** 主题 */
-    theme     : { type: String as PropType<Component.Theme>, default: 'warning' },
+    type      : { type: String as PropType<Component.Type>, default: 'warning' },
     /** 文本内容 */
-    content   : { type: [String, Array] },
+    content   : { type: [String, Array] as PropType<string | string[]> },
     /** 滚动方向 */
     direction : { type: String as PropType<'horizontal' | 'vertical'> },
     /** 前置图标 */

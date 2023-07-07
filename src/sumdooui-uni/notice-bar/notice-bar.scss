@@ -1,9 +1,9 @@
 @import '../styles/variables.scss';
 
-$notice-bar-height         : 80rpx;
-$notice-bar-padding        : var(--sd-notice-bar-padding, 0 32rpx);
-$notice-bar-font-size      : var(--sd-notice-bar-font-size, $sd-font-size-md);
-$notice-bar-icon-size      : var(--sd-notice-bar-icon-size, 40rpx);
+$notice-bar-height         : var(--sd-notice-bar-height         , 80rpx);
+$notice-bar-padding        : var(--sd-notice-bar-padding        , 0 32rpx);
+$notice-bar-font-size      : var(--sd-notice-bar-font-size      , $sd-font-size-md);
+$notice-bar-icon-size      : var(--sd-notice-bar-icon-size      , 40rpx);
 $notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
 
 @mixin notice-bar-theme($bg-color, $color) {
@@ -56,10 +56,12 @@ $notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
             animation: sd-notice-bar-play linear both running;
         }
 
+        // 无限滚动
         &.play-infinite {
             animation: sd-notice-bar-play-infinite linear infinite both running;
         }
 
+        // 内容超出省略
         &.is-ellipsis {
             max-width: 100%;
             overflow: hidden;
@@ -68,6 +70,7 @@ $notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
         }
     }
 
+    // 多行展示
     &--wrapable {
         padding-top: 24rpx;
         padding-bottom: 24rpx;
@@ -85,22 +88,16 @@ $notice-bar-icon-close-size: var(--sd-notice-bar-icon-close-size, 28rpx);
         }
     }
 
-    &--default {
-        @include notice-bar-theme($sd-bg-color-container, $sd-text-color);
-    }
-
+    // 预设主题
     &--primary {
         @include notice-bar-theme($sd-primary-color-9, $sd-primary-color);
     }
-
     &--success {
         @include notice-bar-theme($sd-success-color-9, $sd-success-color);
     }
-
     &--warning {
         @include notice-bar-theme($sd-warning-color-9, $sd-warning-color);
     }
-
     &--danger {
         @include notice-bar-theme($sd-danger-color-9, $sd-danger-color);
     }
