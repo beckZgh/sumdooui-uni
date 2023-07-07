@@ -6,8 +6,8 @@ export const progress_props = {
 
     /** 当前进度  0-100 */
     value     : { type: Number, default: 0 },
-    /** 进度条颜色 */
-    stokeColor: { type: String },
+    /** 轨道颜色 */
+    trackColor: { type: String },
     /** 进度条宽度 */
     stokeWidth: { type: Number },
     /** 显示进度文本内容 */
@@ -18,6 +18,8 @@ export const progress_props = {
     textInside: { type: Boolean, default: true },
     /** 文本内容颜色 */
     textColor : { type: String },
+    /** 进度条颜色 */
+    background: { type: String },
 }
 
 export type ProgressProps = ExtractPropTypes<typeof progress_props>

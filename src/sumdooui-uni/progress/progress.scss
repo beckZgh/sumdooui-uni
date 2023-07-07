@@ -1,8 +1,14 @@
 @import '../styles/variables.scss'  ;
 
-$progress-outer-bg-color: var(--sd-progress-outer-bg-color     , $sd-bg-color-container);
-$progress-inner-bg-color: var(--sd-progress-inner-bg-color     , $sd-primary-color);
-$progress-border-radius : var(--sd-progress-outer-border-radius, $sd-radius-round);
+$progress-background            : var(--sd-progress-background          , $sd-bg-color-container);
+$progress-track-background      : var(--sd-progress-track-background    , $sd-primary-color);
+$progress-povit-background      : var(--sd-progress-povit-background    , $sd-primary-color);
+$progress-povit-padding         : var(--sd-progress-povit-paddding      , 6rpx 12rpx);
+$progress-povit-radius          : var(--sd-progress-povit-radius        , $sd-radius-sm);
+$progress-povit-text-color      : var(--sd-progress-povit-text-color    , $sd-white);
+$progress-povit-text-font-size  : var(--sd-progress-povit-text-font-size, $sd-font-size-xs);
+$progress-outer-text-color      : var(--sd-progress-outer-text-color    , $sd-text-color);
+$progress-outer-text-font-size  : var(--sd-progress-outer-text-font-size, $sd-font-size-sm);
 
 .sd-progress {
     position: relative;
@@ -15,28 +21,30 @@ $progress-border-radius : var(--sd-progress-outer-border-radius, $sd-radius-roun
         position: relative;
         flex: 1;
         height: 10px;
-        background-color: $progress-outer-bg-color;
-        border-radius: $progress-border-radius;
+        background-color: $progress-background;
+        border-radius: $sd-radius-round;
 
         .sd-progress__text {
             position: absolute;
             left: 0;
             top: 50%;
-            padding: 6rpx 12rpx;
-            color: $sd-white;
-            font-size: $sd-font-size-xs;
-            background-color: $sd-primary-color;
-            border-radius: $sd-radius-sm;
+            padding: $progress-povit-padding;
+            border-radius: $progress-povit-radius;
+            background-color: $progress-povit-background;
+            color: $progress-povit-text-color;
+            font-size: $progress-povit-text-font-size;
+            white-space: nowrap;
             transition: all .4s;
         }
     }
 
-    &-inner {
+    // 进度条轨道
+    &__track {
         position: relative;
         width: 0;
         height: 100%;
-        border-radius: $progress-border-radius;
-        background-color: $progress-inner-bg-color;
+        border-radius: $sd-radius-round;
+        background-color: $progress-track-background;
         transition: all .4s;
     }
 
@@ -44,11 +52,12 @@ $progress-border-radius : var(--sd-progress-outer-border-radius, $sd-radius-roun
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: $sd-font-size-xs;
+        white-space: nowrap;
 
         &.is-outer {
             margin-left: 20rpx;
-            font-size: $sd-font-size-sm;
+            color: $progress-outer-text-color;
+            font-size: $progress-outer-text-font-size;
         }
     }
 }

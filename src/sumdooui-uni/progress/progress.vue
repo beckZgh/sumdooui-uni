@@ -13,7 +13,7 @@ export default defineComponent({
         const inner_style$ = computed(() => {
             const style: CSSProperties = {
                 width          : `${ props.value }%`,
-                backgroundColor: props.stokeColor,
+                backgroundColor: props.trackColor,
             }
             return style
         })
@@ -27,9 +27,9 @@ export default defineComponent({
     <view class="sd-progress" :class="customClass" :style="customStyle">
         <view
             class="sd-progress-outer"
-            :style="{ height: stokeWidth ? `${ stokeWidth }px` : undefined }"
+            :style="{ height: stokeWidth ? `${ stokeWidth }px` : undefined, background }"
         >
-            <view class="sd-progress-inner" :style="inner_style$" />
+            <view class="sd-progress__track" :style="inner_style$" />
 
             <!-- 内显进度值 -->
             <view
@@ -38,7 +38,7 @@ export default defineComponent({
                     left           : `${ +value }%`,
                     transform      : `translate(-${ +value }%, -50%)`,
                     minHeight      : `${ stokeWidth }px`,
-                    backgroundColor: stokeColor,
+                    backgroundColor: trackColor,
                 }"
             >
                 {{ text || `${ value }%` }}
