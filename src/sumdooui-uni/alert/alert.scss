@@ -1,0 +1,67 @@
+@import '../styles/variables.scss';
+
+$alert-padding              : var(--sd-alert-padding              , 16rpx 20rpx);
+$alert-raidus               : var(--sd-alert-radius               , $sd-radius-sm);
+$alert-icon-size            : var(--sd-icon-size                  , 38rpx);
+$alert-title-font-size      : var(--sd-alert-title-font-size      , $sd-font-size-md);
+$alert-description-font-size: var(--sd-alert-description-font-size, $sd-font-size-md);
+
+@mixin alert-theme($bg-color, $light-bg-clolor) {
+    background-color: $bg-color;
+    color: $sd-white;
+
+    &.sd-alert--light {
+        background-color: $light-bg-clolor;
+        color: $bg-color;
+    }
+}
+
+.sd-alert {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: $alert-padding;
+    border-radius: $alert-raidus;
+
+    &.is-center {
+        justify-content: center;
+    }
+
+    &__icon {
+        margin-right: 12rpx;
+        font-size: $alert-icon-size;
+        width: $alert-icon-size;
+        height: $alert-icon-size;
+    }
+
+    &__title {
+        font-size: $alert-title-font-size;
+        font-weight: bold;
+        margin-bottom: 8rpx;
+    }
+
+    &__description {
+        font-size: $alert-description-font-size;
+        line-height: 1.2;
+    }
+
+    &__close {
+        position: absolute;
+        top: 16rpx;
+        right: 20rpx;
+    }
+
+    // 标签主题
+    &--primary {
+        @include alert-theme($sd-primary-color, $sd-primary-color-9);
+    }
+    &--success {
+        @include alert-theme($sd-success-color, $sd-success-color-9);
+    }
+    &--warning {
+        @include alert-theme($sd-warning-color, $sd-warning-color-9);
+    }
+    &--danger {
+        @include alert-theme($sd-danger-color, $sd-danger-color-9);
+    }
+}

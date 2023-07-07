@@ -110,6 +110,8 @@
         {
             "path": "pages/examples/data/badge/main"
         }, {
+            "path": "pages/examples/data/alert/main"
+        }, {
             "path": "pages/examples/data/tag/main"
         }, {
             "path": "pages/examples/data/progress/main"

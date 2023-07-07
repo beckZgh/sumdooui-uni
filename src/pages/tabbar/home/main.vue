@@ -3,6 +3,7 @@ import tabs from './config'
 import { reactive } from 'vue'
 
 const system_info = uni.getSystemInfoSync()
+// const menu_button = uni.getMenuButtonBoundingClientRect()
 const m = reactive({
     scroll_into: '',
     tab_index  : 0,
@@ -85,10 +86,57 @@ function handleToPage(type: string, item: { name: string; page: string }) {
                 </scroll-view>
             </swiper-item>
         </swiper>
+
+        <!-- <view
+            class="add-my-app-tip"
+            :style="{
+                top  : `${ menu_button.bottom + 10 }px`,
+                right: `30px`,
+            }"
+        >
+            点击<text> “添加至我的小程序” </text>下次访问更方便
+
+            <sd-icon icon="close" />
+        </view> -->
     </sd-page>
 </template>
 
 <style lang="scss" scoped>
+.add-my-app-tip {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color: $sd-white;
+    border-radius: $sd-radius-round;
+    padding: 12px 32px;
+    z-index: 10000;
+    color: $sd-text-color;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: 30px;
+        top: 0;
+        transform: translateY(-100%);
+        border: 10px solid $sd-white;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+    }
+
+    > text {
+        display: inline-block;
+        color: $sd-warning-color;
+        margin: 0 3px;
+    }
+}
+
+
 .tabs-scroll-box {
     background-color: #fff;
 }

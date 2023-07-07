@@ -156,7 +156,7 @@ export default [{
     }, {
         icon: 'alert',
         name: 'Alert 警告框',
-        page: '',
+        page: 'alert',
     },  {
         icon: 'empty',
         name: 'Swiper 轮播图',
@@ -177,19 +177,23 @@ export default [{
         icon: 'collapse',
         name: 'Collapse 折叠面板',
         page: 'collapse',
-    }, {
-        icon: 'loadmore',
-        name: 'LoadMore 加载更多',
-        page: '',
-    }, {
+    },
+    // {
+    //     icon: 'loadmore',
+    //     name: 'LoadMore 加载更多',
+    //     page: '',
+    // },
+    {
         icon: 'empty',
         name: 'Noticebar 公告栏',
         page: 'notice-bar',
-    }, {
-        icon: 'empty',
-        name: 'Result 结果页',
-        page: '',
-    }, {
+    },
+    // {
+    //     icon: 'empty',
+    //     name: 'Result 结果页',
+    //     page: '',
+    // },
+    {
         icon: 'empty',
         name: 'Table 表格',
         page: 'table',
@@ -237,11 +241,13 @@ export default [{
         icon: 'textarea',
         name: 'DatePicker 日期时间选择器',
         page: '',
-    }, {
-        icon: 'textarea',
-        name: 'AreaPicker 地区选择器',
-        page: '',
-    }, {
+    },
+    // {
+    //     icon: 'textarea',
+    //     name: 'AreaPicker 地区选择器',
+    //     page: '',
+    // },
+    {
         icon: 'textarea',
         name: 'Uploader 上传',
         page: '',
