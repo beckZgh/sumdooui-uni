@@ -1,51 +1,65 @@
 @import '../styles/variables.scss'  ;
 
-$collapse-item-padding          : var(--sd-collapse-item-padding, 0 36rpx);
-$collapse-item-border-color     : var(--sd-collapse-item-border-color, $sd-border-color);
-$collapse-item-header-padding   : var(--sd-collapse-item-padding, 30rpx 0);
-$collapse-item-header-font-size : var(--sd-collapse-item-header-font-size, $sd-font-size-md);
-$collapse-item-header-text-color: var(--sd-collapse-item-header-text-color, $sd-text-color);
+$collapse-item-padding           : var(--sd-collapse-item-padding, 30rpx 36rpx);
+$collapse-item-border-color      : var(--sd-collapse-item-border-color, $sd-border-color);
+$collapse-item-duration          : var(--sd-collapse-item-duration, 0.3s);
+$collapse-item-title-font-size   : var(--sd-collapse-item-title-font-size, $sd-font-size-md);
+$collapse-item-title-text-color  : var(--sd-collapse-item-title-text-color, $sd-text-color);
+$collapse-item-content-font-size : var(--sd-collapse-item-content-font-size, $sd-font-size-md);
+$collapse-item-content-text-color: var(--sd-collapse-item-content-text-color, $sd-text-color-secondary);
 
 .sd-collapse-item {
     position: relative;
-    padding: $collapse-item-padding;
 
     &-header {
         width: 100%;
         position: relative;
         display: flex;
         align-items: center;
-        padding: $collapse-item-header-padding;
+        padding: $collapse-item-padding;
+        box-sizing: border-box;
 
         &__title {
             flex: 1;
-            color: $collapse-item-header-text-color;
-            font-size: $collapse-item-header-font-size;
+            color: $collapse-item-title-text-color;
+            font-size: $collapse-item-title-font-size;
         }
 
         &__arrow {
-            transition: transform 0.3s;
+            transition: transform $collapse-item-duration;
         }
 
         &.is-open &__arrow {
             transform: rotate(-180deg);
         }
+
+        &.is-clickable {
+            @include clickable($sd-black);
+        }
+
+        &.is-disabled {
+            cursor: not-allowed;
+            opacity: $sd-opacity-disabled;
+        }
     }
 
-    &__body {
+    &-body {
         height: 0;
         overflow: hidden;
         box-sizing: border-box;
-        transition: height .3s;
+        transition: height $collapse-item-duration;
     }
 
-    &__detail {
-        font-size: 30rpx;
-        padding: 30rpx 0;
+    // 文本内容
+    &__content {
+        font-size: $collapse-item-content-font-size;
+        color: $collapse-item-content-text-color;
+        padding: $collapse-item-padding;
+        line-height: 1.5;
     }
 
-    &.has-border &-cell,
-    &.has-border &__body {
+    &.has-border &-header,
+    &.has-border &-body {
         @include hairline($collapse-item-border-color, 'bottom');
     }
 }

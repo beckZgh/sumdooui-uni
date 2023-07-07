@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { MpMixin         } from '../common/mixins'
 import { collapse_props  } from './collapse'
+import { MpMixin         } from '../common/mixins'
 import { COLLAPSE_KEY    } from '../common/tokens'
 import { useProvide      } from '../common/hooks'
 

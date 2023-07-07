@@ -16,19 +16,16 @@ export default defineComponent({
 
         const instance = getCurrentInstance()!
         const state = reactive({
-            is_open      : parent?.props?.accordion ? false : props.open,
-            detail_height: 0,
+            is_open       : parent?.props?.accordion ? false : props.open,
+            content_height: 0, // 内容展开高度
         })
 
         const show_border$ = computed(() => props.border ?? parent?.props.border ?? true)
         const show_arrow$  = computed(() => props.arrow  ?? parent?.props.arrow  ?? true)
 
         const { queryNodeHeight } = useSelectoryQuery()
-        onMounted(() => {
-            queryNodeHeight('.sd-collapse-item__detail')
-                .then((height) => {
-                    state.detail_height = height
-                })
+        onMounted(async () => {
+            state.content_height = await queryNodeHeight('.sd-collapse-item__content')
         })
 
         function onClick() {
@@ -63,7 +60,16 @@ export default defineComponent({
         :class="[customClass, { 'has-border': show_border$ }]"
         :style="customStyle"
     >
-        <view class="sd-collapse-item-header" :class="{ 'is-open': is_open }" @tap="onClick">
+        <view
+            class="sd-collapse-item-header"
+            :class="{
+                'is-open'     : !disabled && is_open,
+                'is-clickable': !disabled && clickable,
+                'is-disabled' : disabled,
+            }"
+            :style="headertStyle"
+            @tap="onClick"
+        >
             <sd-icon v-if="icon" :name="icon" :color="iconColor" :size="iconSize" />
             <text class="sd-collapse-item-header__title" :style="icon ? 'padding-left: 16rpx' : ''">
                 <slot v-if="$slots.title" />
@@ -74,10 +80,10 @@ export default defineComponent({
             <sd-icon v-if="show_arrow$" custom-class="sd-collapse-item-header__arrow" name="down" />
         </view>
         <view
-            class="sd-collapse-item__body"
-            :style="{ height: is_open ? `${ detail_height }px` : '0px' }"
+            class="sd-collapse-item-body"
+            :style="{ height: is_open ? `${ content_height }px` : '0px' }"
         >
-            <view class="sd-collapse-item__detail">
+            <view class="sd-collapse-item__content" :style="contentStyle">
                 <slot v-if="$slots.default" />
                 <template v-else>
                     {{ content }}
