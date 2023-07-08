@@ -43,6 +43,7 @@ export default defineComponent({
                 [`sd-button--ghost`]    : !!ghost,
                 [`sd-button--plain`]    : !!plain,
                 [`sd-button--text`]     : !!text,
+                'has-bg'                : !!bg,
                 'is-block'              : block,
                 'is-loading'            : loading,
                 'is-disabled'           : disabled,

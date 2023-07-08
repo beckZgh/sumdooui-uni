@@ -20,6 +20,8 @@ export const button_props = {
     ghost           : { type: Boolean, default: false },
     /** 文本按钮 */
     text            : { type: Boolean, default: false },
+    /** 文本按钮显示背景色 */
+    bg              : { type: Boolean, default: false },
     /** 块级按钮 */
     block           : { type: Boolean, default: false  },
     /** 按钮宽度 */

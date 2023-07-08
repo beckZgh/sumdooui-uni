@@ -13,7 +13,7 @@
         </demo-card>
 
         <demo-card title="朴素按钮">
-            <sd-button plain button-text="主要按钮" />
+            <sd-button plain button-text="默认按钮" />
             <sd-button type="primary" plain button-text="主要按钮" />
             <sd-button type="success" plain button-text="成功按钮" />
             <sd-button type="warning" plain button-text="警告按钮" />
@@ -21,7 +21,7 @@
         </demo-card>
 
         <demo-card title="幽灵按钮">
-            <sd-button ghost button-text="主要按钮" />
+            <sd-button ghost button-text="默认按钮" />
             <sd-button type="primary" ghost button-text="主要按钮" />
             <sd-button type="success" ghost button-text="成功按钮" />
             <sd-button type="warning" ghost button-text="警告按钮" />
@@ -29,12 +29,21 @@
         </demo-card>
 
         <demo-card title="文本按钮">
-            <sd-button text button-text="主要按钮" />
+            <sd-button text button-text="默认按钮" />
             <sd-button type="primary" text button-text="主要按钮" />
             <sd-button type="success" text button-text="成功按钮" />
             <sd-button type="warning" text button-text="警告按钮" />
             <sd-button type="danger" text button-text="危险按钮" />
         </demo-card>
+
+        <demo-card title="显示背景色的文本按钮">
+            <sd-button bg text button-text="默认按钮" />
+            <sd-button bg type="primary" text button-text="主要按钮" />
+            <sd-button bg type="success" text button-text="成功按钮" />
+            <sd-button bg type="warning" text button-text="警告按钮" />
+            <sd-button bg type="danger" text button-text="危险按钮" />
+        </demo-card>
+
 
         <demo-card title="按钮大小">
             <sd-button type="primary" size="mini" button-text="迷你按钮" />

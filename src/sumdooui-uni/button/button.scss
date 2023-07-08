@@ -64,6 +64,10 @@ $button-default-border-color    : var(--sd-button-default-border-color, $sd-bord
     &.sd-button--text {
         background-color: transparent !important;
 
+        &.has-bg {
+            background-color: $button-default-background !important;
+        }
+
         &::after {
             border-width: 0;
         }
