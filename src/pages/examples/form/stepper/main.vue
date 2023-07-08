@@ -2,19 +2,27 @@
 import { ref } from 'vue'
 const number = ref(0)
 
+let lock = false
 function onPlus() {
+    if (lock) return
+    lock = true
+
     uni.showLoading()
     setTimeout(() => {
         uni.hideLoading()
         number.value += 1
+        lock = false
     }, 1500)
 }
 
 function onMinus() {
+    if (lock) return
+    lock = true
     uni.showLoading()
     setTimeout(() => {
         uni.hideLoading()
         number.value -= 1
+        lock = false
     }, 1500)
 }
 </script>
@@ -33,7 +41,7 @@ function onMinus() {
                         <sd-stepper :step="2" />
                     </template>
                 </sd-cell>
-                <sd-cell title="限制输入范围">
+                <sd-cell title="限制输入范围 (min:5, max: 10)">
                     <template #extra>
                         <sd-stepper :min="5" :max="10" />
                     </template>
@@ -43,14 +51,24 @@ function onMinus() {
                         <sd-stepper disabled />
                     </template>
                 </sd-cell>
-                <sd-cell title="自定义大小">
-                    <template #extra>
-                        <sd-stepper input-width="40px" button-size="32px" />
-                    </template>
-                </sd-cell>
                 <sd-cell title="异步变更">
                     <template #extra>
                         <sd-stepper v-model="number" async-change @plus="onPlus" @minus="onMinus" />
+                    </template>
+                </sd-cell>
+                <sd-cell title="自定义宽高">
+                    <template #extra>
+                        <sd-stepper width="300rpx" height="72rpx" />
+                    </template>
+                </sd-cell>
+                <sd-cell title="圆角风格">
+                    <template #extra>
+                        <sd-stepper round />
+                    </template>
+                </sd-cell>
+                <sd-cell title="圆角风格禁用态">
+                    <template #extra>
+                        <sd-stepper disabled />
                     </template>
                 </sd-cell>
             </sd-cell-group>

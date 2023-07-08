@@ -1,9 +1,12 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+import type { FormProvide   } from '../common/tokens'
+
 import { defineComponent, reactive, toRefs, computed, watch, inject } from 'vue'
-import { MpMixin         } from '../common/mixins'
-import { FORM_KEY, type FormProvide } from '../common/tokens'
-import { stepper_props   } from './stepper'
+import { MpMixin       } from '../common/mixins'
+import { FORM_KEY      } from '../common/tokens'
+import { stepper_props } from './stepper'
+
 import Utils from '../utils'
 
 export default defineComponent({
@@ -52,20 +55,25 @@ export default defineComponent({
             }
         })
 
+        const root_style$ = computed(() => {
+            const styles: CSSProperties = { ...props.customStyle }
+            if (props.width) styles.width = Utils.toUnit(props.width)
+            return styles
+        })
+
         const button_style$ = computed(() => {
-            const style: CSSProperties = {}
-            if (props.buttonSize) {
-                style.width = Utils.toUnit(props.buttonSize)
-                style.height = Utils.toUnit(props.buttonSize)
+            const styles: CSSProperties = {}
+            if (props.height) {
+                styles.width  = Utils.toUnit(props.height)
+                styles.height = Utils.toUnit(props.height)
             }
-            return style
+            return styles
         })
 
         const input_style$ = computed(() => {
-            const style: CSSProperties = {}
-            if (props.inputWidth) style.width  = Utils.toUnit(props.inputWidth)
-            if (props.buttonSize) style.height = Utils.toUnit(props.buttonSize)
-            return style
+            const styles: CSSProperties = {}
+            if (props.height) styles.height = Utils.toUnit(props.height)
+            return styles
         })
 
         init()
@@ -75,31 +83,32 @@ export default defineComponent({
             }
         }
 
-        function onPlus() {
+        function onPlus(event: TouchEvent) {
             if (disabled_plus$.value) return
             if (!props.asyncChange) {
                 state.current_value += (props.step || 1)
             }
-            emit('plus')
+            emit('plus', event)
         }
 
-        function onMinus() {
+        function onMinus(event: TouchEvent) {
             if (disabled_minus$.value) return
             if (!props.asyncChange) {
                 state.current_value -= (props.step || 1)
             }
-            emit('minus')
+            emit('minus', event)
         }
 
-        function onClickInput() {
-            if (props.disabledInput) return
-            emit('click-input')
+        function onClickInput(event: TouchEvent) {
+            if (props.disabledInput || props.disabled || form?.props.disabled) return
+            emit('click-input', event)
         }
 
         return {
             ...toRefs(state),
             disabled_minus$,
             disabled_plus$,
+            root_style$,
             button_style$,
             input_style$,
             onPlus,
@@ -111,7 +120,11 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-stepper" :class="customClass" :style="customStyle">
+    <view
+        class="sd-stepper"
+        :class="[customClass, { 'sd-stepper--round': round }]"
+        :style="root_style$"
+    >
         <view
             v-if="showMinus"
             class="sd-stepper__minus"
@@ -120,8 +133,12 @@ export default defineComponent({
             @tap="onMinus"
         />
         <view
+            v-if="showInput"
             class="sd-stepper__input"
-            :class="{ 'is-disabled': disabledInput || disabled }"
+            :class="{
+                'sd-stepper__input--border': showInputBorder,
+                'is-disabled'              : disabledInput || disabled,
+            }"
             :style="input_style$"
             @tap="onClickInput"
         >
