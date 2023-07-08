@@ -1,78 +1,137 @@
 @import '../styles/variables.scss';
 
+$input-padding                   : var(--sd-input-padding                   , 16rpx);
+$input-radius                    : var(--sd-input-radius                    , $sd-radius-sm);
+$input-disabled-color            : var(--sd-input-disblaed-color            , #f1f3f7);
+$input-text-color                : var(--sd-input-text-color                , $sd-text-color);
+$input-min-height                : var(--sd-input-min-heihgt                , 40rpx);
+$input-placeholder-text-font-size: var(--sd-input-placeholder-text-font-size, $sd-font-size-md);
+$input-placeholder-text-color    : var(--sd-input-placeholder-text-color    , $sd-text-color-placeholder);
+$input-text-font-size            : var(--sd-input-text-font-size            , $sd-font-size-md);
+$input-prefix-icon-size          : var(--sd-input-prefix-icon-size          , 36rpx);
+$input-prefix-icon-color         : var(--sd-input-prefix-icon-color         , $sd-gray-color-6);
+$input-suffix-icon-size          : var(--sd-input-suffix-icon-size          , 36rpx);
+$input-suffix-icon-color         : var(--sd-input-suffix-icon-color         , $sd-gray-color-6);
+$input-password-icon-size        : var(--sd-input-password-icon-size        , 36rpx);
+$input-password-icon-color       : var(--sd-input-password-icon-color       , $sd-gray-color-6);
+$input-clear-icon-size           : var(--sd-input-clear-icon-size           , 36rpx);
+$input-clear-icon-color          : var(--sd-input-clear-icon-color          , $sd-gray-color-6);
+$input-limit-text-font-size      : var(--sd-input-limit-text-font-size      , $sd-font-size-md);
+$input-limit-text-color          : var(--sd-input-limit-text-color          , $sd-text-color-secondary);
+
 .sd-input {
     width: 100%;
     position: relative;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    padding: 16rpx;
-    border-radius: $sd-radius-sm;
-    background-color: $sd-gray-color-1;
+    padding: $input-padding;
     border: 1px solid transparent;
     box-sizing: border-box;
 
-    &__before {
-        padding: 0 25rpx;
-        box-sizing: border-box;
-    }
-
+    // 内容区域
     &__content {
         font-weight: 400;
         width: 100%;
         height: 100%;
-        min-height: 40rpx;
-        font-size: $sd-font-size-md;
-        color: $sd-text-color;
-        line-height: 1.5;
+        min-height: $input-min-height;
+        font-size: $input-text-font-size;
+        color: $input-text-color;
         padding: 0;
     }
 
+    // 占位文本
     &__placeholder {
         font-weight: 400;
-        font-size: $sd-font-size-md;
-        color: $sd-text-color-placeholder;
-        line-height: 1.5;
+        font-size: $input-placeholder-text-font-size;
+        color: $input-placeholder-text-color;
     }
 
-    &--border {
+    // 显示边框
+    &--surround-border {
         border-color: $sd-border-color;
         background-color: transparent;
+        border-radius: $input-radius;
+
+        &.is-focus {
+            border-color: $sd-primary-color;
+        }
+    }
+    &--bottom-border {
+        border-bottom-color: $sd-border-color;
+        background-color: transparent;
+
+        &.is-focus {
+            border-bottom-color: $sd-primary-color;
+        }
     }
 
     &__prefix,
     &__suffix {
         display: flex;
         align-items: center;
-        vertical-align: middle;
-        line-height: 1;
-        height: 100%;
+        white-space: nowrap;
     }
 
-    &__prefix .sd-icon {
+    &__prefix,
+    &__prefix-icon {
         margin-right: 16rpx;
     }
 
     &__limit,
-    &__suffix .sd-icon {
+    &__suffix,
+    &__suffix-icon,
+    &__password-icon,
+    &__clear-icon {
         margin-left: 16rpx;
     }
 
+    // 前置图标
+    &__prefix-icon {
+        font-size: $input-prefix-icon-size;
+        width: $input-prefix-icon-size;
+        height: $input-prefix-icon-size;
+        color: $input-prefix-icon-color;
+    }
+
+    // 后置图标
+    &__suffix-icon {
+        font-size: $input-suffix-icon-size;
+        width: $input-suffix-icon-size;
+        height: $input-suffix-icon-size;
+        color: $input-suffix-icon-color;
+    }
+
+    // 密码图标
+    &__password-icon {
+        font-size: $input-password-icon-size;
+        width: $input-password-icon-size;
+        height: $input-password-icon-size;
+        color: $input-password-icon-color;
+    }
+
+    // 文本字数限制
     &__limit {
         text-align: right;
-        font-size: $sd-font-size-sm;
-        color: $sd-text-color-secondary;
+        font-size: $input-limit-text-font-size;
+        color: $input-limit-text-color;
     }
 
+    // 清除按钮
+    &__clear-icon {
+        font-size: $input-clear-icon-size;
+        width: $input-clear-icon-size;
+        height: $input-clear-icon-size;
+        color: $input-clear-icon-color;
+    }
+
+    // 输入框禁用态
     &.is-disabled {
-        background-color: #f1f3f7;
+        cursor: not-allowed;
+        // opacity: $sd-opacity-disabled;
+        // background-color: $input-disabled-color;
     }
-
     &.is-disabled &__content {
         color: $sd-text-color-disabled;
-    }
-
-    &--border.is-focus {
-        border-color: $sd-primary-color;
     }
 }

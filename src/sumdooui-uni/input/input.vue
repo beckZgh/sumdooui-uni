@@ -91,22 +91,33 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                'sd-input--border': show_border$,
-                'is-disabled'     : disabled$,
-                'is-focus'        : !disabled$ && !readonly && state.focus,
+                [`sd-input--${ border }-border`]: border && border !== 'none',
+                'is-disabled'                   : disabled$,
+                'is-focus'                      : !disabled$ && !readonly && state.focus,
             },
         ]"
-        :style="{ ...customStyle, background }"
+        :style="customStyle"
     >
+        <!-- 前置图标 -->
+        <sd-icon
+            v-if="prefixIcon"
+            :name="prefixIcon"
+            custom-class="sd-input__prefix-icon"
+            v-bind="prefixIconProps"
+        />
+
+        <!-- 前置插槽 -->
         <view v-if="$slots.prefix" class="sd-input__prefix">
             <slot name="prefix" />
-            <sd-icon v-if="prefixIcon" :name="prefixIcon" />
         </view>
+
+        <!-- 录入控件 -->
         <input
             class="sd-input__content"
             placeholder-class="sd-input__placeholder"
             :style="inputAlign ? `text-align: ${ inputAlign }` : ''"
             :placeholder="placeholder"
+            :placeholder-style="placeholderStyle"
             :value="modelValue"
             :type="type !== 'password' ? type : 'text'"
             :password="type === 'password' && !state.show_password"
@@ -125,25 +136,38 @@ export default defineComponent({
             @blur="onBlur"
             @confirm="onConfirm"
         >
-        <view class="sd-input__suffix">
-            <slot v-if="$slots.suffix" name="suffix" />
-
-            <!-- 后置图标 -->
-            <sd-icon v-if="suffixIcon" :name="suffixIcon" />
-
-            <!-- 字数显示 -->
-            <span v-if="maxlength && showWordLimit && type === 'text'" class="sd-input__limit">
-                {{ modelValue.length }}/{{ maxlength }}
-            </span>
-
-            <!-- 显示、隐藏密码框 -->
-            <sd-icon
-                v-if="type === 'password' && showPassword && modelValue.length"
-                :name="state.show_password ? 'eye' : 'no-eye'"
-                @click="handleTogglePassword"
-            />
-            <!-- 一键清空 -->
-            <sd-icon v-if="clearable && modelValue.length" name="close-circle" @click="handleClear" />
+        <!-- 后置插槽 -->
+        <view v-if="$slots.suffix" class="sd-input__suffix">
+            <slot name="suffix" />
         </view>
+
+        <!-- 后置图标 -->
+        <sd-icon
+            v-if="suffixIcon"
+            :name="suffixIcon"
+            custom-class="sd-input__suffix-icon"
+            v-bind="suffixIconProps"
+        />
+
+        <!-- 字数显示 -->
+        <span v-if="maxlength && showWordLimit && type === 'text'" class="sd-input__limit">
+            {{ modelValue.length }}/{{ maxlength }}
+        </span>
+
+        <!-- 显示、隐藏密码框 -->
+        <sd-icon
+            v-if="type === 'password' && showPassword && modelValue.length"
+            :name="state.show_password ? 'eye' : 'no-eye'"
+            custom-class="sd-input__password-icon"
+            @click="handleTogglePassword"
+        />
+
+        <!-- 一键清空 -->
+        <sd-icon
+            v-if="clearable && modelValue.length"
+            name="close-circle"
+            custom-class="sd-input__clear-icon"
+            @click="handleClear"
+        />
     </view>
 </template>
