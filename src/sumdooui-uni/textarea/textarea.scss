@@ -1,48 +1,76 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
+
+$textarea-padding                   : var(--sd-textarea-padding                   , 16rpx);
+$textarea-height                    : var(--sd-textarea-heihgt                    , 152rpx);
+$textarea-radius                    : var(--sd-textarea-radius                    , $sd-radius-sm);
+$textarea-text-font-size            : var(--sd-textarea-text-font-size            , $sd-font-size-md);
+$textarea-text-color                : var(--sd-textarea-text-color                , $sd-text-color);
+$textarea-placeholder-text-font-size: var(--sd-textarea-placeholder-text-font-size, $sd-font-size-md);
+$textarea-placeholder-text-color    : var(--sd-textarea-placeholder-text-color    , $sd-text-color-placeholder);
+$textarea-limit-text-font-size      : var(--sd-textarea-limit-text-font-size      , $sd-font-size-md);
+$textarea-limit-text-color          : var(--sd-textarea-limit-text-color          , $sd-text-color-secondary);
+$textarea-disabled-opacity          : vaR(--sd-textarea-disabled-opacity          , $sd-opacity-disabled);
 
 .sd-textarea {
     width: 100%;
     position: relative;
+    padding: $textarea-padding;
+    border-radius: $textarea-padding;
+    border: 1px solid transparent;
     box-sizing: border-box;
-    border-radius: $sd-radius-sm;
-
-    &--border {
-        padding: 20rpx;
-        border: 1px solid $sd-border-color;
-    }
 
     &__content {
         font-weight: 400;
         width: 100%;
-        height: 152rpx;
-        min-height: 152rpx;
-        font-size: $sd-font-size-md;
-        color: $sd-text-color;
-        line-height: 1.5;
+        height: $textarea-height;
+        min-height: $textarea-height;
+        font-size: $textarea-text-font-size;
+        color: $textarea-text-color;
         padding: 0;
     }
 
     &__placeholder {
         font-weight: 400;
-        font-size: $sd-font-size-md;
-        color: $sd-text-color-placeholder;
+        font-size: $textarea-placeholder-text-font-size;
+        color: $textarea-placeholder-text-color;
     }
 
     &__limit {
         text-align: right;
-        font-size: $sd-font-size-sm;
-        color: $sd-text-color-secondary;
+        font-size: $textarea-limit-text-font-size;
+        color: $textarea-limit-text-color;
     }
 
-    &.is-disabled {
-        background-color: #f1f3f7;
+     // 显示边框
+     &--surround-border {
+        border-color: $sd-border-color;
+        background-color: transparent;
+        border-radius: $textarea-radius;
+
+        &.is-focus {
+            border-color: $sd-primary-color;
+        }
+    }
+    &--bottom-border {
+        border-bottom-color: $sd-border-color;
+        background-color: transparent;
+
+        &.is-focus {
+            border-bottom-color: $sd-primary-color;
+        }
     }
 
-    &.is-disabled &__content {
-        color: $sd-text-color-disabled;
-    }
 
     &.is-focus {
         border-color: $sd-primary-color;
+    }
+
+    // 输入框禁用态
+    &.is-disabled {
+        cursor: not-allowed;
+        opacity: $textarea-disabled-opacity;
+    }
+    &.is-disabled &__content {
+        color: $sd-text-color-disabled;
     }
 }
