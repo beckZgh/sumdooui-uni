@@ -1,7 +1,7 @@
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed, watch } from 'vue'
-import { MpMixin } from '../common/mixins'
-import { number_keyboard_props } from './number-keyboard'
+import { defineComponent, computed } from 'vue'
+import { MpMixin                   } from '../common/mixins'
+import { number_keyboard_props     } from './number-keyboard'
 
 import Utils from '../utils'
 export default defineComponent({
@@ -115,9 +115,7 @@ export default defineComponent({
         :mask-closeable="false"
     >
         <view class="sd-number-keyboard" :class="customClass" :style="customStyle">
-            <view v-if="$slots.header" class="sd-number-keyboard__header">
-                <slot name="header" />
-            </view>
+            <slot name="header" />
             <view class="sd-number-keyboard__body">
                 <view class="sd-number-keyboard__body-left">
                     <view

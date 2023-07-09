@@ -111,6 +111,7 @@ export default defineComponent({
                 { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true, 'is-show': visible$ },
             ]"
             :style="popup_style$"
+            @tap.stop
             @touchmove.stop="onTouchMove"
         >
             <!-- 顶部区域 -->

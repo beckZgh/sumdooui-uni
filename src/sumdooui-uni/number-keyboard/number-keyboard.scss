@@ -1,30 +1,20 @@
 @import '../styles/variables.scss';
 
-$number-keyboard-width: 100%;
-$number-keyboard-bg-color: $sd-white;
-
-$number-keyboard-header-height: 34px;
-$number-keyboard-header-padding: 6px 0 0 0;
-$number-keyboard-header-font-color: $sd-text-color-secondary;
-$number-keyboard-header-font-size: 16px;
-
-$number-keyboard-header-close-padding: 0 16px;
-$number-keyboard-header-close-font-size: 14px;
-$number-keyboard-header-close-font-color: $sd-text-color-secondary;
-$number-keyboard-header-close-bg-color: $sd-bg-color-container;
-
-$number-keyboard-key-height: 48px;
-$number-keyboard-key-line-height: 1.5;
-$number-keyboard-key-border-radius: 8px;
-$number-keyboard-key-font-size: 28px;
-$number-keyboard-key-font-color: $sd-text-color;
-$number-keyboard-key-finish-font-size: 16px;
-$number-keyboard-key-finish-font-color: $sd-white;
-$number-keyboard-key-finish-bg-color: $sd-primary-color;
+$number-keyboard-width                : var(--sd-number-keyboard-width                , 100%);
+$number-keyboard-background           : var(--sd-number-keyboard-background           , $sd-bg-color-container);
+$number-keyboard-key-height           : var(--sd-number-keyboard-key-height           , 48px);
+$number-keyboard-key-line-height      : var(--sd-number-keyboard-key-line-height      , 1.5);
+$number-keyboard-key-radius           : var(--sd-number-keyboard-key-radius           , 8px);
+$number-keyboard-key-font-size        : var(--sd-number-keyboard-key-font-size        , 28px);
+$number-keyboard-key-color            : var(--sd-number-keyboard-key-color            , $sd-text-color);
+$number-keyboard-key-background       : var(--sd-number-keyboard-background           , $sd-white);
+$number-keyboard-key-finish-font-size : var(--sd-number-keyboard-key-finish-font-size , $sd-font-size-lg);
+$number-keyboard-key-finish-color     : var(--sd-number-keyboard-key-finish-color     , $sd-white);
+$number-keyboard-key-finish-background: var(--sd-number-keyboard-key-finish-background, $sd-primary-color);
 
 .sd-number-keyboard {
     width: $number-keyboard-width;
-    background-color: $sd-bg-color-container;
+    background-color: $number-keyboard-background;
 
     &__body {
         display: flex;
@@ -64,17 +54,17 @@ $number-keyboard-key-finish-bg-color: $sd-primary-color;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: $number-keyboard-key-font-size;
+        color: $number-keyboard-key-color;
         height: $number-keyboard-key-height;
         line-height: $number-keyboard-key-line-height;
-        border-radius: $number-keyboard-key-border-radius;
-        font-size: $number-keyboard-key-font-size;
-        color: $number-keyboard-key-font-color;
-        background-color: $sd-white;
+        border-radius: $number-keyboard-key-radius;
+        background-color: $number-keyboard-key-background;
 
         &.is-finish-key {
-            background-color: $number-keyboard-key-finish-bg-color;
             font-size: $number-keyboard-key-finish-font-size;
-            color: $number-keyboard-key-finish-font-color;
+            color: $number-keyboard-key-finish-color;
+            background-color: $number-keyboard-key-finish-background;
         }
 
         &:active {
