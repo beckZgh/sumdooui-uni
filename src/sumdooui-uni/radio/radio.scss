@@ -5,11 +5,12 @@ $radio-inactive-icon-color : var(--sd-radio-inactive-color, $sd-gray-color-3);
 $radio-inactive-text-color : var(--sd-radio-inactive-color, $sd-text-color);
 $radio-active-color        : var(--sd-radio-active-color  , $sd-primary-color);
 $radio-label-color         : var(--sd-radio-label-color   , $sd-text-color);
-$radio-label-font-size     : var(-sd-radio-label-font-size, $sd-font-size-md);
+$radio-label-font-size     : var(--sd-radio-label-font-size, $sd-font-size-md);
 
 .sd-radio {
     display: inline-flex;
     align-items: center;
+    line-height: 1;
 
     &__label {
         color: $radio-label-color;
@@ -30,7 +31,6 @@ $radio-label-font-size     : var(-sd-radio-label-font-size, $sd-font-size-md);
         width: $radio-size;
         height: $radio-size;
         color: $radio-inactive-icon-color;
-        vertical-align: middle
     }
 
     // 禁用状态

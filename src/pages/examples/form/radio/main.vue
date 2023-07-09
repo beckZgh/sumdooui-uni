@@ -23,6 +23,10 @@ const fruit_opts = ref([
             <sd-radio-group v-model="fruits" :options="fruit_opts" active-icon="check-square-fill" inactive-icon="square" />
         </demo-card>
 
+        <demo-card title="自定义大小">
+            <sd-radio-group v-model="fruits" :options="fruit_opts" :icon-size="50" :label-size="32" />
+        </demo-card>
+
         <demo-card title="自定义颜色">
             <sd-radio-group v-model="fruits" :options="fruit_opts" active-color="#09BE4F" inactive-color="#777777" />
         </demo-card>

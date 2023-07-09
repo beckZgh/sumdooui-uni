@@ -48,7 +48,7 @@ export default defineComponent({
 <template>
     <view
         class="sd-checkbox-group"
-        :class="[customClass, { 'is-wrap': wrap, 'is-multi-column': column > 1 }]"
+        :class="[customClass, { [`sd-checkbox-group--${ direction }`]: !!direction }]"
         :style="customStyle"
     >
         <slot v-if="$slots.default" />

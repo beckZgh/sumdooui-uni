@@ -1,14 +1,13 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+import type { CheckboxGroupProvide, FormItemProvide, FormProvide } from '../common/tokens'
 
-import { defineComponent, computed, inject } from 'vue'
-import { checkbox_props } from './checkbox'
-import { MpMixin } from '../common/mixins'
-import {
-    CHECKBOX_GROUP_KEY, type CheckboxGroupProvide,
-    FORM_ITEM_KEY, type FormItemProvide,
-    FORM_KEY, type FormProvide,
-} from '../common/tokens'
+import { defineComponent, computed, inject           } from 'vue'
+import { CHECKBOX_GROUP_KEY, FORM_ITEM_KEY, FORM_KEY } from '../common/tokens'
+import { MpMixin                                     } from '../common/mixins'
+import { checkbox_props                              } from './checkbox'
+
+import Utils from '../utils'
 
 export default defineComponent({
     ...MpMixin,
@@ -50,32 +49,51 @@ export default defineComponent({
             return false
         })
 
+        // 是否禁用
         const disabled$ = computed(() => {
-            const disabled = props.disabled || form?.props.disabled
-            return (
-                checkbox_group
-                    ? checkbox_group?.props.disabled || disabled || is_limit_disabled$.value
-                    : disabled
-            ) ?? false
+            return form?.props.disabled || checkbox_group?.props.disabled || props.disabled || is_limit_disabled$.value
         })
 
-        const root_style$ = computed(() => {
-            const style: CSSProperties = { ...props.customStyle }
-            if (checkbox_group?.props.column && checkbox_group?.props.column > 1) {
-                style.width     = `${ 100 / checkbox_group.props.column }%`
-                style.flexBasis = style.width
-            }
-            return style
+        // 标题尺寸
+        const label_size$ = computed(() => {
+            return props.labelSize || checkbox_group?.props.labelSize
         })
 
-        const active_color$ = computed(() => checkbox_group?.props.activeColor)
+        // 单选框位置
+        const icon_position$ = computed(() => {
+            return props.iconPosition || checkbox_group?.props.iconPosition || 'left'
+        })
+
+        // 单选框位置
+        const icon_size$ = computed(() => {
+            return props.iconSize || checkbox_group?.props.iconSize
+        })
+
+        // 未选中的颜色
+        const inactive_color$ = computed(() => {
+            return props.inactiveColor || checkbox_group?.props.inactiveColor
+        })
+
+        // 选中颜色
+        const active_color$ = computed(() => {
+            return props.activeColor || checkbox_group?.props.activeColor
+        })
+
+        // 未选中的图标
+        const inactive_icon$ = computed(() => {
+            return props.inactiveIcon || checkbox_group?.props.inactiveIcon
+        })
+
+        // 选中的图标
+        const active_icon$ = computed(() => {
+            return props.activeIcon || checkbox_group?.props.activeIcon
+        })
 
         const label_style$ = computed(() => {
-            const style: CSSProperties = {}
-            if (active_color$.value) {
-                style.color = checked$.value ? active_color$.value : undefined
-            }
-            return style
+            const styles: CSSProperties = {}
+            if (label_size$.value                    ) styles.fontSize = Utils.toUnit(label_size$.value)
+            if (checked$.value && active_color$.value) styles.color    = active_color$.value
+            return styles
         })
 
         function handleToggle() {
@@ -97,11 +115,15 @@ export default defineComponent({
         }
 
         return {
-            root_style$,
-            label_style$,
-            active_color$,
             checked$,
             disabled$,
+            icon_position$,
+            icon_size$,
+            inactive_color$,
+            active_color$,
+            inactive_icon$,
+            active_icon$,
+            label_style$,
             handleToggle,
         }
     },
@@ -114,18 +136,17 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                [`sd-checkbox--${ size }`]: true,
-                'is-checked'              : checked$,
-                'is-disabled'             : disabled$,
+                'is-checked' : checked$,
+                'is-disabled': disabled$,
             },
         ]"
-        :style="root_style$"
+        :style="customStyle"
         @tap="handleToggle"
     >
         <checkbox :value="checked$" :disabled="disabled$" class="sd-checkbox__original" />
 
         <text
-            v-if="iconPosition === 'right'"
+            v-if="icon_position$ === 'right'"
             class="sd-checkbox__label sd-checkbox__label-left"
             :style="label_style$"
         >
@@ -133,12 +154,12 @@ export default defineComponent({
         </text>
         <sd-icon
             custom-class="sd-checkbox__icon"
-            :size="iconSize"
-            :color="checked$ ? active_color$ : undefined"
-            :name="checked$ ? `${ shape }-check-fill` : shape"
+            :size="icon_size$"
+            :color="checked$ ? active_color$ : inactive_color$"
+            :name="checked$ ? (active_icon$ || `check-square-fill`) : (inactive_icon$ || 'square')"
         />
         <text
-            v-if="iconPosition === 'left'"
+            v-if="icon_position$ === 'left'"
             class="sd-checkbox__label sd-checkbox__label-right"
             :style="label_style$"
         >

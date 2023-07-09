@@ -1,59 +1,47 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-@mixin checkbox-size($text-size, $icon-size) {
-    .sd-checkbox__label {
-        font-size: $text-size;
-    }
-
-    .sd-checkbox__icon {
-        font-size: $icon-size;
-        width: $icon-size;
-        height: $icon-size;
-    }
-}
+$checkbox-size                : var(--sd-checkbox-size           , 44rpx);
+$checkbox-inactive-icon-color : var(--sd-checkbox-inactive-color , $sd-gray-color-3);
+$checkbox-inactive-text-color : var(--sd-checkbox-inactive-color , $sd-text-color);
+$checkbox-active-color        : var(--sd-checkbox-active-color   , $sd-primary-color);
+$checkbox-label-color         : var(--sd-checkbox-label-color    , $sd-text-color);
+$checkbox-label-font-size     : var(--sd-checkbox-label-font-size, $sd-font-size-md);
 
 .sd-checkbox {
     display: inline-flex;
     align-items: center;
-    color: $sd-text-color;
+    line-height: 1;
 
     &__label {
+        color: $checkbox-label-color;
+        font-size: $checkbox-label-font-size;
         margin-left: 8rpx;
-        font-size: $sd-font-size-md;
+        list-style: 1;
+        color: $checkbox-inactive-text-color;
 
-        &--left {
+        &-left {
             margin-left: 0;
             margin-right: 8rpx;
         }
     }
 
     &__icon {
-        color: $sd-gray-color-3;
-        vertical-align: middle;
         line-height: 1;
-    }
-
-    &--small {
-        @include checkbox-size($sd-font-size-md, 38rpx);
-    }
-
-    &--normal {
-        @include checkbox-size($sd-font-size-md, 44rpx);
-    }
-
-    &--large {
-        @include checkbox-size($sd-font-size-md, 50rpx);
-    }
-
-    // 选中状态
-    &.is-checked &__icon,
-    &.is-checked &__label {
-        color: $sd-primary-color;
+        font-size: $checkbox-size;
+        width: $checkbox-size;
+        height: $checkbox-size;
+        color: $checkbox-inactive-icon-color;
     }
 
     // 禁用状态
     &.is-disabled {
         opacity: $sd-opacity-disabled;
+    }
+
+    // 选中状态
+    &.is-checked &__icon,
+    &.is-cehcked &__lable {
+        color: $checkbox-active-color;
     }
 
     // 隐藏原生元素
@@ -62,3 +50,4 @@
         opacity: 0;
     }
 }
+

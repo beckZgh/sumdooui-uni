@@ -5,30 +5,14 @@
         margin-left: 20rpx;
     }
 
-    &.is-multi-column {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: inherit;
-        width: 100%;
-
-        .sd-checkbox {
-            justify-content: inherit;
-        }
-
-        .sd-checkbox + .sd-checkbox {
-            margin-left: 0;
-        }
-    }
-
-    &.is-wrap {
+   &--column {
         .sd-checkbox {
             display: flex;
-            width: 100%;
         }
 
         .sd-checkbox + .sd-checkbox {
             margin-left: 0;
-            margin-top: 20rpx;
+            margin-top: 12rpx;
         }
     }
 }

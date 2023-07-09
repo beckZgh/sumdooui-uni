@@ -79,10 +79,10 @@ export default defineComponent({
         })
 
         const label_style$ = computed(() => {
-            const style: CSSProperties = {}
-            if (label_size$.value                    ) style.fontSize = Utils.toUnit(label_size$.value)
-            if (checked$.value && active_color$.value) style.color    = active_color$.value
-            return style
+            const styles: CSSProperties = {}
+            if (label_size$.value                    ) styles.fontSize = Utils.toUnit(label_size$.value)
+            if (checked$.value && active_color$.value) styles.color    = active_color$.value
+            return styles
         })
 
         function handleToggle() {
@@ -98,15 +98,15 @@ export default defineComponent({
         }
 
         return {
-            label_style$,
-            icon_position$,
-            icon_size$,
             checked$,
             disabled$,
+            icon_position$,
+            icon_size$,
             inactive_color$,
             active_color$,
             inactive_icon$,
             active_icon$,
+            label_style$,
             handleToggle,
         }
     },
