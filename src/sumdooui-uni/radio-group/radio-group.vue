@@ -36,7 +36,7 @@ export default defineComponent({
 <template>
     <view
         class="sd-radio-group"
-        :class="[customClass, { 'is-wrap': wrap, 'is-multi-column': column > 1 }]"
+        :class="[customClass, { [`sd-radio-group--${ direction }`]: !!direction }]"
         :style="customStyle"
     >
         <slot v-if="$slots.default" />

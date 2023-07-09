@@ -15,24 +15,35 @@ const fruit_opts = ref([
             <sd-radio-group v-model="fruits" :options="fruit_opts" />
         </demo-card>
 
-        <demo-card title="方形图标">
-            <sd-radio-group v-model="fruits" shape="square" :options="fruit_opts" />
+        <demo-card title="图标在右侧">
+            <sd-radio-group v-model="fruits" icon-position="right" :options="fruit_opts" />
         </demo-card>
 
-        <demo-card title="不同大小">
-            <sd-radio-group v-model="fruits">
-                <sd-radio :name="1" label="苹果" size="small" />
-                <sd-radio :name="2" label="香蕉" size="normal" />
-                <sd-radio :name="3" label="西瓜" size="large" />
-            </sd-radio-group>
+        <demo-card title="自定义图标">
+            <sd-radio-group v-model="fruits" :options="fruit_opts" active-icon="check-square-fill" inactive-icon="square" />
         </demo-card>
 
-        <demo-card title="占一行">
-            <sd-radio-group v-model="fruits" wrap :options="fruit_opts" />
+        <demo-card title="自定义颜色">
+            <sd-radio-group v-model="fruits" :options="fruit_opts" active-color="#09BE4F" inactive-color="#777777" />
         </demo-card>
 
-        <demo-card title="显示两行">
-            <sd-radio-group v-model="fruits" :column="2" :options="fruit_opts" />
+        <demo-card title="纵向显示">
+            <sd-radio-group v-model="fruits" direction="column" :options="fruit_opts" />
+        </demo-card>
+
+        <demo-card title="禁用态">
+            <sd-radio-group v-model="fruits" :column="2" disabled :options="fruit_opts" />
+        </demo-card>
+
+        <demo-card title="结合表单域" :card="false">
+            <sd-form>
+                <sd-form-item label="水果一">
+                    <sd-radio-group v-model="fruits" :options="fruit_opts" />
+                </sd-form-item>
+                <sd-form-item label="水果二">
+                    <sd-radio-group v-model="fruits" :options="fruit_opts" direction="column" />
+                </sd-form-item>
+            </sd-form>
         </demo-card>
     </sd-page>
 </template>

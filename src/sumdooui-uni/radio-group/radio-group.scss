@@ -1,31 +1,18 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
 .sd-radio-group {
     .sd-radio + .sd-radio {
         margin-left: 20rpx;
     }
 
-    &.is-multi-column {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: inherit;
-        width: 100%;
-
-        .sd-radio {
-            margin-left: 0;
-            justify-content: inherit;
-        }
-    }
-
-    &.is-wrap {
+    &--column {
         .sd-radio {
             display: flex;
-            width: 100%;
         }
 
         .sd-radio + .sd-radio {
             margin-left: 0;
-            margin-top: 20rpx;
+            margin-top: 12rpx;
         }
     }
 }
