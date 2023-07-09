@@ -246,18 +246,18 @@ export default defineComponent({
         position="bottom"
         :show-top-close="false"
     >
-        <view class="sd-picker__head">
-            <view class="sd-picker__head-btn" @tap="onCancel">
+        <view class="sd-picker-header">
+            <view class="sd-picker-header__cancel" @tap="onCancel">
                 {{ cancelText }}
             </view>
-            <view class="sd-picker__head-title">
+            <view v-if="title" class="sd-picker-header__title">
                 {{ title }}
             </view>
-            <view class="sd-picker__head-btn is-confirm-btn" @tap="onConfirm">
+            <view class="sd-picker-header__confirm" @tap="onConfirm">
                 {{ confirmText }}
             </view>
         </view>
-        <view class="sd-picker__body">
+        <view class="sd-picker-content">
             <picker-view
                 v-if="visible$"
                 :value="selected_indexs"
@@ -268,7 +268,7 @@ export default defineComponent({
                 @change="onPickerChange"
             >
                 <picker-view-column v-for="(options, column_index) in columns" :key="column_index">
-                    <view v-for="(item, index) in options" :key="index" class="sd-picker-item">
+                    <view v-for="(item, index) in options" :key="index" class="sd-picker-view-column">
                         <text>{{ item.label }}</text>
                     </view>
                 </picker-view-column>

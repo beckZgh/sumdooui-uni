@@ -1,53 +1,72 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-.sd-picker {
-    &__head {
-        display: flex;
-        align-items: center;
-        height: 124rpx;
+$picker-header-height        : var(--sd-picker-header-height        , 124rpx);
+$picker-title-font-size      : var(--sd-picker-title-font-size      , $sd-font-size-lg);
+$picker-title-color          : var(--sd-picker-title-color          , $sd-text-color);
+$picker-cancel-font-size     : var(--sd-picker-cancel-font-size     , $sd-font-size-md);
+$picker-cancel-color         : var(--sd-picker-cancel-color         , $sd-text-color);
+$picker-confirm-font-size    : var(--sd-picker-confirm-font-size    , $sd-font-size-md);
+$picker-confirm-color        : var(--sd-picker-confirm-color        , $sd-primary-color);
+$picker-content-height       : var(--sd-picker-content-height       , 500rpx);
+$picker-content-background   : var(--sd-picker-content-background   , $sd-white);
+$picker-view-column-font-size: var(--sd-picker-view-column-font-size, $sd-font-size-md);
+$picker-view-column-color    : var(--sd-picker-view-column-color    , $sd-text-color);
+$picker-view-column-padding  : var(--sd-picker-view-column-padding  , 0 8rpx);
 
-        &-title {
-            text-align: center;
-            font-size: $sd-font-size-md;
-            flex: 1;
-            font-weight: bold;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        &-btn {
-            padding: 0 30rpx;
-            font-size: $sd-font-size-md;
-
-            &.is-confirm-btn {
-                color: $sd-success-color;
-            }
-
-            &:active {
-                opacity: $sd-opacity-hover;
-            }
-        }
-    }
-
-    &__body {
-        height: 500rpx;
-        overflow: hidden;
-        background-color: $sd-white;
-    }
-}
-
-.sd-picker-view {
-    width: 100%;
-    height: 100%;
-}
-
-.sd-picker-item {
+.sd-picker-header {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0 8rpx;
-    height: 100%;
-    color: $sd-text-color;
-    font-size: $sd-font-size-md;
+    height: $picker-header-height;
+
+    &__title {
+        text-align: center;
+        font-size: $picker-title-font-size;
+        color: $picker-title-color;
+        flex: 1;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__cancel,
+    &__confirm {
+        padding: 0 30rpx;
+
+        &:active {
+            opacity: $sd-opacity-hover;
+        }
+    }
+
+    &__cancel {
+        font-size: $picker-cancel-font-size;
+        color: $picker-cancel-color;
+    }
+
+    &__confirm {
+        font-size: $picker-confirm-font-size;
+        color: $picker-confirm-color;
+    }
 }
+
+.sd-picker-content {
+    overflow: hidden;
+    height: $picker-content-height;
+    background-color: $picker-content-background;
+
+    .sd-picker-view {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sd-picker-view-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: $picker-view-column-padding;
+        color: $picker-view-column-color;
+        font-size: $picker-view-column-font-size;
+    }
+}
+
