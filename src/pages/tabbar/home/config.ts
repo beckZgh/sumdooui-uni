@@ -254,7 +254,7 @@ export default [{
     }, {
         icon: 'textarea',
         name: 'Rate 评分',
-        page: '',
+        page: 'rate',
     }, {
         icon: 'textarea',
         name: 'SliderRange 滑块区间',

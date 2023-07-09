@@ -32,7 +32,7 @@ export const rate_props = {
     /** 禁用状态下的颜色 */
     disabledColor: { type: String },
     /** 允许通过滑动手势评分 */
-    touchable    : { type: Boolean, default: true },
+    // touchable    : { type: Boolean, default: true },
 }
 
 export type RateProps = ExtractPropTypes<typeof rate_props>
