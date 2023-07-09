@@ -1,31 +1,56 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
+$switch-szie             : var(--sd-switch-size             , 36rpx);
+$switch-background       : var(--sd-switch-background       , $sd-gray-color-5);
+$switch-active-background: var(--sd-switch-active-background, $sd-primary-color);
+$switch-duration         : var(--sd-switch-duration         , 0.2s);
+$switch-disabled-opacity : var(--sd-switch-disabled-opacity , $sd-opacity-disabled);
+$switch-inner-background : var(--sd-switch-inner-background , $sd-white);
+$switch-inner-font-size  : var(--sd-switch-inner-font-size  , $sd-font-size-sm);
+$switch-inner-color      : var(--sd-switch-inner-color      , $sd-text-color);
 
 .sd-switch {
     display: inline-block;
-    width: 72rpx;
+    width: calc($switch-szie * 2);
     padding: 2px;
-    background-color: $sd-gray-color-5;
+    background-color: $switch-background;
     border-radius: $sd-radius-round;
     transform: translateX(0);
 
     &__inner {
-        width: 36rpx;
-        height: 36rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $switch-szie;
+        height: $switch-szie;
         border-radius: 50%;
-        background-color: $sd-white;
-        transition: transform .2s;
-    }
-
-    &.is-checked {
-        background-color: $sd-primary-color;
+        background-color: $switch-inner-background;
+        transition: transform $switch-duration;
+        font-size: $switch-inner-font-size;
     }
 
     &.is-checked &__inner {
         transform: translateX(100%);
     }
 
+    &.is-checked {
+        background-color: $switch-active-background;
+    }
+
+    &--primary.is-checked {
+        background-color: $sd-primary-color;
+    }
+    &--success.is-checked {
+        background-color: $sd-success-color;
+    }
+    &--warning.is-checked {
+        background-color: $sd-warning-color;
+    }
+    &--danger.is-checked {
+        background-color: $sd-danger-color;
+    }
+
     &.is-disabled {
-        opacity: $sd-opacity-disabled;
+        opacity: $switch-disabled-opacity;
     }
 }
