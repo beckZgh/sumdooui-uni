@@ -2,7 +2,7 @@
 import type { CSSProperties } from 'vue'
 import type { FormItemProvide, FormProvide } from '../common/tokens'
 
-import { defineComponent, reactive, computed, inject, watch } from 'vue'
+import { defineComponent, ref, computed, inject, watch } from 'vue'
 import { FORM_ITEM_KEY, FORM_KEY } from '../common/tokens'
 import { MpMixin                 } from '../common/mixins'
 import { textarea_props          } from './textarea'
@@ -24,15 +24,12 @@ export default defineComponent({
     setup(props, { emit }) {
         const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
         const form      = inject<FormProvide>(FORM_KEY)
-
-        const state = reactive({
-            focus: false,
-        })
+        const focus     = ref(false)
 
         // 是否禁用状态
-        const disabled$ = computed(() => {
-            return props.disabled || form?.props.disabled
-        })
+        const disabled$ = computed(() => props.disabled || form?.props.disabled || false)
+        // 是否只读状态
+        const readonly$ = computed(() => props.readonly || form?.props.readonly || false)
 
         const textarea_style$ = computed(() => {
             const styles: CSSProperties = {}
@@ -41,36 +38,36 @@ export default defineComponent({
             return styles
         })
 
+        watch(() => props.modelValue, () => {
+            form_item?.validate('change')
+        })
+
         function onInput(e: any) {
             const value = e.detail.value
             emit('update:modelValue', value)
             emit('change', value)
         }
 
-        function onFocus(e: any) {
-            if (props.disabled || props.readonly) return
-            state.focus = true
-            emit('focus', e)
-        }
-
-        function onBlur(e: any) {
-            if (props.disabled || props.readonly) return
-            state.focus = false
-            emit('blur', e)
-            form_item?.validate('blur')
-        }
-
         function onConfirm(e: any) {
             emit('confirm', e.detail.value)
         }
 
-        watch(() => props.modelValue, () => {
-            form_item?.validate('change')
-        })
+        function onFocus(e: any) {
+            if (disabled$.value || readonly$.value) return
+            focus.value = true
+            emit('focus', e)
+        }
+
+        function onBlur(e: any) {
+            if (disabled$.value || readonly$.value) return
+            focus.value = false
+            emit('blur', e)
+            form_item?.validate('blur')
+        }
 
         return {
-            state,
             disabled$,
+            readonly$,
             textarea_style$,
             onInput,
             onFocus,
@@ -89,7 +86,7 @@ export default defineComponent({
             {
                 [`sd-textarea--${ border }-border`]: border && border !== 'none',
                 'is-disabled'                      : disabled$,
-                'is-focus'                         : !disabled$ && !readonly && state.focus,
+                'is-focus'                         : !disabled$ && !readonly$ && focus,
             },
         ]"
         :style="customStyle"
@@ -101,7 +98,7 @@ export default defineComponent({
             :style="textarea_style$"
             :placeholder="placeholder"
             :placeholder-style="placeholderStyle"
-            :disabled="disabled$ || readonly"
+            :disabled="disabled$ || readonly$"
             :maxlength="maxlength"
             :auto-height="autoHeight"
             :focus="focus"

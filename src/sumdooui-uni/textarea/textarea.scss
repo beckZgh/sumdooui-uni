@@ -41,8 +41,8 @@ $textarea-disabled-opacity          : vaR(--sd-textarea-disabled-opacity        
         color: $textarea-limit-text-color;
     }
 
-     // 显示边框
-     &--surround-border {
+    // 显示边框
+    &--surround-border {
         border-color: $sd-border-color;
         background-color: transparent;
         border-radius: $textarea-radius;
@@ -58,11 +58,6 @@ $textarea-disabled-opacity          : vaR(--sd-textarea-disabled-opacity        
         &.is-focus {
             border-bottom-color: $sd-primary-color;
         }
-    }
-
-
-    &.is-focus {
-        border-color: $sd-primary-color;
     }
 
     // 输入框禁用态

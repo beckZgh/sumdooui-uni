@@ -1,5 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { Form } from '../common/types'
+import type { Form, Component } from '../common/types'
+
 import { COMMON_PROPS } from '../common/props'
 
 export const form_props = {
@@ -16,9 +17,9 @@ export const form_props = {
     /** 标签宽度 */
     labelWidth   : { type: [Number, String] as PropType<string | number> },
     /** 标签位置 */
-    labelPosition: { type: String as PropType<Form.LalbePosition>, default: 'left' },
+    labelPosition: { type: String as PropType<Form.LalbePosition> },
     /** 内容区域方向 */
-    bodyAlign    : { type: String as PropType<'left' | 'right'>  },
+    inputAlign   : { type: String as PropType<Component.InputAlign>  },
     /** 显示底部边框 */
     borderBottom : { type: Boolean, default: true },
     /** 是否添加冒号 */
@@ -26,7 +27,7 @@ export const form_props = {
     /** 显示错误信息 */
     showError    : { type: Boolean },
     /** 错误信息展示类型 */
-    errorType    : { type: String as PropType<Form.ErrorType>, default: 'message' },
+    errorType    : { type: String as PropType<Form.ErrorType> },
 }
 
 export type FormProps = ExtractPropTypes<typeof form_props>

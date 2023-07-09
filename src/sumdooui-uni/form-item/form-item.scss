@@ -1,90 +1,102 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
+
+$form-item-margin            : var(--sd-form-item-margin            , 0 36rpx);
+$form-item-padding           : var(--sd-form-item-padding           , 24rpx 0);
+$form-item-background        : var(--sd-form-item-background        , $sd-white);
+$form-item-label-font-size   : var(--sd-form-item-label-font-size   , $sd-font-size-md);
+$form-item-label-font-weight : var(--sd-form-item-label-font-weight , bold);
+$form-item-label-color       : var(--sd-form-item-label-color       , $sd-text-color);
+$form-item-required-font-size: var(--sd-form-item-required-font-size, $sd-font-size-md);
+$form-item-required-color    : var(--sd-form-item-required-color    , $sd-danger-color);
+$form-item-tips-font-size    : var(--sd-form-item-tips-font-size    , $sd-font-size-sm);
+$form-item-tips-color        : var(--sd-form-item-tips-color        , $sd-text-color-placeholder);
+$form-item-error-font-size   : var(--sd-font-item-error-font-size   , $sd-font-size-sm);
+$form-item-error-color       : var(--sd-font-item-error-color       , $sd-danger-color);
 
 .sd-form-item {
     position: relative;
-    margin: 0 36rpx;
-    padding: 24rpx 0;
+    margin: $form-item-margin;
+    padding: $form-item-padding;
+    background-color: $form-item-background;
     box-sizing: border-box;
-    background-color: $sd-white;
 
-    &.has-border {
+    // 显示底部边框
+    &--border {
         @include hairline($sd-border-color, 'bottom');
     }
 
     // 内容区域
-    &__content {
+    &-content {
         display: flex;
+        align-items: center;
 
-        &-left {
-            font-size: $sd-font-size-md;
-            color: $sd-text-color;
+        &__left {
             padding-right: 16rpx;
             box-sizing: border-box;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            line-height: 1.5;
         }
 
-        &-right {
+        &__right {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             flex: 1;
             overflow: hidden;
-
-            &.is-content-right {
-                justify-content: flex-end;
-                text-align: right;
-            }
         }
 
-        &.is-column {
-            flex-direction: column;
-
-            .sd-form-item__content-left {
-                margin-bottom: 16rpx;
-            }
+        // 纵向布局
+        &--column {
+            display: block;
+        }
+        &--column &__left {
+            margin-bottom: 16rpx;
         }
     }
 
     // 必填图标
     &__required {
-        font-size: $sd-font-size-md;
-        color: $sd-danger-color;
+        font-size: $form-item-required-font-size;
+        color: $form-item-required-color;
+    }
+
+    // 标题
+    &__label {
+        font-size: $form-item-label-font-size;
+        font-weight: $form-item-label-font-weight ;
+        color: $form-item-label-color;
     }
 
     // 表单域提示
     &__tips {
         width: 100%;
-        font-size: $sd-font-size-sm;
         padding-top: 10rpx;
-        line-height: 1.5;
+        color: $form-item-tips-color;
+        font-size: $form-item-tips-font-size;
+        box-sizing: border-box;
     }
 
     // 表单域错误提示
     &__error {
         width: 100%;
-        font-size: $sd-font-size-sm;
-        color: $sd-danger-color;
+        font-size: $form-item-error-font-size;
+        color: $form-item-error-color;
         padding-top: 10rpx;
         padding-right: 16rpx;
         box-sizing: border-box;
-        line-height: 1.5;
     }
 
-    // 标题在上模式
-    &--column {
-        flex-direction: column;
-        align-items: normal;
-
-        .sd-form-item__label {
-            margin-right: 0;
-        }
+    &.is-content-right &-content__right,
+    &.is-content-right &__tips,
+    &.is-content-right &__error {
+        justify-content: flex-end;
+        text-align: right;
     }
 
     // 重置包裹的受控组件
-    // .sd-input {
-    //     padding: 0;
-    // }
+    .sd-input,
+    .sd-textarea {
+        padding: 0;
+    }
 }

@@ -8,7 +8,7 @@ function toUnit(val: string | number | undefined, unit = 'rpx') {
 }
 
 /** 通过路径获取对应值 */
-function getValueByPath(model: any, key_path: string): any {
+function getValueByPath(model: any, key_path = ''): any {
     try {
         // 非对象和数组不处理
         if (!is.isObject(model) && !is.isArray(model)) return undefined

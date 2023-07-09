@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { ComponentInternalInstance } from 'vue'
+
 import { defineComponent } from 'vue'
 import { MpMixin         } from '../common/mixins'
 import { form_props      } from './form'

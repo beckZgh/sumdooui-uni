@@ -1,8 +1,10 @@
 <script lang="ts">
-import { defineComponent, reactive, computed, watch, inject } from 'vue'
-import { FORM_KEY, FORM_ITEM_KEY, type FormProvide, type FormItemProvide } from '../common/tokens'
-import { MpMixin } from '../common/mixins'
-import { input_props } from './input'
+import type { FormProvide, FormItemProvide } from '../common/tokens'
+
+import { defineComponent, ref, computed, watch, inject } from 'vue'
+import { FORM_KEY, FORM_ITEM_KEY                       } from '../common/tokens'
+import { MpMixin                                       } from '../common/mixins'
+import { input_props                                   } from './input'
 
 export default defineComponent({
     ...MpMixin,
@@ -18,22 +20,24 @@ export default defineComponent({
         'confirm',
     ],
     setup(props, { emit }) {
-        const form      = inject<FormProvide>(FORM_KEY)
-        const form_item = inject<FormItemProvide>(FORM_ITEM_KEY)
+        const form_item     = inject<FormItemProvide>(FORM_ITEM_KEY)
+        const form          = inject<FormProvide>(FORM_KEY)
+        const focus         = ref(false)
+        const show_password = ref(false)
 
-        const state = reactive({
-            focus        : false,
-            show_password: false,
-        })
-
-        const show_border$ = computed(() => props.border)
-
+        // 是否禁用状态
         const disabled$ = computed(() => props.disabled || form?.props.disabled || false)
+        // 是否只读状态
+        const readonly$ = computed(() => props.readonly || form?.props.readonly || false)
+
+        watch(() => props.modelValue, () => {
+            form_item?.validate('change')
+        })
 
         // 显示、隐藏密码
         function handleTogglePassword() {
             if (props.type !== 'password') return
-            state.show_password = !state.show_password
+            show_password.value = !show_password.value
         }
 
         // 一键清空
@@ -48,32 +52,29 @@ export default defineComponent({
             emit('change', value)
         }
 
+        function onConfirm(e: any) {
+            emit('confirm', e.detail.value)
+        }
+
         function onFocus(e: any) {
-            if (props.disabled || props.readonly) return
-            state.focus = true
+            if (disabled$.value || readonly$.value) return
+            focus.value = true
             emit('focus', e)
         }
 
         function onBlur(e: any) {
-            if (props.disabled || props.readonly) return
-            state.focus = false
+            if (disabled$.value || readonly$.value) return
+            focus.value = false
             emit('blur', e)
 
             form_item?.validate('blur')
         }
 
-        watch(() => props.modelValue, () => {
-            form_item?.validate('change')
-        })
-
-        function onConfirm(e: any) {
-            emit('confirm', e.detail.value)
-        }
-
         return {
-            state,
-            show_border$,
+            focus,
+            show_password,
             disabled$,
+            readonly$,
             handleTogglePassword,
             handleClear,
             onInput,
@@ -93,7 +94,7 @@ export default defineComponent({
             {
                 [`sd-input--${ border }-border`]: border && border !== 'none',
                 'is-disabled'                   : disabled$,
-                'is-focus'                      : !disabled$ && !readonly && state.focus,
+                'is-focus'                      : !disabled$ && !readonly$ && focus,
             },
         ]"
         :style="customStyle"
@@ -120,8 +121,8 @@ export default defineComponent({
             :placeholder-style="placeholderStyle"
             :value="modelValue"
             :type="type !== 'password' ? type : 'text'"
-            :password="type === 'password' && !state.show_password"
-            :disabled="disabled$ || readonly"
+            :password="type === 'password' && !show_password"
+            :disabled="disabled$ || readonly$"
             :maxlength="maxlength"
             :auto-height="autoHeight"
             :focus="focus"
@@ -157,7 +158,7 @@ export default defineComponent({
         <!-- 显示、隐藏密码框 -->
         <sd-icon
             v-if="type === 'password' && showPassword && modelValue.length"
-            :name="state.show_password ? 'eye' : 'no-eye'"
+            :name="show_password ? 'eye' : 'no-eye'"
             custom-class="sd-input__password-icon"
             @click="handleTogglePassword"
         />
