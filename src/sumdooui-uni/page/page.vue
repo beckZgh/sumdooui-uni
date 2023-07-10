@@ -5,10 +5,10 @@ import { defineComponent, ref, computed, onMounted, provide } from 'vue'
 import { page_props        } from './page'
 import { useSelectoryQuery } from '../common/hooks'
 import { PAGE_KEY          } from '../common/tokens'
-import { MpMixin           } from '../common/mixins'
+// import { MpMixin           } from '../common/mixins' // 使用 deep 作用样式域的时间，如 sd-page 为根元素无法应用注入的 class
 
 export default defineComponent({
-    ...MpMixin,
+    // ...MpMixin,
 
     name : 'SdPage',
     props: page_props,

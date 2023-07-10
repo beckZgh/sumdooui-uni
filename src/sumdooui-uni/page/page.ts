@@ -8,6 +8,7 @@ export type PageStatus = 'visible' | 'loading' | 'error' | 'noauth'
 
 export const page_props = {
     ...COMMON_PROPS,
+    class              : { type: [String, Object] },
     showHeader         : { type: Boolean, default: true              }, // 显示顶部区域
     title              : { type: String                              }, // 导航栏标题
     showBack           : { type: Boolean  , default: true            }, // 显示返回按钮
