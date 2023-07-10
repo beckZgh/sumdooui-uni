@@ -1,9 +1,7 @@
 <script lang="ts">
-import type { CalendarMode } from '../calendar'
-import type { PropType } from 'vue'
-
 import { defineComponent } from 'vue'
-import { MpMixin } from '../../common/mixins'
+import { MpMixin         } from '../../common/mixins'
+
 import CalendarWeeks from './CalendarWeeks.vue'
 
 export default defineComponent({
@@ -12,18 +10,18 @@ export default defineComponent({
     name      : 'CalendarHeader',
     components: { CalendarWeeks },
     props     : {
-        /** 日历模式, scroll 滚动模式、switch 切换模式  */
-        mode          : { type: String as PropType<CalendarMode>, default: 'scroll' },
+        /** 日历模式, 默认滚动模式、关闭为切换模式  */
+        scrollable    : { type: Boolean },
         /** 显示标题 */
-        showTitle     : { type: Boolean, default: true },
+        showTitle     : { type: Boolean },
         /** 标题 */
-        title         : { type: String, default: '日期选择' },
+        title         : { type: String },
         /** 显示副标题 */
-        showSubtitle  : { type: Boolean, default: true },
+        showSubtitle  : { type: Boolean },
         /** 标题 */
-        subtitle      : { type: String, default: '' },
+        subtitle      : { type: String },
         /** 周起始日 */
-        firstDayOfWeek: { type: Number, default: 1 },
+        firstDayOfWeek: { type: Number },
         /** 弹窗形式展示 */
         poppable      : { type: Boolean  },
     },
@@ -38,16 +36,18 @@ export default defineComponent({
 </script>
 
 <template>
-    <view class="sd-calendar__header">
-        <view v-if="showTitle && !poppable" class="sd-calendar__title">
+    <view class="sd-calendar-header">
+        <view v-if="showTitle && title && !poppable" class="sd-calendar-header__title">
             {{ title }}
         </view>
-        <view v-if="showSubtitle && subtitle" class="sd-calendar__subtitle" @tap="$emit('click-subtitle')">
-            <sd-button v-if="mode === 'switch'" variant="text" shape="square" size="small" icon="double-left" @click="$emit('prev-year')" />
-            <sd-button v-if="mode === 'switch'" variant="text" shape="square" size="small" icon="left" @click="$emit('prev-month')" />
-            {{ subtitle }}
-            <sd-button v-if="mode === 'switch'" variant="text" shape="square" size="small" icon="right" @click="$emit('next-month')" />
-            <sd-button v-if="mode === 'switch'" variant="text" shape="square" size="small" icon="double-right" @click="$emit('next-year')" />
+        <view v-if="showSubtitle && subtitle" class="sd-calendar-header__actions">
+            <sd-button v-if="!scrollable" text size="small" icon="double-left" @click="$emit('prev-year')" />
+            <sd-button v-if="!scrollable" text size="small" icon="left" @click="$emit('prev-month')" />
+            <text class="sd-calendar-header__subtitle" @tap="$emit('click-subtitle')">
+                {{ subtitle }}
+            </text>
+            <sd-button v-if="!scrollable" text size="small" icon="right" @click="$emit('next-month')" />
+            <sd-button v-if="!scrollable" text size="small" icon="double-right" @click="$emit('next-year')" />
         </view>
         <CalendarWeeks :first-day-of-week="firstDayOfWeek" />
     </view>

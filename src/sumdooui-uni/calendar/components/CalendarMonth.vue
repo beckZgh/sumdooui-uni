@@ -1,9 +1,10 @@
 <script lang="ts">
-import type { PropType, CSSProperties } from 'vue'
-import type { CalendarType, CalendarDay, CalendarMode } from '../calendar'
+import type { PropType, CSSProperties   } from 'vue'
+import type { CalendarMode, CalendarDay } from '../calendar'
 
 import { defineComponent, computed, ref, watch } from 'vue'
 import { MpMixin } from '../../common/mixins'
+
 import CalendarWeeks from './CalendarWeeks.vue'
 
 import { dt } from '../../utils'
@@ -13,10 +14,10 @@ export default defineComponent({
     name      : 'CalendarMonth',
     components: { CalendarWeeks },
     props     : {
-        /** 日历模式, scroll 滚动模式、switch 切换模式  */
-        mode               : { type: String as PropType<CalendarMode>, default: 'scroll' },
+        /** 日历模式, 默认滚动模式、关闭为切换模式  */
+        scrollable         : { type: Boolean },
         /** 选择类型 */
-        type               : { type: String as PropType<CalendarType>, defaint: 'single' },
+        mode               : { type: String as PropType<CalendarMode> },
         /** 今日 */
         today              : { type: String, required: true },
         /** 当前日期 */
@@ -29,12 +30,10 @@ export default defineComponent({
         currentDate        : { type: Array as PropType<string[]>, default: () => [] },
         /** 自定义主题 */
         color              : { type: String },
-        /** 组件主题 */
-        theme              : { type: String },
         /** 显示月份背景 */
-        showMark           : { type: Boolean, default: true },
+        showMark           : { type: Boolean },
         /** 日历行高 */
-        rowHeight          : { type: Number, default: 64 },
+        rowHeight          : { type: Number },
         /** 格式化函数 */
         formatter          : { type: Function },
         /** 一周起始日 */
@@ -99,7 +98,7 @@ export default defineComponent({
             }
 
             // 切换模式，补充上下月数据
-            if (props.mode === 'switch') {
+            if (!props.scrollable) {
                 // 补充上月数据
                 let first_date = start_date
                 let prev_count = getOffsetDay()
@@ -111,6 +110,7 @@ export default defineComponent({
                         text      : dt.getDay(first_date),
                         bottomInfo: '',
                         monthType : 'prev',
+                        className : '',
                     }
                     // 处理格式化
                     if (props.formatter) config = props.formatter(config)
@@ -161,7 +161,7 @@ export default defineComponent({
                     style.color = props.color
                 }
             }
-            if (props.mode === 'scroll' && index === 0) {
+            if (props.scrollable && index === 0) {
                 style.marginLeft = `${ 100 / 7 * offset_day$.value }%`
             }
             if (props.rowHeight) {
@@ -173,14 +173,14 @@ export default defineComponent({
         function getDayType(date: string) {
             if (props.disabled) return 'disabled'
 
-            const { type, startDate, endDate, currentDate } = props
+            const { mode, startDate, endDate, currentDate } = props
 
             // 超出给定范围
             if ((startDate && date < startDate) || (endDate && date > endDate)) {
                 return 'disabled'
             }
 
-            switch (type) {
+            switch (mode) {
                 case 'single'  : return dt.compareDay(date, currentDate[0]) === 0 ? 'selected' : ''
                 case 'multiple': return getMultipeDayType(date)
                 case 'range'   : return getRangeDayType(date)
@@ -223,7 +223,7 @@ export default defineComponent({
         }
 
         function getBottomInfo(type: string) {
-            if (props.type === 'range') {
+            if (props.mode === 'range') {
                 if (type === 'start') {
                     return '开始'
                 }
@@ -268,6 +268,7 @@ export default defineComponent({
             :class="{
                 'is-disabled'                       : item.type === 'disabled',
                 [`sd-calendar__day--${ item.type }`]: item.type !== 'disabled',
+                [item.className || '']              : !!item.className,
             }"
             @tap="onClick(item)"
         >

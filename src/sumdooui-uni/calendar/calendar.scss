@@ -1,76 +1,76 @@
 @import '../styles/variables.scss';
 
-$calendar-header-bg-color    : $sd-white;
-$calendar-title-font-size    : $sd-font-size-md;
-$calendar-title-font-color   : $sd-text-color;
-$calendar-title-font-weight  : 500;
-$calendar-title-line-height  : 88rpx;
-$calendar-subtitle-font-size : $sd-font-size-md;
-$calendar-subtitle-font-color: $sd-text-color-secondary;
-$calendar-footer-height      : 124rpx;
-$calendar-footer-bg-color    : $sd-white;
-$calendar-footer-padding     : 20rpx 36rpx;
-
-@mixin calendar-theme($color) {
-   .sd-calendar__day {
-        &--start-end,
-        &--start,
-        &--end,
-        &--selected,
-        &--multiple-selected,
-        &--multiple-middle {
-            background-color: $color;
-            color: $sd-white;
-        }
-
-        &--middle {
-            color: $color;
-        }
-   }
-}
+$calendar-background                : var(--sd-calendar-background                , $sd-white);
+$calendar-popup-height              : var(--sd-calendar-popup-height              , 400px);
+$calendar-header-shadow             : var(--sd-calendar-header-shadow             , 0px 4px 10px 0px rgba($color: #000000, $alpha: 0.06));
+$calendar-header-title-height       : var(--sd-calendar-header-title-height       , 44px);
+$calendar-header-title-font-size    : var(--sd-calendar-header-title-font-size    , $sd-font-size-md);
+$calendar-header-title-color        : var(--sd-calendar-header-title-color        , $sd-text-color);
+$calendar-header-subtitle-font-size : var(--sd-calendar-header-subtitle-font-size , $sd-font-size-md);
+$calendar-header-subtitle-color     : var(--sd-calendar-header-subtitle-color     , $sd-text-color);
+$calendar-header-weekdays-height    : var(--sd-calendar-header-weekdays-height    , 30px);
+$calendar-header-weekdays-font-size : var(--sd-calendar-header-weekdays-font-size , $sd-font-size-sm);
+$calendar-month-title-font-size     : var(--sd-calendar-month-title-font-size     , $sd-font-size-md);
+$calendar-month-title-color         : var(--sd-calender-month-title-color         , $sd-text-color);
+$calendar-month-title-height        : var(--sd-calender-month-title-height        , 88rpx);
+$calendar-month-mark-color          : var(--sd-calendar-month-mark-color          , rgba(242, 243, 245, 0.8));
+$calendar-month-mark-font-size      : var(--sd-calendar-month-mark-font-size      , 160px);
+$calendar-day-height                : var(--sd-calendar-day-height                , 50px);
+$calendar-day-color                 : var(--sd-calendar-day-color                 , $sd-text-color);
+$calendar-day-font-size             : var(--sd-calendar-day-font-size             , $sd-font-size-md);
+$calendar-day-selected-background   : var(--sd-calendar-selected-background       , $sd-primary-color);
+$calendar-day-selected-color        : var(--sd-calendar-selected-color            , $sd-white);
+$calendar-day-disabled-background   : var(--sd-calendar-day-disabled-background   , transparent);
+$calendar-day-disabled-color        : var(--sd-calendar-day-disabled-color        , $sd-text-color-disabled);
+$calendar-info-font-size            : var(--sd-calendar-info-font-size            , 10px);
+$calendar-info-line-height          : var(--sd-calendar-info-line-height          , 1.4);
+$calendar-footer-height             : var(--sd-calendar-footer-height             , 124rpx);
+$calendar-footer-padding            : var(--sd-calendar-footer-padding            , 20rpx 36rpx 30rpx);
 
 .sd-calendar {
     display: flex;
     flex-direction: column;
+    background-color: $calendar-background;
 
-    &__header {
+    &-header {
         width: 100%;
-        background-color: $calendar-header-bg-color;
-        text-align: center;
+        padding: 0 8rpx;
+        box-shadow: $calendar-header-shadow;
+        box-sizing: border-box;
 
-        &-icon {
-            padding: 0 20rpx;
+        &__title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            height: $calendar-header-title-height;
+            font-size: $calendar-header-title-font-size;
+            color: $calendar-header-title-color;
+            font-weight: bold;
         }
-    }
 
-    &__title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        height: 90rpx;
-        color: $calendar-title-font-color;
-        font-size: $calendar-title-font-size;
-        font-weight: $calendar-title-font-weight;
-    }
+        &__subtitle {
+            color: $calendar-header-subtitle-color;
+            font-size: $calendar-header-subtitle-font-size;
+            margin: 0 12rpx;
+            font-weight: bold;
+        }
 
-    &__subtitle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        font-size: $calendar-subtitle-font-size;
-        margin-bottom: 14rpx;
-        line-height: 44rpx;
+        &__actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 14rpx;
+        }
     }
 
     // 星期
     &__weeks {
         display: flex;
         align-items: center;
-        height: 36px;
-        border-radius: 0px 0px 12px 12px;
-        box-shadow: 0px 4px 10px 0px rgba($color: #000000, $alpha: 0.06);
+        height: $calendar-header-weekdays-height;
+        font-size: $calendar-header-weekdays-font-size;
 
         &-item {
             text-align: center;
@@ -79,11 +79,12 @@ $calendar-footer-padding     : 20rpx 36rpx;
     }
 
     &__body {
+        padding: 0 8rpx;
+        box-sizing: border-box;
         overflow: hidden;
     }
-
     &--popup &__body {
-        height: 400px;
+        height: $calendar-popup-height;
     }
 
     &__days {
@@ -96,11 +97,14 @@ $calendar-footer-padding     : 20rpx 36rpx;
     &__day {
         position: relative;
         width: 14.285%;
-        height: 64px;
+        height: $calendar-day-height;
+        font-size: $calendar-day-font-size;
+        color: $calendar-day-color;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 8rpx;
 
         &--start-end,
         &--start,
@@ -108,8 +112,8 @@ $calendar-footer-padding     : 20rpx 36rpx;
         &--selected,
         &--multiple-selected,
         &--multiple-middle {
-            background-color: $sd-primary-color;
-            color: $sd-white;
+            background-color: $calendar-day-selected-background;
+            color: $calendar-day-selected-color;
         }
 
         &--start {
@@ -128,7 +132,7 @@ $calendar-footer-padding     : 20rpx 36rpx;
 
         &--middle {
             position: relative;
-            color: $sd-primary-color;
+            color: $calendar-day-selected-background;
 
             &::after {
                 position: absolute;
@@ -143,22 +147,20 @@ $calendar-footer-padding     : 20rpx 36rpx;
         }
 
         &.is-disabled {
-            background-color: transparent;
-            color: $sd-text-color-disabled;
+            background-color: $calendar-day-disabled-background;
+            color: $calendar-day-disabled-color;
         }
     }
 
-    &--primary {
-        @include calendar-theme($sd-primary-color);
-    }
-    &--success {
-        @include calendar-theme($sd-success-color);
-    }
-    &--warning {
-        @include calendar-theme($sd-warning-color);
-    }
-    &--danger {
-        @include calendar-theme($sd-danger-color);
+    &__month-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: $calendar-month-title-height;
+        color: $calendar-month-title-color;
+        font-size: $calendar-month-title-font-size;
+        font-weight: bold;
     }
 
     &__month-mark {
@@ -168,21 +170,15 @@ $calendar-footer-padding     : 20rpx 36rpx;
         z-index: 0;
         transform: translate(-50%, -50%);
         pointer-events: none;
-        color: rgba(242, 243, 245, 0.8);
-        font-size: 160px;
-    }
-
-    &__month-title {
-        text-align: center;
-        line-height: 88rpx;
-        height: 88rpx;
+        color: $calendar-month-mark-color;
+        font-size: $calendar-month-mark-font-size;
     }
 
     &__top-info,
     &__bottom-info {
         position: absolute;
-        font-size: 10px;
-        line-height: 14px;
+        font-size: $calendar-info-font-size;
+        line-height: $calendar-info-line-height;
         right: 0;
         left: 0;
     }
@@ -198,7 +194,6 @@ $calendar-footer-padding     : 20rpx 36rpx;
     &__footer {
         padding: $calendar-footer-padding;
         height: $calendar-footer-height;
-        background-color: $calendar-footer-bg-color;
         box-sizing: border-box;
     }
 }

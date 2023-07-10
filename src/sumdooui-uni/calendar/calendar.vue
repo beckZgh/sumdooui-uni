@@ -20,13 +20,15 @@ export default defineComponent({
     emits: [
         'update:visible',
         'confirm',
-        'close',
         'select',
         'unselect',
         'open',
-        'opened',
         'close',
-        'closed',
+        'click-subtitle',
+        'prev-year',
+        'prev-month',
+        'next-year',
+        'next-month',
     ],
     setup(props, { emit }) {
         const visible$ = computed({
@@ -41,15 +43,15 @@ export default defineComponent({
             current_date    : [] as string[],  // 当前选中数据
             today           : '',              // 今日
             scroll_into_view: '',              // 滚动至可视区域
-            start_date      : '',
-            end_date        : '',
-            months          : [] as number[],
+            start_date      : '',              // 开始日期
+            end_date        : '',              // 结束日期
+            months          : [] as number[],  // 生成的所有月份
         })
 
         // 监听类型变化，重新计算选中值
-        watch(() => props.type, resetByType)
-        watch(() => props.mode, init)
-        watch(() => props.visible, () => {
+        watch(() => props.mode      , resetOnModeChanged)
+        watch(() => props.scrollable, init)
+        watch(() => props.visible   , () => {
             initRect()
             scrollIntoView()
         })
@@ -62,31 +64,34 @@ export default defineComponent({
         // 平铺模式，初始化一次
         init()
         function init() {
-            const today        = dt.format(new Date())
-            state.today        = today
+            const today = dt.format(new Date())
+            state.today = today
             // 滚动模式默认展示包含当月共七个月
-            if (props.mode === 'scroll') {
-                state.start_date   = props.startDate ? dt.format(props.startDate) : state.today
-                state.end_date     = props.endDate ? dt.format(props.endDate) : dt.newDate(dt.getYear(today), dt.getMonth(today) + 6, dt.getDay(today))
-                state.months       = dt.getMonths(state.start_date, state.end_date)
+            if (props.scrollable) {
+                state.start_date = props.startDate ? dt.format(props.startDate) : state.today
+                state.end_date   = props.endDate   ? dt.format(props.endDate)   : dt.newDate(dt.getYear(today), dt.getMonth(today) + 6, dt.getDay(today))
+                state.months     = dt.getMonths(state.start_date, state.end_date)
+
+            // 切换模式默认展示当月
             } else {
-                // 切换模式默认展示当月
                 state.start_date = ''
-                state.end_date = ''
+                state.end_date   = ''
                 if (props.startDate) state.start_date = dt.format(props.startDate)
-                if (props.endDate  ) state.end_date = dt.format(props.endDate)
+                if (props.endDate  ) state.end_date   = dt.format(props.endDate)
             }
             state.current_date = getInitialDate(props.defaultDate)
 
-            if (props.mode === 'switch') {
+            // 切换模式
+            if (!props.scrollable) {
                 state.months = [new Date(state.current_date[0] || state.today).getTime()]
             }
+            // 格式化月份标题
             state.year_month_title = formatMonthTitle(state.current_date[0] || state.today)
         }
 
         // 取得初始化选中日期
         function getInitialDate(default_date?: CalendarDefaultDate | CalendarDefaultDate[]): string[] {
-            if (props.type === 'range') {
+            if (props.mode === 'range') {
                 const current_date = [] as string[]
                 if (Array.isArray(default_date) && default_date[0] && default_date[1]) {
                     current_date[0] = limitDateRange(dt.format(default_date[0]))
@@ -97,7 +102,7 @@ export default defineComponent({
                     }
                 }
                 return current_date
-            } else if (props.type === 'multiple') {
+            } else if (props.mode === 'multiple') {
                 const dates = (Array.isArray(props.defaultDate) ? props.defaultDate : [])
                     .map(date => limitDateRange(dt.format(date)))
                 return dates.length ? dates : [state.today]
@@ -111,7 +116,7 @@ export default defineComponent({
         function limitDateRange(default_date: string) {
             const { start_date, end_date } = state
             if (start_date && default_date < start_date) return start_date
-            if (end_date && default_date > end_date) return end_date
+            if (end_date   && default_date > end_date  ) return end_date
             return default_date
         }
 
@@ -119,7 +124,7 @@ export default defineComponent({
             // 只读状态或禁用状态不处理
             if (props.readonly || props.disabled) return
 
-            switch (props.type) {
+            switch (props.mode) {
                 case 'range': {
                     const [start_date, end_date] = state.current_date
                     if (start_date && !end_date) {
@@ -141,7 +146,7 @@ export default defineComponent({
                     const idx = state.current_date.indexOf(item.date)
                     if (idx === -1) {
                         state.current_date = [...state.current_date, item.date]
-                        emit('select', [...state.current_date])
+                        emit('select', item.date)
                     } else {
                         state.current_date.splice(idx, 1)
                         state.current_date = [...state.current_date]
@@ -159,7 +164,7 @@ export default defineComponent({
         }
 
         function onConfirm() {
-            emit('confirm', props.type === 'single' ? state.current_date[0] : [...state.current_date])
+            emit('confirm', props.mode === 'single' ? state.current_date[0] : [...state.current_date])
             visible$.value = false
         }
 
@@ -170,7 +175,7 @@ export default defineComponent({
         const instance = getCurrentInstance()
         let content_observer = null as null | UniApp.IntersectionObserver
         function initRect() {
-            if (props.mode === 'switch' || !props.visible) return
+            if (!props.scrollable || !props.visible) return
 
             if (content_observer) content_observer.disconnect()
             content_observer = uni.createIntersectionObserver(instance, {
@@ -186,6 +191,7 @@ export default defineComponent({
             })
         }
 
+        // 目标月份日期滚动到可视区域
         function scrollIntoView() {
             if (!props.poppable || !props.visible) return
 
@@ -197,11 +203,13 @@ export default defineComponent({
             })
         }
 
-        function resetByType() {
+        // 监听模式变化重置数据
+        function resetOnModeChanged() {
             state.current_date = getInitialDate(props.defaultDate)
             scrollIntoView()
         }
 
+        // 月、日点击切换
         function onPannelSwitch(type: 'prev-year' | 'prev-month' | 'next-month' | 'next-year') {
             const year  = dt.getYear(state.months[0])
             const month = dt.getMonth(state.months[0])
@@ -212,6 +220,8 @@ export default defineComponent({
             if (type === 'next-year' ) state.months = [new Date(dt.newDate(year + 1, month, 1)).getTime()]
 
             state.year_month_title = formatMonthTitle(state.months[0])
+
+            emit(type)
         }
 
         return {
@@ -230,16 +240,14 @@ export default defineComponent({
         v-if="poppable"
         v-model:visible="visible$"
         :scrollable="false"
-        :title="showTitle ? (title || '日期选择') : ''"
+        :title="showTitle ? (title || '请选择日期') : ''"
         position="bottom"
         @open="$emit('open')"
-        @opened="$emit('opened')"
         @close="$emit('close')"
-        @closed="$emit('closed')"
     >
-        <view class="sd-calendar sd-calendar--popup" :class="{ [`sd-calendar--${ theme }`]: theme }">
+        <view class="sd-calendar sd-calendar--popup">
             <CalendarHeader
-                :mode="mode"
+                :scrollable="scrollable"
                 :show-title="showTitle"
                 :title="title"
                 :show-subtitle="showSubtitle"
@@ -250,6 +258,7 @@ export default defineComponent({
                 @prev-month="onPannelSwitch('prev-month')"
                 @next-month="onPannelSwitch('next-month')"
                 @next-year="onPannelSwitch('next-year')"
+                @click-subtitle="$emit('click-subtitle')"
             />
             <scroll-view
                 class="sd-calendar__body"
@@ -266,8 +275,8 @@ export default defineComponent({
                     <CalendarMonth
                         :today="today"
                         :date="item"
-                        :type="type"
                         :mode="mode"
+                        :scrollable="scrollable"
                         :color="color"
                         :show-mark="showMark"
                         :row-height="rowHeight"
@@ -278,7 +287,7 @@ export default defineComponent({
                         :first-day-of-week="firstDayOfWeek"
                         :allow-same-day="allowSameDay"
                         :show-subtitle="false"
-                        :show-month-title="mode === 'scroll' && index > 0"
+                        :show-month-title="scrollable && index > 0"
                         :show-non-current-month="showNonCurrentMonth"
                         :weeks-with-month="weeksWithMonth"
                         :disabled="disabled"
@@ -288,18 +297,23 @@ export default defineComponent({
             </scroll-view>
         </view>
 
-        <template #bottom>
+        <template #footer>
             <view v-if="showConfirmButton" class="sd-calendar__footer">
-                <sd-button block :theme="theme" :disabled="disabled || readonly" @click="onConfirm">
+                <sd-button
+                    block round type="primary"
+                    :disabled="disabled || readonly"
+                    :custom-style="color ? { background: color } : undefined"
+                    @click="onConfirm"
+                >
                     {{ confirmButtonText || '确认' }}
                 </sd-button>
             </view>
         </template>
     </sd-popup>
 
-    <view v-else class="sd-calendar" :class="{ [`sd-calendar--${ theme }`]: theme }">
+    <view v-else class="sd-calendar">
         <CalendarHeader
-            :mode="mode"
+            :scrollable="scrollable"
             :show-title="showTitle"
             :title="title"
             :show-subtitle="showSubtitle"
@@ -310,6 +324,7 @@ export default defineComponent({
             @prev-month="onPannelSwitch('prev-month')"
             @next-month="onPannelSwitch('next-month')"
             @next-year="onPannelSwitch('next-year')"
+            @click-subtitle="$emit('click-subtitle')"
         />
         <view class="sd-calendar__body">
             <view
@@ -322,8 +337,8 @@ export default defineComponent({
                 <CalendarMonth
                     :today="today"
                     :date="item"
-                    :type="type"
                     :mode="mode"
+                    :scrollable="scrollable"
                     :color="color"
                     :show-mark="showMark"
                     :row-height="rowHeight"
@@ -334,7 +349,7 @@ export default defineComponent({
                     :first-day-of-week="firstDayOfWeek"
                     :allow-same-day="allowSameDay"
                     :show-subtitle="false"
-                    :show-month-title="mode === 'scroll' && index > 0"
+                    :show-month-title="scrollable && index > 0"
                     :show-non-current-month="showNonCurrentMonth"
                     :weeks-with-month="weeksWithMonth"
                     :disabled="disabled"
@@ -343,7 +358,12 @@ export default defineComponent({
             </view>
         </view>
         <view v-if="showConfirmButton" class="sd-calendar__footer">
-            <sd-button block :theme="theme" :disabled="disabled || readonly" @click="onConfirm">
+            <sd-button
+                block round type="primary"
+                :disabled="disabled || readonly"
+                :custom-style="color ? { background: color } : undefined"
+                @click="onConfirm"
+            >
                 {{ confirmButtonText || '确认' }}
             </sd-button>
         </view>
