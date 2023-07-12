@@ -6,7 +6,7 @@ export const citys = [
         { label: '广州市', value: '广州市' },
         { label: '深圳市', value: '深圳市' },
         { label: '成都市', value: '成都市' },
-    ],
+    ].concat(new Array(30).fill('').map((_, index) => ({ label: `成都市${ index + 1 }`, value: `成都市${ index + 1 }` }))),
 ]
 
 export const years = [
@@ -53,6 +53,7 @@ export const area_list = [
         value   : 'UK',
         children: [
             { label: '纽约', value: 'u100', children: [ { label: '皇后街道', value: 'u1001' }] },
+            // { label: '纽约1', value: 'u1001', children: [ { label: '皇后街道1', value: 'u10011' }] },
         ],
     },
 ]

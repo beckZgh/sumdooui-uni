@@ -11,6 +11,8 @@ const state = reactive({
     area_text   : '',
     area_value  : ['ZH', '200', '2003'],
     area_visible: false,
+
+    default_city_value: '',
 })
 
 function onCityConfirm(item: any) {
@@ -26,10 +28,21 @@ function onAreaConfirm(item: any) {
     // state.area_value = value
     // state.area_text = items.map(item => item.label).join('')
 }
+
+function onDefaultPickerChange(item: any) {
+    const idx = Number(item?.detail?.value) || 0
+    state.default_city_value = citys[0][idx]?.value
+}
 </script>
 
 <template>
     <sd-page title="Picker 选择器">
+        <demo-card title="默认选择器" :card="false" transparent>
+            <picker mode="selector" :range="citys[0]" range-key="label" @change="onDefaultPickerChange">
+                <sd-cell title="选择城市" :value="state.default_city_value" arrow />
+            </picker>
+        </demo-card>
+
         <demo-card title="基础选择器" :card="false" transparent>
             <sd-cell title="选择城市" :value="state.city_text" arrow @click="state.city_visible = true" />
             <view class="sd-h-20" />
@@ -41,7 +54,6 @@ function onAreaConfirm(item: any) {
         <!-- 单列选择器 -->
         <sd-picker
             v-model:visible="state.city_visible"
-            title="请选择城市"
             :default-value="state.city_value"
             :options="citys"
             @confirm="onCityConfirm"

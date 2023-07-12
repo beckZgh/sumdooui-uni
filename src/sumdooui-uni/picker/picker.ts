@@ -8,7 +8,7 @@ export const picker_props = {
     /** 默认选中值 */
     defaultValue: { type: [String, Number, Array] as PropType<string | number | (string | number)[]> },
     /** 标题 */
-    title       : { type: String, default: '请选择' },
+    title       : { type: String },
     /** 取消文本 */
     cancelText  : { type: String, default: '取消' },
     /** 确认文本 */
