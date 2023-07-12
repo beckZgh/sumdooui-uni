@@ -21,12 +21,16 @@ const table_props = reactive({
 
 <template>
     <sd-page title="Table 表格数据">
-        <demo-card title="基本用法" :card="false">
-            <sd-table v-bind="table_props" />
+        <demo-card title="基本用法" :card="false" :body-style="{ paddingBottom: '30rpx' }">
+            <sd-table v-bind="table_props" align="center" />
+        </demo-card>
+
+        <demo-card title="带边框的表格" :card="false" :body-style="{ padding: '0 30rpx 30rpx' }">
+            <sd-table v-bind="table_props" border />
         </demo-card>
 
         <demo-card title="暂无数据" :card="false">
-            <sd-table v-bind="table_props" :data="[]" />
+            <sd-table v-bind="table_props" :data="[]" empty-text="测试为空文本" />
         </demo-card>
     </sd-page>
 </template>

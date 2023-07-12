@@ -1,60 +1,64 @@
 @import '../styles/variables.scss';
 
-$table-header-bg-color  : var(--sd-table-header-bg-color, $sd-primary-color);
-$table-header-text-color: var(--sd-table-header-text-color, $sd-white);
-$table-body-bg-color    : var(--sd-table-header-bg-color, $sd-white);
-$table-body-td-font-size: var(--sd-table-body-td-font-size, $sd-font-size-md);
+$table-thead-tr-height          : var(--sd-table-thead-height             , 80rpx);
+$table-th-background            : var(--sd-table-th-background            , $sd-gray-color-1);
+$table-th-color                 : var(--sd-table-th-color                 , $sd-text-color);
+$table-th-font-size             : var(--sd-talbe-th-font-size             , $sd-font-size-md);
+$table-tbody-tr-min-height      : var(--sd-table-tbody-tr-min-height      , 72rpx);
+$table-tbody-tr-background      : var(--sd-table-tbody-tr-background      , $sd-white);
+$table-tbody-tr-event-background: var(--sd-table-tbody-tr-event-background, $sd-gray-color-1);
+$table-td-font-size             : var(--sd-table-td-font-size             , $sd-font-size-md);
+$table-td-line-height           : var(--sd-talbe-td-line-height           , 1.2);
+$table-border-color             : var(--sd-table-border-color             , $sd-border-color);
 
 .sd-table {
     display: flex;
     flex-direction: column;
 
-    &__header {
-        background-color: $table-header-bg-color;
-        color: $table-header-text-color;
-    }
+    &-header {
+        height: $table-thead-tr-height;
 
-    &__body {
-        flex: 1;
-        background-color: $table-body-bg-color;
-    }
+        &__tr {
+            display: flex;
+            height: 100%;
+            font-weight: bold;
+        }
 
-    &__header-tr,
-    &__body-tr {
-        display: flex;
-    }
-
-    &__header-th,
-    &__body-td {
-        flex: 1;
-        flex-shrink: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10rpx;
-        box-sizing: border-box;
-    }
-
-    &__header-tr {
-        height: 80rpx;
-        font-weight: bold;
-    }
-
-    &__body-tr {
-        min-height: 72rpx;
-
-        &:nth-child(even) {
-            background-color: $sd-gray-color-1;
+        &__th {
+            background-color: $table-th-background;
+            color: $table-th-color;
+            font-size: $table-th-font-size;
         }
     }
 
-    &__header-th {
-        font-size: $sd-font-size-md;
+
+    &-body {
+        flex: 1;
+
+        &__tr {
+            display: flex;
+            height: 100%;
+            font-weight: bold;
+            min-height: $table-tbody-tr-min-height;
+            background-color: $table-tbody-tr-background;
+        }
+
+        &__td {
+            font-size: $table-td-font-size;
+            line-height: $table-td-line-height;
+            font-weight: 400;
+            border-bottom: 1px solid $sd-border-color-lighter;
+        }
     }
 
-    &__body-td {
-        font-size: $sd-font-size-md;
-        line-height: 1.2;
+    &-header__th,
+    &-body__td {
+        flex: 1;
+        flex-shrink: 1;
+        display: flex;
+        align-items: center;
+        padding: 10rpx;
+        box-sizing: border-box;
     }
 
     &__empty {
@@ -64,5 +68,50 @@ $table-body-td-font-size: var(--sd-table-body-td-font-size, $sd-font-size-md);
         align-items: center;
         padding: 60rpx 0 40rpx;
         box-sizing: border-box;
+    }
+
+    // 文本方向
+    &--left &-body__td,
+    &-header--left &-header__th {
+        text-align: left;
+        justify-content: flex-start;
+    }
+    &--center &-body__td,
+    &-header--center &-header__th {
+        text-align: center;
+        justify-content: center;
+    }
+    &--right &-body__td,
+    &-header--right &-header__th {
+        text-align: right;
+        justify-content: flex-end;
+    }
+
+    // 斑马纹
+    &--stripe .sd-table-body__tr:nth-child(even) {
+        background-color: $table-tbody-tr-event-background;
+    }
+
+    .sd-table-header__th,
+    .sd-table-body__td {
+        border-bottom: 1px solid $table-border-color;
+    }
+
+    // 显示边框
+    &--border {
+        .sd-table-header__th,
+        .sd-table-body__td {
+            border-bottom: 1px solid $table-border-color;
+            border-right: 1px solid $table-border-color;
+        }
+
+        .sd-table-header__tr {
+            border-left: 1px solid $table-border-color;
+            border-top: 1px solid $table-border-color;
+        }
+
+        .sd-table-body__tr {
+            border-left: 1px solid $table-border-color;
+        }
     }
 }
