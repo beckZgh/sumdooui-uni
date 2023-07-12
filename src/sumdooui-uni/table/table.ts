@@ -38,7 +38,7 @@ export const table_props = {
     /** 表头列对齐方式 */
     headerAlign: { type: String as PropType<TableAlign> },
     /** 是否显示表头 */
-    showHeader : { type: Boolean },
+    showHeader : { type: Boolean, default: true },
     /** 为空时显示的文本 */
     emptyText  : { type: String },
 }
