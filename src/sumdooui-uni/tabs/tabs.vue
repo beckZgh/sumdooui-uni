@@ -31,6 +31,12 @@ export default defineComponent({
             emit('change', item.name, item)
         })
 
+        // 更新位置
+        watch(() => props.modelValue, (value) => {
+            updatePositionByName(value)
+            transformLine(state.current_idx)
+        })
+
         const scroll_style$ = computed(() => {
             const style: CSSProperties = {}
             if (props.height) style.height = Utils.toUnit(props.height)
@@ -47,27 +53,36 @@ export default defineComponent({
 
         init()
         function init() {
-            const items = props.items.map((item, index) => {
+            initItems()
+            updatePositionByName(props.modelValue)
+
+            nextTick(async () => {
+                await loadNodeInfo()
+                transformLine(state.current_idx)
+            })
+        }
+
+        // 初始化列表
+        function initItems() {
+            state.items = props.items.map((item, index) => {
                 if (Utils.isString(item)) {
                     return { title: item, name: index }
                 } else {
                     return { ...item, name: item.name || index }
                 }
             })
-
-            const current_idx  = Math.max(items.findIndex(item => item.name === props.modelValue), 0)
-            const current_name = (items[current_idx]?.name || items[0]?.name) ?? ''
-
-            state.items        = items
-            state.current_idx  = current_idx
-            state.current_name = current_name
-
-            nextTick(async () => {
-                await loadNodeInfo()
-                transformLine(current_idx)
-            })
         }
 
+        // 通过 name 更新 Tab 选项位置
+        function updatePositionByName(name: string | number) {
+            const items        = state.items
+            const current_idx  = Math.max(items.findIndex(item => item.name === props.modelValue), 0)
+            const current_name = (items[current_idx]?.name || items[0]?.name) ?? ''
+            state.current_idx  = current_idx
+            state.current_name = current_name
+        }
+
+        // 切换 Tab
         async function handleSwitchTab(index: number) {
             const tab = state.items[index]
             if ( !tab || tab.disabled) return
