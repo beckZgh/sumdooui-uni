@@ -129,25 +129,31 @@ export default defineComponent({
         <!-- 原始组件 -->
         <radio :checked="checked$" :disabled="disabled$" class="sd-radio__original" />
 
-        <text
+        <view
             v-if="icon_position$ === 'right'"
             class="sd-radio__label sd-radio__label-left"
             :style="label_style$"
         >
-            {{ label }}
-        </text>
+            <slot v-if="$slots.default" />
+            <template v-else>
+                {{ label }}
+            </template>
+        </view>
         <sd-icon
             custom-class="sd-radio__icon"
             :size="icon_size$"
             :color="checked$ ? active_color$ : inactive_color$"
             :name="checked$ ? (active_icon$ || `check-circle-fill`) : (inactive_icon$ || 'circle')"
         />
-        <text
+        <view
             v-if="icon_position$ === 'left'"
             class="sd-radio__label"
             :style="label_style$"
         >
-            {{ label }}
-        </text>
+            <slot v-if="$slots.default" />
+            <template v-else>
+                {{ label }}
+            </template>
+        </view>
     </label>
 </template>
