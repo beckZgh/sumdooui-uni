@@ -32,8 +32,8 @@ export default defineComponent({
         // #ifndef H5
         init()
         function init() {
-            const { statusBarHeight = 0 } = uni.getSystemInfoSync()
-            const { top, height         } = uni.getMenuButtonBoundingClientRect()
+            const { statusBarHeight = 0 } = uni.getSystemInfoSync() || {}
+            const { top, height         } = uni.getMenuButtonBoundingClientRect() || {}
 
             status_height.value = statusBarHeight
             navbar_height.value = height + ((top - statusBarHeight) * 2)
