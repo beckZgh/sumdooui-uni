@@ -5,7 +5,6 @@ $picker-radius               : var(--sd-picker-radius               , $sd-radius
 $picker-header-height        : var(--sd-picker-header-height        , 100rpx);
 $picker-title-font-size      : var(--sd-picker-title-font-size      , $sd-font-size-lg);
 $picker-title-color          : var(--sd-picker-title-color          , $sd-text-color);
-$picker-content-height       : var(--sd-picker-content-height       , 500rpx);
 $picker-view-column-font-size: var(--sd-picker-view-column-font-size, $sd-font-size-lg);
 $picker-view-column-color    : var(--sd-picker-view-column-color    , $sd-text-color);
 $picker-view-column-padding  : var(--sd-picker-view-column-padding  , 0 8rpx);
@@ -28,10 +27,8 @@ $picker-view-column-padding  : var(--sd-picker-view-column-padding  , 0 8rpx);
 
     &-content {
         overflow: hidden;
-        height: $picker-content-height;
         background-color: $picker-background;
         padding: 60rpx 0;
-        box-sizing: border-box;
 
         .sd-picker-view {
             width: 100%;
@@ -42,10 +39,10 @@ $picker-view-column-padding  : var(--sd-picker-view-column-padding  , 0 8rpx);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
             padding: $picker-view-column-padding;
             color: $picker-view-column-color;
             font-size: $picker-view-column-font-size;
+            box-sizing: border-box;
         }
     }
 

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import { citys, years, seasons, area_list } from './config'
+
 const state = reactive({
     city_text   : '',
-    city_value  : '成都市',
+    curr_city   : [] as (string | number)[],
     city_visible: false,
     date_text   : '',
     date_value  : ['2020', '秋'],
@@ -15,46 +16,37 @@ const state = reactive({
     default_city_value: '',
 })
 
-function onCityConfirm(item: any) {
-    state.city_text  = item.selectedOptions.label
+function onCityConfirm({ selectedValues, selectedItems }: { selectedValues: (string | number)[]; selectedItems: { label: string; value: string }[] }) {
+    state.city_text = selectedItems[0]?.value || ''
+    state.curr_city = selectedValues
 }
 
-function onDateConfirm(item: any) {
-    state.date_text  = item.selectedValue.join('')
+function onDateConfirm({ selectedValues }: { selectedValues: string[] }) {
+    state.date_value = selectedValues
+    state.date_text  = selectedValues.join('')
 }
 
-function onAreaConfirm(item: any) {
-    console.log('-=--item', item)
-    // state.area_value = value
-    // state.area_text = items.map(item => item.label).join('')
-}
-
-function onDefaultPickerChange(item: any) {
-    const idx = Number(item?.detail?.value) || 0
-    state.default_city_value = citys[0][idx]?.value
+function onAreaConfirm({ selectedValues, selectedItems }: { selectedValues: string[];  selectedItems: { label: string; value: string }[] }) {
+    state.area_value = selectedValues
+    state.area_text  = selectedItems.map(item => item.label).join('-')
 }
 </script>
 
 <template>
     <sd-page title="Picker 选择器">
-        <demo-card title="默认选择器" :card="false" transparent>
-            <picker mode="selector" :range="citys[0]" range-key="label" @change="onDefaultPickerChange">
-                <sd-cell title="选择城市" :value="state.default_city_value" arrow />
-            </picker>
-        </demo-card>
-
         <demo-card title="基础选择器" :card="false" transparent>
-            <sd-cell title="选择城市" :value="state.city_text" arrow @click="state.city_visible = true" />
+            <sd-cell title="选择城市(单列)" :value="state.city_text" arrow @click="state.city_visible = true" />
             <view class="sd-h-20" />
-            <sd-cell title="选择时间" :value="state.date_text" arrow @click="state.date_visible = true" />
+            <sd-cell title="选择时间(多列)" :value="state.date_text" arrow @click="state.date_visible = true" />
             <view class="sd-h-20" />
-            <sd-cell title="选择地区" :value="state.area_text" arrow @click="state.area_visible = true" />
+            <sd-cell title="选择地区(联动)" :value="state.area_text" arrow @click="state.area_visible = true" />
         </demo-card>
 
         <!-- 单列选择器 -->
         <sd-picker
             v-model:visible="state.city_visible"
-            :default-value="state.city_value"
+            title="请选择城市"
+            :default-value="state.curr_city"
             :options="citys"
             @confirm="onCityConfirm"
         />
@@ -63,6 +55,7 @@ function onDefaultPickerChange(item: any) {
         <sd-picker
             v-model:visible="state.date_visible"
             title="请选择时间"
+            mode="multi-column"
             :default-value="state.date_value"
             :options="[years, seasons]"
             @confirm="onDateConfirm"
@@ -72,6 +65,7 @@ function onDefaultPickerChange(item: any) {
         <sd-picker
             v-model:visible="state.area_visible"
             title="请选择地区"
+            mode="auto-column"
             :default-value="state.area_value"
             :options="area_list"
             @confirm="onAreaConfirm"

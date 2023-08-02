@@ -10,23 +10,22 @@ export default defineComponent({
     props: picker_props,
     emits: [
         'update:visible',
-        'cancel',
-        'confirm',
         'pickerstart',
         'pickerend',
         'change',
         'open',
-        'opened',
         'close',
-        'closed',
+        'cancel',
+        'confirm',
     ],
     setup(props, { emit }) {
         const state = reactive({
-            auto_column_map: {} as Record<string, PickerOptionItem[]>, // 联动列数据映射
-            columns        : [] as PickerOptionItem[][],
-            selected_indexs: [] as number[],
-            moving         : false,
-            type           : 'single' as 'single' | 'multiple' | 'auto', // single 单列 multiple 多列 auto 联动
+            column_count        : 0, // 列数统计
+            auto_column_map     : {} as Record<string, PickerOptionItem[]>, // 联动列数据映射
+            columns             : [] as PickerOptionItem[][],
+            selected_indexs     : [] as number[],
+            last_selected_indexs: [] as number[],
+            moving              : false,
         })
 
         const visible$ = computed({
@@ -36,71 +35,125 @@ export default defineComponent({
             },
         })
 
-        watch(() => props.options, () => {
-            initColumnsWithType()
-            getInitialValue()
+        watch(visible$, (visible) => {
+            visible && setTimeout(init, 10)
         }, { immediate: true })
 
-        function resetState() {
-            state.auto_column_map = {} // 联动列数据映射
-            state.columns         = []
-            state.selected_indexs = []
-            state.moving          = false
-            state.type            = 'single' // single 单列 multiple 多列 auto 联动
+        // 初始化列
+        function init() {
+            setAutoColumnMap()
+            setColumnCount()
+            setSelectedIndexs()
+            setColumnData()
         }
 
-        // 初始化列和选择类型
-        function initColumnsWithType() {
-            if (!props.options) {
-                resetState()
-                return
-            }
+        // 设置显示数据列数
+        function setColumnCount() {
+            if (props.mode === 'single-column') {
+                state.column_count = 1
+            } else if (props.mode === 'multi-column') {
+                state.column_count = props.options.length
+            } else if (props.mode === 'auto-column') {
+                let count  = 1
+                let column = props.options as PickerOptionItem[] | null
 
-            const options      = Array.isArray(props.options) ? props.options : [props.options]
-            const first_column = options[0] // 第一列
-
-            // 未声明是否联动，则默认读取 children 视为联动属性
-            if (props.autoColumn !== false && 'children' in first_column) {
-                // 处理数据映射：以每列的值对应的children
-                const map = {} as any
-                props.options.forEach((item: PickerOptionItem) => loadChildren(map, item.value, item.children || []))
-                state.auto_column_map = map
-                state.columns         = getAutoColumns()
-
-                // 标识联动数据
-                state.type = 'auto'
-            } else {
-                if (options.length === 1) {
-                    state.columns = (Array.isArray(first_column) ? options : [options]) as PickerOptionItem[][]
-                } else {
-                    state.columns = options as PickerOptionItem[][]
+                while (column && column[0].children) {
+                    column = column[0] ? column[0]['children'] : null
+                    count += 1
                 }
-
-                // 标识当前数据类型
-                state.type = state.columns.length > 1 ? 'multiple' : 'single'
+                state.column_count = count
             }
         }
 
-        function getAutoColumns(): PickerOptionItem[][] {
-            const arr = [props.options as PickerOptionItem[]] as PickerOptionItem[][]
-            let column: any = (props.options as PickerOptionItem[])[0]
-            let key = ''
-            while (true) {
-                // 未取得列或者无子项退出循环
-                if (!column) break
-                key += key ? `/${ column.value }` : column.value
-                column = (column.children || [])[0]
-                if (state.auto_column_map[key]) {
-                    arr.push(state.auto_column_map[key])
+        // 设置联动数据映射
+        function setAutoColumnMap() {
+            if (props.mode !== 'auto-column') return
+            const map = {} as Record<string, PickerOptionItem[]>
+            (props.options as PickerOptionItem[]).forEach((item) => {
+                if (item.children) {
+                    loadChildren(map, item.value, item.children)
                 }
-            }
-            return arr
+            })
+            state.auto_column_map = map
         }
 
-        function loadChildren(map:any, key: string, children: any[]) {
+        // 设置默认选中值
+        function setSelectedIndexs() {
+            const values = props.defaultValue || []
+            if (props.mode === 'single-column') {
+                const options         = props.options as PickerOptionItem[]
+                state.selected_indexs = [Math.max(0, options.findIndex(item => item.value === values[0]))]
+            } else if (props.mode === 'multi-column') {
+                const options         = props.options as PickerOptionItem[][]
+                state.selected_indexs = options.map((data, index) => {
+                    return Math.max(0, data.findIndex(item => item.value === values[index]))
+                })
+            } else if (props.mode === 'auto-column') {
+                const options = props.options as PickerOptionItem[]
+                const values  = (props.defaultValue || []).length === state.column_count ? (props.defaultValue || []) : []
+                const indexs  = [] as number[]
+
+                let key = ''
+                for (let i = 0; i < state.column_count; i++) {
+                    // 第一列默认为整个list数组
+                    if (i === 0) {
+                        const idx = Math.max(0, options.findIndex(item => item.value === values[0]))
+                        key = `${ options[idx].value }`
+                        indexs.push(idx)
+                    } else {
+                        const data = state.auto_column_map[key] || []
+                        const idx  = data.length ? Math.max(0, data.findIndex(item => item.value === values[0])) : 0
+
+                        key += `/${ data[idx].value }`
+                        indexs.push(idx)
+                    }
+                }
+                state.selected_indexs = indexs
+            }
+            state.last_selected_indexs = [...state.selected_indexs]
+        }
+
+        // 设置显示列数据
+        function setColumnData() {
+            if (props.mode === 'single-column') {
+                state.columns = [props.options as PickerOptionItem[]]
+            } else if (props.mode === 'multi-column') {
+                state.columns = props.options as PickerOptionItem[][]
+            } else if (props.mode === 'auto-column') {
+                const options      = props.options as PickerOptionItem[]
+                const auto_columns = [] as PickerOptionItem[][]
+                let key = ''
+                for (let i = 0; i < state.column_count; i++) {
+                    // 第一列默认为整个list数组
+                    if (i === 0) {
+                        auto_columns[0] = cloneColumns(options)
+                        key = `${ options[state.selected_indexs[i]].value }`
+                    } else {
+                        const data      = state.auto_column_map[key] || []
+                        auto_columns[i] = data
+
+                        key += `/${ data[state.selected_indexs[i]].value }`
+                    }
+                }
+                state.columns = auto_columns
+            }
+        }
+
+        // 浅克隆列数据，剔除 children 属性
+        function cloneColumns(columns: PickerOptionItem[]): PickerOptionItem[] {
+            return columns
+            // return columns.map((item) => {
+            //     const o = { ...item }
+            //     delete o.children
+            //     return o
+            // })
+        }
+
+        // 递归生成子选项映射路径
+        function loadChildren(map: Record<string, PickerOptionItem[]>, key: string | number, children?: PickerOptionItem[]) {
             if (!children) return
 
-            map[key] = children
+            map[key] = cloneColumns(children)
             if (children.length) {
                 children.forEach((item) => {
                     loadChildren(map, `${ key }/${ item.value }`, item.children)
@@ -108,113 +161,47 @@ export default defineComponent({
             }
         }
 
-        function getInitialValue() {
-            switch (state.type) {
-                case 'single': {
-                    const def_value = props.defaultValue as string | number
-                    const index     = state.columns[0].findIndex(item => item.value === def_value)
-                    state.selected_indexs = [index === -1 ? 0 : index]
-                    break
-                }
-                case 'multiple': {
-                    const def_value = props.defaultValue as (string | number)[]
-                    state.selected_indexs = state.columns.map((columns, column_index) => {
-                        const index = columns.findIndex(item => item.value === def_value[column_index])
-                        return index === -1 ? 0 : index
-                    })
-                    break
-                }
-                case 'auto': {
-                    const def_value    = props.defaultValue as (string | number)[]
-                    const first_value  = def_value[0]
-                    const first_column = state.columns[0]
-
-                    const first_index = first_column.findIndex(item => item.value === first_value)
-                    if (first_index === -1) {
-                        state.selected_indexs = state.columns.map(() => 0)
-                    }
-
-                    const selected_index = [] as number[]
-                    const auto_columns   = [] as PickerOptionItem[][]
-
-                    let key = first_value
-                    for (let i = 1; i < state.columns.length; i++) {
-                        const value   = def_value[i]
-                        const columns = state.auto_column_map[key] || []
-
-                        const index = columns.findIndex(item => String(item.vlaue) === String(value))
-                        if (index === -1) {
-                            selected_index.push(0)
-                        } else {
-                            selected_index.push(index)
-                            auto_columns.push(columns)
-                            key = joinKey(String(key), columns[index]?.value)
-                        }
-
-                        // state.selected_indexs = state.columns.map((column, column_index) => {
-                        //     const value = def_value[column_index]
-                        //     if ( !value ) return 0
-
-                        //     if (column_index === 0) {
-                        //         const index = column.findIndex(item => item.value === value)
-                        //         return index === -1 ? 0 : 0
-                        //     } else {
-                        //         key += key ? `/${ value }` : value
-                        //         console.log('---key', key, value, (state.auto_column_map[key] || []))
-                        //         const index = (state.auto_column_map[key] || []).findIndex(item => item.value === value)
-                        //         return index === -1 ? 0 : index
-                        //     }
-                        // })
-                    }
-
-
-
-                    state.selected_indexs = selected_index
-                    break
-                }
-            }
-        }
-
-        function joinKey(key: string, val: string) {
-            key += key ? `/${ val }` : val
-            return key
-        }
-
         function onPickerstart() {
             state.moving = true
         }
+
         function onPickerend() {
             state.moving = false
         }
 
         function onPickerChange(e: any) {
+            // 非联动模式选择选中下标为最终结果
             const selected_indexs = e.detail.value
-            if (state.type !== 'auto') {
-                state.selected_indexs = selected_indexs
-                return
-            }
+            state.selected_indexs = selected_indexs
+            if (props.mode !== 'auto-column') return
 
-
-            // 找出当前变化的列
-            const change_index = state.selected_indexs.findIndex((item, index) => item !== selected_indexs[index])
+            // -------------------------------------------------------
+            const change_index = state.last_selected_indexs.findIndex((item, index) => item !== selected_indexs[index])
             if (change_index === -1) return
 
-            let prefix_key = ''
-            for (let i = 0; i <= change_index; i++) {
-                const column: any = state.columns[i][selected_indexs[i]]
-                prefix_key += prefix_key ? `/${ column.value }` : column.value
+            // let prefix_key = ''
+            // for (let i = 0; i <= change_index; i++) {
+            //     const column: any = state.columns[i][selected_indexs[i]]
+            //     if (column) {
+            //         prefix_key += prefix_key ? `/${ column.value }` : column.value
+            //     }
+            // }
+
+            // for (let i = change_index + 1; i <= state.columns.length - 1; i++) {
+            //     const columns            = state.auto_column_map[prefix_key] || []
+            //     state.columns[i]         = columns
+            //     state.selected_indexs[i] = 0
+            //     prefix_key += `/${ columns[0].value }`
+            // }
+
+            // 此方式需要 cloneColumns 函数保留 children 属性数据
+            for (let i = change_index + 1; i < state.column_count; i++) {
+                const column             = state.columns[i - 1][i - 1 === change_index ? selected_indexs[change_index] : 0]
+                state.columns[i]         = (column ? column['children'] : []) as PickerOptionItem[]
+                state.selected_indexs[i] = 0
             }
 
-            const all_columns = [...state.columns]
-            for (let i = change_index + 1; i <= state.columns.length - 1; i++) {
-                const columns      = state.auto_column_map[prefix_key] || []
-                selected_indexs[i] = 0
-                all_columns[i]     = columns
-                prefix_key += `/${ columns[0].value }`
-            }
-
-            state.columns = all_columns
-            state.selected_indexs = selected_indexs
+            state.last_selected_indexs = selected_indexs
         }
 
         function onCancel() {
@@ -224,30 +211,49 @@ export default defineComponent({
         }
 
         function onConfirm() {
-            // if (state.moving) return
+            if (state.moving) return
             emit('update:visible', false)
             emit('confirm', getSelectedValue())
         }
 
         function getSelectedValue() {
-            if (state.type === 'single') {
+            if (props.mode === 'single-column') {
                 const item = state.columns[0][state.selected_indexs[0]]
                 return {
-                    selectedValue  : item?.value || '',
-                    selectedOptions: item,
+                    selectedValues: item ? [item.value] : [undefined],
+                    selectedItems : item ? [item] : [undefined],
                 }
-            } else if (state.type === 'multiple') {
-                const selectedValue   = [] as (string | number)[]
-                const selectedOptions = [] as PickerOptionItem[]
+            } else if (props.mode === 'multi-column') {
+                const items = state.columns.map((data, index) => data[state.selected_indexs[index]])
+                return {
+                    selectedValues: items.map(item => item ? item.value : undefined),
+                    selectedItems : items,
+                }
+            } else if (props.mode === 'auto-column') {
+                const selectedValues = [] as (string | number)[]
+                const selectedItems  = [] as PickerOptionItem[]
+                for (let i = 0; i < state.column_count; i++) {
+                    const data = state.columns[i]
+                    const idx  = state.selected_indexs[i]
+                    const item = data[idx >= data.length ? data.length - 1 : idx]
+                    if (item) {
+                        selectedValues[i] = item.value
+                        selectedItems[i]  = item
+                    }
+                }
 
-                state.selected_indexs.forEach((selected_index, column_index) => {
-                    const item = state.columns[column_index][selected_index]
-                    selectedValue.push(item?.value || '')
-                    selectedOptions.push(item)
-                })
-
-                return { selectedValue, selectedOptions }
+                return { selectedValues, selectedItems }
             }
+        }
+
+        // 设置选中项
+        function setIndexs(indexs: number[]) {
+            state.selected_indexs = indexs
+        }
+
+        // 设置列数据
+        function setColumns(index: number, columns: PickerOptionItem[]) {
+            state.columns[index] = columns
         }
 
         return {
@@ -258,6 +264,8 @@ export default defineComponent({
             onPickerChange,
             onPickerstart,
             onPickerend,
+            setIndexs,
+            setColumns,
         }
     },
 })
@@ -267,24 +275,29 @@ export default defineComponent({
     <sd-popup
         v-model:visible="visible$"
         position="bottom"
+        max-height="initial"
         :show-top-close="false"
     >
         <view class="sd-picker">
             <view v-if="title" class="sd-picker__title">
                 {{ title }}
             </view>
-            <view class="sd-picker-content">
+            <view class="sd-picker-content" :style="{ height: `${ itemHeight * visibleItemCount }px` }">
                 <picker-view
                     :value="selected_indexs"
                     class="sd-picker-view"
-                    indicator-style="height: 50px; line-height: 50px;"
-                    immediate-change
+                    :indicator-style="`height: ${ itemHeight }px`"
+                    :immediate-change="immediateChange"
                     @pickstart="onPickerstart"
                     @pickend="onPickerend"
                     @change="onPickerChange"
                 >
                     <picker-view-column v-for="(options, column_index) in columns" :key="`column_${ column_index }`">
-                        <view v-for="(item, index) in options" :key="index" class="sd-picker-view-column">
+                        <view
+                            v-for="(item, index) in options" :key="index"
+                            class="sd-picker-view-column"
+                            :style="`height: ${ itemHeight }px`"
+                        >
                             <text>{{ item.label }}</text>
                         </view>
                     </picker-view-column>

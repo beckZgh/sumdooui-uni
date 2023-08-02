@@ -1,12 +1,10 @@
 
-export const citys = [
-    [
-        { label: '北京市', value: '北京市' },
-        { label: '上海市', value: '上海市' },
-        { label: '广州市', value: '广州市' },
-        { label: '深圳市', value: '深圳市' },
-        { label: '成都市', value: '成都市' },
-    ].concat(new Array(30).fill('').map((_, index) => ({ label: `成都市${ index + 1 }`, value: `成都市${ index + 1 }` }))),
+export const citys =  [
+    { label: '北京市', value: '北京市' },
+    { label: '上海市', value: '上海市' },
+    { label: '广州市', value: '广州市' },
+    { label: '深圳市', value: '深圳市' },
+    { label: '成都市', value: '成都市' },
 ]
 
 export const years = [
@@ -21,7 +19,6 @@ export const seasons = [
     { label: '秋', value: '秋' },
     { label: '冬', value: '冬' },
 ]
-
 
 export const area_list = [
     {
@@ -43,7 +40,7 @@ export const area_list = [
                 children: [
                     { label: '深圳', value: '2001' },
                     { label: '惠州', value: '2002' },
-                    { label: '清远', value: '2003' },
+                    // { label: '清远', value: '2003' },
                 ],
             },
         ],
