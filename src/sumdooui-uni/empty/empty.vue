@@ -80,7 +80,7 @@ export default defineComponent({
             {{ empty_text$ }}
         </view>
         <slot v-if="$slots.extra" name="extra" />
-        <sd-button v-if="buttonText" custom-class="sd-empty__btn" @click="$emit('click-button')">
+        <sd-button v-if="buttonText" custom-class="sd-empty__btn" v-bind="buttonProps" @click="$emit('click-button')">
             {{ buttonText }}
         </sd-button>
     </view>

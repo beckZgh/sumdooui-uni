@@ -1,5 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { ImageProps } from '../image/image'
+import type { ImageProps  } from '../image/image'
+import type { ButtonProps } from '../button/button'
 import { COMMON_PROPS } from '../common/props'
 
 export type EmptyType = 'data' | 'order' | 'search' | 'network' | 'news' | 'address'
@@ -8,21 +9,23 @@ export const empty_props = {
     ...COMMON_PROPS,
 
     /** 内置缺省图片 */
-    type      : { type: String as PropType<EmptyType>, default: 'data' },
+    type       : { type: String as PropType<EmptyType>, default: 'data' },
     /** 场景 */
-    scene     : { type: String as PropType<'local' | 'page'> },
+    scene      : { type: String as PropType<'local' | 'page'> },
     /** 自定义缺省图片 */
-    image     : { type: String },
+    image      : { type: String },
     /** 自定义缺省图片属性 */
-    imageProps: { type: Object as PropType<Omit<ImageProps, 'src'>> },
+    imageProps : { type: Object as PropType<Omit<ImageProps, 'src'>> },
     /** 文案 */
-    text      : { type: String },
+    text       : { type: String },
     /** 背景色 */
-    background: { type: String },
+    background : { type: String },
     /** 高度 */
-    height    : { type: [String, Number] },
+    height     : { type: [String, Number] },
     /** 按钮文本 */
-    buttonText: { type: String },
+    buttonText : { type: String },
+    /** 按钮配置 */
+    buttonProps: { type: Object as PropType<ButtonProps> },
 }
 
 export type EmptyProps = ExtractPropTypes<typeof empty_props>
