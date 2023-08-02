@@ -61,8 +61,7 @@ export default defineComponent({
                 <view class="sd-actionsheet__item" :class="{ [`sd-actionsheet__item--${ align }`]: true }">
                     <sd-button
                         block
-                        shape="square"
-                        variant="text"
+                        text
                         size="large"
                         :disabled="item.disabled"
                         :icon="item.icon"
