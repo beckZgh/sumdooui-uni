@@ -1,8 +1,8 @@
 @forward './mixins/index.scss';
 
 // 基础色
-$sd-white: var(--sd-white, #fff);
-$sd-black: var(--sd-black, #000);
+$sd-white: #fff;
+$sd-black: #000;
 $sd-blue : var(--sd-blue , #1D6FE9);
 
 // 中性色
@@ -22,52 +22,56 @@ $sd-gray-color-13: var(--sd-gray-color-13, #242424);
 $sd-gray-color-14: var(--sd-gray-color-14, #181818);
 
 // 主题色
-$sd-primary-color  : var(--sd-primary-color  , #465CFF);
+$primary-color: #465CFF !default;
+$sd-primary-color  : var(--sd-primary-color  , $primary-color);
 // $sd-primary-color-1: var(--sd-primary-color-1, #596cff);
 // $sd-primary-color-2: var(--sd-primary-color-2, #6b7dff);
-$sd-primary-color-3: var(--sd-primary-color-3, #7e8dff);
+$sd-primary-color-3: var(--sd-primary-color-3, mix($sd-white, $primary-color, 30%)); // #7e8dff
 // $sd-primary-color-4: var(--sd-primary-color-4, #909dff);
-$sd-primary-color-5: var(--sd-primary-color-5, #a3aeff);
+$sd-primary-color-5: var(--sd-primary-color-5, mix($sd-white, $primary-color, 50%)); //#a3aeff
 // $sd-primary-color-6: var(--sd-primary-color-6, #b5beff);
-$sd-primary-color-7: var(--sd-primary-color-7, #c8ceff);
-$sd-primary-color-8: var(--sd-primary-color-8, #dadeff);
-$sd-primary-color-9: var(--sd-primary-color-9, #edefff);
+$sd-primary-color-7: var(--sd-primary-color-7, mix($sd-white, $primary-color, 70%)); // #c8ceff
+$sd-primary-color-8: var(--sd-primary-color-8, mix($sd-white, $primary-color, 80%)); // #dadeff
+$sd-primary-color-9: var(--sd-primary-color-9, mix($sd-white, $primary-color, 90%)); // #edefff
 
 // 辅助色 - 成功
-$sd-success-color  : var(--sd-success-color  , #09BE4F);
+$success-color: #09BE4F !default;
+$sd-success-color  : var(--sd-success-color  , $success-color);
 // $sd-success-color-1: var(--sd-success-color-1, #76c84e);
 // $sd-success-color-2: var(--sd-success-color-2, #85ce61);
-$sd-success-color-3: var(--sd-success-color-3, #95d475);
+$sd-success-color-3: var(--sd-success-color-3, mix($sd-white, $success-color, 30%)); // #95d475
 // $sd-success-color-4: var(--sd-success-color-4, #a4da89);
-$sd-success-color-5: var(--sd-success-color-5, #b3e19d);
+$sd-success-color-5: var(--sd-success-color-5, mix($sd-white, $success-color, 50%)); // #b3e19d
 // $sd-success-color-6: var(--sd-success-color-6, #c2e7b0);
-$sd-success-color-7: var(--sd-success-color-7, #d1edc4);
-$sd-success-color-8: var(--sd-success-color-8, #e1f3d8);
-$sd-success-color-9: var(--sd-success-color-9, #f0f9eb);
+$sd-success-color-7: var(--sd-success-color-7, mix($sd-white, $success-color, 70%)); // #d1edc4
+$sd-success-color-8: var(--sd-success-color-8, mix($sd-white, $success-color, 80%)); // #e1f3d8
+$sd-success-color-9: var(--sd-success-color-9, mix($sd-white, $success-color, 90%)); // #f0f9eb
 
 // 辅助色 - 提醒
-$sd-warning-color  : var(--sd-warning-color  , #FFB703);
+$warning-color: #FFB703 !default;
+$sd-warning-color  : var(--sd-warning-color  , $warning-color);
 // $sd-warning-color-1: var(--sd-warning-color-1, #e9ab50);
 // $sd-warning-color-2: var(--sd-warning-color-2, #ebb563);
-$sd-warning-color-3: var(--sd-warning-color-3, #eebe77);
+$sd-warning-color-3: var(--sd-warning-color-3, mix($sd-white, $warning-color, 30%)); // #eebe77
 // $sd-warning-color-4: var(--sd-warning-color-4, #f0c78a);
-$sd-warning-color-5: var(--sd-warning-color-5, #f3d19e);
+$sd-warning-color-5: var(--sd-warning-color-5, mix($sd-white, $warning-color, 50%)); // #f3d19e
 // $sd-warning-color-6: var(--sd-warning-color-6, #f5dab1);
-$sd-warning-color-7: var(--sd-warning-color-7, #f8e3c5);
-$sd-warning-color-8: var(--sd-warning-color-8, #faecd8);
-$sd-warning-color-9: var(--sd-warning-color-9, #fdf6ec);
+$sd-warning-color-7: var(--sd-warning-color-7, mix($sd-white, $warning-color, 70%)); // #f8e3c5
+$sd-warning-color-8: var(--sd-warning-color-8, mix($sd-white, $warning-color, 80%)); // #faecd8
+$sd-warning-color-9: var(--sd-warning-color-9, mix($sd-white, $warning-color, 90%)); // #fdf6ec
 
 // 辅助色 - 警告、失败
-$sd-danger-color  : var(--sd-danger-color  , #FF2B2B);
+$danger-color: #FF2B2B !default;
+$sd-danger-color  : var(--sd-danger-color  , $danger-color);
 // $sd-danger-color-1: var(--sd-danger-color-1, #f67b7b);
 // $sd-danger-color-2: var(--sd-danger-color-2, #f78989);
-$sd-danger-color-3: var(--sd-danger-color-3, #f89898);
+$sd-danger-color-3: var(--sd-danger-color-3, mix($sd-white, $warning-color, 30%)); // #f89898
 // $sd-danger-color-4: var(--sd-danger-color-4, #f9a7a7);
-$sd-danger-color-5: var(--sd-danger-color-5, #fab6b6);
+$sd-danger-color-5: var(--sd-danger-color-5, mix($sd-white, $warning-color, 50%)); // #fab6b6
 // $sd-danger-color-6: var(--sd-danger-color-6, #fbc4c4);
-$sd-danger-color-7: var(--sd-danger-color-7, #fcd3d3);
-$sd-danger-color-8: var(--sd-danger-color-8, #fde2e2);
-$sd-danger-color-9: var(--sd-danger-color-9, #fef0f0);
+$sd-danger-color-7: var(--sd-danger-color-7, mix($sd-white, $warning-color, 70%)); // #fcd3d3
+$sd-danger-color-8: var(--sd-danger-color-8, mix($sd-white, $warning-color, 80%)); // #fde2e2
+$sd-danger-color-9: var(--sd-danger-color-9, mix($sd-white, $warning-color, 90%)); // #fef0f0
 
 // 背景色
 $sd-bg-color          : var(--sd-bg-color          , #F1F4FA); // $sd-gray-color-2
@@ -142,9 +146,10 @@ $sd-margin-lg  : var(--sd-margin-base, 48rpx);
 $sd-margin-xl  : var(--sd-margin-base, 64rpx);
 
 // 层叠
-$sd-toast-z-index : 3000;
-$sd-dialog-z-index: 3000;
-$sd-notify-z-index: 3000;
-$sd-model-z-index : 3000;
-$sd-popup-z-index : 2000;
-$sd-navbar-z-index: 1500;
+$sd-toast-z-index  : 3000;
+$sd-dialog-z-index : 3000;
+$sd-notify-z-index : 3000;
+$sd-model-z-index  : 3000;
+$sd-backtop-z-index: 2000;
+$sd-popup-z-index  : 2000;
+$sd-navbar-z-index : 1500;
