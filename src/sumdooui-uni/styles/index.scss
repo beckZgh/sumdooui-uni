@@ -24,6 +24,7 @@
 @import '../actionsheet/actionsheet.scss';
 @import '../dialog/dialog.scss';
 @import '../avatar/avatar.scss';
+@import '../backtop/backtop.scss';
 
 // 导航组件
 @import '../navbar/navbar.scss';
@@ -62,3 +63,6 @@
 @import '../calendar/calendar.scss';
 @import '../rate/rate.scss';
 @import '../search/search.scss';
+
+// 额外组件
+@import '../qrcode/qrcode.scss';

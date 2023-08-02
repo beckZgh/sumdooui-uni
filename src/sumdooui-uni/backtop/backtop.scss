@@ -1,0 +1,30 @@
+@import '../styles/variables.scss';
+
+.sd-backtop {
+    position: fixed;
+    right: 36rpx;
+    bottom: 100rpx;
+    background-color: $sd-primary-color;
+    color: $sd-white;
+    border-radius: 50%;
+    width: 108rpx;
+    height: 108rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    z-index: $sd-backtop-z-index;
+
+    &--primary {
+        background-color: $sd-primary-color;
+    }
+    &--success {
+        background-color: $sd-success-color;
+    }
+    &--warning {
+        background-color: $sd-warning-color;
+    }
+    &--danger {
+        background-color: $sd-danger-color;
+    }
+}
