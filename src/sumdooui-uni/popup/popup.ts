@@ -13,6 +13,8 @@ export const popup_props = {
     position           : { type: String as PropType<PopupPosition>, default: 'bottom' },
     /** 弹出层标题 */
     title              : { type: String },
+    /** 标题自定义样式 */
+    titleStyle         : { type: Object as PropType<CSSProperties> },
     /** 显示顶部关闭按钮 */
     showTopClose       : { type: Boolean },
     /** 显示顶部关闭按钮 */

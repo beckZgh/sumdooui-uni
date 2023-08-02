@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 import { MpMixin                   } from '../common/mixins'
 import { popup_props               } from './popup'
 // import { useGestureSlide } from './use-gesture-slide'
@@ -22,14 +22,19 @@ export default defineComponent({
         'close',
     ],
     setup(props, { emit }) {
-        const visible$ = computed({
-            get() { return props.visible },
-            set(value) {
-                value ? open() : close()
-            },
+        const visible = ref(false)
+
+        watch(() => props.visible, (status) => {
+            status ? open() : close()
         })
 
+        init()
+        function init() {
+            props.visible && open()
+        }
+
         function open() {
+            visible.value = true
             emit('update:visible', true)
             emit('open')
         }
@@ -41,6 +46,7 @@ export default defineComponent({
                 if ( !can_close ) return
             }
 
+            visible.value = false
             emit('update:visible', false)
             emit('close')
         }
@@ -81,7 +87,7 @@ export default defineComponent({
         function onTouchMove() {}
 
         return {
-            visible$,
+            visible,
             overlay_style$,
             popup_style$,
             is_darwer$,
@@ -98,7 +104,7 @@ export default defineComponent({
         class="sd-popup-wrap"
         :class="[
             overlayClass,
-            { [`sd-popup-wrap--${ position }`]: true, 'is-show': visible$, 'has-overlay': overlay },
+            { [`sd-popup-wrap--${ position }`]: true, 'is-show': visible, 'has-overlay': overlay },
         ]"
         :style="overlay_style$"
         @tap="onClickOverlay"
@@ -108,7 +114,7 @@ export default defineComponent({
             class="sd-popup"
             :class="[
                 customClass,
-                { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true, 'is-show': visible$ },
+                { [`sd-popup--round`]: round, [`sd-popup--${ position }`]: true, 'is-show': visible },
             ]"
             :style="popup_style$"
             @tap.stop
@@ -117,7 +123,7 @@ export default defineComponent({
             <!-- 顶部区域 -->
             <view v-if="title || showTopClose" class="sd-popup__header">
                 <slot v-if="$slots.header" name="header" />
-                <view v-else class="sd-popup__title">
+                <view v-else class="sd-popup__title" :style="titleStyle">
                     {{ title }}
                 </view>
 
