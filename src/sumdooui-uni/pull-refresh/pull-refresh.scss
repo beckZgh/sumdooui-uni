@@ -1,0 +1,9 @@
+
+.sd-pull-refresh__icon {
+    display: inline-block;
+    transition: transform .3s ease;
+
+    &.is-loosing {
+        transform: rotate(180deg);
+    }
+}

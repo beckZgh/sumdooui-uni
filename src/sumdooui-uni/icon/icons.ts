@@ -25,6 +25,7 @@ const ICONS: Record<string, string> = {
     'double-left'         : '\uE7EF',
     'double-right'        : '\uE7F0',
     'check'               : '\uE7FC',
+    'circle-solid'        : '\uE61A',
     'circle'              : '\uE6D7',
     'check-circle'        : '\uE77D',
     'check-circle-fill'   : '\uE844',
@@ -44,6 +45,7 @@ const ICONS: Record<string, string> = {
     'info-circle'         : '\uE77F',
     'info-circle-fill'    : '\uE849',
     // -----------------------------
+    'pull'                : '\uE600',
     'more'                : '\uE68A',
     'edit'                : '\uE7E1',
     'edit-fill'           : '\uE86D',
@@ -51,7 +53,7 @@ const ICONS: Record<string, string> = {
     'delete-fill'         : '\uE863',
     'filter'              : '\uE7C7',
     'filter-fill'         : '\uE866',
-    'calendar'            : '\u10114',
+    'calendar'            : '\uE603',
     'calendar-check'      : '\uE7D3',
     'time-circle'         : '\uE788',
     'time-circle-fill'    : '\uE84C',
@@ -137,15 +139,15 @@ const ICONS: Record<string, string> = {
     'wechat-fill'       : '\uE883',
     'alipay-circle-fill': '\uE884',
     'github-fill'       : '\uE885',
-    // 空元素
-    'not-data'          : '\uE61A',
-    'not-wifi'          : '\uE600',
-    'not-auth'          : '\uE66B',
-    'not-history'       : '\uE6DD',
-    'not-address'       : '\uE6CE',
-    'not-cart'          : '\uE63F',
-    'not-wifi-1'        : '\uE65B',
-    'not-history-1'     : '\uE632',
+    // // 空元素
+    // 'not-data'          : '\uE61A',
+    // 'not-wifi'          : '\uE600',
+    // 'not-auth'          : '\uE66B',
+    // 'not-history'       : '\uE6DD',
+    // 'not-address'       : '\uE6CE',
+    // 'not-cart'          : '\uE63F',
+    // 'not-wifi-1'        : '\uE65B',
+    // 'not-history-1'     : '\uE632',
 }
 
 export default ICONS
