@@ -1,8 +1,9 @@
 @import '../styles/variables.scss';
 
-$popup-radius    : var(--sd-popup-radius , $sd-radius-md);
-$popup-z-index   : var(--sd-popup-z-index, $sd-popup-z-index);
-$popup-background: var(--sd-popup-background, $sd-white);
+$popup-overlay-background: var(--sd-popup-overlay-background, $sd-bg-color-overlay);
+$popup-background        : var(--sd-popup-background, $sd-white);
+$popup-radius            : var(--sd-popup-radius    , $sd-radius-md);
+$popup-z-index           : var(--sd-popup-z-index   , $sd-popup-z-index);
 
 .sd-popup-wrap {
     position: fixed;
@@ -18,7 +19,7 @@ $popup-background: var(--sd-popup-background, $sd-white);
     transition: all .3s ease-in-out;
 
     &.has-overlay {
-        background-color: $sd-bg-color-overlay;
+        background-color: $popup-overlay-background;
     }
 
     &.is-show {
@@ -97,10 +98,12 @@ $popup-background: var(--sd-popup-background, $sd-white);
 
     &--center {
         width: 90%;
-        transform: scale3d(0, 0, 0);
+        opacity: 0;
+        // transform: scale3d(0, 0, 0);
 
         &.is-show {
-            transform: scale3d(1, 1, 1);
+            opacity: 1;
+            // transform: scale3d(1, 1, 1);
         }
 
         &.sd-popup--round {
@@ -119,11 +122,13 @@ $popup-background: var(--sd-popup-background, $sd-white);
         flex-wrap: nowrap;
     }
 
+    // 顶部标题
     &__title {
         font-weight: bold;
         font-size: $sd-font-size-lg;
     }
 
+    // 顶部关闭按钮
     &__header-close {
         position: absolute;
         top: 16rpx;
@@ -136,11 +141,13 @@ $popup-background: var(--sd-popup-background, $sd-white);
         align-items: center;
     }
 
+    // 内部区域
     &__body {
         overflow: hidden;
         width: 100%;
     }
 
+    // 底部关按钮
     &__footer-close {
         position: absolute;
         left: 50%;

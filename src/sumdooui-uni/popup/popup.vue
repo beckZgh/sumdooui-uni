@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import { defineComponent, computed, ref, watch } from 'vue'
-import { MpMixin                   } from '../common/mixins'
-import { popup_props               } from './popup'
+import { defineComponent, computed, ref, watch, onMounted, onUnmounted } from 'vue'
+import { MpMixin     } from '../common/mixins'
+import { popup_props  } from './popup'
 // import { useGestureSlide } from './use-gesture-slide'
 
 import Utils from '../utils'
@@ -25,13 +25,17 @@ export default defineComponent({
         const visible = ref(false)
 
         watch(() => props.visible, (status) => {
-            status ? open() : close()
+            status ? open() : close(false)
         })
 
-        init()
-        function init() {
+        onMounted(() => {
             props.visible && open()
-        }
+        })
+
+        // 外部使用 v-if 时，props.visible 无法被改变
+        onUnmounted(() => {
+            close(true)
+        })
 
         function open() {
             visible.value = true
@@ -39,9 +43,9 @@ export default defineComponent({
             emit('open')
         }
 
-        async function close() {
+        async function close(force = false) {
             // 关闭弹窗前回调
-            if (props.beforeClose && typeof props.beforeClose === 'function') {
+            if (!force && props.beforeClose && typeof props.beforeClose === 'function') {
                 const can_close = await props.beforeClose()
                 if ( !can_close ) return
             }
@@ -74,14 +78,14 @@ export default defineComponent({
         function onClickOverlay() {
             if (props.closeOnClickOverlay) {
                 emit('click-overlay')
-                close()
+                close(false)
             }
         }
 
         // 监听关闭按钮点击
         function onClickClose() {
             emit('click-close')
-            close()
+            close(false)
         }
 
         function onTouchMove() {}
