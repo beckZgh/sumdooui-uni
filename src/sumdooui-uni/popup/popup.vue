@@ -88,7 +88,9 @@ export default defineComponent({
             close(false)
         }
 
-        function onTouchMove() {}
+        function onTouchMove(e: TouchEvent) {
+            e.stopPropagation()
+        }
 
         return {
             visible,
@@ -112,7 +114,7 @@ export default defineComponent({
         ]"
         :style="overlay_style$"
         @tap="onClickOverlay"
-        @touchmove.stop="onTouchMove"
+        @touchmove.stop.prevent="onTouchMove"
     >
         <view
             class="sd-popup"
@@ -122,7 +124,7 @@ export default defineComponent({
             ]"
             :style="popup_style$"
             @tap.stop
-            @touchmove.stop="onTouchMove"
+            @touchmove.stop.prevent="onTouchMove"
         >
             <!-- 顶部区域 -->
             <view v-if="title || showTopClose" class="sd-popup__header">
