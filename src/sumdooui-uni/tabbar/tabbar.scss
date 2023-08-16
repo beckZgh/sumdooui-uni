@@ -1,13 +1,13 @@
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
-$tabbar-background      : var(--sd-tabbar-background, $sd-white);
-$tabbar-height          : var(--sd-tabbar-height, 112rpx);
-$tabbar-icon-size       : var(--sd-tabbar-icon-size, 56rpx);
-$tabbar-text-size       : var(--sd-tabbar-text-size, 20rpx);
-$tabbar-inactive-color  : var(--sd-tabbar-inactive-color, $sd-text-color-secondary);
-$tabbar-active-color    : var(--sd-tabbar-inactive-color, $sd-primary-color);
+$tabbar-background      : var(--sd-tabbar-background      , $sd-white);
+$tabbar-height          : var(--sd-tabbar-height          , 112rpx);
+$tabbar-icon-size       : var(--sd-tabbar-icon-size       , 56rpx);
+$tabbar-text-size       : var(--sd-tabbar-text-size       , 20rpx);
+$tabbar-inactive-color  : var(--sd-tabbar-inactive-color  , $sd-text-color-secondary);
+$tabbar-active-color    : var(--sd-tabbar-inactive-color  , $sd-primary-color);
 $tabbar-round-box-shadow: var(--sd-tabbar-round-box-shadow, 0 6px 30px 5px rgba(0, 0, 0, 0.05), 0 16px 24px 2px rgba(0, 0, 0, 0.04), 0 8px 10px -5px rgba(0, 0, 0, 0.08));
-$tabbar-z-index         : var(--sd-tabbar-z-index, $sd-popup-z-index);
+$tabbar-z-index         : var(--sd-tabbar-z-index         , $sd-popup-z-index);
 
 .sd-tabbar {
     display: flex;
@@ -15,7 +15,6 @@ $tabbar-z-index         : var(--sd-tabbar-z-index, $sd-popup-z-index);
     background-color: $tabbar-background;
     padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS<11.2 */
     padding-bottom: env(safe-area-inset-bottom);      /* 兼容iOS>= 11.2 */
-    box-sizing: border-box;
 
     &.is-fixed {
         position: fixed;
@@ -80,7 +79,7 @@ $tabbar-z-index         : var(--sd-tabbar-z-index, $sd-popup-z-index);
     }
 
     &__placeholder {
-        background-color: $sd-white;
+        background-color: transparent;
         height: $tabbar-height;
         padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS<11.2 */
         padding-bottom: env(safe-area-inset-bottom);      /* 兼容iOS>= 11.2 */

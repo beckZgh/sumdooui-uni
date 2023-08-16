@@ -9,7 +9,7 @@ export default defineComponent({
 
     name : 'SdTabbar',
     props: tabbar_props,
-    emits: ['update:modelValue', 'change'],
+    emits: ['update:modelValue', 'click', 'change'],
     setup(props, { emit }) {
         // 注入
         provide(TABBLE_KEY, { props, onChange })
@@ -27,7 +27,11 @@ export default defineComponent({
             emit('change', params.name, params)
         }
 
-        return { onChange }
+        function onClick(params: { item: TabbarItem; index: number }) {
+            emit('click', params)
+        }
+
+        return { onChange, onClick }
     },
 })
 </script>
@@ -49,7 +53,7 @@ export default defineComponent({
             <slot v-if="$slots.default" />
             <template v-else>
                 <template v-for="(item, index) in items" :key="index">
-                    <sd-tabbar-item v-bind="item" :name="index" />
+                    <sd-tabbar-item v-bind="item" :name="item.name || index" @click="onClick({ item, index })" />
                 </template>
             </template>
         </view>
