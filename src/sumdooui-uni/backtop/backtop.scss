@@ -1,19 +1,32 @@
 @import '../styles/variables.scss';
 
+$backtop-size          : var(--sd-backtop-size          , 108rpx);
+$backtop-right         : var(--sd-backtop-right         , 36rpx);
+$backtop-bottom        : var(--sd-backtop-bottom        , 100rpx);
+$backtop-background    : var(--sd-backtop-background    , $sd-primary-color);
+$backtop-color         : var(--sd-backtop-color         , $sd-white);
+$backtop-radius        : var(--sd-backtop-radius        , 50%);
+$backtop-z-index       : var(--sd-backtop-z-index       , $sd-backtop-z-index);
+$backtop-icon-font-size: var(--sd-backtop-icon-font-size, 40rpx);
+
 .sd-backtop {
     position: fixed;
-    right: 36rpx;
-    bottom: 100rpx;
-    background-color: $sd-primary-color;
-    color: $sd-white;
-    border-radius: 50%;
-    width: 108rpx;
-    height: 108rpx;
+    right: $backtop-right;
+    bottom: $backtop-bottom;
+    background-color: $backtop-background;
+    color: $backtop-color;
+    border-radius: $backtop-radius;
+    width: $backtop-size;
+    height: $backtop-size;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    z-index: $sd-backtop-z-index;
+    z-index: $backtop-z-index;
+
+    &__icon {
+        font-size: $backtop-icon-font-size;
+    }
 
     &--primary {
         background-color: $sd-primary-color;

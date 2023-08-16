@@ -47,7 +47,7 @@ export default defineComponent({
         @tap="handleBackTop"
     >
         <slot v-if="$slots.default" />
-        <sd-icon v-else name="top" />
+        <sd-icon v-else name="up" custom-class="sd-backtop__icon" />
     </view>
 </template>
 
