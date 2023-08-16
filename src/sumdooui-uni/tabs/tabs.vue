@@ -51,6 +51,9 @@ export default defineComponent({
             return style
         })
 
+        // 监听数据变化
+        watch(() => props.items, init)
+
         init()
         function init() {
             initItems()
