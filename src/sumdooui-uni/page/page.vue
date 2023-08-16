@@ -5,6 +5,7 @@ import { defineComponent, ref, computed, onMounted, provide } from 'vue'
 import { page_props        } from './page'
 import { useSelectoryQuery } from '../common/hooks'
 import { PAGE_KEY          } from '../common/tokens'
+import { config            } from '../config'
 // import { MpMixin           } from '../common/mixins' // 使用 deep 作用样式域的时间，如 sd-page 为根元素无法应用注入的 class
 
 export default defineComponent({
@@ -17,12 +18,8 @@ export default defineComponent({
         'click-error-button',
     ],
     setup(props, { emit }) {
-        const app_base_info = uni.getAppBaseInfo()  // 应用基础信息
-        const pages         = getCurrentPages()     // 所有页面实例
-        const first_page    = pages.length === 1
-
-        // 页面标题
-        const page_title$ = computed(() => props.title || app_base_info?.appName || '')
+        const pages           = getCurrentPages()     // 所有页面实例
+        const first_page      = pages.length === 1
 
         // 显示返回首页按钮
         const show_home_button$ = computed(() => props.showHome && first_page)
@@ -32,7 +29,7 @@ export default defineComponent({
 
         // 页面样式
         const page_style$ = computed(() => {
-            const style: CSSProperties = {}
+            const style: CSSProperties = { ...config.theme_vars }
             if (props.background     ) style.backgroundColor = props.background
             if (props.backgroundImage) style.backgroundImage = `url(${ props.backgroundImage })`
             return style
@@ -82,7 +79,6 @@ export default defineComponent({
 
         return {
             header_height,
-            page_title$,
             page_style$,
             show_home_button$,
             show_back_button$,
@@ -97,7 +93,10 @@ export default defineComponent({
 <template>
     <view
         class="sd-page"
-        :class="[{ 'lock-scroll': lockScroll, 'has-bg-img': backgroundImage }]"
+        :class="[{
+            'lock-scroll': lockScroll || loading !== 0,
+            'has-bg-img' : backgroundImage,
+        }]"
         :style="page_style$"
     >
         <!-- 页面顶部区域 -->
@@ -110,7 +109,7 @@ export default defineComponent({
             :style="headerStyle"
         >
             <sd-navbar
-                :title="page_title$"
+                :title="title"
                 :left-icon="show_home_button$ ? 'home' : (show_back_button$ ? 'left' : undefined)"
                 :border="false"
                 v-bind="navbarProps"
