@@ -1,9 +1,17 @@
 
-.sd-pull-refresh__icon {
-    display: inline-block;
-    transition: transform .3s ease;
+.sd-pull-refresh {
+    height: 100%;
 
-    &.is-loosing {
-        transform: rotate(180deg);
+    &__content {
+        text-align: center;
+    }
+
+    &__icon {
+        display: inline-block;
+        transition: transform .3s ease;
+
+        &.is-loosing {
+            transform: rotate(180deg);
+        }
     }
 }

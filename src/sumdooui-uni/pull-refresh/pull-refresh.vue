@@ -1,25 +1,24 @@
 <script lang="ts">
 import { defineComponent, ref, nextTick } from 'vue'
-import { MpMixin                   } from '../common/mixins'
-import { pull_refresh_props        } from './pull-refresh'
+import { MpMixin                        } from '../common/mixins'
+import { pull_refresh_props             } from './pull-refresh'
 
 export default defineComponent({
     ...MpMixin,
 
     name : 'SdPullRefresh',
     props: pull_refresh_props,
-    emits: ['scroll'],
+    emits: ['scroll', 'scrolltolower'],
     setup(props, { emit }) {
-        const triggered  = ref<'' | 'pulling' | 'loosing' | 'refreshing' | 'success'>('')
-        const refreshing = ref(false)
-
-        // 滚动位置
-        function handleScroll(e: any) {
-            emit('scroll', e.detail.scrollTop)
-        }
+        const triggered     = ref<'' | 'pulling' | 'loosing' | 'refreshing' | 'success'>('')
+        const refreshing    = ref(false)
+        const scroll_top    = ref(0) // 指定滚动位置
+        const scrolling_top = ref(0) // 实时滚动距离
 
         // 处理下拉中
         function handlePulling(e: any) {
+            if (scroll_top.value > 0) return
+
             if (e.detail.dy >= props.pullDistance) {
                 triggered.value = 'loosing'
             } else {
@@ -61,14 +60,30 @@ export default defineComponent({
             })
         }
 
+        // ------------------------------
+
+        function onScroll(e: any) {
+            scrolling_top.value = e.detail.scrollTop
+            emit('scroll', e)
+        }
+
+        function scrollToTop() {
+            if (scroll_top.value === 0) scroll_top.value = -1
+            nextTick(() => {
+                scroll_top.value = 0
+            })
+        }
+
         return {
+            scroll_top,
             triggered,
             refreshing,
-            handleScroll,
             handlePulling,
             handleRestore,
             handleAbort,
             handleRefresh,
+            onScroll,
+            scrollToTop,
         }
     },
 })
@@ -79,17 +94,22 @@ export default defineComponent({
         class="sd-pull-refresh"
         :class="customClass"
         :style="customStyle"
-        scroll-y
         :refresher-enabled="disabled ? false : true"
         :refresher-triggered="refreshing"
         :refresher-threshold="pullDistance"
+        :lower-threshold="lowerThreshold"
+        :scroll-with-animation="scrollWithAnimation"
+        :scroll-top="scroll_top"
+        scroll-y
         refresher-default-style="none"
+        @scroll="onScroll"
+        @scrolltolower="$emit('scrolltolower', $event)"
         @refresherabort="handleAbort"
         @refresherpulling="handlePulling"
         @refresherrestore="handleRestore"
         @refresherrefresh="handleRefresh"
     >
-        <view style="text-align: center;">
+        <view v-if="triggered" class="sd-pull-refresh__content" :style="contentStyle">
             <view v-if="triggered === 'pulling' || triggered === 'loosing'">
                 <sd-icon
                     name="pull"
