@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed, ref, watch, onMounted, onUnmounted } from 'vue'
 import { MpMixin     } from '../common/mixins'
-import { popup_props  } from './popup'
+import { popup_props } from './popup'
 // import { useGestureSlide } from './use-gesture-slide'
 
 import Utils from '../utils'

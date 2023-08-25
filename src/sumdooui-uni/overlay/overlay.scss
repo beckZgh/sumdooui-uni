@@ -1,5 +1,5 @@
 
-@import '../styles/variables.scss'  ;
+@import '../styles/variables.scss';
 
 $overlay-background: var(--sd-overlay-background, $sd-bg-color-overlay);
 $overlay-z-index   : var(--sd-overlay-z-index   , $sd-popup-z-index);
@@ -15,7 +15,7 @@ $overlay-z-index   : var(--sd-overlay-z-index   , $sd-popup-z-index);
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all .3s;
+    transition: opacity .3s;
     background-color: $overlay-background;
 
     &.is-show {

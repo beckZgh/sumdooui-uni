@@ -2,8 +2,8 @@
 import type { CSSProperties } from 'vue'
 
 import { defineComponent, computed } from 'vue'
-import { MpMixin                   } from '../common/mixins'
-import { overlay_props             } from './overlay'
+import { MpMixin       } from '../common/mixins'
+import { overlay_props } from './overlay'
 
 export default defineComponent({
     ...MpMixin,
