@@ -1,5 +1,5 @@
 import './styles/index.scss'
-import './sumdooui-uni/styles/dark.scss'
+import '@sumdoo/sumdooui-uni/styles/dark.scss'
 
 import { createSSRApp } from 'vue'
 import App              from './App.vue'

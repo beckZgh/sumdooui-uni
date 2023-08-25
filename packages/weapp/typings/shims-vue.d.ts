@@ -1,4 +1,4 @@
-import type { RouterInstance } from '@/sumdooui-uni/utils/router'
+import type { RouterInstance } from '@sumdoo/sumdooui-uni/utils/router'
 
 declare module 'vue' {
     interface ComponentCustomProperties {

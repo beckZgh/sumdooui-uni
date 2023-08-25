@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import ICONS from '@/sumdooui-uni/icon/icons'
+import ICONS from '@sumdoo/sumdooui-uni/icon/icons'
 </script>
 
 <template>

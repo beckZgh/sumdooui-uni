@@ -1,0 +1,7 @@
+{
+    "name": "@sumdoo/sumdooui-uni",
+    "version": "1.0.0",
+    "description": "适用于 uniapp 开发的小程序组件",
+    "license": "MIT",
+    "main": "./index.ts"
+}
