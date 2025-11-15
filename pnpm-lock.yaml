@@ -6,7 +6,13 @@ importers:
     specifiers: {}
 
   packages/sumdooui-uni:
-    specifiers: {}
+    specifiers:
+      '@dcloudio/types': ^3.3.2
+      vue: ^3.2.45
+    dependencies:
+      vue: 3.2.45
+    devDependencies:
+      '@dcloudio/types': 3.3.2
 
   packages/weapp:
     specifiers:
