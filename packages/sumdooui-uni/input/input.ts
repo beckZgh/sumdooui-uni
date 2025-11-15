@@ -7,6 +7,11 @@ import { COMMON_PROPS } from '../common/props'
 
 export type InputBorderType = 'surround' | 'bottom' | 'none'
 
+// 小程序独有属性
+export const weapp_extra_props = {
+    holdKeyboard: { type: Boolean },
+}
+
 export const input_props = {
     ...COMMON_PROPS,
 
@@ -22,6 +27,8 @@ export const input_props = {
     placeholder     : { type: String, default: '请输入内容...' },
     /** 占位描述自定义样式 */
     placeholderStyle: { type: String },
+    /** 输入框自定义样式 */
+    inputStyle      : { type: String },
     /** 最大字数 */
     maxlength       : { type: Number, default: -1 },
     /** 是否显示清除按钮 */
@@ -54,6 +61,8 @@ export const input_props = {
     suffixIconProps : { type: Object as PropType<Omit<IconProps, 'name'>> },
     /** 内容对齐方式 */
     inputAlign      : { type: String as PropType<Component.InputAlign> },
+    // --------------------------------------------------------------------------
+    ...weapp_extra_props,
 }
 
 export type InputProps = ExtractPropTypes<typeof input_props>

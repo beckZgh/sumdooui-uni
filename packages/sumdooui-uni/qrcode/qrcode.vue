@@ -13,7 +13,7 @@
 // 微信小程序使用wxbarcode插件生成条形码
 // https://developers.weixin.qq.com/community/develop/doc/000ac6667341508404b87aa8b56c00
 
-import { defineComponent, watch, computed, getCurrentInstance } from 'vue'
+import { defineComponent, watch, computed, getCurrentInstance, onMounted } from 'vue'
 
 
 import QR from './qrcode'
@@ -22,12 +22,14 @@ export default defineComponent({
     name   : 'SdQrcode',
     options: { virtualHost: true },
     props  : {
-        code  : { type: String, required: true }, // 编码
-        width : { type: Number, required: true }, // 宽度
-        height: { type: Number, required: true }, // 高度
-        erect : { type: Boolean                }, // 竖立
+        code      : { type: String, required: true  }, // 编码
+        width     : { type: Number, required: true  }, // 宽度
+        height    : { type: Number, required: true  }, // 高度
+        erect     : { type: Boolean, default: false }, // 竖立
+        background: { type: String },
     },
-    setup(props) {
+    emits: ['created', 'fail', 'change'],
+    setup(props, ctx) {
         // 当前实例
         const proxy = getCurrentInstance()?.proxy
 
@@ -35,18 +37,30 @@ export default defineComponent({
         const style$ = computed(() => `width:${ props.width }px; height:${ props.height }px`)
 
         // 监听以创建二维码
-        watch(() => props.code, createCode)
+        watch(() => props.code, async (code) => {
+            if (code) {
+                const res = await makeCode(code)
+                if (res.ok) ctx.emit('change')
+            }
+        })
 
         // 创建二维码
-        createCode()
-        function createCode(code?: string) {
-            code = code || props.code
-            if (!code) return
+        onMounted(async () => {
+            const res = await makeCode(props.code)
+            if (res.ok) {
+                ctx.emit('created')
+            } else {
+                ctx.emit('fail', res.err)
+            }
+        })
+        async function makeCode(code?: string) {
+            if (!code) return { ok: false, err: 'code is empty' }
 
             const width  = props.width
             const height = props.height
 
-            QR.api.draw(code, 'qrcode', width, height, proxy)
+            const options = { background: props.background }
+            return QR.api.draw(code, 'qrcode', width, height, proxy, props.erect, options)
         }
 
         async function getFilePath() {

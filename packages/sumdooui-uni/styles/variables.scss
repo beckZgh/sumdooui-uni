@@ -4,6 +4,7 @@
 $sd-white: #fff;
 $sd-black: #000;
 $sd-blue : var(--sd-blue , #1D6FE9);
+$sd-blue-3: var(--sd-blue-3, mix($sd-white, #1D6FE9, 30%)); // #7e8dff
 
 // 中性色
 $sd-gray-color-1 : var(--sd-gray-color-1 , #f3f3f3);

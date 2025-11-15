@@ -15,6 +15,7 @@ export default defineComponent({
     props: page_props,
     emits: [
         'mounted',
+        'reload',
         'click-error-button',
     ],
     setup(props, { emit }) {
@@ -77,6 +78,11 @@ export default defineComponent({
 
         provide(PAGE_KEY, { instance, props, getPageHeaderHeight, isFristPage })
 
+        function onClickButton() {
+            emit('reload')
+            emit('click-error-button')
+        }
+
         return {
             header_height,
             page_style$,
@@ -85,6 +91,7 @@ export default defineComponent({
             onClickNavbarLeft,
             getPageHeaderHeight,
             isFristPage,
+            onClickButton,
         }
     },
 })
@@ -131,7 +138,7 @@ export default defineComponent({
         </view>
 
         <!-- 页面底部区域 -->
-        <view v-show="loading === 0" class="sd-page__footer" :class="footerClass" :style="footerStyle">
+        <view v-if="loading === 0 && $slots.footer" class="sd-page__footer" :class="footerClass" :style="footerStyle">
             <slot name="footer" />
             <view v-if="safeAreaInsetBottom" class="sd-page-safe-area-bottom" />
         </view>
@@ -155,12 +162,15 @@ export default defineComponent({
                         type="primary"
                         round
                         width="320rpx"
-                        @click="$emit('click-error-button')"
+                        @click="onClickButton"
                     >
                         {{ errorButtonText }}
                     </sd-button>
                 </template>
             </sd-empty>
         </view>
+
+        <!-- tabbar 页面专用 v24.01.19 -->
+        <slot name="tabbar" />
     </view>
 </template>

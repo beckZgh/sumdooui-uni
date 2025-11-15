@@ -20,10 +20,10 @@ export default defineComponent({
         'confirm',
     ],
     setup(props, { emit }) {
-        const form_item     = inject<FormItemProvide>(FORM_ITEM_KEY)
-        const form          = inject<FormProvide>(FORM_KEY)
-        const focus         = ref(false)
-        const show_password = ref(false)
+        const form_item      = inject<FormItemProvide>(FORM_ITEM_KEY)
+        const form           = inject<FormProvide>(FORM_KEY)
+        const internal_focus = ref(false)
+        const show_password  = ref(false)
 
         // 是否禁用状态
         const disabled$ = computed(() => props.disabled || form?.props.disabled || false)
@@ -32,6 +32,10 @@ export default defineComponent({
 
         watch(() => props.modelValue, () => {
             form_item?.validate('change')
+        })
+
+        watch(() => props.focus, (value) => {
+            internal_focus.value = value
         })
 
         // 显示、隐藏密码
@@ -58,20 +62,20 @@ export default defineComponent({
 
         function onFocus(e: any) {
             if (disabled$.value || readonly$.value) return
-            focus.value = true
+            internal_focus.value = true
             emit('focus', e)
         }
 
         function onBlur(e: any) {
             if (disabled$.value || readonly$.value) return
-            focus.value = false
+            internal_focus.value = false
             emit('blur', e)
 
             form_item?.validate('blur')
         }
 
         return {
-            focus,
+            internal_focus,
             show_password,
             disabled$,
             readonly$,
@@ -81,6 +85,10 @@ export default defineComponent({
             onFocus,
             onBlur,
             onConfirm,
+            // -------------------------
+            focus: onFocus,
+            blur : onBlur,
+            clear: handleClear,
         }
     },
 })
@@ -94,7 +102,7 @@ export default defineComponent({
             {
                 [`sd-input--${ border }-border`]: border && border !== 'none',
                 'is-disabled'                   : disabled$,
-                'is-focus'                      : !disabled$ && !readonly$ && focus,
+                'is-focus'                      : !disabled$ && !readonly$ && internal_focus,
             },
         ]"
         :style="customStyle"
@@ -116,7 +124,7 @@ export default defineComponent({
         <input
             class="sd-input__content"
             placeholder-class="sd-input__placeholder"
-            :style="inputAlign ? `text-align: ${ inputAlign }` : ''"
+            :style="[inputStyle || '', inputAlign ? `text-align: ${ inputAlign }` : '']"
             :placeholder="placeholder"
             :placeholder-style="placeholderStyle"
             :value="modelValue"
@@ -125,11 +133,12 @@ export default defineComponent({
             :disabled="disabled$ || readonly$"
             :maxlength="maxlength"
             :auto-height="autoHeight"
-            :focus="focus"
+            :focus="internal_focus"
             :auto-focus="autoFocus"
             :cursor-spacing="cursorSpacing"
             :confirm-type="confirmType"
             :show-confirm-bar="false"
+            :hold-keyboard="holdKeyboard"
             disable-default-padding
             adjust-position
             @input="onInput"

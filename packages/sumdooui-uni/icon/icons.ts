@@ -1,9 +1,9 @@
 const ICONS: Record<string, string> = {
     // 基础图标
-    "plus"                : '\uE8FE',
+    'plus'                : '\uE8FE',
     'plus-circle'         : '\uE783',
     'plus-circle-fill'    : '\uE845',
-    "minus"               : '\uE7FE',
+    'minus'               : '\uE7FE',
     'minus-circle'        : '\uE780',
     'minus-circle-fill'   : '\uE844',
     'up'                  : '\uE7ED',
@@ -59,7 +59,7 @@ const ICONS: Record<string, string> = {
     'time-circle-fill'    : '\uE84C',
     'search'              : '\uE8F0',
     'darg'                : '\uE842',
-    "link"                : '\uE7E2',
+    'link'                : '\uE7E2',
     'notification'        : '\uE7DA',
     'sound'               : '\uE7DB',
     'sound-fill'          : '\uE865',

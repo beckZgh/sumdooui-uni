@@ -62,7 +62,7 @@ export default defineComponent({
                 <view
                     class="sd-switch-bar__item"
                     :class="{ 'is-active': current_index === index }"
-                    :style="{ color: current_index === index ? activeColor : color }"
+                    :style="{ ...itemStyle, color: current_index === index ? activeColor : color }"
                     @tap="onClick(index)"
                 >
                     {{ name }}

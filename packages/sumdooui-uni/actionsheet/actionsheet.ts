@@ -2,11 +2,11 @@ import type { PropType, ExtractPropTypes } from 'vue'
 import { COMMON_PROPS } from '../common/props'
 
 export interface ActionsheetItem {
-    id?: string
-    icon?: string
-    text: string
-    color?: string
-    disabled?: boolean
+    id       ?: string
+    icon     ?: string
+    text      : string
+    color    ?: string
+    disabled ?: boolean
     open_type?: string
 }
 

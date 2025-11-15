@@ -31,7 +31,7 @@ export default defineComponent({
         })
 
         // 显示冒号
-        const colon$ = computed(() => props.colon || form?.props.colon || true)
+        const colon$ = computed(() => props.colon ?? form?.props.colon ?? true)
 
         // 标题位置
         const label_position$ = computed(() => props.labelPosition || form?.props.labelPosition || 'right')
@@ -43,7 +43,7 @@ export default defineComponent({
         const show_border$ = computed(() => props.borderBottom || form?.props.borderBottom)
 
         // 是否显示异常信息
-        const show_error$ = computed(() => props.showError || form?.props.showError || true)
+        const show_error$ = computed(() => props.showError ?? form?.props.showError ?? true)
 
         // 异常提示类型
         const error_type$ = computed(() => props.errorType || form?.props.errorType || 'message')

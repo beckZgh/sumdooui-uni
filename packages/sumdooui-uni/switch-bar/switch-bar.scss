@@ -30,6 +30,7 @@ $switch-bar-font-size        : var(--sd-switch-font-size            , $sd-font-s
         justify-content: center;
         align-items: center;
         line-height: 1;
+        height: 100%;
         color: $switch-bar-text-color;
         font-size: $switch-bar-font-size;
         z-index: 2;

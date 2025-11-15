@@ -43,7 +43,13 @@ export default defineComponent({
         })
 
         function onInput(e: any) {
-            const value = e.detail.value
+            let value = e.detail.value
+
+            // 部分手机（如华为）在有输入法的情况下可能会超过字数限制 v25.03.21
+            if (props.maxlength > 0 && value.length > props.maxlength) {
+                value = value.slice(0, props.maxlength)
+            }
+
             emit('update:modelValue', value)
             emit('change', value)
         }

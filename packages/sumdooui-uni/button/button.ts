@@ -6,6 +6,8 @@ import { COMMON_PROPS } from '../common/props'
 export const button_props = {
     ...COMMON_PROPS,
 
+    /** 唯一标识 */
+    id              : { type: String },
     /** 预设按钮主题 */
     type            : { type: String as PropType<Component.Type> },
     /** 按钮尺寸 */
@@ -40,6 +42,8 @@ export const button_props = {
     buttonText      : { type: String },
     /** 禁用按钮 */
     disabled        : { type: Boolean, default: false },
+    /** 点击态 */
+    clickable       : { type: Boolean, default: true },
     // 小程序按钮特殊属性
     // https://developers.weixin.qq.com/miniprogram/dev/component/button.html
     openType        : { type: String as PropType<Component.ButtonOpenType> },

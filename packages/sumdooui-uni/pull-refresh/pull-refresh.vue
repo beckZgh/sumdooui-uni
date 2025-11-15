@@ -44,8 +44,8 @@ export default defineComponent({
             if (typeof props.onRefresh !== 'function') return
 
             refreshing.value = true
-            await props.onRefresh()
-            if (props.showSuccessText && props.successText) {
+            const res = await props.onRefresh()
+            if (res.ok && props.showSuccessText && props.successText) {
                 triggered.value = 'success'
                 await sleep()
             }

@@ -144,7 +144,8 @@ export default defineComponent({
         }
 
         function getOffsetDay() {
-            const  current = dt.getWeekday(props.date)
+            // 取得当前月份的第一天的星期几
+            const  current = dt.getWeekday(dt.firstDateOfMonth(props.date))
             return current < props.firstDayOfWeek
                 ? (7 - props.firstDayOfWeek + current)
                 : current === 7 && props.firstDayOfWeek === 0

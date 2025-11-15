@@ -1,4 +1,4 @@
-import type { PropType, ExtractPropTypes } from 'vue'
+import type { PropType, ExtractPropTypes, CSSProperties } from 'vue'
 import { COMMON_PROPS } from '../common/props'
 
 export type SwitchBarItem = {
@@ -25,6 +25,8 @@ export const switch_props = {
     color      : { type: String },
     /** 自定义激活文本颜色 */
     activeColor: { type: String },
+    /** 子项自定义样式 */
+    itemStyle  : { type: Object as PropType<CSSProperties> },
 }
 
 export type SwitchProps = ExtractPropTypes<typeof switch_props>

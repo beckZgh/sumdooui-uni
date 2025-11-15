@@ -787,40 +787,48 @@ export default (function () {
         /**
          * 新增$this参数，传入组件的this,兼容在组件中生成
          */
-        draw: function (str, canvas, cavW, cavH, $this, ecc) {
-            var that = this;
-            ecclevel = ecc || ecclevel;
-            canvas = canvas || _canvas;
-            if (!canvas) {
-                console.warn('No canvas provided to draw QR code in!')
-                return;
-            }
+        draw: function (str, canvas, cavW, cavH, $this, ecc, options) {
+            return new Promise((resolve) => {
+                var that = this;
+                ecclevel = ecc || ecclevel;
+                canvas   = canvas || _canvas;
+                if (!canvas) {
+                    resolve({ ok: false, err: 'No canvas provided to draw QR code in!' })
+                    return ;
+                }
 
-            var size = Math.min(cavW, cavH);
-            str = that.utf16to8(str);//增加中文显示
+                var size = Math.min(cavW, cavH);
+                str = that.utf16to8(str);//增加中文显示
 
-            var frame = that.getFrame(str),
-                // 组件中生成qrcode需要绑定this
-                ctx = wx.createCanvasContext(canvas, $this),
-                px = Math.round(size / (width + 8));
-            var roundedSize = px * (width + 8),
-                offset = Math.floor((size - roundedSize) / 2);
-            size = roundedSize;
-            //ctx.clearRect(0, 0, cavW, cavW);
+                var frame = that.getFrame(str),
+                    // 组件中生成qrcode需要绑定this
+                    ctx = wx.createCanvasContext(canvas, $this),
+                    px = Math.round(size / (width + 8));
+                var roundedSize = px * (width + 8),
+                    offset = Math.floor((size - roundedSize) / 2);
+                size = roundedSize;
+                //ctx.clearRect(0, 0, cavW, cavW);
 
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, cavW, cavW);
-            ctx.fillStyle = '#000000';
+                // v24.01.16 新增支持背景色
+                const bgcolor = (options && options.background) ? options.background : '#ffffff'
+                ctx.fillStyle = bgcolor;
+                ctx.fillRect(0, 0, cavW, cavW);
+                ctx.fillStyle = '#000000';
 
-            for (var i = 0; i < width; i++) {
-                for (var j = 0; j < width; j++) {
-                    if (frame[j * width + i]) {
-                        ctx.fillRect(px * (4 + i) + offset, px * (4 + j) + offset, px, px);
+                for (var i = 0; i < width; i++) {
+                    for (var j = 0; j < width; j++) {
+                        if (frame[j * width + i]) {
+                            ctx.fillRect(px * (4 + i) + offset, px * (4 + j) + offset, px, px);
+                        }
                     }
                 }
-            }
-            ctx.draw();
-        }
+
+                // https://developers.weixin.qq.com/miniprogram/dev/api/canvas/CanvasContext.draw.html
+                ctx.draw(false, () => {
+                    resolve({ ok: true })
+                });
+            })
+        },
     }
     // module.defualt = { api }
     // exports.draw = api;

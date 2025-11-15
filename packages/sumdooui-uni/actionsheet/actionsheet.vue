@@ -1,7 +1,9 @@
 <script lang="ts">
+import type { ActionsheetItem } from './actionsheet'
+
 import { defineComponent, computed } from 'vue'
-import { MpMixin } from '../common/mixins'
-import { actionsheet_props, type ActionsheetItem } from './actionsheet'
+import { MpMixin                   } from '../common/mixins'
+import { actionsheet_props         } from './actionsheet'
 
 export default defineComponent({
     ...MpMixin,
@@ -87,4 +89,3 @@ export default defineComponent({
         </view>
     </sd-popup>
 </template>
-

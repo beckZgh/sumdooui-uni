@@ -99,11 +99,11 @@ $popup-z-index           : var(--sd-popup-z-index   , $sd-popup-z-index);
     &--center {
         width: 90%;
         opacity: 0;
-        // transform: scale3d(0, 0, 0);
+        display: none; // v24.03.26 解决弹窗关闭过渡时点击，还可触发相关事件
 
         &.is-show {
             opacity: 1;
-            // transform: scale3d(1, 1, 1);
+            display: block;
         }
 
         &.sd-popup--round {

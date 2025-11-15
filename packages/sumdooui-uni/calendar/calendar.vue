@@ -49,9 +49,11 @@ export default defineComponent({
         })
 
         // 监听类型变化，重新计算选中值
+        watch(() => props.defaultDate, init)
         watch(() => props.mode      , resetOnModeChanged)
         watch(() => props.scrollable, init)
         watch(() => props.visible   , () => {
+            init()
             initRect()
             scrollIntoView()
         })
@@ -64,6 +66,7 @@ export default defineComponent({
         // 平铺模式，初始化一次
         init()
         function init() {
+            if (!props.visible) return
             const today = dt.format(new Date())
             state.today = today
             // 滚动模式默认展示包含当月共七个月

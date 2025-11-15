@@ -212,7 +212,9 @@ $button-default-border-color    : var(--sd-button-default-border-color, $sd-bord
     }
 
     // 点击态
-    @include clickable($sd-black);
+    &.is-clickable {
+        @include clickable($sd-black);
+    }
 
     // 禁用按钮
     @include when(disabled) {

@@ -16,6 +16,7 @@ export default defineComponent({
         'opensetting',
         'launchapp',
         'chooseavatar',
+        'agreeprivacyauthorization',
         'error',
     ],
     setup(props, { emit }) {
@@ -32,6 +33,7 @@ export default defineComponent({
 
 <template>
     <button
+        :id="id"
         class="sd-button"
         :class="[
             customClass,
@@ -44,6 +46,7 @@ export default defineComponent({
                 [`sd-button--plain`]    : !!plain,
                 [`sd-button--text`]     : !!text,
                 'has-bg'                : !!bg,
+                'is-clickable'          : clickable,
                 'is-block'              : block,
                 'is-loading'            : loading,
                 'is-disabled'           : disabled,
@@ -65,6 +68,7 @@ export default defineComponent({
         @opensetting="$emit('opensetting', $event)"
         @launchapp="$emit('launchapp', $event)"
         @chooseavatar="$emit('chooseavatar', $event)"
+        @agreeprivacyauthorization="$emit('agreeprivacyauthorization', $event)"
         @error="$emit('error', $event)"
         @tap="onClick"
     >

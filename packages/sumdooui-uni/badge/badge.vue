@@ -90,7 +90,7 @@ export default defineComponent({
         <slot />
         <view v-if="dot" class="sd-badge__dot" :style="badge_style$" />
         <view
-            v-else
+            v-else-if="showContent"
             class="sd-badge__content"
             :style="badge_style$"
         >
