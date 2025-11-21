@@ -170,6 +170,9 @@ export default defineComponent({
             </sd-empty>
         </view>
 
+        <!-- popup 弹窗使用，避免被异常信息被覆盖 -->
+        <slot name="popup" />
+
         <!-- tabbar 页面专用 v24.01.19 -->
         <slot name="tabbar" />
     </view>

@@ -13,15 +13,15 @@ import type { TabbarItemProps } from '../../tabbar-item/tabbar-item'
 
 export const PAGE_KEY   = Symbol('page')
 export type PageProvide = {
-    instance: ComponentInternalInstance
-    props: PageProps
-    isFirstPage: () => boolean
+    instance           : ComponentInternalInstance
+    props              : PageProps
+    isFirstPage        : () => boolean
     getPageHeaderHeight: () => number
 }
 
 export const COLLAPSE_KEY = Symbol('collapse')
 export type CollapseProvide = {
-    props: CollapseProps
+    props   : CollapseProps
     onChange: (instance: ComponentInternalInstance, open: boolean, index: number | string) => void
 }
 
@@ -33,14 +33,14 @@ export type RowProvide = { props: RowProps }
 
 export const CHECKBOX_GROUP_KEY = Symbol('chekcbox-group')
 export type CheckboxGroupProvide = {
-    props: CheckboxGroupProps
+    props   : CheckboxGroupProps
     onChange: (checked: boolean, value: string | number | boolean) => void
     disabled: boolean
 }
 
 export const RADIO_GROUP_KEY = Symbol('radio-group')
 export type RadioGroupProvide = {
-    props: RadioGroupProps
+    props   : RadioGroupProps
     onChange: (value: string | number | boolean) => void
 }
 
@@ -51,7 +51,7 @@ export type FormProvide = {
 
 export const FORM_ITEM_KEY = Symbol('field')
 export type FormItemProvide = {
-    props: FormItemProps
+    props   : FormItemProps
     validate: (trigger: string | string[]) => void
 }
 
@@ -60,6 +60,6 @@ export type CellGroupProvide = { props: CellGroupProps }
 
 export const TABBLE_KEY = Symbol('tabbar')
 export type TabbarProvide = {
-    props: TabbarProps
+    props   : TabbarProps
     onChange: (item: TabbarItemProps) => void
 }

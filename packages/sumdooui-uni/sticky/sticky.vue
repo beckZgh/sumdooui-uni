@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, reactive, nextTick, toRefs, watch, onUnmounted } from 'vue'
+import { defineComponent, reactive, nextTick, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { sticky_props      } from './sticky'
 import { useSelectoryQuery } from '../common/hooks'
 import { MpMixin           } from '../common/mixins'
@@ -54,6 +54,10 @@ export default defineComponent({
             page.SdPageScroller = SdPageScroller
             page.onPageScroll   = onPageScroll
         }
+
+        onMounted(() => {
+            onScroll({ scrollTop: props.scrollTop })
+        })
 
         onUnmounted(() => {
             const page = Utils.getCurrentPage<{ SdPageScroller: any[] }>()

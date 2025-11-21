@@ -22,7 +22,7 @@ export const input_props = {
     /** 密码模式 */
     showPassword    : { type: Boolean },
     /** 显示边框 */
-    border          : { type: String, default: 'none' },
+    border          : { type: String as PropType<InputBorderType>, default: 'none' },
     /** 占位描述 */
     placeholder     : { type: String, default: '请输入内容...' },
     /** 占位描述自定义样式 */
@@ -61,6 +61,8 @@ export const input_props = {
     suffixIconProps : { type: Object as PropType<Omit<IconProps, 'name'>> },
     /** 内容对齐方式 */
     inputAlign      : { type: String as PropType<Component.InputAlign> },
+    /** 选择模式打开标识 */
+    selectOpen      : { type: Boolean, default: false },
     // --------------------------------------------------------------------------
     ...weapp_extra_props,
 }

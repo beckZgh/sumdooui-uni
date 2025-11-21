@@ -50,5 +50,9 @@ $picker-view-column-padding  : var(--sd-picker-view-column-padding  , 0 8rpx);
         display: flex;
         justify-content: center;
         padding-bottom: 40rpx;
+
+        .sd-button {
+            font-size: 32rpx;
+        }
     }
 }

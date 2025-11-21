@@ -18,6 +18,7 @@ export default defineComponent({
         'blur',
         'clear',
         'confirm',
+        'click',
     ],
     setup(props, { emit }) {
         const form_item      = inject<FormItemProvide>(FORM_ITEM_KEY)
@@ -74,6 +75,11 @@ export default defineComponent({
             form_item?.validate('blur')
         }
 
+        function onClick(e: any) {
+            if (disabled$.value || readonly$.value) return
+            emit('click', e)
+        }
+
         return {
             internal_focus,
             show_password,
@@ -85,6 +91,7 @@ export default defineComponent({
             onFocus,
             onBlur,
             onConfirm,
+            onClick,
             // -------------------------
             focus: onFocus,
             blur : onBlur,
@@ -106,6 +113,7 @@ export default defineComponent({
             },
         ]"
         :style="customStyle"
+        @tap="onClick"
     >
         <!-- 前置图标 -->
         <sd-icon
@@ -130,7 +138,7 @@ export default defineComponent({
             :value="modelValue"
             :type="type !== 'password' ? type : 'text'"
             :password="type === 'password' && !show_password"
-            :disabled="disabled$ || readonly$"
+            :disabled="type === 'select' || disabled$ || readonly$"
             :maxlength="maxlength"
             :auto-height="autoHeight"
             :focus="internal_focus"
@@ -178,6 +186,16 @@ export default defineComponent({
             name="close-circle"
             custom-class="sd-input__clear-icon"
             @click="handleClear"
+        />
+
+        <!-- 作为选择模式图标标识 -->
+        <sd-icon
+            v-if="type === 'select'"
+            name="caret-down"
+            :custom-class="{
+                'sd-input__select-icon': true,
+                'is-open'              : selectOpen,
+            }"
         />
     </view>
 </template>

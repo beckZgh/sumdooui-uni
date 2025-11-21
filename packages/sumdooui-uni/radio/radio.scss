@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 
 $radio-size                : var(--sd-radio-size          , 44rpx);
-$radio-inactive-icon-color : var(--sd-radio-inactive-color, $sd-gray-color-3);
+$radio-inactive-icon-color : var(--sd-radio-inactive-color, $sd-gray-color-5);
 $radio-inactive-text-color : var(--sd-radio-inactive-color, $sd-text-color);
 $radio-active-color        : var(--sd-radio-active-color  , $sd-primary-color);
 $radio-label-color         : var(--sd-radio-label-color   , $sd-text-color);

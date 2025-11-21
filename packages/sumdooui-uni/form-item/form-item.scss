@@ -94,9 +94,9 @@ $form-item-error-color       : var(--sd-font-item-error-color       , $sd-danger
         text-align: right;
     }
 
-    // 重置包裹的受控组件
-    .sd-input,
-    .sd-textarea {
-        padding: 0;
-    }
+    // // 重置包裹的受控组件
+    // .sd-input,
+    // .sd-textarea {
+    //     padding: 0;
+    // }
 }

@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 
 $checkbox-size                : var(--sd-checkbox-size           , 44rpx);
-$checkbox-inactive-icon-color : var(--sd-checkbox-inactive-color , $sd-gray-color-3);
+$checkbox-inactive-icon-color : var(--sd-checkbox-inactive-color , $sd-gray-color-5);
 $checkbox-inactive-text-color : var(--sd-checkbox-inactive-color , $sd-text-color);
 $checkbox-active-color        : var(--sd-checkbox-active-color   , $sd-primary-color);
 $checkbox-label-color         : var(--sd-checkbox-label-color    , $sd-text-color);

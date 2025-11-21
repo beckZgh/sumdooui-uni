@@ -12,10 +12,6 @@ export const form_item_props = {
     rules        : { type: Array as PropType<Form.RuleItem[]> },
     /** 显示必填 */
     required     : { type: Boolean },
-    /** 禁用状态 */
-    disabled     : { type: Boolean },
-    /** 只读状态 */
-    readonly     : { type: Boolean },
     /** 标题 */
     label        : { type: String },
     /** 标签宽度 */

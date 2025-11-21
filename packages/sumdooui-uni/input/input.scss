@@ -17,6 +17,8 @@ $input-password-icon-size        : var(--sd-input-password-icon-size        , 36
 $input-password-icon-color       : var(--sd-input-password-icon-color       , $sd-gray-color-6);
 $input-clear-icon-size           : var(--sd-input-clear-icon-size           , 36rpx);
 $input-clear-icon-color          : var(--sd-input-clear-icon-color          , $sd-gray-color-6);
+$input-select-icon-size          : var(--sd-input-select-icon-size          , 36rpx);
+$input-select-icon-color         : var(--sd-input-select-icon-color         , $sd-gray-color-6);
 $input-disabled-opacity          : vaR(--sd-input-disabled-opacity          , $sd-opacity-disabled);
 
 .sd-input {
@@ -83,7 +85,8 @@ $input-disabled-opacity          : vaR(--sd-input-disabled-opacity          , $s
     &__suffix,
     &__suffix-icon,
     &__password-icon,
-    &__clear-icon {
+    &__clear-icon,
+    &__select-icon {
         margin-left: 16rpx;
     }
 
@@ -124,6 +127,19 @@ $input-disabled-opacity          : vaR(--sd-input-disabled-opacity          , $s
         width: $input-clear-icon-size;
         height: $input-clear-icon-size;
         color: $input-clear-icon-color;
+    }
+
+    // 选择模式打开按钮
+    &__select-icon {
+        font-size: $input-select-icon-size;
+        width: $input-select-icon-size;
+        height: $input-select-icon-size;
+        color: $input-select-icon-color;
+        transition: transform 0.3s ease;
+
+        &.is-open {
+            transform: translateZ(180deg);
+        }
     }
 
     // 输入框禁用态

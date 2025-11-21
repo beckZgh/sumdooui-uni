@@ -13,7 +13,7 @@ export type Classes = string | string[]
 export type ConfirmType = 'send' | 'search' | 'next' | 'go' | 'done' | 'return'
 
 /** input 输入类型 */
-export type InputType = 'text' | 'number' | 'idcard' | 'digit' | 'safe-password' | 'nickname' | 'password'
+export type InputType = 'text' | 'number' | 'idcard' | 'digit' | 'safe-password' | 'nickname' | 'password' | 'select'
 
 /** 样式 */
 export interface Styles {
@@ -22,9 +22,6 @@ export interface Styles {
 
 /** 组件通用类型 */
 export type ComponentType = 'primary' | 'success' | 'warning' | 'danger' | 'default'
-
-/** 组件默认主题 */
-export type ComponentTheme = 'primary' | 'success' | 'warning' | 'danger' | 'default'
 
 /** 组件通用大小 */
 export type ComponentSize = 'small' | 'normal' | 'large'
