@@ -1,3 +1,0 @@
-/packages/**/lib/*.js
-/packages/**/src/apis/api.ts
-/packages/**/typings/shims-api.d.ts

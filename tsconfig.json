@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "baseUrl"                : ".",
+        "outDir"                 : "dist",
+        "target"                 : "esnext",
+        "useDefineForClassFields": true,
+        "module"                 : "esnext",
+        "moduleResolution"       : "node",
+        "strict"                 : true,
+        "jsx"                    : "preserve",
+        "allowJs"                : true,
+        "sourceMap"              : true,
+        "resolveJsonModule"      : true,
+        "esModuleInterop"        : true,
+        "lib"                    : ["esnext", "dom"],
+        "types"                  : ["node"],
+        "paths"                  : {
+            "@/*": ["./src/*"],
+            "#/*": ["./typings/*"]
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "typings/**/*.ts"
+    ]
+}

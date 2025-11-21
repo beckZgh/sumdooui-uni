@@ -15,12 +15,10 @@ coverage
 # local env files
 *.local
 
-# 打包分析页面
-report.html
+version-history/
 
-# 自动生成 hooks 类型
+report.html
 shims-auto-import-hooks.d.ts
 
-uni_modules
-
-*.7z
+# src
+src/uni_modules
