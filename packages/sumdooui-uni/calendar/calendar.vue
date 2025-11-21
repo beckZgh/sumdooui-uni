@@ -94,7 +94,7 @@ export default defineComponent({
 
         // 取得初始化选中日期
         function getInitialDate(default_date?: CalendarDefaultDate | CalendarDefaultDate[]): string[] {
-            if (props.mode === 'range') {
+            if (props.mode === 'daterange') {
                 const current_date = [] as string[]
                 if (Array.isArray(default_date) && default_date[0] && default_date[1]) {
                     current_date[0] = limitDateRange(dt.format(default_date[0]))
@@ -105,7 +105,7 @@ export default defineComponent({
                     }
                 }
                 return current_date
-            } else if (props.mode === 'multiple') {
+            } else if (props.mode === 'dates') {
                 const dates = (Array.isArray(props.defaultDate) ? props.defaultDate : [])
                     .map(date => limitDateRange(dt.format(date)))
                 return dates.length ? dates : [state.today]
@@ -128,7 +128,7 @@ export default defineComponent({
             if (props.readonly || props.disabled) return
 
             switch (props.mode) {
-                case 'range': {
+                case 'daterange': {
                     const [start_date, end_date] = state.current_date
                     if (start_date && !end_date) {
                         if (item.date > start_date) {
@@ -145,7 +145,7 @@ export default defineComponent({
                     }
                     return
                 }
-                case 'multiple': {
+                case 'dates': {
                     const idx = state.current_date.indexOf(item.date)
                     if (idx === -1) {
                         state.current_date = [...state.current_date, item.date]
@@ -157,7 +157,7 @@ export default defineComponent({
                     }
                     return
                 }
-                case 'single': {
+                case 'date': {
                     state.current_date = [item.date]
                     emit('select', item.date)
                     if (!props.showConfirmButton) onConfirm()
@@ -167,7 +167,7 @@ export default defineComponent({
         }
 
         function onConfirm() {
-            emit('confirm', props.mode === 'single' ? state.current_date[0] : [...state.current_date])
+            emit('confirm', props.mode === 'date' ? state.current_date[0] : [...state.current_date])
             visible$.value = false
         }
 

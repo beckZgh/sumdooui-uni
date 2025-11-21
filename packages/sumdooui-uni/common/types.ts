@@ -41,20 +41,19 @@ export namespace Component {
 
     // 文本方向
     export type InputAlign = 'left' | 'center' | 'right'
-}
 
-export namespace Form {
-    /** 标题显示位置 */
-    export type LalbePosition = 'left' | 'right' | 'top'
+    // 数据项配置
+    export type OptionItem = {
+        label?: string
+        value?: string | number
+        [k: string]: any
+    }
 
-    /** 显示错误类型 */
-    export type ErrorType = 'none' | 'message' | 'border-bottom' | 'toast'
-
-
-    export type RuleItem = {
-        required?: boolean
-        message: string
-        regex?: RegExp
-        validator?: (value: any, rule: RuleItem) => boolean | string | Promise<boolean | string>
+    // 数据项属性配置
+    export type OptionItemProp = {
+        label?: string
+        value?: string
+    } & {
+        [key: string]: string
     }
 }

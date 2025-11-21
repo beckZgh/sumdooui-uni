@@ -19,7 +19,7 @@ export const checkbox_props = {
     /** 标题大小 */
     labelSize    : { type: [Number, String] },
     /** 图标位置 */
-    iconPosition : { type: String as PropType<'left' | 'right'>, default: 'left' },
+    iconPosition : { type: String as PropType<'left' | 'right'> },
     /** 图标大小 */
     iconSize     : { type: [Number, String] },
     /** 未选中的颜色 */

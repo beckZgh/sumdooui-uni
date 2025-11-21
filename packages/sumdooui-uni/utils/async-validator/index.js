@@ -1,19 +1,17 @@
 function _extends() {
-    _extends = Object.assign
-        ? Object.assign.bind()
-        : function (target) {
-            for (let i = 1; i < arguments.length; i++) {
-                const source = arguments[i]
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
+        for (let i = 1; i < arguments.length; i++) {
+            const source = arguments[i]
 
-                for (const key in source) {
-                    if (Object.prototype.hasOwnProperty.call(source, key)) {
-                        target[key] = source[key]
-                    }
+            for (const key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    target[key] = source[key]
                 }
             }
-
-            return target
         }
+
+        return target
+    }
     return _extends.apply(this, arguments)
 }
 
@@ -25,21 +23,17 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf
-        ? Object.getPrototypeOf.bind()
-        : function _getPrototypeOf(o) {
-            return o.__proto__ || Object.getPrototypeOf(o)
-        }
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+        return o.__proto__ || Object.getPrototypeOf(o)
+    }
     return _getPrototypeOf(o)
 }
 
 function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf
-        ? Object.setPrototypeOf.bind()
-        : function _setPrototypeOf(o, p) {
-            o.__proto__ = p
-            return o
-        }
+    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+        o.__proto__ = p
+        return o
+    }
     return _setPrototypeOf(o, p)
 }
 
@@ -527,6 +521,7 @@ const type$1 = function type(rule, value, source, errors, options) {
         if (!types[ruleType](value)) {
             errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type))
         } // straight typeof check
+
     } else if (ruleType && typeof value !== rule.type) {
         errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type))
     }

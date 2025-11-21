@@ -113,7 +113,7 @@ export default defineComponent({
             },
         ]"
         :style="customStyle"
-        @tap="onClick"
+        @tap.stop="onClick"
     >
         <!-- 前置图标 -->
         <sd-icon

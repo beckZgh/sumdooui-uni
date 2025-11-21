@@ -182,10 +182,10 @@ export default defineComponent({
             }
 
             switch (mode) {
-                case 'single'  : return dt.compareDay(date, currentDate[0]) === 0 ? 'selected' : ''
-                case 'multiple': return getMultipeDayType(date)
-                case 'range'   : return getRangeDayType(date)
-                default        : return ''
+                case 'date'     : return dt.compareDay(date, currentDate[0]) === 0 ? 'selected' : ''
+                case 'dates'    : return getMultipeDayType(date)
+                case 'daterange': return getRangeDayType(date)
+                default         : return ''
             }
         }
 
@@ -224,7 +224,7 @@ export default defineComponent({
         }
 
         function getBottomInfo(type: string) {
-            if (props.mode === 'range') {
+            if (props.mode === 'daterange') {
                 if (type === 'start') {
                     return '开始'
                 }

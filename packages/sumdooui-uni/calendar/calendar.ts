@@ -1,7 +1,7 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import { COMMON_PROPS } from '../common/props'
 
-export type CalendarMode        = 'single' | 'multiple' | 'range'
+export type CalendarMode        = 'date' | 'dates' | 'daterange'
 export type CalendarDefaultDate = string | number | Date
 
 export interface CalendarDay {
@@ -22,7 +22,7 @@ export const calendar_props = {
     /** 日历模式, 默认滚动模式、关闭为切换模式  */
     scrollable         : { type: Boolean },
     /** 日期选择类型 */
-    mode               : { type: String as PropType<CalendarMode>, default: 'single' },
+    mode               : { type: String as PropType<CalendarMode>, default: 'date' },
     /** 显示标题 */
     showTitle          : { type: Boolean, default: true },
     /** 标题 */

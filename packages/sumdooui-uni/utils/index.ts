@@ -1,25 +1,12 @@
 import * as is from './is'
 import * as dt from './dt'
+import * as obj from './obj'
+import { clone } from './clone'
 import { sleep } from './sleep'
 
 /** 转换单位 */
 function toUnit(val: string | number | undefined, unit = 'rpx') {
     return is.isNumber(val) ? `${ val }${ unit }` : val
-}
-
-/** 通过路径获取对应值 */
-function getValueByPath(model: any, key_path = ''): any {
-    try {
-        // 非对象和数组不处理
-        if (!is.isObject(model) && !is.isArray(model)) return undefined
-
-        // 提取 path 路径的值
-        return key_path.split('.').reduce((map, key) => {
-            return (map as any)[key]
-        }, model)
-    } catch (error) {
-        return undefined
-    }
 }
 
 export function getCurrentPage<T>() {
@@ -34,8 +21,9 @@ export {
 export default {
     ...is,
     dt,
+    obj,
     toUnit,
-    getValueByPath,
+    clone,
     getCurrentPage,
     sleep,
 }

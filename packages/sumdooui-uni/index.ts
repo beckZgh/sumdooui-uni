@@ -10,7 +10,7 @@ export function setThemeVars(vars: Record<string, any>) {
 
 interface Options {
     theme_vars?: Record<string, any> // 主题变量 (依赖页面组件)
-    locale?: string                  // 默认语言
+    locale?    : string                  // 默认语言
 }
 
 export default function install(app: App, options?: Options) {

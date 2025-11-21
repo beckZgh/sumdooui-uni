@@ -70,7 +70,7 @@ export default defineComponent({
             @focus="$emit('focus', $event)"
             @clear="onClear"
             @confirm="$emit('confirm', $event)"
-            @tap="$emit('click-input')"
+            @click="$emit('click-input')"
         >
             <template #prefix>
                 <slot v-if="$slots.prefix" name="prefix" />

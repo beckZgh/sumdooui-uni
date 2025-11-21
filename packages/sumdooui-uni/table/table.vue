@@ -20,6 +20,7 @@ export default defineComponent({
         'header-cell-click',
     ],
     setup(props, ctx) {
+
         const root_style$ = computed(() => {
             const style: CSSProperties = { ...props.customStyle }
             if (props.height   ) style.height    = Utils.toUnit(props.height)
@@ -137,12 +138,8 @@ export default defineComponent({
                         :style="mergeCellStyle(row, rowIndex, col, colIndex)"
                         @tap="handleCellClick($event, row, rowIndex, col, colIndex)"
                     >
-                        <text v-if="col.type === 'seq'">
-                            {{ rowIndex + 1 }}
-                        </text>
-                        <text v-else>
-                            {{ formatter(row, rowIndex, col, colIndex) }}
-                        </text>
+                        <text v-if="col.type === 'seq'">{{ rowIndex + 1 }}</text>
+                        <text v-else>{{ formatter(row, rowIndex, col, colIndex) }}</text>
                     </view>
                 </view>
             </template>
@@ -150,7 +147,7 @@ export default defineComponent({
             <slot v-else-if="$slots.empty" name="empty" />
 
             <view v-else class="sd-table__empty">
-                <sd-empty :text="emptyText" :custom-style="{ width: '60%' }" background="transparent" />
+                <sd-empty :text="emptyText" :custom-style="{ width: '60%' }"  background="transparent" />
             </view>
         </view>
 
