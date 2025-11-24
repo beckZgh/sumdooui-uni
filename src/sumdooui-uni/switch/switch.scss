@@ -1,6 +1,6 @@
 @import '../styles/variables.scss';
 
-$switch-szie             : var(--sd-switch-size             , 36rpx);
+$switch-szie             : var(--sd-switch-size             , 48rpx);
 $switch-background       : var(--sd-switch-background       , $sd-gray-color-5);
 $switch-active-background: var(--sd-switch-active-background, $sd-primary-color);
 $switch-duration         : var(--sd-switch-duration         , 0.2s);

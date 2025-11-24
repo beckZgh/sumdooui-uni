@@ -30,7 +30,7 @@ export default defineComponent({
         })
 
         const root_styles$ = computed(() => {
-            const styles: CSSProperties = {
+            const styles: any = {
                 ...props.customStyle,
                 background: checked.value ? props.activeColor : props.inactiveColor,
             }
@@ -39,7 +39,7 @@ export default defineComponent({
         })
 
         const inner_styles$ = computed(() => {
-            const styles: CSSProperties = {}
+            const styles: any = {}
             if (props.size) {
                 styles.width  = Utils.toUnit(props.size)
                 styles.height = Utils.toUnit(props.size)
