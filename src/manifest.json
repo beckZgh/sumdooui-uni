@@ -1,19 +1,18 @@
 {
-    "name": "sumdooui-uni",
-    "appid": "sumdooui-uni",
-    "locale": "zh-Hans",
+    "name"       : "sumdooui-uni",
+    "appid"      : "sumdooui-uni",
+    "locale"     : "zh-Hans",
     "description": "",
     "versionName": "1.0.0",
     "versionCode": "100",
-    "mp-weixin": {
-        "appid": "wx427b1a1518df60ba",
+    "mp-weixin"  : {
+        "appid"  : "wx427b1a1518df60ba",
         "setting": {
-            "darkmode": true,
-            "urlCheck": false,
+            "urlCheck"            : false,
             "ignoreDevUnusedFiles": false
         },
         "usingComponents": true,
-        "permission": {
+        "permission"     : {
             "scope.userLocation": {
                 "desc": "你的位置信息将用于小程序位置接口的效果展示"
             }

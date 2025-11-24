@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const fruits = ref(1)
+const fruits = ref(true)
 const fruit_opts = ref([
     { label: '苹果', value: 1 },
     { label: '香蕉', value: 2 },

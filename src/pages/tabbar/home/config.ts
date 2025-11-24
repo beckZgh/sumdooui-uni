@@ -69,7 +69,7 @@ export default [{
         icon: 'empty',
         name: 'Empty 缺省页',
         page: 'empty',
-    } ],
+    }],
 }, {
     id  : 'nav',
     name: '导航组件',
@@ -113,11 +113,11 @@ export default [{
         icon: 'dropdownmenu',
         name: 'DropdownMenu 下拉菜单',
         page: '',
-    } ],
+    }],
 },  {
     id  : 'operate',
     name: '操作反馈',
-    data: [ {
+    data: [{
         icon: 'toast',
         name: 'Toast 轻提示',
         page: 'toast',
@@ -223,9 +223,17 @@ export default [{
             name: 'Radio 单选框',
             page: 'radio',
         }, {
+            icon: 'radio',
+            name: 'Radio2 单选框',
+            page: 'radio2',
+        }, {
             icon: 'checkbox',
             name: 'Checkbox 复选框',
             page: 'checkbox',
+        }, {
+            icon: 'checkbox',
+            name: 'Checkbox2 复选框',
+            page: 'checkbox2',
         }, {
             icon: 'switch',
             name: 'Switch 开关',

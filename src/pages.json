@@ -139,7 +139,11 @@
         }, {
             "path": "pages/examples/form/checkbox/main"
         }, {
+            "path": "pages/examples/form/checkbox2/main"
+        },{
             "path": "pages/examples/form/radio/main"
+        }, {
+            "path": "pages/examples/form/radio2/main"
         }, {
             "path": "pages/examples/form/form/main"
         }, {
