@@ -1,0 +1,28 @@
+@import '../styles/variables.scss';
+
+.sd-checkbox-group2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 24rpx;
+
+    &--block {
+        flex-direction: column;
+
+        .sd-checkbox2 {
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    }
+
+
+    &.is-multi-column {
+        .sd-checkbox2 {
+            width: var(--width);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    }
+}
