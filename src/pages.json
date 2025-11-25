@@ -131,7 +131,7 @@
 
         // 表单组件
         {
-            "path": "pages/examples/form/switch/main"
+            "path": "pages/examples/form/form/main"
         }, {
             "path": "pages/examples/form/input/main"
         }, {
@@ -145,19 +145,23 @@
         }, {
             "path": "pages/examples/form/radio2/main"
         }, {
-            "path": "pages/examples/form/form/main"
-        }, {
-            "path": "pages/examples/form/picker/main"
+            "path": "pages/examples/form/switch/main"
         }, {
             "path": "pages/examples/form/stepper/main"
         }, {
-            "path": "pages/examples/form/number-keyboard/main"
+            "path": "pages/examples/form/rate/main"
+        }, {
+            "path": "pages/examples/form/picker/main"
         }, {
             "path": "pages/examples/form/calendar/main"
         }, {
-            "path": "pages/examples/form/rate/main"
+            "path": "pages/examples/form/datetime-picker/main"
+        }, {
+            "path": "pages/examples/form/upload/main"
         }, {
             "path": "pages/examples/form/search/main"
+        }, {
+            "path": "pages/examples/form/number-keyboard/main"
         },
 
         // 共享页面

@@ -1,39 +1,45 @@
 <script setup lang="ts">
 import tabs from './config'
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 
-const system_info = uni.getSystemInfoSync()
-// const menu_button = uni.getMenuButtonBoundingClientRect()
+const window_info = uni.getWindowInfo()
+
 const m = reactive({
     scroll_into: '',
     tab_index  : 0,
-    height     : `${ system_info.windowHeight - uni.upx2px(108) }px`,
+    height     : `${ window_info.windowHeight - uni.upx2px(108) }px`,
+})
+
+onMounted(() => {
+    handleTabClick(tabs.length - 1)
 })
 
 function handleTabClick(index: number) {
     if (m.tab_index === index) return
     m.tab_index = index
+
     const scroll_index = index - 1 < 0 ? 0 : index - 1
     m.scroll_into = tabs[scroll_index].id
 }
 
 function onSwiperChange(e: any) {
-    if (e.detail.source === 'touch') {
-        const index = e.target.current || e.detail.current
-        handleTabClick(index)
-    }
+    if (e.detail.source !== 'touch') return
+
+    const index = e.target.current || e.detail.current
+    handleTabClick(index)
 }
 
 function handleToPage(type: string, item: { name: string; page: string }) {
     const url = item.page
         ? `/pages/examples/${ type }/${ item.page }/main`
         : `/pages/common/coding/main?title=${ item.name }`
+
     uni.navigateTo({ url })
 }
 </script>
 
 <template>
-    <sd-page title="Sumdooui-Uni" :show-home-button="false" lock-scroll background="#F1F4FA">
+    <sd-page title="SumdooUI-Uni" :show-home-button="false" lock-scroll background="#F1F4FA">
         <template #header-extra>
             <scroll-view
                 class="tabs-scroll-box"
@@ -78,7 +84,7 @@ function handleToPage(type: string, item: { name: string; page: string }) {
                         >
                             <template #extra>
                                 <sd-tag v-if="!item.page">
-                                    开发中13
+                                    开发中
                                 </sd-tag>
                             </template>
                         </sd-cell>
@@ -86,18 +92,6 @@ function handleToPage(type: string, item: { name: string; page: string }) {
                 </scroll-view>
             </swiper-item>
         </swiper>
-
-        <!-- <view
-            class="add-my-app-tip"
-            :style="{
-                top  : `${ menu_button.bottom + 10 }px`,
-                right: `30px`,
-            }"
-        >
-            点击<text> “添加至我的小程序” </text>下次访问更方便
-
-            <sd-icon icon="close" />
-        </view> -->
     </sd-page>
 </template>
 
