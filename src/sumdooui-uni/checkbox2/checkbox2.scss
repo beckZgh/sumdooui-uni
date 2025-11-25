@@ -82,11 +82,30 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
         }
     }
 
+    // 带分割线的多选框
+    @include m('divider') {
+        position: relative;
+        padding: 32rpx 0;
+        overflow: hidden;
+        // border-bottom: 1px solid $sd-border-color;
+        @include hairline($sd-border-color, 'bottom');
+        @include clickable($sd-black);
+    }
+
     // 选中态
     @include when('checked') {
         .sd-checkbox2__icon {
             display: inline-block;
             color: $checkbox2-active-color;
+        }
+
+        // 边框模式，调整“边框颜色”及“label文本颜色”
+        &.sd-checkbox2--border {
+            border-color: $checkbox2-active-color;
+
+            .sd-checkbox2__content-label {
+                color: $checkbox2-active-color;
+            }
         }
 
         &.sd-checkbox2--border::before {

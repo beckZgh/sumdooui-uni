@@ -47,6 +47,9 @@ export const radio2_props = {
 
     // 图标位置
     iconPosition: { type: String as PropType<'left' | 'right'> },
+
+    /** 显示分割线 */
+    divider: { type: Boolean, default: undefined },
 }
 
 export type Radio2Props = ExtractPropTypes<typeof radio2_props>

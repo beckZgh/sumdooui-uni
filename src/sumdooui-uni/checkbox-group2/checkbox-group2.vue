@@ -53,7 +53,8 @@ export default defineComponent({
     <view
         class="sd-checkbox-group2"
         :class="[customClass, {
-            [`sd-checkbox-group2--block`]: column === 1,
+            'sd-checkbox-group2--block'  : divider || column === 1,
+            'sd-checkbox-group2--divider': divider,
             'is-multi-column'            : column > 1,
         }]"
         :style="{

@@ -68,6 +68,11 @@ export default defineComponent({
             return props.iconPosition ?? checkboxGroup?.props.iconPosition ?? 'left'
         })
 
+        // 显示分割线
+        const divider$ = computed(() => {
+            return props.divider ?? checkboxGroup?.props.divider ?? false
+        })
+
         // 超出可添加的数量限制，剩余未选中需要禁用
         const is_limit$ = computed(() => {
             if (checkboxGroup) {
@@ -82,7 +87,7 @@ export default defineComponent({
             return props.disabled
                 ?? checkboxGroup?.props.disabled
                 ?? is_limit$.value
-                ?? form?.props
+                ?? form?.props?.disabled
                 ?? false
         })
 
@@ -122,6 +127,7 @@ export default defineComponent({
             icon$,
             icon_color$,
             icon_pos$,
+            divider$,
             disabled$,
             readonly$,
             handleToggle,
@@ -137,6 +143,7 @@ export default defineComponent({
             customClass,
             {
                 'sd-checkbox2--border' : border,
+                'sd-checkbox2--divider': divider$,
                 'sd-checkbox2--reverse': icon_pos$ === 'right',
                 'is-checked'           : checked$,
                 'is-disabled'          : disabled$,

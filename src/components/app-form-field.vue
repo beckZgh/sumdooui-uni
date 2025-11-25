@@ -292,6 +292,26 @@ export default defineComponent({
                 <sd-textarea v-bind="props$" v-model="model_value$" :disabled="disabled$" :placeholder="placeholder$" :border="border$" />
             </template>
 
+            <!-- 多选框 -->
+            <template v-if="config.tag === 'checkbox'">
+                <sd-checkbox2 v-bind="props$" v-model="model_value$" :disabled="disabled$" />
+            </template>
+
+            <!-- 多选框组 -->
+            <template v-if="config.tag === 'checkbox-group'">
+                <sd-checkbox-group2 v-bind="props$" v-model="model_value$" :disabled="disabled$" :options="options$" />
+            </template>
+
+            <!-- 单选框组 -->
+            <template v-if="config.tag === 'radio-group'">
+                <sd-radio-group2 v-bind="props$" v-model="model_value$" :disabled="disabled$" :options="options$" />
+            </template>
+
+            <!-- 开关 -->
+            <template v-if="config.tag === 'switch'">
+                <sd-switch v-bind="props$" v-model="model_value$" :disabled="disabled$" />
+            </template>
+
             <!-- 数字步进器 -->
             <template v-if="config.tag === 'number'">
                 <sd-stepper v-bind="props$" v-model="model_value$" :disabled="disabled$" />
@@ -300,26 +320,6 @@ export default defineComponent({
             <!-- 评分 -->
             <template v-if="config.tag === 'rate'">
                 <sd-rate v-bind="props$" v-model="model_value$" :disabled="disabled$" />
-            </template>
-
-            <!-- 开关 -->
-            <template v-if="config.tag === 'switch'">
-                <sd-switch v-bind="props$" v-model="model_value$" :disabled="disabled$" />
-            </template>
-
-            <!-- 多选框 -->
-            <template v-if="config.tag === 'checkbox'">
-                <sd-checkbox v-bind="props$" v-model="model_value$" :disabled="disabled$" />
-            </template>
-
-            <!-- 多选框组 -->
-            <template v-if="config.tag === 'checkbox-group'">
-                <sd-checkbox-group v-bind="props$" v-model="model_value$" :disabled="disabled$" :options="options$" />
-            </template>
-
-            <!-- 单选框组 -->
-            <template v-if="config.tag === 'radio-group'">
-                <sd-radio-group v-bind="props$" v-model="model_value$" :disabled="disabled$" :options="options$" />
             </template>
 
             <!-- 日历选择控件: 单个日期、多个日期、日期范围 -->

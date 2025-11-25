@@ -62,6 +62,10 @@ const opts = ref([
             <sd-checkbox-group2 v-model="m.checkbox_group" border :column="1" :options="opts" />
         </demo-card>
 
+        <demo-card title="显示分割线 (独占一行)">
+            <sd-checkbox-group2 v-model="m.checkbox_group" divider :column="1" :options="opts" />
+        </demo-card>
+
         <demo-card title="双列展示">
             <sd-checkbox-group2 v-model="m.checkbox_group" :column="2" :options="opts" />
         </demo-card>

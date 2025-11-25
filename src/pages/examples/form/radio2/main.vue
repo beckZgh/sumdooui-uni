@@ -71,6 +71,10 @@ const opts = ref([
             <sd-radio-group2 v-model="m.radio_group" border :column="1" :options="opts" />
         </demo-card>
 
+        <demo-card title="显示分割线 (独占一行)">
+            <sd-radio-group2 v-model="m.radio_group" divider :column="1" :options="opts" />
+        </demo-card>
+
         <demo-card title="双列展示">
             <sd-radio-group2 v-model="m.radio_group" :column="2" :options="opts" />
         </demo-card>

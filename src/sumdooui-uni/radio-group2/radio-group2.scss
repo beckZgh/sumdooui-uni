@@ -6,6 +6,7 @@
     width: 100%;
     gap: 24rpx;
 
+    // 独占一行
     &--block {
         flex-direction: column;
 
@@ -17,6 +18,11 @@
         }
     }
 
+    &--divider {
+        gap: 0;
+    }
+
+    // 一行展示多个
     &.is-multi-column {
         .sd-radio2 {
             width: var(--width);

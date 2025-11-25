@@ -37,7 +37,8 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                [`sd-radio-group2--block`]: column === 1,
+                'sd-radio-group2--block'  : divider || column === 1,
+                'sd-radio-group2--divider': divider,
                 'is-multi-column'         : column > 1,
             },
         ]"

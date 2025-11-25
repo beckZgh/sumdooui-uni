@@ -47,6 +47,9 @@ export const checkbox2_props = {
 
     /** 图标位置 */
     iconPosition: { type: String as PropType<'left' | 'right'> },
+
+    /** 显示分割线 */
+    divider: { type: Boolean, default: undefined },
 }
 
 export type Checkbox2Props = ExtractPropTypes<typeof checkbox2_props>

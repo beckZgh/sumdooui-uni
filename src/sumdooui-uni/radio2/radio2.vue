@@ -60,12 +60,16 @@ export default defineComponent({
             return props.iconPosition ?? radioGroup?.props.iconPosition ?? 'left'
         })
 
+        // 显示分割线
+        const divider$ = computed(() => {
+            return props.divider ?? radioGroup?.props.divider ?? false
+        })
 
         // 禁用
         const disabled$ = computed(() => {
             return props.disabled
                 ?? radioGroup?.props.disabled
-                ?? form?.props
+                ?? form?.props.disabled
                 ?? false
         })
 
@@ -110,6 +114,7 @@ export default defineComponent({
             icon$,
             icon_color$,
             icon_pos$,
+            divider$,
             disabled$,
             readonly$,
             handleToggle,
@@ -124,11 +129,12 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                'sd-radio2--border' : border,
-                'sd-radio2--reverse': icon_pos$ === 'right',
-                'is-checked'        : checked$,
-                'is-disabled'       : disabled$,
-                'is-readonly'       : readonly$,
+                'sd-radio2--border'    : border,
+                'sd-checkbox2--divider': divider$,
+                'sd-radio2--reverse'   : icon_pos$ === 'right',
+                'is-checked'           : checked$,
+                'is-disabled'          : disabled$,
+                'is-readonly'          : readonly$,
             },
         ]"
         :styke="customStyle"

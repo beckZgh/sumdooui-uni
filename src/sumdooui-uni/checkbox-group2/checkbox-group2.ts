@@ -44,6 +44,9 @@ export const checkbox_group2_props = {
 
     /** 显示列数 */
     column: { type: Number, default: undefined },
+
+    /** 显示分割线 */
+    divider: { type: Boolean, default: undefined },
 }
 
 export type CheckboxGroup2Props = ExtractPropTypes<typeof checkbox_group2_props>

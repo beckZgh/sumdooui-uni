@@ -44,6 +44,9 @@ export const radio_group2_props = {
 
     // 显示列数
     column: { type: Number, default: undefined },
+
+    /** 显示分割线 */
+    divider: { type: Boolean, default: undefined },
 }
 
 export type RadioGroup2Props = ExtractPropTypes<typeof radio_group2_props>
