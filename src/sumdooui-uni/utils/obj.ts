@@ -65,3 +65,32 @@ export function set(obj: Record<string, any>, path: string, value: any) {
 
     return obj // lodash.set 返回原对象（已修改）
 }
+
+/**
+ * 取得指定 key 的值
+ * v25.11.26
+ */
+export function pick<T extends Record<string, any>, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K> {
+    const o = {} as T
+    Object.entries(obj).forEach(([k, v]) => {
+        const _k = k as K
+        if (!keys.includes(_k)) return
+        o[_k] = v
+    })
+    return o
+}
+
+/**
+ * 排除指定 key 的值
+ * v25.11.26
+ */
+export function omit<T extends Object, K extends keyof T>(obj: T, keys: readonly K[]): Omit<T, K> {
+    const o = {} as T
+    Object.entries(obj).forEach(([k, v]) => {
+        const _k = k as K
+        if (keys.includes(_k)) return
+        o[_k] = v
+    })
+    return o
+}
+

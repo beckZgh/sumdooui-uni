@@ -7,7 +7,7 @@ import $utils from '../utils'
 export default defineComponent({
     ...MpMixin,
 
-    name : 'SdDatetimePicker2',
+    name : 'SdDatetimePicker',
     props: datetime_picker_props,
     emits: [
         'update:visible',

@@ -153,6 +153,8 @@
         }, {
             "path": "pages/examples/form/picker/main"
         }, {
+            "path": "pages/examples/form/picker2/main"
+        }, {
             "path": "pages/examples/form/calendar/main"
         }, {
             "path": "pages/examples/form/datetime-picker/main"
