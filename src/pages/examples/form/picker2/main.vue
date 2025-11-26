@@ -130,7 +130,7 @@ function showPicker4(item: DemoItem, $picker: PickerContext) {
 
 <template>
     <sd-page title="Picker2 选择器">
-        <demo-card title="基本用法" :body-style="{ padding: 0 }">
+        <demo-card title="基本用法" :card="false" transparent>
             <sd-cell title="选择学校" :value="m.picker_text" arrow @click="m.picker_visible = true" />
         </demo-card>
 
@@ -138,7 +138,8 @@ function showPicker4(item: DemoItem, $picker: PickerContext) {
             v-for="item in demo_list"
             :key="item.field"
             :title="item.title"
-            :body-style="{ padding: 0 }"
+            :card="false"
+            transparent
         >
             <sd-cell title="已选择" :value="(m as any)[item.labelField]" arrow @click="item.handle(item)" />
         </demo-card>
