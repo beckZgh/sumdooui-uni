@@ -1,9 +1,9 @@
 <script lang="ts">
-import { defineComponent    } from 'vue'
+import { defineComponent   } from 'vue'
 import { radio_group_props } from './radio-group2'
-import { MpMixin            } from '../common/mixins'
-import { useProvide         } from '../common/hooks'
-import { radioGroupKey      } from './token'
+import { MpMixin           } from '../common/mixins'
+import { useProvide        } from '../common/hooks'
+import { radioGroupKey     } from './token'
 
 export default defineComponent({
     ...MpMixin,

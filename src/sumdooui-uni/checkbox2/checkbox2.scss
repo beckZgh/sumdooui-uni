@@ -52,6 +52,8 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
     // 转换为块状元素，独占一行
     &--block {
         display: flex;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     // 反转位置，图标在右，文本在左
@@ -76,13 +78,9 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
     &--button-check {
         padding: 32rpx;
         text-align: center;
-        border-radius: 12rpx;
         overflow: hidden;
-        @include hairline($sd-border-color, '');
-
-        &::after {
-            border-radius: calc(12rpx * 2);
-        }
+        border-radius: 12rpx;
+        border: 1px solid $sd-border-color;
 
         &::before {
             content: '';
@@ -127,10 +125,7 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
 
         &.sd-checkbox2--button-check {
             color: $sd-primary-color;
-
-            &::after {
-                border-color: $sd-primary-color;
-            }
+            border-color: $sd-primary-color;
 
             .sd-checkbox2__icon-button-check,
             &::before {
@@ -161,10 +156,7 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
 
         &.sd-checkbox2--button-check {
             background-color: #ebedf0;
-
-            &::after {
-                border-color: #c8c9cc;
-            }
+            border-color: #c8c9cc;
         }
     }
 }

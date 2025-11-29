@@ -52,6 +52,8 @@ const opts = ref([
         <demo-card title="自定义选中图标">
             <sd-checkbox2 default-checked active-icon="circle-solid">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
             <view style="height: 12px;" />
+            <sd-checkbox2 default-checked active-icon="circle-solid" active-color="red">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
+            <view style="height: 12px;" />
             <sd-checkbox2 disabled default-checked active-icon="circle-solid">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
         </demo-card>
 
@@ -90,6 +92,23 @@ const opts = ref([
 
         <demo-card title="双列展示 (按钮形状)">
             <sd-checkbox-group2 v-model="m.checkbox_group" shape="button" :column="2" :options="opts" />
+        </demo-card>
+
+        <demo-card title="结合 FormItem ">
+            <sd-form>
+                <sd-form-item label="模式一">
+                    <sd-checkbox-group2 v-model="m.checkbox_group" :column="2" :options="opts" />
+                </sd-form-item>
+                <sd-form-item label="模式二">
+                    <sd-checkbox-group2 v-model="m.checkbox_group" divider icon-position="right" :options="opts" />
+                </sd-form-item>
+                <sd-form-item label="模式三">
+                    <sd-checkbox-group2 v-model="m.checkbox_group" shape="button" :column="2" :options="opts" />
+                </sd-form-item>
+                <sd-form-item label="模式四">
+                    <sd-checkbox-group2 v-model="m.checkbox_group" shape="button-check" :column="2" :options="opts" />
+                </sd-form-item>
+            </sd-form>
         </demo-card>
 
         <view style="height: 200px;" />

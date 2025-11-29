@@ -23,7 +23,7 @@ export const radio_group_props = {
     keys: { type: Object as PropType<RadioGroupTypes.OptionItemKeys>, default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }) },
 
     /** 形状：square | circle | button | button-check */
-    shape: { type: String as PropType<RadioGroupTypes.RadioShape>, default: 'square' },
+    shape: { type: String as PropType<RadioGroupTypes.RadioShape>, default: 'circle' },
 
     /** 选中的颜色 */
     activeColor: { type: String },

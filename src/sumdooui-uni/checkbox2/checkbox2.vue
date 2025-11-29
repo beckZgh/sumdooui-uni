@@ -43,6 +43,8 @@ export default defineComponent({
 
         const shape$ = computed(() => checkboxGroup?.props.shape ?? props.shape) // 形状单独默认 Group 优先级更高，便于统一显示
 
+        const block$ = computed(() => props.block ?? checkboxGroup?.props.block)
+
         // 选中图标自定义
         const checked_icon$ = computed(() => props.activeIcon ?? checkboxGroup?.props.activeIcon)
 
@@ -102,6 +104,7 @@ export default defineComponent({
         return {
             checked$,
             shape$,
+            block$,
             checked_icon$,
             checked_color$,
             icon_pos$,
@@ -120,7 +123,7 @@ export default defineComponent({
             customClass,
             {
                 [`sd-checkbox2--${ shape$ }`]: !!shape$,
-                'sd-checkbox2--block'        : !!block,
+                'sd-checkbox2--block'        : !!block$,
                 'sd-checkbox2--reverse'      : icon_pos$ === 'right',
                 'is-checked'                 : checked$,
                 'is-disabled'                : disabled$,
