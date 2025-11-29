@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent    } from 'vue'
-import { radio_group2_props } from './radio-group2'
+import { radio_group_props } from './radio-group2'
 import { MpMixin            } from '../common/mixins'
 import { useProvide         } from '../common/hooks'
 import { radioGroupKey      } from './token'
@@ -9,7 +9,7 @@ export default defineComponent({
     ...MpMixin,
 
     name : 'SdRadioGroup2',
-    props: radio_group2_props,
+    props: radio_group_props,
     emits: [
         'update:modelValue',
         'change',
@@ -34,14 +34,10 @@ export default defineComponent({
 <template>
     <view
         class="sd-radio-group2"
-        :class="[
-            customClass,
-            {
-                'sd-radio-group2--block'  : divider || column === 1,
-                'sd-radio-group2--divider': divider,
-                'is-multi-column'         : column > 1,
-            },
-        ]"
+        :class="[customClass, {
+            'sd-radio-group2--divider': divider,
+            'is-multi-column'         : column > 1,
+        }]"
         :style="{
             '--width': column > 1 ? `calc((100% - ${ column - 1 } * 24rpx) / ${ column })` : undefined,
             ...customStyle,
@@ -53,11 +49,11 @@ export default defineComponent({
             :key="idx"
         >
             <sd-radio2
-                :border="border"
                 :label="item[keys?.label || 'label']"
                 :name="item[keys?.value || 'value']"
-                :content="item[keys?.content || 'content']"
                 :disabled="item[keys?.disabled || 'disabled']"
+                :custom-style="item.style"
+                v-bind="item.props"
             />
         </template>
     </view>

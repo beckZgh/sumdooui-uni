@@ -4,30 +4,30 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 24rpx;
 
-    // 独占一行
-    &--block {
+    &--divider {
         flex-direction: column;
+        gap: 0;
 
         .sd-radio2 {
             display: flex;
-            width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-    }
+            padding: 30rpx 16rpx;
+            margin: 0;
 
-    &--divider {
-        gap: 0;
+            @include hairline($sd-border-color, 'bottom');
+            @include clickable($sd-black);
+        }
     }
 
     // 一行展示多个
     &.is-multi-column {
+        gap: 24rpx;
+
         .sd-radio2 {
             width: var(--width);
             box-sizing: border-box;
             overflow: hidden;
+            margin: 0;
         }
     }
 }

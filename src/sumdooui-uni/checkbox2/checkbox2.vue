@@ -139,9 +139,11 @@ export default defineComponent({
         <view
             v-else-if="['square', 'circle'].includes(shape$)"
             :class="`sd-checkbox2__icon sd-checkbox2__icon--${ shape$ }`"
-            :style="{ background: checked_color$ }"
         >
-            <sd-icon name="check" />
+            <sd-icon
+                name="check"
+                :custom-style="{ background: checked$ ? checked_color$ : undefined }"
+            />
         </view>
 
         <view class="sd-checkbox2__label">

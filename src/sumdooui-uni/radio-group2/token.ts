@@ -1,8 +1,8 @@
 import type { InjectionKey } from 'vue'
-import type { RadioGroup2Props } from './radio-group2'
+import type { RadioGroupProps } from './radio-group2'
 
 type RadioGroupProvide = {
-    props      : RadioGroup2Props
+    props      : RadioGroupProps
     updateValue: (value: string | number | boolean) => void
     isChecked  : (value: any) => boolean
 }
