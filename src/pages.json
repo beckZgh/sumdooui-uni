@@ -17,6 +17,8 @@
         }, {
             "path": "pages/examples/basics/icon/main"
         }, {
+            "path": "pages/examples/basics/text/main"
+        }, {
             "path": "pages/examples/basics/button/main"
         }, {
             "path": "pages/examples/basics/image/main"
@@ -155,6 +157,8 @@
         }, {
             "path": "pages/examples/form/picker2/main"
         }, {
+            "path": "pages/examples/form/select/main"
+        },{
             "path": "pages/examples/form/calendar/main"
         }, {
             "path": "pages/examples/form/datetime-picker/main"

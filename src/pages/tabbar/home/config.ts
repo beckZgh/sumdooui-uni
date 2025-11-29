@@ -5,6 +5,7 @@ export default [
         data: [
             { name: 'Color 色彩'        , page: 'color'     },
             { name: 'Icon 图标'         , page: 'icon'      },
+            { name: 'Text 文本'         , page: 'text'      },
             { name: 'Image 图片'        , page: 'image'     },
             { name: 'Button 按钮'       , page: 'button'    },
             { name: 'Animtae 动画/动效' , page: 'animate'   },

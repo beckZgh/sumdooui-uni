@@ -1,0 +1,27 @@
+.sd-text {
+    display: inline;
+
+    &--block {
+        display: block;
+    }
+
+    &--primary {
+        color: $sd-primary-color;
+    }
+
+    &--success {
+        color: $sd-success-color;
+    }
+
+    &--warning {
+        color: $sd-warning-color;
+    }
+
+    &--danger {
+        color: $sd-danger-color;
+    }
+
+    &__placeholder {
+        color: $sd-text-color-placeholder;
+    }
+}
