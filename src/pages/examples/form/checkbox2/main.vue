@@ -5,7 +5,7 @@ const m = reactive({
     checkbox_group: [],
 })
 
-const checkbox_1 = ref(false)
+const checked = ref(false)
 
 const opts = ref([
     { label: '选项一', value: 1 },
@@ -17,61 +17,79 @@ const opts = ref([
 </script>
 
 <template>
-    <sd-page title="Radio 单选框">
+    <sd-page title="Checkbox2 多选框">
         <demo-card title="基本用法">
-            <view style="display: flex;">
-                <sd-checkbox2 v-model="checkbox_1" allow-uncheck>
-                    已知晓《用户隐私协议》，并同意使用
-                </sd-checkbox2>
-            </view>
+            <sd-checkbox2 v-model="checked">
+                已知晓《用户隐私协议》，并同意使用
+            </sd-checkbox2>
         </demo-card>
 
         <demo-card title="非受控状态，默认选中">
-            <view style="display: flex;">
-                <sd-checkbox2 default-checked>
-                    已知晓《用户隐私协议》，并同意使用
-                </sd-checkbox2>
-            </view>
+            <sd-checkbox2 default-checked>
+                已知晓《用户隐私协议》，并同意使用
+            </sd-checkbox2>
         </demo-card>
 
-        <demo-card title="独占一行">
-            <sd-checkbox-group2 v-model="m.checkbox_group" :column="1" :options="opts" />
+        <demo-card title="不同类型">
+            <sd-checkbox2 shape="square">方形</sd-checkbox2>
+            <sd-checkbox2 default-checked shape="square">方形</sd-checkbox2>
+            <sd-checkbox2 shape="circle">圆形</sd-checkbox2>
+            <sd-checkbox2 default-checked shape="circle">圆形</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 block shape="button">按钮类型</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 default-checked block shape="button">按钮类型</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 block shape="button-check">按钮类型带图标</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 default-checked block shape="button-check">按钮类型带图标</sd-checkbox2>
+        </demo-card>
+
+        <demo-card title="自定义选中颜色">
+            <sd-checkbox2 default-checked active-color="red">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
+        </demo-card>
+
+        <demo-card title="自定义选中图标">
+            <sd-checkbox2 default-checked active-icon="circle-solid">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 disabled default-checked active-icon="circle-solid">已知晓《用户隐私协议》，并同意使用</sd-checkbox2>
         </demo-card>
 
         <demo-card title="图标在右侧">
-            <sd-checkbox-group2 v-model="m.checkbox_group" :column="1" icon-position="right" :options="opts" />
-        </demo-card>
-
-        <demo-card title="自定义图标">
-            <sd-checkbox-group2 v-model="m.checkbox_group" :column="1" icon-position="right" :options="opts" active-icon="check" inactive-icon=" " />
-        </demo-card>
-
-        <demo-card title="自定义颜色">
-            <sd-checkbox-group2 v-model="m.checkbox_group" :column="1" icon-position="right" :options="opts" active-color="#09BE4F" />
+            <sd-checkbox2 icon-position="right" block shape="square">方形</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 icon-position="right" block shape="circle">圆形</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 icon-position="right" block shape="button">按钮类型</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 icon-position="right" block shape="button-check">按钮类型带图标</sd-checkbox2>
         </demo-card>
 
         <demo-card title="禁用态">
-            <sd-checkbox-group2 v-model="m.checkbox_group" :column="1" icon-position="right" disabled :options="opts" />
-        </demo-card>
-
-        <demo-card title="显示边框">
-            <sd-checkbox-group2 v-model="m.checkbox_group" border :options="opts" />
-        </demo-card>
-
-        <demo-card title="显示边框 (独占一行)">
-            <sd-checkbox-group2 v-model="m.checkbox_group" border :column="1" :options="opts" />
+            <sd-checkbox2 disabled shape="square">方形</sd-checkbox2>
+            <sd-checkbox2 disabled default-checked shape="square">方形</sd-checkbox2>
+            <sd-checkbox2 disabled shape="circle">圆形</sd-checkbox2>
+            <sd-checkbox2 disabled default-checked shape="circle">圆形</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 disabled block shape="button">按钮类型</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 disabled default-checked block shape="button">按钮类型</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 disabled block shape="button-check">按钮类型带图标</sd-checkbox2>
+            <view style="height: 12px;" />
+            <sd-checkbox2 disabled default-checked block shape="button-check">按钮类型带图标</sd-checkbox2>
         </demo-card>
 
         <demo-card title="显示分割线 (独占一行)">
-            <sd-checkbox-group2 v-model="m.checkbox_group" divider :column="1" :options="opts" />
+            <sd-checkbox-group2 v-model="m.checkbox_group" divider :options="opts" />
         </demo-card>
 
         <demo-card title="双列展示">
             <sd-checkbox-group2 v-model="m.checkbox_group" :column="2" :options="opts" />
         </demo-card>
 
-        <demo-card title="双列展示 (带边框)">
-            <sd-checkbox-group2 v-model="m.checkbox_group" border :column="2" :options="opts" />
+        <demo-card title="双列展示 (按钮形状)">
+            <sd-checkbox-group2 v-model="m.checkbox_group" shape="button" :column="2" :options="opts" />
         </demo-card>
 
         <view style="height: 200px;" />

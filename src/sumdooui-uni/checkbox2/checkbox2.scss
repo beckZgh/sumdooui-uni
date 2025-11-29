@@ -8,63 +8,80 @@ $checkbox2-desc-font-size  : var(--sd-checkbox2-desc-font-size  , $sd-font-size-
 $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color-secondary);
 
 @include b('checkbox2') {
-    display: inline-flex;
     position: relative;
-    vertical-align: middle;
-    font-size: $checkbox2-label-font-size;
-    overflow: hidden;
+    display: inline-flex;
+    margin-right: 24rpx;
+    // align-items: center;
 
     @include e('icon') {
-        margin-right: 16rpx;
-        font-size: 48rpx;
-        color: $checkbox2-inactive-color;
+        font-size: 40rpx;
+        height: 1em;
+        line-height: 1em;
+        margin-right: 12rpx;
+        cursor: pointer;
+
+        .sd-icon {
+            display: block;
+            width: 1.25em;
+            height: 1.25em;
+            font-size: 0.8em;
+            line-height: 1.25;
+            text-align: center;
+            color: transparent;  // 隐藏默认图标
+            box-sizing: border-box;
+            border: 1px solid $sd-border-color;
+        }
+
+        &--circle .sd-icon {
+            border-radius: 50%;
+        }
     }
 
-    @include e('content') {
-        position: relative;
+    @include e('icon-custom') {
+        font-size: 40rpx;
+        height: 1em;
+        line-height: 1em;
+        margin-right: 12rpx;
+        cursor: pointer;
+    }
+
+    @include e('label') {
         flex: 1;
-        text-align: left;
-        overflow: hidden;
-
-        &-label {
-            font-size: $checkbox2-label-font-size;
-            color: $checkbox2-label-text-color;
-            line-height: 48rpx;
-        }
-
-        &-desc {
-            width: 100%;
-            font-size: $checkbox2-desc-font-size;
-            color: $checkbox2-desc-text-color;
-        }
     }
 
-    // 图标在右侧，文本左侧
-    @include m('reverse') {
+    // 转换为块状元素，独占一行
+    &--block {
+        display: flex;
+    }
+
+    // 反转位置，图标在右，文本在左
+    &--reverse{
         flex-direction: row-reverse;
 
-        .sd-checkbox2__icon {
+        .sd-checkbox2__icon,
+        .sd-checkbox2__icon-custom {
             margin-right: 0;
-            margin-left: 16rpx;
+            margin-left: 12rpx;
         }
     }
 
-    // 带边框的多选框
-    @include m('border') {
-        position: relative;
-        border-radius: $sd-radius-md;
-        padding: 32rpx;
-        overflow: hidden;
-        border: 1px solid $sd-border-color;
+    &--button {
+        padding: 24rpx;
+        text-align: center;
+        background-color: $sd-fill-color;
+        color: $sd-text-color;
+        border-radius: 12rpx;
+    }
 
-        .sd-checkbox2__icon {
-            display: none;
-            position: absolute;
-            left: 4rpx;
-            top: 4rpx;
-            margin: 0;
-            z-index: 2;
-            font-size: 30rpx;
+    &--button-check {
+        padding: 32rpx;
+        text-align: center;
+        border-radius: 12rpx;
+        overflow: hidden;
+        @include hairline($sd-border-color, '');
+
+        &::after {
+            border-radius: calc(12rpx * 2);
         }
 
         &::before {
@@ -78,63 +95,208 @@ $checkbox2-desc-text-color : var(--sd-checkbox2-desc-text-color , $sd-text-color
             border: 28rpx solid $sd-primary-color;
             border-bottom-color: transparent;
             border-right-color: transparent;
-            z-index: 1;
         }
     }
 
-    // 带分割线的多选框
-    @include m('divider') {
-        position: relative;
-        padding: 32rpx 0;
-        overflow: hidden;
-        // border-bottom: 1px solid $sd-border-color;
-        @include hairline($sd-border-color, 'bottom');
-        @include clickable($sd-black);
+    &__icon-button-check {
+        display: none;
+        position: absolute;
+        left: 4rpx;
+        top: 4rpx;
+        margin: 0;
+        z-index: 2;
+        font-size: 1em;
+        color: $sd-white;
     }
 
-    // 选中态
     @include when('checked') {
-        .sd-checkbox2__icon {
-            display: inline-block;
-            color: $checkbox2-active-color;
+        .sd-checkbox2__icon .sd-icon {
+            background-color: $sd-primary-color;
+            color: $sd-white;
+            border-color: transparent;
         }
 
-        // 边框模式，调整“边框颜色”及“label文本颜色”
-        &.sd-checkbox2--border {
-            border-color: $checkbox2-active-color;
+        .sd-checkbox2__icon-custom {
+            color: $sd-primary-color;
+        }
 
-            .sd-checkbox2__content-label {
-                color: $checkbox2-active-color;
+        &.sd-checkbox2--button {
+            color: $sd-primary-color;
+            background-color: $sd-primary-color-9;
+        }
+
+        &.sd-checkbox2--button-check {
+            color: $sd-primary-color;
+
+            &::after {
+                border-color: $sd-primary-color;
+            }
+
+            .sd-checkbox2__icon-button-check,
+            &::before {
+                display: block;
             }
         }
 
-        &.sd-checkbox2--border::before {
-            display: block;
-        }
-
-        &.sd-checkbox2--border .sd-checkbox2__icon {
-            color: $sd-white;
-        }
     }
 
-    // 禁用态
     @include when('disabled') {
-        .sd-checkbox2__content-label,
-        .sd-checkbox2__content-desc {
-            color: $sd-text-color-disabled;
+        .sd-checkbox2__icon .sd-icon {
+            background-color: #ebedf0;
+            border-color: #c8c9cc;
         }
 
-        .sd-checkbox2__icon {
-            color: $sd-gray-color-3;
+        .sd-checkbox2__icon-custom,
+        &.is-checked .sd-checkbox2__icon .sd-icon {
+            color: #c8c9cc;
         }
 
-        &.sd-checkbox2--border {
-            border-color: $sd-gray-color-3;
+        .sd-checkbox2__label {
+            opacity: $sd-opacity-disabled;
         }
 
-        &.is-checked::before {
-            border-left-color: $sd-gray-color-5;
-            border-top-color: $sd-gray-color-5;
+        &.sd-checkbox2--button {
+            opacity: $sd-opacity-disabled;
+        }
+
+        &.sd-checkbox2--button-check {
+            background-color: #ebedf0;
+
+            &::after {
+                border-color: #c8c9cc;
+            }
         }
     }
 }
+
+// @include b('checkbox2') {
+//     display: inline-flex;
+//     position: relative;
+//     vertical-align: middle;
+//     font-size: $checkbox2-label-font-size;
+//     overflow: hidden;
+
+//     @include e('icon') {
+//         margin-right: 16rpx;
+//         font-size: 48rpx;
+//         color: $checkbox2-inactive-color;
+//     }
+
+//     @include e('content') {
+//         position: relative;
+//         flex: 1;
+//         text-align: left;
+//         overflow: hidden;
+
+//         &-label {
+//             font-size: $checkbox2-label-font-size;
+//             color: $checkbox2-label-text-color;
+//             line-height: 48rpx;
+//         }
+
+//         &-desc {
+//             width: 100%;
+//             font-size: $checkbox2-desc-font-size;
+//             color: $checkbox2-desc-text-color;
+//         }
+//     }
+
+//     // 图标在右侧，文本左侧
+//     @include m('reverse') {
+//         flex-direction: row-reverse;
+
+//         .sd-checkbox2__icon {
+//             margin-right: 0;
+//             margin-left: 16rpx;
+//         }
+//     }
+
+//     // 带边框的多选框
+//     @include m('border') {
+//         position: relative;
+//         border-radius: $sd-radius-md;
+//         padding: 32rpx;
+//         overflow: hidden;
+//         border: 1px solid $sd-border-color;
+
+//         .sd-checkbox2__icon {
+//             display: none;
+//             position: absolute;
+//             left: 4rpx;
+//             top: 4rpx;
+//             margin: 0;
+//             z-index: 2;
+//             font-size: 30rpx;
+//         }
+
+//         &::before {
+//             content: '';
+//             display: none;
+//             position: absolute;
+//             left: 0;
+//             top: 0;
+//             width: 0;
+//             height: 0;
+//             border: 28rpx solid $sd-primary-color;
+//             border-bottom-color: transparent;
+//             border-right-color: transparent;
+//             z-index: 1;
+//         }
+//     }
+
+//     // 带分割线的多选框
+//     @include m('divider') {
+//         position: relative;
+//         padding: 32rpx 0;
+//         overflow: hidden;
+//         // border-bottom: 1px solid $sd-border-color;
+//         @include hairline($sd-border-color, 'bottom');
+//         @include clickable($sd-black);
+//     }
+
+//     // 选中态
+//     @include when('checked') {
+//         .sd-checkbox2__icon {
+//             display: inline-block;
+//             color: $checkbox2-active-color;
+//         }
+
+//         // 边框模式，调整“边框颜色”及“label文本颜色”
+//         &.sd-checkbox2--border {
+//             border-color: $checkbox2-active-color;
+
+//             .sd-checkbox2__content-label {
+//                 color: $checkbox2-active-color;
+//             }
+//         }
+
+//         &.sd-checkbox2--border::before {
+//             display: block;
+//         }
+
+//         &.sd-checkbox2--border .sd-checkbox2__icon {
+//             color: $sd-white;
+//         }
+//     }
+
+//     // 禁用态
+//     @include when('disabled') {
+//         .sd-checkbox2__content-label,
+//         .sd-checkbox2__content-desc {
+//             color: $sd-text-color-disabled;
+//         }
+
+//         .sd-checkbox2__icon {
+//             color: $sd-gray-color-3;
+//         }
+
+//         &.sd-checkbox2--border {
+//             border-color: $sd-gray-color-3;
+//         }
+
+//         &.is-checked::before {
+//             border-left-color: $sd-gray-color-5;
+//             border-top-color: $sd-gray-color-5;
+//         }
+//     }
+// }

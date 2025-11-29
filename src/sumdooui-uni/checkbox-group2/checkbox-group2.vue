@@ -15,7 +15,7 @@ export default defineComponent({
         'change',
     ],
     setup(props, ctx) {
-
+        // 绑定值
         const model_value$ = computed({
             get() {
                 return Array.isArray(props.modelValue) ? props.modelValue : []
@@ -24,7 +24,6 @@ export default defineComponent({
                 ctx.emit('update:modelValue', values)
             },
         })
-
 
         // 更新值
         const updateValue = (checked: boolean, value: string | number | boolean) => {
@@ -43,7 +42,6 @@ export default defineComponent({
             return model_value$.value.includes(value)
         }
 
-
         useProvide(checkboxGroupKey)({ props, updateValue, isChecked })
     },
 })
@@ -53,7 +51,6 @@ export default defineComponent({
     <view
         class="sd-checkbox-group2"
         :class="[customClass, {
-            'sd-checkbox-group2--block'  : divider || column === 1,
             'sd-checkbox-group2--divider': divider,
             'is-multi-column'            : column > 1,
         }]"
@@ -68,11 +65,11 @@ export default defineComponent({
             :key="idx"
         >
             <sd-checkbox2
-                :border="border"
                 :label="item[keys?.label || 'label']"
                 :active-value="item[keys?.value || 'value']"
-                :content="item[keys?.content || 'content']"
                 :disabled="item[keys?.disabled || 'disabled']"
+                :custom-style="item.style"
+                v-bind="item.props"
             />
         </template>
     </view>

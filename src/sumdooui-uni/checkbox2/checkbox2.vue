@@ -27,51 +27,30 @@ export default defineComponent({
         const formItem      = useInject<FormItemProvide>(FORM_ITEM_KEY)?.parent // sd-form-item 组件
         const form          = useInject<FormProvide>(FORM_KEY)?.parent          // sd-form 组件
 
-        const checked$ = computed({
-            get: () => {
-                if (checkboxGroup) {
-                    return checkboxGroup?.isChecked(props.activeValue)          // 多选框组模式
+        // 是否选中
+        const checked$ = computed(() => {
+            if (checkboxGroup) {
+                return checkboxGroup?.isChecked(props.activeValue)          // 多选框组模式
+            } else {
+                const { modelValue, activeValue, defaultChecked } = props // 单个使用模式
+                if (modelValue !== null && modelValue !== undefined) {
+                    return modelValue === activeValue
                 } else {
-                    const { modelValue, activeValue, defaultChecked } = props // 单个使用模式
-                    if (modelValue !== null && modelValue !== undefined) {
-                        return modelValue === activeValue
-                    } else {
-                        return modelValue ?? defaultChecked
-                    }
+                    return modelValue ?? !!defaultChecked
                 }
-            },
-            set: (val: string | number | boolean) => {
-                ctx.emit('update:modelValue', val)
-            },
+            }
         })
 
-        // 多选框图标
-        const icon$ = computed(() => {
-            if (props.border) return 'check' // 边框模式，不支持自定义
+        const shape$ = computed(() => checkboxGroup?.props.shape ?? props.shape) // 形状单独默认 Group 优先级更高，便于统一显示
 
-            return checked$.value
-                ? (props.activeIcon   || checkboxGroup?.props.activeIcon   || 'check-square-fill')
-                : (props.inactiveIcon || checkboxGroup?.props.inactiveIcon || 'square')
-        })
+        // 选中图标自定义
+        const checked_icon$ = computed(() => props.activeIcon ?? checkboxGroup?.props.activeIcon)
 
         // 多选框图标颜色
-        const icon_color$ = computed(() => {
-            if (props.border) return '#fff' // 边框模式，不支持自定义
-
-            return checked$.value
-                ? props.activeColor   || checkboxGroup?.props.activeColor
-                : props.inactiveColor || checkboxGroup?.props.inactiveColor
-        })
+        const checked_color$ = computed(() => props.activeColor ?? checkboxGroup?.props.activeColor)
 
         // 图标位置
-        const icon_pos$ = computed(() => {
-            return props.iconPosition ?? checkboxGroup?.props.iconPosition ?? 'left'
-        })
-
-        // 显示分割线
-        const divider$ = computed(() => {
-            return props.divider ?? checkboxGroup?.props.divider ?? false
-        })
+        const icon_pos$ = computed(() => props.iconPosition ?? checkboxGroup?.props.iconPosition ?? 'left')
 
         // 超出可添加的数量限制，剩余未选中需要禁用
         const is_limit$ = computed(() => {
@@ -114,8 +93,6 @@ export default defineComponent({
             // 单个控件使用赋值
             const value = checked ? props.activeValue : props.inactiveValue
 
-            checked$.value = value
-
             ctx.emit('update:modelValue', value)
             ctx.emit('change', value)
 
@@ -124,10 +101,10 @@ export default defineComponent({
 
         return {
             checked$,
-            icon$,
-            icon_color$,
+            shape$,
+            checked_icon$,
+            checked_color$,
             icon_pos$,
-            divider$,
             disabled$,
             readonly$,
             handleToggle,
@@ -142,29 +119,41 @@ export default defineComponent({
         :class="[
             customClass,
             {
-                'sd-checkbox2--border' : border,
-                'sd-checkbox2--divider': divider$,
-                'sd-checkbox2--reverse': icon_pos$ === 'right',
-                'is-checked'           : checked$,
-                'is-disabled'          : disabled$,
-                'is-readonly'          : readonly$,
+                [`sd-checkbox2--${ shape$ }`]: !!shape$,
+                'sd-checkbox2--block'        : !!block,
+                'sd-checkbox2--reverse'      : icon_pos$ === 'right',
+                'is-checked'                 : checked$,
+                'is-disabled'                : disabled$,
+                'is-readonly'                : readonly$,
             },
         ]"
-        :style="customStyle"
         @tap="handleToggle"
     >
-        <sd-icon :name="icon$" :color="icon_color$" custom-class="sd-checkbox2__icon" />
+        <sd-icon
+            v-if="checked$ && checked_icon$"
+            :name="checked_icon$"
+            :color="checked_color$"
+            custom-class="sd-checkbox2__icon-custom"
+        />
 
-        <view class="sd-checkbox2__content">
-            <view class="sd-checkbox2__content-label">
-                <template v-if="label">{{ label }}</template>
-                <slot />
-                <slot name="label" />
-            </view>
-            <view v-if="content || $slots.content" class="sd-checkbox2__content-desc">
-                <template v-if="content">{{ content }}</template>
-                <slot name="content" />
-            </view>
+        <view
+            v-else-if="['square', 'circle'].includes(shape$)"
+            :class="`sd-checkbox2__icon sd-checkbox2__icon--${ shape$ }`"
+            :style="{ background: checked_color$ }"
+        >
+            <sd-icon name="check" />
+        </view>
+
+        <view class="sd-checkbox2__label">
+            <slot>
+                {{ label  }}
+            </slot>
+
+            <sd-icon
+                v-if="shape$ === 'button-check'"
+                custom-class="sd-checkbox2__icon-button-check"
+                name="check"
+            />
         </view>
     </view>
 </template>

@@ -1,5 +1,6 @@
 
 import type { PropType, ExtractPropTypes } from 'vue'
+import type { EcheckboxGroupTypes } from './types'
 
 import { COMMON_PROPS } from '../common/props'
 
@@ -9,17 +10,17 @@ export const checkbox_group2_props = {
     /** 绑定值 */
     modelValue: { type: Array as PropType<(string | number | boolean)[]>, default: () => [] },
 
+    /** 最多可选择的数量 */
+    max: { type: Number },
+
     /** 选项 */
-    options: { type: Array as PropType<{ label?: string; value?: string | number | boolean; [k: string]: any }[]>, default: () => [] },
+    options: { type: Array as PropType<EcheckboxGroupTypes.OptionItem[]>, default: () => [] },
 
     /** 选项键属性配置 */
-    keys: { type: Object as PropType<Record<string, string>>, default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }) },
+    keys: { type: Object as PropType<EcheckboxGroupTypes.OptionItemKeys>, default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }) },
 
-    /** 未选中的颜色 */
-    inactiveColor: { type: String },
-
-    /** 未选中的图标 */
-    inactiveIcon: { type: String },
+    /** 形状：square | circle | button | button-check */
+    shape: { type: String as PropType<EcheckboxGroupTypes.CheckboxShape>, default: 'square' },
 
     /** 选中的颜色 */
     activeColor: { type: String },
@@ -33,17 +34,14 @@ export const checkbox_group2_props = {
     /** 只读模式 */
     readonly: { type: Boolean, default: undefined },
 
-    /** 显示边框 */
-    border: { type: Boolean, default: undefined },
+    /** 转换为块级元素 */
+    block: { type: Boolean, default: undefined },
 
     /** 图标位置 */
     iconPosition: { type: String as PropType<'left' | 'right'> },
 
-    /** 最多可选择的数量 */
-    max: { type: Number },
-
     /** 显示列数 */
-    column: { type: Number, default: undefined },
+    column: { type: Number, default: 0 },
 
     /** 显示分割线 */
     divider: { type: Boolean, default: undefined },
