@@ -8,5 +8,5 @@ export const COMMON_PROPS = {
     /** 自定义类名 */
     customClass: { type: [Object, String] },
     /** 自定义样式 */
-    customStyle: { type: Object as PropType<any> }, // 待排查类型问题 ，CSSProperties 不兼容
+    customStyle: { type: Object as PropType<CSSProperties> },
 }

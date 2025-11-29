@@ -1,7 +1,5 @@
 {
     "recommendations": [
-        "vue.volar",
-        "vue.vscode-typescript-vue-plugin",
         "editorconfig.editorconfig",
         "dbaeumer.vscode-eslint",
         "jock.svg"

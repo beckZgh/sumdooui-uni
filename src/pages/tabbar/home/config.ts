@@ -83,7 +83,8 @@ export default [
             { name: 'Stepper 步进器'                , page: 'stepper'           },
             { name: 'Rate 评分'                     , page: 'rate'              },
             { name: 'Picker 数据选择器'             , page: 'picker'            },
-            { name: 'Picker2 数据选择器'            , page: 'picker2'           }, // TODO: 待完成
+            { name: 'Picker2 数据选择器'            , page: 'picker2'           },
+            { name: 'Select 选择器'                 , page: 'select'            }, // TODO: 待完成
             { name: 'Calendar 日历'                 , page: 'calendar'          }, // TODO: 待完成
             { name: 'DatetimePicker 日期时间选择器' , page: 'datetime-picker'   }, // TODO: 待完成
             { name: 'Upload 上传'                   , page: 'upload'            }, // TODO: 待完成
