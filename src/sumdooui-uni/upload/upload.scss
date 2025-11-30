@@ -1,0 +1,69 @@
+@import '../styles/variables.scss';
+
+@include b('upload') {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__preview,
+    &__add-btn {
+        width: 200rpx;
+        height: 200rpx;
+        background-color: $sd-fill-color;
+        // border-radius: $sd-radius-md;
+        box-sizing: border-box;
+    }
+
+    &__preview  {
+        position: relative;
+        display: inline-block;
+        margin-right: 16rpx;
+        margin-bottom: 16rpx;
+
+        &-close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 32rpx;
+            border-radius: 0 16rpx 0 16rpx;
+            color: $sd-white;
+            background-color: $sd-bg-color-overlay;
+            z-index: 2;
+            padding: 8rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__mask {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: rgba(0,0,0,.4);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        color: $sd-white;
+
+        .sd-icon {
+            font-size: 40rpx;
+            margin-bottom: 16rpx;
+        }
+    }
+
+    &__add-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        .sd-icon {
+            font-size: 60rpx;
+        }
+    }
+
+}
