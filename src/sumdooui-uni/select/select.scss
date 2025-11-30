@@ -1,90 +1,13 @@
 @import '../styles/variables.scss';
 
-$select-background           : var(--sd-select-background           , $sd-white);
-$select-radius               : var(--sd-select-radius               , $sd-radius-lg);
-$select-header-height        : var(--sd-select-header-height        , 100rpx);
-$select-title-font-size      : var(--sd-select-title-font-size      , $sd-font-size-lg);
-$select-title-color          : var(--sd-select-title-color          , $sd-text-color);
-$select-view-column-font-size: var(--sd-select-view-column-font-size, $sd-font-size-lg);
-$select-view-column-color    : var(--sd-select-view-column-color    , $sd-text-color);
-$select-view-column-padding  : var(--sd-select-view-column-padding  , 0 8rpx);
-
-.sd-select {
-    background-color: $select-background;
-    overflow: hidden;
-
-    &-header {
-        display: flex;
-        align-items: center;
-        height: 80rpx;
-        background-color: $sd-gray-color-1;
-
-        > view:first-child,
-        > view:last-child {
-            padding: 0 40rpx;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            @include clickable($sd-black);
-        }
-
-        > view:last-child {
-            color: $sd-primary-color;
-        }
-    }
-
-    &__title {
-        flex: 1;
-        text-align: center;
-        font-size: $select-title-font-size;
-        color: $select-title-color;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    &-content {
-        overflow: hidden;
-        background-color: $select-background;
-        height: 800rpx;
-    }
-
-    // 选择项
-    &-item {
-        .sd-checkbox,
-        .sd-radio {
-            height: 100rpx;
-            display: flex;
-            align-items: center;
-            padding: 0 30rpx;
-        }
-
-        .sd-checkbox__label,
-        .sd-radio__label {
-            flex: 1;
-            text-align: left;
-        }
-
-        @include hairline($sd-border-color, 'bottom');
-        @include clickable($sd-black);
+@include b('select') {
+    &-content .sd-checkbox-group2--divider .sd-checkbox2,
+    &-content .sd-radio-group2--divider .sd-radio2 {
+        padding-left: 30rpx;
+        padding-right: 30rpx;
     }
 
     &-footer {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 40rpx;
-
-        // 参考 ios 小程序 Picker 的样式 v25.11.18
-        .sd-button {
-            font-size: 32rpx;
-            font-weight: bold;
-            width: 240rpx;
-        }
-
-        .sd-button + .sd-button {
-            margin-left: 30rpx;
-        }
+        padding: 30rpx;
     }
 }

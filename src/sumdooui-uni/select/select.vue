@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, computed, reactive, getCurrentInstance } from 'vue'
+import { defineComponent, computed, reactive, watch } from 'vue'
 import { MpMixin      } from '../common/mixins'
 import { select_props } from './select'
 
@@ -14,98 +14,147 @@ export default defineComponent({
         'update:visible',
         'open',
         'close',
+        'scroll',
         'cancel',
         'confirm',
     ],
     setup(props, ctx) {
-        const instance = getCurrentInstance()
-        const query = uni.createSelectorQuery().in(instance)
-
         const state = reactive({
-            values    : [] as (string | number)[], // 多选时保存的数据
-            scroll_top: 0,
+            values       : [] as any[],                  // 选中值
+            scroll_top   : 0,
+            to_scroll_top: 0,
+            visible      : props.visible,               // 是否显示弹窗
         })
 
-        const visible$ = computed({
-            get() { return props.visible },
-            set(value) { ctx.emit('update:visible', value) },
-        })
+        const $selectCtx = {
+            getValues,
+            setValues,
+            updateScrollTop,
+        }
 
+        watch(() => props.visible, (visible) => { state.visible = visible })
+        watch(() => state.visible, (visible) => { ctx.emit('update:visible', visible)  })
+
+        // 选项列表
         const options$ = computed(() => {
             const opts = props.options || []
 
-            if ($utils.isFunction(props.filter)) {
-                return opts.filter(props.filter)
+            const filter_fn = props.filter
+            if ($utils.isFunction(filter_fn)) {
+                return opts.filter(filter_fn)
             } else {
                 return opts
             }
         })
 
-        async function onOpen() {
+        // 监听 v-model:visible 打开
+        function onOpen() {
+            init()
+
+            ctx.emit('open')
+        }
+
+        // 监听 v-model:visible 关闭
+        function onClose() {
+            ctx.emit('close')
+        }
+
+        function onScroll(e: any) {
+            const scrollTop = e.detail.scrollTop
+            ctx.emit('scroll', { scrollTop, $selectCtx })
+        }
+
+        // 初始化数据
+        function init() {
+            // 取得默认选中值
+            state.values = getSelectedVaule()
+        }
+
+        // 取得选中值
+        function getSelectedVaule() {
             const { defaultValue, multi } = props
-            if ($utils.isNullOrUnDef(defaultValue)) {
-                state.values = []
-                return
-            }
+            if ($utils.isNullOrUnDef(defaultValue)) return []
 
             if (multi && Array.isArray(defaultValue)) {
-                state.values = defaultValue
+                return defaultValue
             } else if ($utils.isString(defaultValue) || $utils.isNumber(defaultValue)) {
-                state.values = [defaultValue]
+                return [defaultValue]
             }
 
-            setTimeout(() => {
-                scrollInToView()
-            }, 0)
+            return []
         }
 
         // 当一直滚动时，关闭弹窗再次打开会造成读取位置信息异常，ios（可开启 enable-passive 优化）
-        function scrollInToView() {
-            query.select('#scroll-wrap').fields({ rect: true, size: true, scrollOffset: true }, () => {})
-            query.select('.sd-select-item.is-checked').fields({ rect: true, size: true }, () => {})
+        // function scrollInToView() {
+        //     query.select('#scroll-wrap').fields({ rect: true, size: true, scrollOffset: true }, () => {})
+        //     query.select('.sd-select-item.is-checked').fields({ rect: true, size: true }, () => {})
 
-            query.exec(([scrollViewInfo, nodeRect]) => {
-                if (!scrollViewInfo || !nodeRect) return
+        //     query.exec(([scrollViewInfo, nodeRect]) => {
+        //         if (!scrollViewInfo || !nodeRect) return
 
-                const nodeOffsetTop = nodeRect.top - scrollViewInfo.top + scrollViewInfo.scrollTop
-                const { scrollTop, height: scrollViewHeight } = scrollViewInfo
-                const nodeHeight = nodeRect.height
+        //         const nodeOffsetTop = nodeRect.top - scrollViewInfo.top + scrollViewInfo.scrollTop
+        //         const { scrollTop, height: scrollViewHeight } = scrollViewInfo
+        //         const nodeHeight = nodeRect.height
 
-                const isVisible = nodeOffsetTop < scrollTop + scrollViewHeight && nodeOffsetTop + nodeHeight > scrollTop
-                if ( isVisible ) return
+        //         const isVisible = nodeOffsetTop < scrollTop + scrollViewHeight && nodeOffsetTop + nodeHeight > scrollTop
+        //         if ( isVisible ) return
 
-                state.scroll_top = nodeOffsetTop - (scrollViewHeight / 2 - nodeHeight / 2) // 定位至中间
-            })
-        }
+        //         state.scroll_top = nodeOffsetTop - (scrollViewHeight / 2 - nodeHeight / 2) // 定位至中间
+        //     })
+        // }
 
         // 取消选择
         function onCancel() {
-            visible$.value = false
+            state.visible = false
             ctx.emit('cancel')
         }
 
         // 确认选择
         function onConfirm() {
-            visible$.value = false
-
-            ctx.emit('confirm', getConfirmValues())
+            const values  = getConfirmValues()
+            state.visible = false
+            ctx.emit('confirm', values)
         }
 
+        // 取得确认后的值
         function getConfirmValues() {
-            const options = props.options || []
-            const items   = options.filter(item => state.values.includes(item[props.valueField]))
+            const options = options$.value
+            const items   = options.filter(item => state.values.includes(item[props.keys.value]))
 
             return {
                 selectedItems : items,
-                selectedValues: items.map(item => item[props.valueField]),
+                selectedLabels: items.map(item => item[props.keys.label]),
+                selectedValues: items.map(item => item[props.keys.value]),
             }
         }
 
+        /***************************************************************************************
+         *  暴露 API
+         ***************************************************************************************/
+
+        // 获取值
+        function getValues() {
+            return state.values
+        }
+
+        // 设置值
+        function setValues(values: any[]) {
+            state.values = values
+        }
+
+        // 更细当前滚动位置
+        function updateScrollTop(top: number) {
+            state.to_scroll_top = top
+        }
+
+        ctx.expose($selectCtx)
+
         return {
             state,
-            visible$,
             options$,
+            onScroll,
             onOpen,
+            onClose,
             onCancel,
             onConfirm,
         }
@@ -115,79 +164,50 @@ export default defineComponent({
 
 <template>
     <sd-popup
-        v-model:visible="visible$"
+        v-model:visible="state.visible"
         position="bottom"
         max-height="initial"
-        :show-top-close="false"
-        :round="false"
+        show-top-close
+        round
+        :title="title"
         @open="onOpen"
-        @close="$emit('close')"
+        @close="onClose"
     >
-        <view class="sd-select">
-            <view class="sd-select-header">
-                <view @tap="onCancel">
-                    {{ cancelText }}
-                </view>
-                <view class="sd-select__title">
-                    {{ title }}
-                </view>
-                <view @tap="onConfirm">
-                    {{ confirmText }}
-                </view>
-            </view>
+        <slot name="top" />
+        <view class="sd-select-content">
+            <scroll-view
+                scroll-y
+                :scroll-top="state.to_scroll_top"
+                :style="{ maxHeight: '800rpx' }"
+                @scroll="onScroll"
+            >
+                <sd-checkbox-group2
+                    v-if="multi"
+                    v-model="state.values"
+                    :options="options$"
+                    divider
+                    :max="max"
+                    :icon-position="iconPosition"
+                    :active-color="activeColor"
+                    :active-icon="activeIcon"
+                />
+                <sd-radio-group2
+                    v-else
+                    v-model="state.values[0]"
+                    :options="options$"
+                    divider
+                    :icon-position="iconPosition"
+                    :active-color="activeColor"
+                    :active-icon="activeIcon"
+                />
+            </scroll-view>
+        </view>
+        <slot name="bottom" />
 
-            <view class="sd-select-content">
-                <scroll-view
-                    v-if="visible"
-                    id="scroll-wrap"
-                    enable-passive
-                    style="height: 100%;"
-                    scroll-y
-                    :scroll-top="state.scroll_top"
-                >
-                    <sd-checkbox-group
-                        v-if="multi"
-                        v-model="state.values"
-                        :min="min"
-                        :max="max"
-                        :icon-position="iconPosition"
-                        :icon-size="iconSize"
-                        :inactive-color="inactiveColor"
-                        :inactive-icon="inactiveIcon"
-                        :active-color="activeColor"
-                        :active-icon="activeIcon"
-                    >
-                        <view
-                            v-for="item in options$"
-                            :key="item[valueField]"
-                            class="sd-select-item"
-                            :class="{ 'is-checked': state.values.includes(item[valueField]) }"
-                        >
-                            <sd-checkbox :label="item[labelField]" :active-value="item[valueField]" />
-                        </view>
-                    </sd-checkbox-group>
-
-                    <sd-radio-group
-                        v-else
-                        v-model="state.values[0]"
-                        :icon-position="iconPosition"
-                        :icon-size="iconSize"
-                        :inactive-color="inactiveColor"
-                        :inactive-icon="inactiveIcon"
-                        :active-color="activeColor"
-                        :active-icon="activeIcon"
-                    >
-                        <view
-                            v-for="item in options$"
-                            :key="item[valueField]"
-                            class="sd-select-item"
-                            :class="{ 'is-checked': state.values.includes(item[valueField]) }"
-                        >
-                            <sd-radio :label="item[labelField]" :name="item[valueField]"  />
-                        </view>
-                    </sd-radio-group>
-                </scroll-view>
-            </view>
+        <view class="sd-select-footer">
+            <sd-button type="primary" block round @click="onConfirm">
+                {{ confirmButtonText }}
+            </sd-button>
         </view>
     </sd-popup>
 </template>
